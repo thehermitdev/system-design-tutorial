@@ -1,3 +1,5 @@
+# System Design Life Cycle (SDLC)
+
 The System Design Life Cycle (SDLC) is a structured process used to plan, design, develop, test, deploy, and maintain software systems. It helps teams build reliable, scalable, and high-quality systems by following well-defined phases, ensuring that business requirements are correctly translated into technical solutions.
 
 - Provides a clear roadmap from idea to deployment.
