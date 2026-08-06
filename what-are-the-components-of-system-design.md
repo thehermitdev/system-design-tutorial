@@ -1,133 +1,133 @@
-# **What are the components of System Design?**
+# **ส่วนประกอบของการออกแบบระบบมีอะไรบ้าง?**
 
-[**System Design**](./README.md) involves looking at the system's requirements, determining its assumptions and limitations, and defining its high-level structure and components. The primary elements of system design, including databases, load balancers, and messaging systems, will be discussed.
+[**การออกแบบระบบ**](./README.md) เกี่ยวข้องกับการพิจารณาความต้องการของระบบ การกำหนดสมมติฐานและข้อจำกัด ตลอดจนการกำหนดโครงสร้างและส่วนประกอบระดับสูงของระบบ โดยจะกล่าวถึงองค์ประกอบหลักของการออกแบบระบบ เช่น ฐานข้อมูล ตัวกระจายภาระงาน และระบบรับส่งข้อความ
 
-## 1. Load Balancer
+## 1. ตัวกระจายภาระงาน
 
-Incoming requests or workloads are divided across several distinct resources or servers using a **load balancer**, a component of system design. When a system has many servers and has to divide requests evenly among them, or when a system receives a large number of requests and wants to split them up across multiple servers to prevent overloading any one of them, this can be useful.
+คำขอหรือภาระงานที่เข้ามาจะถูกกระจายไปยังทรัพยากรหรือเซิร์ฟเวอร์หลายเครื่องด้วย **ตัวกระจายภาระงาน** ซึ่งเป็นส่วนประกอบหนึ่งของการออกแบบระบบ วิธีนี้มีประโยชน์เมื่อระบบมีเซิร์ฟเวอร์หลายเครื่องและต้องกระจายคำขอให้เท่าๆ กัน หรือเมื่อระบบได้รับคำขอจำนวนมากและต้องการแบ่งคำขอไปยังหลายเซิร์ฟเวอร์เพื่อป้องกันไม่ให้เซิร์ฟเวอร์เครื่องใดเครื่องหนึ่งรับภาระมากเกินไป
 
-Some common **types of load balancers** include:
+**ประเภทของตัวกระจายภาระงาน** ที่พบบ่อย ได้แก่
 
-- **Layer 4 load balancers:** It functions at the **OSI model's Transport layer**, allocating requests according to their **TCP/UDP port numbers** and **source and destination IP addresses**.
-- **Layer 7 load balancers:** Distributing requests according to their content, including the URL or HTTP method type, it functions at the OSI model's application layer.
-- **Global load balancers** are used in distributed systems to distribute requests among multiple servers located in different geographic regions.
-- **Application load balancers** are specialized load balancers that are designed to work with specific types of applications or protocols, such as HTTP or HTTPS.
+- **ตัวกระจายภาระงานระดับ Layer 4:** ทำงานที่ **Transport Layer ของโมเดล OSI** โดยกระจายคำขอตาม **หมายเลขพอร์ต TCP/UDP** และ **ที่อยู่ IP ต้นทางและปลายทาง**
+- **ตัวกระจายภาระงานระดับ Layer 7:** ทำงานที่ Application Layer ของโมเดล OSI โดยกระจายคำขอตามเนื้อหาของคำขอ เช่น URL หรือประเภทของ HTTP Method
+- **ตัวกระจายภาระงานแบบ Global** ใช้ในระบบแบบกระจายเพื่อกระจายคำขอไปยังเซิร์ฟเวอร์หลายเครื่องที่อยู่ในภูมิภาคทางภูมิศาสตร์ต่างกัน
+- **ตัวกระจายภาระงานสำหรับแอปพลิเคชัน** เป็นตัวกระจายภาระงานเฉพาะทางที่ออกแบบมาให้ทำงานกับแอปพลิเคชันหรือโปรโตคอลบางประเภท เช่น HTTP หรือ HTTPS
 
-## **2. Caching**
+## **2. การแคช**
 
-A technique for temporarily storing frequently requested data that speeds up its retrieval when needed again called **caching**. The main database or data source is less burdened when caching is included in system architecture, which enhances performance and efficiency.
+เทคนิคการจัดเก็บข้อมูลที่มีการร้องขอบ่อยไว้ชั่วคราว เพื่อให้สามารถดึงข้อมูลนั้นได้เร็วขึ้นเมื่อต้องใช้อีกครั้ง เรียกว่า **การแคช** เมื่อมีการใช้แคชในสถาปัตยกรรมระบบ ภาระของฐานข้อมูลหลักหรือแหล่งข้อมูลจะลดลง ทำให้ประสิทธิภาพและประสิทธิผลของระบบดีขึ้น
 
-Here’s how caching works and why it’s beneficial:
+การแคชทำงานอย่างไรและมีประโยชน์อย่างไร มีดังนี้
 
-- **Quick Access**: When data is cached, it’s stored in a faster, temporary storage (like memory) instead of being fetched repeatedly from a slower storage source. This makes retrieving information faster.
-- **Reduces Database Load**: The system can process more requests without experiencing any lag by keeping frequently used or popular data in the cache instead of constantly querying the main database.
-- **Improves User Experience**: Faster data access means faster response times for users, which improves the overall experience on websites or apps.
+- **เข้าถึงได้รวดเร็ว**: เมื่อข้อมูลถูกแคช ข้อมูลจะถูกเก็บไว้ในพื้นที่จัดเก็บชั่วคราวที่รวดเร็วกว่า เช่น หน่วยความจำ แทนที่จะดึงข้อมูลซ้ำๆ จากแหล่งจัดเก็บที่ช้ากว่า ทำให้เรียกใช้ข้อมูลได้เร็วขึ้น
+- **ลดภาระของฐานข้อมูล**: ระบบสามารถประมวลผลคำขอได้มากขึ้นโดยไม่เกิดความล่าช้า ด้วยการเก็บข้อมูลที่ใช้บ่อยหรือได้รับความนิยมไว้ในแคช แทนที่จะสอบถามฐานข้อมูลหลักอยู่ตลอดเวลา
+- **ปรับปรุงประสบการณ์ของผู้ใช้**: การเข้าถึงข้อมูลที่รวดเร็วขึ้นทำให้ระยะเวลาตอบสนองต่อผู้ใช้เร็วขึ้น ซึ่งช่วยปรับปรุงประสบการณ์โดยรวมในการใช้งานเว็บไซต์หรือแอปพลิเคชัน
 
-## **3. Content Delivery Network (CDN)**
+## **3. เครือข่ายนำส่งเนื้อหา (CDN)**
 
-A **Content Delivery Network (CDN)** is a network of servers spread across different regions that enables faster delivery of content to users, such as webpages, movies, and photos. A CDN is utilized in most system designs to increase the speed and dependability of content delivery to consumers, particularly when they are dispersed across many geographical locations.
+**เครือข่ายนำส่งเนื้อหา (CDN)** คือเครือข่ายของเซิร์ฟเวอร์ที่กระจายอยู่ในภูมิภาคต่างๆ ซึ่งช่วยส่งเนื้อหา เช่น หน้าเว็บ ภาพยนตร์ และรูปภาพ ไปยังผู้ใช้ได้รวดเร็วยิ่งขึ้น CDN ถูกนำมาใช้ในการออกแบบระบบส่วนใหญ่เพื่อเพิ่มความเร็วและความน่าเชื่อถือในการส่งเนื้อหาให้ผู้ใช้ โดยเฉพาะเมื่อผู้ใช้กระจายอยู่ในหลายพื้นที่ทางภูมิศาสตร์
 
-### **How a CDN works?**
+### **CDN ทำงานอย่างไร?**
 
-> *when a user requests content (like a video or an image), instead of retrieving it from the main server, the request is handled by a nearby CDN server, which has a cached copy of the content. This reduces the distance the data has to travel, making it load faster for the user.*
+> *เมื่อผู้ใช้ร้องขอเนื้อหา เช่น วิดีโอหรือรูปภาพ แทนที่จะดึงเนื้อหาจากเซิร์ฟเวอร์หลัก คำขอจะถูกจัดการโดยเซิร์ฟเวอร์ CDN ที่อยู่ใกล้และมีสำเนาเนื้อหาที่แคชไว้ วิธีนี้ช่วยลดระยะทางที่ข้อมูลต้องเดินทาง ทำให้เนื้อหาโหลดได้เร็วขึ้นสำหรับผู้ใช้*
 > 
 
-## **4. API Gateways**
+## **4. API Gateway**
 
-An **API Gateway** is like a central doorway or "traffic controller" for requests coming into a system. In system design, it acts as a single entry point for clients (such as apps or websites) to access multiple backend services in an organized and secure way.
+**API Gateway** เปรียบเสมือนประตูส่วนกลางหรือ "ตัวควบคุมการจราจร" สำหรับคำขอที่เข้ามาในระบบ ในการออกแบบระบบ API Gateway ทำหน้าที่เป็นจุดเข้าใช้งานเพียงจุดเดียวให้ Client เช่น แอปพลิเคชันหรือเว็บไซต์ สามารถเข้าถึงบริการ Backend หลายบริการได้อย่างเป็นระเบียบและปลอดภัย
 
-Let's see how it works:
+มาดูกันว่าระบบนี้ทำงานอย่างไร
 
-- **Request Routing**: A client submits a request to the API Gateway when it wants information or actions from several services. After forwarding the request to the appropriate services, the gateway compiles their answers and provides the client with a single, unified response.
-- **Simplifies Client Interaction**: Without an API Gateway, clients might need to connect directly to each service individually, which can be complex. The API Gateway simplifies this by hiding the backend details from clients.
-- **Security and Monitoring**: The gateway can handle security features like authentication (checking user identities) and authorization (checking what they’re allowed to do). It also helps monitor traffic, so you can track and log usage, spot issues, or prevent attacks.
-- **Load Management**: In busy systems, the gateway can help balance and control the flow of requests to prevent overload, ensuring smoother performance.
+- **การกำหนดเส้นทางคำขอ**: เมื่อ Client ต้องการข้อมูลหรือการดำเนินการจากหลายบริการ Client จะส่งคำขอไปยัง API Gateway จากนั้น Gateway จะส่งต่อคำขอไปยังบริการที่เหมาะสม รวบรวมคำตอบจากบริการเหล่านั้น และส่งคำตอบแบบรวมเป็นหนึ่งเดียวกลับไปยัง Client
+- **ทำให้การติดต่อกับ Client ง่ายขึ้น**: หากไม่มี API Gateway Client อาจต้องเชื่อมต่อกับแต่ละบริการโดยตรง ซึ่งอาจมีความซับซ้อน API Gateway ช่วยลดความซับซ้อนด้วยการซ่อนรายละเอียดของ Backend จาก Client
+- **ความปลอดภัยและการติดตามตรวจสอบ**: Gateway สามารถจัดการคุณสมบัติด้านความปลอดภัย เช่น Authentication หรือการตรวจสอบตัวตนของผู้ใช้ และ Authorization หรือการตรวจสอบสิ่งที่ผู้ใช้ได้รับอนุญาตให้ทำ นอกจากนี้ยังช่วยติดตามทราฟฟิก ทำให้สามารถตรวจสอบและบันทึกการใช้งาน ค้นหาปัญหา หรือป้องกันการโจมตีได้
+- **การจัดการภาระงาน**: ในระบบที่มีการใช้งานสูง Gateway สามารถช่วยกระจายและควบคุมการไหลของคำขอเพื่อป้องกันภาระงานเกิน ทำให้ระบบทำงานได้ราบรื่นยิ่งขึ้น
 
-## 5. Key-value stores
+## 5. ที่เก็บข้อมูลแบบคีย์-ค่า
 
-One kind of NoSQL database that is meant for storing data as a collection of key-value pairs is called a key-value store. Every piece of data is kept in a key-value store under a distinct key, and the data itself serves as the value. Since key-value stores allow for quick access to data by key, they are typically used to store data that is accessed frequently.
+ฐานข้อมูล NoSQL ประเภทหนึ่งที่ออกแบบมาเพื่อจัดเก็บข้อมูลเป็นชุดของคู่คีย์-ค่า เรียกว่า ที่เก็บข้อมูลแบบคีย์-ค่า ข้อมูลแต่ละรายการจะถูกเก็บไว้ภายใต้คีย์ที่ไม่ซ้ำกัน และตัวข้อมูลเองจะเป็นค่า เนื่องจากที่เก็บข้อมูลแบบคีย์-ค่าสามารถเข้าถึงข้อมูลผ่านคีย์ได้อย่างรวดเร็ว จึงมักใช้สำหรับจัดเก็บข้อมูลที่ถูกเข้าถึงบ่อย
 
-- Key-value stores come in a variety of forms, such as persistent key-value stores, which store data on disk or in a distributed file system for durability, and in-memory key-value stores, which store data in memory for quick access.
-- Key-value stores are generally simpler to use and more scalable than other types of databases, such as RDBMS. However, they are not as well-suited for storing complex structured data that requires advanced querying capabilities.
+- ที่เก็บข้อมูลแบบคีย์-ค่ามีหลายรูปแบบ เช่น ที่เก็บข้อมูลแบบคงอยู่ถาวร ซึ่งจัดเก็บข้อมูลไว้บนดิสก์หรือระบบไฟล์แบบกระจายเพื่อให้ข้อมูลคงทน และที่เก็บข้อมูลแบบ In-Memory ซึ่งจัดเก็บข้อมูลไว้ในหน่วยความจำเพื่อให้เข้าถึงได้รวดเร็ว
+- โดยทั่วไป ที่เก็บข้อมูลแบบคีย์-ค่าใช้งานง่ายกว่าและรองรับการขยายระบบได้ดีกว่าฐานข้อมูลประเภทอื่น เช่น RDBMS อย่างไรก็ตาม ที่เก็บข้อมูลประเภทนี้ไม่เหมาะกับการจัดเก็บข้อมูลเชิงโครงสร้างที่ซับซ้อนซึ่งต้องใช้ความสามารถในการสืบค้นขั้นสูง
 
-## 6. Blob storage & Databases
+## 6. ที่เก็บข้อมูลแบบ Blob และฐานข้อมูล
 
-Blob storage and database systems are two different types of storage systems that can be used to store and manage data.
+ที่เก็บข้อมูลแบบ Blob และระบบฐานข้อมูลเป็นระบบจัดเก็บข้อมูลสองประเภทที่แตกต่างกัน ซึ่งสามารถใช้จัดเก็บและจัดการข้อมูลได้
 
-Large volumes of unstructured data, including documents, photos, videos, and audio files, can be stored in blob storage, sometimes referred to as object storage. In general, blob storage systems are very scalable and capable of managing several requests at once. They are widely used to store frequently accessible material, such user-generated content or media files.
+ข้อมูลที่ไม่มีโครงสร้างจำนวนมาก เช่น เอกสาร รูปภาพ วิดีโอ และไฟล์เสียง สามารถจัดเก็บไว้ในที่เก็บข้อมูลแบบ Blob ซึ่งบางครั้งเรียกว่าที่เก็บข้อมูลแบบ Object โดยทั่วไป ระบบจัดเก็บข้อมูลแบบ Blob รองรับการขยายระบบได้ดีมากและสามารถจัดการคำขอหลายรายการพร้อมกันได้ ระบบประเภทนี้นิยมใช้จัดเก็บเนื้อหาที่ถูกเข้าถึงบ่อย เช่น เนื้อหาที่ผู้ใช้สร้างขึ้นหรือไฟล์สื่อ
 
-On the other hand, database systems are made to hold structured data that has been arranged in a particular manner. RDBMSs, NoSQL databases, and in-memory databases are among the several kinds of database systems. Database systems are typically used to store data that needs to be queried and accessed in a structured way, such as customer records or financial transactions.
+ในทางกลับกัน ระบบฐานข้อมูลถูกออกแบบมาเพื่อจัดเก็บข้อมูลเชิงโครงสร้างที่ถูกจัดเรียงในรูปแบบเฉพาะ ระบบฐานข้อมูลมีหลายประเภท เช่น RDBMS, ฐานข้อมูล NoSQL และฐานข้อมูลแบบ In-Memory โดยทั่วไป ระบบฐานข้อมูลใช้จัดเก็บข้อมูลที่ต้องสืบค้นและเข้าถึงอย่างเป็นโครงสร้าง เช่น ข้อมูลลูกค้าหรือธุรกรรมทางการเงิน
 
-## 7. Rate limiters
+## 7. ตัวจำกัดอัตราการใช้งาน
 
-System design components known as **rate limiters** are used to restrict the rate at which a system or application responds to requests or carries out specific tasks. This can be helpful in a variety of situations, such as when a system has to guard against receiving too many requests or when a company want to stop a particular user or group of users from submitting excessive requests that can affect the system's performance.
+ส่วนประกอบของการออกแบบระบบที่เรียกว่า **ตัวจำกัดอัตราการใช้งาน** ใช้จำกัดอัตราที่ระบบหรือแอปพลิเคชันตอบสนองต่อคำขอหรือดำเนินงานบางอย่าง วิธีนี้มีประโยชน์ในหลายสถานการณ์ เช่น เมื่อระบบต้องป้องกันการได้รับคำขอมากเกินไป หรือเมื่อองค์กรต้องการป้องกันไม่ให้ผู้ใช้รายใดรายหนึ่งหรือกลุ่มผู้ใช้ส่งคำขอมากเกินไปจนส่งผลกระทบต่อประสิทธิภาพของระบบ
 
-Some common types of rate limiters include:
+ตัวจำกัดอัตราการใช้งานที่พบบ่อย ได้แก่
 
-- **Request rate limiters** are used to limit the number of requests that a system or application processes within a given time period.
-- **User rate limiters** are used to limit the rate at which a specific user or group of users can make requests to a system or application.
-- **Token bucket rate limiters** are used to limit the rate at which requests are processed by a system by allowing a certain number of requests to be processed in each time period, with any excess requests being held in a "bucket" until the next time period.
+- **ตัวจำกัดอัตราคำขอ** ใช้จำกัดจำนวนคำขอที่ระบบหรือแอปพลิเคชันประมวลผลภายในช่วงเวลาที่กำหนด
+- **ตัวจำกัดอัตราของผู้ใช้** ใช้จำกัดอัตราที่ผู้ใช้รายใดรายหนึ่งหรือกลุ่มผู้ใช้สามารถส่งคำขอไปยังระบบหรือแอปพลิเคชัน
+- **ตัวจำกัดอัตราแบบ Token Bucket** ใช้จำกัดอัตราการประมวลผลคำขอของระบบ โดยอนุญาตให้ประมวลผลคำขอได้ตามจำนวนที่กำหนดในแต่ละช่วงเวลา ส่วนคำขอที่เกินจะถูกเก็บไว้ใน "Bucket" จนกว่าจะถึงช่วงเวลาถัดไป
 
-## 8. Monitoring System
+## 8. ระบบติดตามตรวจสอบ
 
-A **monitoring system** is a system design component that is used to collect, analyze, and report on various metrics and performance data related to a system or application. This can be useful in a number of different scenarios, such as when a system needs to track its own performance and availability, or when an organization needs to monitor the performance of its systems and applications to ensure that they are meeting their desired service levels.
+**ระบบติดตามตรวจสอบ** เป็นส่วนประกอบของการออกแบบระบบที่ใช้รวบรวม วิเคราะห์ และรายงานตัวชี้วัดกับข้อมูลประสิทธิภาพต่างๆ ที่เกี่ยวข้องกับระบบหรือแอปพลิเคชัน ระบบนี้มีประโยชน์ในหลายสถานการณ์ เช่น เมื่อระบบต้องติดตามประสิทธิภาพและความพร้อมใช้งานของตนเอง หรือเมื่อองค์กรต้องติดตามประสิทธิภาพของระบบและแอปพลิเคชันเพื่อให้มั่นใจว่าสามารถให้บริการได้ตามระดับที่ต้องการ
 
-Some common types of monitoring systems include:
+ระบบติดตามตรวจสอบที่พบบ่อย ได้แก่
 
-- **Network monitoring systems,** are used to monitor the performance of a network and its various components, such as routers, switches, and servers.
-- **System monitoring systems,** are used to monitor the performance of a computer system and its various components, such as the CPU, memory, and disk usage.
-- **Application monitoring systems**, are used to monitor the performance of specific applications or services, such as web servers or databases.
+- **ระบบติดตามตรวจสอบเครือข่าย** ใช้ติดตามประสิทธิภาพของเครือข่ายและส่วนประกอบต่างๆ เช่น Router, Switch และ Server
+- **ระบบติดตามตรวจสอบระบบ** ใช้ติดตามประสิทธิภาพของระบบคอมพิวเตอร์และส่วนประกอบต่างๆ เช่น CPU, หน่วยความจำ และการใช้งานดิสก์
+- **ระบบติดตามตรวจสอบแอปพลิเคชัน** ใช้ติดตามประสิทธิภาพของแอปพลิเคชันหรือบริการเฉพาะ เช่น Web Server หรือฐานข้อมูล
 
-## 9. Distributes system messaging queue
+## 9. คิวข้อความของระบบแบบกระจาย
 
-A distributed system **messaging queue** is a system that enables the exchange of messages between different nodes in a distributed system. Messaging queues allow nodes to communicate asynchronously, decoupling the sender and receiver of a message and enabling each node to operate independently.
+**คิวข้อความ** ของระบบแบบกระจายคือระบบที่ช่วยให้โหนดต่างๆ ในระบบแบบกระจายสามารถแลกเปลี่ยนข้อความกันได้ คิวข้อความช่วยให้โหนดสื่อสารกันแบบ Asynchronous โดยแยกผู้ส่งและผู้รับข้อความออกจากกัน และทำให้แต่ละโหนดสามารถทำงานได้อย่างเป็นอิสระ
 
-There are several different types of messaging queues, including:
+คิวข้อความมีหลายประเภท ได้แก่
 
-- **Point-to-point queues:** In this type of queue, messages are delivered to a specific recipient.
-- **Publish-subscribe queues:** In this type of queue, messages are published to a topic and are delivered to all subscribers to that topic.
-- **Hybrid queues:** Hybrid queues combine elements of both point-to-point and publish-subscribe queues, allowing messages to be delivered to specific recipients or to all subscribers to a topic.
+- **คิวแบบ Point-to-Point:** ในคิวประเภทนี้ ข้อความจะถูกส่งไปยังผู้รับที่ระบุ
+- **คิวแบบ Publish-Subscribe:** ในคิวประเภทนี้ ข้อความจะถูกเผยแพร่ไปยังหัวข้อและส่งไปยังผู้ติดตามหัวข้อนั้นทั้งหมด
+- **คิวแบบ Hybrid:** คิวแบบ Hybrid รวมองค์ประกอบของทั้งคิวแบบ Point-to-Point และ Publish-Subscribe ทำให้สามารถส่งข้อความไปยังผู้รับที่ระบุหรือผู้ติดตามหัวข้อทั้งหมดได้
 
-Distributed system messaging queues can be used to enable communication between different components of a distributed system, such as microservices or distributed applications. They can also be used to decouple different parts of the system, allowing each component to operate independently and improving the system's resilience and scalability.
+คิวข้อความของระบบแบบกระจายสามารถใช้เพื่อให้ส่วนประกอบต่างๆ ของระบบแบบกระจายสื่อสารกันได้ เช่น Microservices หรือแอปพลิเคชันแบบกระจาย นอกจากนี้ยังสามารถใช้แยกส่วนต่างๆ ของระบบออกจากกัน ทำให้แต่ละส่วนประกอบทำงานได้อย่างเป็นอิสระ และช่วยเพิ่มความยืดหยุ่นกับความสามารถในการขยายระบบ
 
-## 10. Distributed unique id generator
+## 10. ตัวสร้างรหัสประจำตัวแบบไม่ซ้ำในระบบแบบกระจาย
 
-A distributed unique ID generator is a system that generates unique identifiers (IDs) that can be used to identify objects or entities in a distributed system. These IDs are typically used to uniquely identify items in a database or to provide a stable identifier for a resource that is accessed over the network.
+ตัวสร้างรหัสประจำตัวแบบไม่ซ้ำในระบบแบบกระจายคือระบบที่สร้างรหัสประจำตัวหรือ ID ที่ไม่ซ้ำกัน ซึ่งสามารถใช้ระบุวัตถุหรือเอนทิตีในระบบแบบกระจาย โดยทั่วไป ID เหล่านี้ใช้ระบุรายการในฐานข้อมูลให้ไม่ซ้ำกัน หรือใช้เป็นรหัสประจำตัวที่คงที่สำหรับทรัพยากรที่ถูกเข้าถึงผ่านเครือข่าย
 
-There are several approaches to generating distributed unique IDs:
+แนวทางในการสร้าง ID แบบไม่ซ้ำในระบบแบบกระจายมีหลายวิธี ได้แก่
 
-- Using a centralized service
-- Using a **distributed consensus algorithm**
-- Using timestamps
+- ใช้บริการแบบรวมศูนย์
+- ใช้ **อัลกอริทึมฉันทามติแบบกระจาย**
+- ใช้ Timestamp
 
-## 11. Distributes search
+## 11. การค้นหาแบบกระจาย
 
-Distributed search refers to the practice of using multiple nodes or servers to index and search large datasets in a distributed system. Distributed search can be used to improve the performance and **scalability** of search operations, as it allows for parallel processing of search queries and the distribution of data across multiple nodes.
+การค้นหาแบบกระจายหมายถึงการใช้โหนดหรือเซิร์ฟเวอร์หลายเครื่องเพื่อสร้างดัชนีและค้นหาชุดข้อมูลขนาดใหญ่ในระบบแบบกระจาย การค้นหาแบบกระจายสามารถใช้เพิ่มประสิทธิภาพและ **ความสามารถในการขยายระบบ** ของการค้นหาได้ เนื่องจากช่วยให้ประมวลผลคำค้นหาแบบขนานและกระจายข้อมูลไปยังหลายโหนดได้
 
-There are several approaches to implementing distributed search, including:
+แนวทางในการพัฒนาการค้นหาแบบกระจายมีหลายวิธี ได้แก่
 
-- **Using a distributed search engine:** A distributed search engine is a search platform that is designed to scale horizontally across multiple nodes. These systems typically use a distributed index to store the data being searched, allowing for parallel processing of search queries.
-- **Using a database with search capabilities:** Some databases, such as MongoDB and Cassandra, have built-in search capabilities that allow for the indexing and searching of data stored in the database.
-- **Using a cloud-based search service:** Cloud-based search services, such as Amazon Elastic search Service and Google Cloud Search, can be used to implement distributed search in a distributed system. These services are typically highly scalable and fault-tolerant.
+- **ใช้เครื่องมือค้นหาแบบกระจาย:** เครื่องมือค้นหาแบบกระจายคือแพลตฟอร์มการค้นหาที่ออกแบบมาให้ขยายระบบในแนวนอนผ่านหลายโหนด โดยทั่วไประบบเหล่านี้ใช้ดัชนีแบบกระจายเพื่อจัดเก็บข้อมูลที่ต้องค้นหา ทำให้สามารถประมวลผลคำค้นหาแบบขนานได้
+- **ใช้ฐานข้อมูลที่มีความสามารถในการค้นหา:** ฐานข้อมูลบางประเภท เช่น MongoDB และ Cassandra มีความสามารถในการค้นหาในตัว ซึ่งช่วยให้สามารถสร้างดัชนีและค้นหาข้อมูลที่จัดเก็บอยู่ในฐานข้อมูลได้
+- **ใช้บริการค้นหาบนคลาวด์:** บริการค้นหาบนคลาวด์ เช่น Amazon Elasticsearch Service และ Google Cloud Search สามารถใช้พัฒนาการค้นหาแบบกระจายในระบบแบบกระจายได้ โดยทั่วไปบริการเหล่านี้รองรับการขยายระบบได้ดีและทนทานต่อความผิดพลาด
 
-## 12. Distributed logging services
+## 12. บริการบันทึก Log แบบกระจาย
 
-**Distributed logging** refers to the practice of collecting, storing, and analyzing log data from multiple sources in a **distributed system**. This can be useful for tracking the health and performance of a distributed system, as well as for debugging issues that may arise.
+**การบันทึก Log แบบกระจาย** หมายถึงการรวบรวม จัดเก็บ และวิเคราะห์ข้อมูล Log จากหลายแหล่งใน **ระบบแบบกระจาย** วิธีนี้มีประโยชน์สำหรับติดตามสถานะและประสิทธิภาพของระบบแบบกระจาย รวมถึงใช้แก้ไขข้อผิดพลาดที่อาจเกิดขึ้น
 
-There are several approaches to implementing distributed logging, including:
+แนวทางในการพัฒนาการบันทึก Log แบบกระจายมีหลายวิธี ได้แก่
 
-- Using a centralized logging service
-- Using a distributed logging system
-- Using a cloud-based logging service
+- ใช้บริการบันทึก Log แบบรวมศูนย์
+- ใช้ระบบบันทึก Log แบบกระจาย
+- ใช้บริการบันทึก Log บนคลาวด์
 
-## 13. Distributes task scheduler
+## 13. ตัวจัดตารางงานแบบกระจาย
 
-A distributed task scheduler is a system that is responsible for scheduling and executing tasks in a distributed system. A task scheduler can be used to automate the execution of tasks at regular intervals, on a specific schedule, or in response to certain events.
+ตัวจัดตารางงานแบบกระจายคือระบบที่รับผิดชอบการจัดตารางและดำเนินงานต่างๆ ในระบบแบบกระจาย ตัวจัดตารางงานสามารถใช้ทำให้งานดำเนินการโดยอัตโนมัติตามช่วงเวลาปกติ ตามกำหนดเวลาที่ระบุ หรือเพื่อตอบสนองต่อเหตุการณ์บางอย่าง
 
-There are several approaches to implementing a distributed task scheduler, including:
+แนวทางในการพัฒนาตัวจัดตารางงานแบบกระจายมีหลายวิธี ได้แก่
 
-- **Using a standalone task scheduler:** A standalone task scheduler is a separate system that is responsible for scheduling and executing tasks in a distributed system. This approach can be simple to implement and allows for flexibility in terms of the types of tasks that can be scheduled.
-- **Using a built-in task scheduler:** Some distributed systems, such as container orchestration platforms or cloud-based serverless platforms, have built-in task schedulers that can be used to schedule tasks within the system.
-- **Using a cloud-based task scheduler:** Cloud-based task schedulers, such as Amazon Simple Notification Service (SNS) or Google Cloud Scheduler, can be used to schedule tasks in a distributed system.
+- **ใช้ตัวจัดตารางงานแบบแยกเดี่ยว:** ตัวจัดตารางงานแบบแยกเดี่ยวเป็นระบบแยกต่างหากที่รับผิดชอบการจัดตารางและดำเนินงานในระบบแบบกระจาย แนวทางนี้พัฒนาได้ง่ายและมีความยืดหยุ่นในแง่ของประเภทงานที่สามารถจัดตารางได้
+- **ใช้ตัวจัดตารางงานที่มีอยู่ในระบบ:** ระบบแบบกระจายบางประเภท เช่น แพลตฟอร์มจัดการ Container หรือแพลตฟอร์ม Serverless บนคลาวด์ มีตัวจัดตารางงานในตัวที่สามารถใช้จัดตารางงานภายในระบบได้
+- **ใช้ตัวจัดตารางงานบนคลาวด์:** ตัวจัดตารางงานบนคลาวด์ เช่น Amazon Simple Notification Service (SNS) หรือ Google Cloud Scheduler สามารถใช้จัดตารางงานในระบบแบบกระจายได้
 
-It is important to choose a distributed task scheduler that meets the specific requirements of the system, taking into account factors such as scalability, performance, and cost.
+สิ่งสำคัญคือต้องเลือกตัวจัดตารางงานแบบกระจายที่ตรงกับความต้องการเฉพาะของระบบ โดยพิจารณาปัจจัยต่างๆ เช่น ความสามารถในการขยายระบบ ประสิทธิภาพ และต้นทุน
