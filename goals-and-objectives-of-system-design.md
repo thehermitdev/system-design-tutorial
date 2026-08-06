@@ -1,58 +1,58 @@
-# **Goals and Objectives of System Design**
+# **เป้าหมายและวัตถุประสงค์ของการออกแบบระบบ**
 
-The objective of system design is to create a plan for a software or hardware system that meets the needs and requirements of a customer or user. This plan typically includes **detailed** **specifications** for the system, including its architecture, components, and interfaces.
+วัตถุประสงค์ของการออกแบบระบบคือการสร้างแผนสำหรับระบบซอฟต์แวร์หรือฮาร์ดแวร์ที่ตอบสนองความต้องการและข้อกำหนดของลูกค้าหรือผู้ใช้ โดยทั่วไปแผนนี้จะประกอบด้วย **ข้อกำหนดโดยละเอียด** ของระบบ รวมถึงสถาปัตยกรรม ส่วนประกอบ และส่วนเชื่อมต่อ
 
-System design is an important step in the development process of any system, as it serves as the foundation for the implementation and deployment of the system. A well-designed system can help ensure that the system is **reliable**, **efficient**, and **user-friendly**.
+การออกแบบระบบเป็นขั้นตอนสำคัญในกระบวนการพัฒนาระบบทุกประเภท เนื่องจากเป็นรากฐานสำหรับการพัฒนาและนำระบบไปใช้งาน ระบบที่ได้รับการออกแบบอย่างดีช่วยให้มั่นใจได้ว่าระบบจะมี **ความน่าเชื่อถือ** **ประสิทธิภาพ** และ **ใช้งานง่าย**
 
-### **Objectives of System Design**
+### **วัตถุประสงค์ของการออกแบบระบบ**
 
-1. **Practicality**: We need a system that should be targeting the set of audiences(users) corresponding to which they are designing.
-2. **Accuracy**: Above system design should be designed in such a way it fulfills nearly all requirements around which it is designed be it functional or non-functional requirements.
-3. **Completeness**: System design should meet all user requirements
-4. **Efficient**: The system design should be such that it should not overuse surpassing the cost of resources nor under use as it will by now we know will result in low throughput (output) and less response time(latency).
-5. **Reliability**: The system designed should be in proximity to a failure-free environment for a certain period of time.
-6. **Optimization**: Time and space are just likely what we do for code chunks for individual components to work in a system.
-7. **Scalable(flexibility)**: System design should be adaptable with time as per different user needs of customers which we know will keep on changing on time. The best example here out is the well-known firm: Nokia. It is the most important aspect while designing systems and is the result of why 1 of 100 startups succeed over the long run, the best example here out is GeeksforGeeks.
+1. **ความเหมาะสมต่อการใช้งาน**: เราต้องการระบบที่มุ่งตอบสนองกลุ่มเป้าหมายหรือผู้ใช้ที่ระบบนั้นถูกออกแบบมาให้ใช้งาน
+2. **ความถูกต้อง**: การออกแบบระบบข้างต้นควรได้รับการออกแบบให้ตอบสนองข้อกำหนดเกือบทั้งหมดที่ระบบถูกสร้างขึ้นมา ไม่ว่าจะเป็นข้อกำหนดเชิงฟังก์ชันหรือข้อกำหนดที่ไม่ใช่เชิงฟังก์ชัน
+3. **ความครบถ้วน**: การออกแบบระบบควรตอบสนองความต้องการทั้งหมดของผู้ใช้
+4. **ประสิทธิภาพ**: การออกแบบระบบควรไม่ใช้ทรัพยากรมากเกินไปจนมีค่าใช้จ่ายสูง และไม่ใช้ทรัพยากรน้อยเกินไป เพราะจะส่งผลให้มีปริมาณงานหรือผลลัพธ์ต่ำ และมีเวลาในการตอบสนองหรือเวลาแฝงน้อยลง
+5. **ความน่าเชื่อถือ**: ระบบที่ออกแบบควรสามารถทำงานได้ใกล้เคียงกับสภาพแวดล้อมที่ปราศจากความล้มเหลวในช่วงเวลาหนึ่ง
+6. **การเพิ่มประสิทธิภาพ**: เวลาและพื้นที่จัดเก็บเป็นสิ่งที่เราต้องพิจารณา เช่นเดียวกับการเพิ่มประสิทธิภาพส่วนของโค้ดสำหรับส่วนประกอบแต่ละส่วนที่ทำงานอยู่ในระบบ
+7. **ความสามารถในการขยายและความยืดหยุ่น**: การออกแบบระบบควรสามารถปรับตัวตามเวลาและความต้องการที่แตกต่างกันของลูกค้า ซึ่งเราทราบว่าความต้องการเหล่านี้จะเปลี่ยนแปลงอยู่เสมอ ตัวอย่างที่เป็นที่รู้จักกันดีคือบริษัท Nokia ประเด็นนี้เป็นหนึ่งในสิ่งสำคัญที่สุดในการออกแบบระบบ และเป็นเหตุผลว่าทำไมสตาร์ตอัปเพียง 1 ใน 100 แห่งจึงประสบความสำเร็จในระยะยาว โดยอีกตัวอย่างหนึ่งคือ GeeksforGeeks
 
-There are several key objectives of system design, including:
+วัตถุประสงค์สำคัญของการออกแบบระบบมีหลายประการ ได้แก่:
 
-1. **Identify the needs and requirements of the user or customer**: The first step in the system design process is to understand the needs and requirements of the user or customer. This involves gathering information about the user's goals, needs, and expectations for the system, as well as any constraints or limitations that need to be taken into account.
-2. **Develop a plan for the system**: Once the needs and requirements of the user have been identified, the next step is to develop a plan for the system. This plan should detail the architecture, components, and interfaces of the system, as well as any algorithms, data structures, or other components that will be used.
-3. **Ensure that the system is reliable and efficient**: One of the key objectives of system design is to ensure that the system is reliable and efficient. This means designing the system in a way that minimizes downtime and errors and maximizes performance and speed.
-4. **Make the system user-friendly**: Another important objective of system design is to make the system user-friendly. This means designing the system in a way that is intuitive and easy to use, with a user interface that is clear and straightforward.
-5. **Take into account any constraints or limitations**: In addition to meeting the needs and requirements of the user, the system design must also take into account any constraints or limitations. For example, the system may need to be designed to run on specific hardware or software platforms, or to comply with certain standards or regulations.
+1. **ระบุความต้องการและข้อกำหนดของผู้ใช้หรือลูกค้า**: ขั้นตอนแรกในกระบวนการออกแบบระบบคือการทำความเข้าใจความต้องการและข้อกำหนดของผู้ใช้หรือลูกค้า ซึ่งเกี่ยวข้องกับการรวบรวมข้อมูลเกี่ยวกับเป้าหมาย ความต้องการ และความคาดหวังที่ผู้ใช้มีต่อระบบ รวมถึงข้อจำกัดต่างๆ ที่ต้องนำมาพิจารณา
+2. **จัดทำแผนสำหรับระบบ**: เมื่อระบุความต้องการและข้อกำหนดของผู้ใช้แล้ว ขั้นตอนถัดไปคือการจัดทำแผนสำหรับระบบ แผนนี้ควรอธิบายรายละเอียดของสถาปัตยกรรม ส่วนประกอบ และส่วนเชื่อมต่อของระบบ รวมถึงอัลกอริทึม โครงสร้างข้อมูล หรือส่วนประกอบอื่นๆ ที่จะนำมาใช้
+3. **ทำให้มั่นใจว่าระบบมีความน่าเชื่อถือและมีประสิทธิภาพ**: หนึ่งในวัตถุประสงค์สำคัญของการออกแบบระบบคือการทำให้มั่นใจว่าระบบมีความน่าเชื่อถือและมีประสิทธิภาพ ซึ่งหมายถึงการออกแบบระบบให้ลดเวลาหยุดทำงานและข้อผิดพลาดให้น้อยที่สุด พร้อมเพิ่มประสิทธิภาพและความเร็วให้สูงที่สุด
+4. **ทำให้ระบบใช้งานง่าย**: อีกหนึ่งวัตถุประสงค์สำคัญของการออกแบบระบบคือการทำให้ระบบใช้งานง่าย ซึ่งหมายถึงการออกแบบระบบให้เข้าใจได้ง่ายและใช้งานสะดวก พร้อมส่วนติดต่อผู้ใช้ที่ชัดเจนและตรงไปตรงมา
+5. **คำนึงถึงข้อจำกัดต่างๆ**: นอกเหนือจากการตอบสนองความต้องการและข้อกำหนดของผู้ใช้แล้ว การออกแบบระบบยังต้องคำนึงถึงข้อจำกัดต่างๆ ด้วย ตัวอย่างเช่น ระบบอาจต้องได้รับการออกแบบให้ทำงานบนแพลตฟอร์มฮาร์ดแวร์หรือซอฟต์แวร์เฉพาะ หรือต้องเป็นไปตามมาตรฐานหรือข้อบังคับบางประการ
 
-> ***Conclusion:** Designing system's objective is eccentric to create a plan for a system that meets the needs and requirements of the user or customer, while also ensuring that the system is reliable, efficient, and user-friendly. By following a systematic and comprehensive design process, developers can create systems that are well-suited to their intended purpose and users.*
+> ***สรุป:** วัตถุประสงค์ของการออกแบบระบบมุ่งเน้นการสร้างแผนสำหรับระบบที่ตอบสนองความต้องการและข้อกำหนดของผู้ใช้หรือลูกค้า พร้อมทั้งทำให้มั่นใจว่าระบบมีความน่าเชื่อถือ มีประสิทธิภาพ และใช้งานง่าย การปฏิบัติตามกระบวนการออกแบบที่เป็นระบบและครอบคลุมช่วยให้นักพัฒนาสามารถสร้างระบบที่เหมาะสมกับวัตถุประสงค์และผู้ใช้งานที่กำหนดไว้ได้*
 > 
 
-**Example:** Design a system for a small e-commerce website that allows customers to browse and purchase products online.
+**ตัวอย่าง:** ออกแบบระบบสำหรับเว็บไซต์อีคอมเมิร์ซขนาดเล็กที่ช่วยให้ลูกค้าสามารถเลือกดูและซื้อสินค้าออนไลน์ได้
 
-**Step 1:** Identify the functional requirements of the system
+**ขั้นตอนที่ 1:** ระบุข้อกำหนดเชิงฟังก์ชันของระบบ
 
-- Customers should be able to browse through a catalog of products and view product details.
-- Customers should be able to add products to a shopping cart and place an order.
-- The system should track the status of each order and send updates to the customer.
-- The system should process payments and handle returns and refunds.
+- ลูกค้าควรสามารถเลือกดูแค็ตตาล็อกสินค้าและดูรายละเอียดสินค้าได้
+- ลูกค้าควรสามารถเพิ่มสินค้าลงในตะกร้าสินค้าและสั่งซื้อได้
+- ระบบควรติดตามสถานะของคำสั่งซื้อแต่ละรายการและส่งข้อมูลอัปเดตให้ลูกค้า
+- ระบบควรประมวลผลการชำระเงิน รวมถึงจัดการการคืนสินค้าและคืนเงิน
 
-**Step 2:** Identify the non-functional requirements of the system
+**ขั้นตอนที่ 2:** ระบุข้อกำหนดที่ไม่ใช่เชิงฟังก์ชันของระบบ
 
-- The system should be able to handle high traffic and large numbers of concurrent users.
-- The system should have a fast response time and able to handle rapid updates to the product catalog.
-- The system should be secure, with some measure in place to protect against unauthorized access and data breaches.
+- ระบบควรสามารถรองรับปริมาณการใช้งานสูงและผู้ใช้พร้อมกันจำนวนมากได้
+- ระบบควรมีเวลาในการตอบสนองที่รวดเร็วและสามารถรองรับการอัปเดตแค็ตตาล็อกสินค้าอย่างรวดเร็วได้
+- ระบบควรมีความปลอดภัย พร้อมมาตรการบางอย่างเพื่อป้องกันการเข้าถึงโดยไม่ได้รับอนุญาตและการรั่วไหลของข้อมูล
 
-**Step 3:** Design the high-level architecture of the system
+**ขั้นตอนที่ 3:** ออกแบบสถาปัตยกรรมระดับสูงของระบบ
 
-- The system will consist of a web frontend that allows customers to browse and purchase products, and a backend that handles orders, payments, and products management.
-- The backend will consist of a database for storing customer and order information, and a set of microservices that handles different functions such as payment processing and other fulfillment.
-- The frontend and backend will communicate through API's(Application Programming Interface).
+- ระบบจะประกอบด้วย Web Frontend ที่ช่วยให้ลูกค้าสามารถเลือกดูและซื้อสินค้า และ Backend ที่จัดการคำสั่งซื้อ การชำระเงิน และการจัดการสินค้า
+- Backend จะประกอบด้วยฐานข้อมูลสำหรับจัดเก็บข้อมูลลูกค้าและคำสั่งซื้อ รวมถึงชุด Microservices ที่จัดการฟังก์ชันต่างๆ เช่น การประมวลผลการชำระเงินและการดำเนินการตามคำสั่งซื้อด้านอื่นๆ
+- Frontend และ Backend จะสื่อสารกันผ่าน API หรือส่วนต่อประสานการเขียนโปรแกรมประยุกต์
 
-**Step 4:** Design the detailed architecture of system
+**ขั้นตอนที่ 4:** ออกแบบสถาปัตยกรรมโดยละเอียดของระบบ
 
-- The web frontend will be built using a modern web framework such as React or Angular. It will make API calls to the backend to retrieve product information and place orders.
-- The backend will consist of a database such as MySQL or PostgreSQL for storing customer and order information. It will also include microservices for payment processing(using a service such as Stripe), order fulfillment, and email notifications. These microservices will communicate with each other and the database through API's.
-- The system will also include security measures such as HTTPS encryption, authentication, and authorization.
+- Web Frontend จะพัฒนาด้วย Web Framework สมัยใหม่ เช่น React หรือ Angular โดยจะเรียกใช้ API ไปยัง Backend เพื่อดึงข้อมูลสินค้าและสร้างคำสั่งซื้อ
+- Backend จะประกอบด้วยฐานข้อมูล เช่น MySQL หรือ PostgreSQL สำหรับจัดเก็บข้อมูลลูกค้าและคำสั่งซื้อ นอกจากนี้ยังประกอบด้วย Microservices สำหรับประมวลผลการชำระเงินโดยใช้บริการอย่าง Stripe การดำเนินการตามคำสั่งซื้อ และการแจ้งเตือนทางอีเมล Microservices เหล่านี้จะสื่อสารระหว่างกันและสื่อสารกับฐานข้อมูลผ่าน API
+- ระบบจะประกอบด้วยมาตรการด้านความปลอดภัย เช่น การเข้ารหัส HTTPS การยืนยันตัวตน และการกำหนดสิทธิ์
 
-**Step 5:** Implement and test the system
+**ขั้นตอนที่ 5:** พัฒนาและทดสอบระบบ
 
-- The various components of the system will be developed and tested separately before being integrated and tested as a whole.
-- The system will be deployed to a production environment, such as cloud platform like AWS(Amazon web services) or GCP, and monitored for performance and reliability.
+- ส่วนประกอบต่างๆ ของระบบจะได้รับการพัฒนาและทดสอบแยกจากกัน ก่อนนำมารวมและทดสอบเป็นระบบเดียวกันทั้งหมด
+- ระบบจะถูกนำไปใช้งานในสภาพแวดล้อม Production เช่น แพลตฟอร์ม Cloud อย่าง AWS หรือ Amazon Web Services หรือ GCP และได้รับการติดตามตรวจสอบด้านประสิทธิภาพและความน่าเชื่อถือ
