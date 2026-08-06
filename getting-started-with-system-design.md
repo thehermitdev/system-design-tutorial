@@ -1,138 +1,152 @@
-# **System Design Introduction - LLD & HLD**
+# **บทนำเกี่ยวกับการออกแบบระบบ - LLD และ HLD**
 
-System design is the process of planning and structuring the architecture of a software system based on user requirements. It defines how different components of the system will work together to achieve the desired functionality efficiently.
+การออกแบบระบบคือกระบวนการวางแผนและกำหนดโครงสร้างสถาปัตยกรรมของระบบซอฟต์แวร์ตามความต้องการของผู้ใช้ โดยกำหนดว่าส่วนประกอบต่างๆ ของระบบจะทำงานร่วมกันอย่างไร เพื่อให้ระบบสามารถทำงานตามที่ต้องการได้อย่างมีประสิทธิภาพ
 
-- Translates user requirements into a technical blueprint by defining system components, data flow, and interactions between services.
-- The goal is to create a well-organized and efficient structure that meets the intended purpose while considering factors like scalability, maintainability, and performance.
+* แปลงความต้องการของผู้ใช้ให้เป็นพิมพ์เขียวทางเทคนิค โดยกำหนดส่วนประกอบของระบบ การไหลของข้อมูล และการทำงานร่วมกันระหว่างบริการ
+* เป้าหมายคือการสร้างโครงสร้างที่เป็นระเบียบและมีประสิทธิภาพ ซึ่งตอบสนองวัตถุประสงค์ที่กำหนดไว้ พร้อมพิจารณาปัจจัยต่างๆ เช่น ความสามารถในการขยายระบบ ความสามารถในการบำรุงรักษา และประสิทธิภาพการทำงาน
 
-> ***Example:** For example, in an online shopping system, system design decides how components like the user interface, product catalog, payment service, and database interact with each other.*
-> 
+> ***ตัวอย่าง:** ในระบบซื้อสินค้าออนไลน์ การออกแบบระบบจะกำหนดว่าส่วนประกอบต่างๆ เช่น ส่วนติดต่อผู้ใช้ แค็ตตาล็อกสินค้า บริการชำระเงิน และฐานข้อมูล จะทำงานร่วมกันอย่างไร*
 
-## **System Design in SDLC**
+## **การออกแบบระบบในวงจรชีวิตการพัฒนาระบบ**
 
-In System Design Life Cycle, without the designing phase, one cannot jump to the implementation or the testing part.
+ในวงจรชีวิตการออกแบบระบบ เราไม่สามารถข้ามขั้นตอนการออกแบบแล้วไปยังขั้นตอนการพัฒนาหรือการทดสอบได้ การออกแบบระบบเป็นขั้นตอนที่สำคัญและเป็นพื้นฐานสำหรับรองรับสถานการณ์ที่ผิดปกติ เนื่องจากเป็นสิ่งที่แสดงตรรกะทางธุรกิจของซอฟต์แวร์
+  
+<img src="https://media.geeksforgeeks.org/wp-content/uploads/20260312122059483870/system_design1.webp" />
 
-- System Design is a vital step and also provides the backbone to handle exceptional scenarios because it represents the business logic of the software.
-    
-    <img src="https://media.geeksforgeeks.org/wp-content/uploads/20260312122059483870/system_design1.webp" />
-    
-
-### **System Design can be divided into two complementary parts**
+### **การออกแบบระบบสามารถแบ่งออกเป็นสองส่วนที่ทำงานเสริมกัน**
 
 <img src="https://media.geeksforgeeks.org/wp-content/uploads/20260410124919607533/1.webp" />
 
-## **High-Level Design (HLD)**
+## **การออกแบบระดับสูง (HLD)**
 
-High-level design (HLD) defines the overall architecture of a system and how the main components interact with each other. It provides a big-picture view of the system structure, services, and data flow.
+การออกแบบระดับสูง (HLD: High-Level Design) กำหนดสถาปัตยกรรมโดยรวมของระบบและวิธีที่ส่วนประกอบหลักทำงานร่วมกัน โดยแสดงภาพรวมของโครงสร้างระบบ บริการ และการไหลของข้อมูล
 
-- Identifies major modules, services, and their interactions.
-- Focuses on system architecture and high-level decisions.
-- Usually created by architects, stakeholders, and senior developers.
+* ระบุโมดูลหลัก บริการ และการทำงานร่วมกันระหว่างส่วนต่างๆ
+* มุ่งเน้นสถาปัตยกรรมระบบและการตัดสินใจในระดับสูง
+* โดยทั่วไปจัดทำโดยสถาปนิกระบบ ผู้มีส่วนได้ส่วนเสีย และนักพัฒนาอาวุโส
 
-### **Prerequisite Technical Knowledge for HLD**
+### **ความรู้ทางเทคนิคพื้นฐานที่จำเป็นสำหรับ HLD**
 
-These are the skills and concepts usually required to perform High-Level Design.
+ทักษะและแนวคิดต่อไปนี้เป็นสิ่งที่มักจำเป็นสำหรับการออกแบบระดับสูง
 
-- Basic Coding Skills (Data Structures and Algorithms)
-- Compared to Low Level Design, High Level Design is typically done by more senior people who have hands-on experience on software projects.
-- Knowing the roles of components like databases (SQL and NoSQL), caches (Redis, Memcached, CDNs), and APIs.
-- In-depth understanding of **Functional Requirements** and **Non-Functional Requirements.**
-- Networking and Security Fundamentals like DNS, protocols (TCP/UDP, HTTP, WebSockets), OAuth, JWT, TLS/SSL, rate-limiting, API security, and basic DDOS protection.
-- Message queues and streaming tools like Kafka or RabbitMQ.
-- Knowledge of Microservices vs. Monoliths (When to split services and how to manage dependencies), fault tolerance, fallback strategies, redundancy, Load Balancer Types & Algorithms.
-- Observability tools like Prometheus, Grafana, ELK Stack (Elasticsearch, Logstash, Kibana) and Alerting systems (e.g., PagerDuty)
+* ทักษะการเขียนโค้ดพื้นฐาน เช่น โครงสร้างข้อมูลและอัลกอริทึม
+* เมื่อเปรียบเทียบกับการออกแบบระดับล่าง การออกแบบระดับสูงมักดำเนินการโดยบุคลากรที่มีประสบการณ์มากกว่าและมีประสบการณ์ทำงานจริงในโครงการซอฟต์แวร์
+* เข้าใจบทบาทของส่วนประกอบต่างๆ เช่น ฐานข้อมูล SQL และ NoSQL, แคชอย่าง Redis และ Memcached, CDN และ API
+* มีความเข้าใจเชิงลึกเกี่ยวกับ **ความต้องการเชิงฟังก์ชัน** และ **ความต้องการที่ไม่ใช่เชิงฟังก์ชัน**
+* มีความรู้พื้นฐานด้านเครือข่ายและความปลอดภัย เช่น DNS, โปรโตคอล TCP/UDP, HTTP, WebSocket, OAuth, JWT, TLS/SSL, การจำกัดอัตราการใช้งาน, ความปลอดภัยของ API และการป้องกัน DDoS ขั้นพื้นฐาน
+* เข้าใจคิวข้อความและเครื่องมือประมวลผลข้อมูลแบบสตรีม เช่น Kafka หรือ RabbitMQ
+* มีความรู้เกี่ยวกับ Microservices และ Monolith เช่น ควรแยกบริการเมื่อใดและจัดการการพึ่งพากันอย่างไร รวมถึงความทนทานต่อความผิดพลาด กลยุทธ์สำรอง ความซ้ำซ้อน และประเภทกับอัลกอริทึมของ Load Balancer
+* เข้าใจเครื่องมือด้านการสังเกตการณ์ระบบ เช่น Prometheus, Grafana, ELK Stack ซึ่งประกอบด้วย Elasticsearch, Logstash และ Kibana รวมถึงระบบแจ้งเตือน เช่น PagerDuty
 
-### **Topics Covered in HLD**
+### **หัวข้อที่ครอบคลุมใน HLD**
 
-Focuses on system architecture, modules, and their interactions.
+มุ่งเน้นสถาปัตยกรรมระบบ โมดูล และการทำงานร่วมกันระหว่างส่วนต่างๆ
 
-- **System architecture overview**: Defines the major components, modules, and how they interact (e.g., services, queues, databases) .
-- **Data flow and component interaction**: Illustrates how data moves between modules, along with key integrations and interfaces.
-- **Technology stack and infrastructure**: High-level decisions on frameworks, platforms, hardware, databases, and hosting setups.
-- **Module responsibilities**: Describes what each module does and how they relate to one another .
-- **Performance & trade-offs**: Includes design trade-offs, performance considerations, scalability, security, cost and other non-functional factors .
-- **Artifacts**: Commonly includes architecture diagrams, component and deployment diagrams, data flow diagrams, and possibly ER/DB schematic overviews.
+* **ภาพรวมสถาปัตยกรรมระบบ:** กำหนดส่วนประกอบหลัก โมดูล และวิธีที่ส่วนต่างๆ ทำงานร่วมกัน เช่น บริการ คิว และฐานข้อมูล
+* **การไหลของข้อมูลและการทำงานร่วมกันของส่วนประกอบ:** แสดงให้เห็นว่าข้อมูลเคลื่อนที่ระหว่างโมดูลอย่างไร รวมถึงการเชื่อมต่อและส่วนต่อประสานที่สำคัญ
+* **ชุดเทคโนโลยีและโครงสร้างพื้นฐาน:** การตัดสินใจในระดับสูงเกี่ยวกับเฟรมเวิร์ก แพลตฟอร์ม ฮาร์ดแวร์ ฐานข้อมูล และรูปแบบการโฮสต์
+* **ความรับผิดชอบของโมดูล:** อธิบายหน้าที่ของแต่ละโมดูลและความสัมพันธ์ระหว่างโมดูล
+* **ประสิทธิภาพและข้อแลกเปลี่ยน:** ครอบคลุมข้อแลกเปลี่ยนในการออกแบบ ข้อพิจารณาด้านประสิทธิภาพ ความสามารถในการขยายระบบ ความปลอดภัย ต้นทุน และปัจจัยอื่นๆ ที่ไม่ใช่เชิงฟังก์ชัน
+* **สิ่งส่งมอบ:** โดยทั่วไปประกอบด้วยแผนภาพสถาปัตยกรรม แผนภาพส่วนประกอบและการติดตั้งใช้งาน แผนภาพการไหลของข้อมูล และอาจรวมถึงภาพรวมโครงสร้าง ER หรือฐานข้อมูล
 
-### **Real World Examples of HLD Decisions**
+### **ตัวอย่างการตัดสินใจด้าน HLD ในระบบจริง**
 
-High-Level Design (HLD) decisions in real-world systems focus on scalability, performance, and reliability to handle massive user bases and real-time workloads.
+การตัดสินใจด้านการออกแบบระดับสูง (HLD) ในระบบจริงมุ่งเน้นความสามารถในการขยายระบบ ประสิทธิภาพ และความน่าเชื่อถือ เพื่อรองรับผู้ใช้จำนวนมากและภาระงานแบบเรียลไทม์
 
-- Netflix transitioned their entire backend from a monolith to microservices (starting with encoding and UI services), completing the migration by 2011 to scale rapidly during high-load events like holiday seasons.
-- Uber adopted an event-driven architecture where ride requests, location updates, and fare changes emit events that trigger real-time systems like driver matching, billing, and dynamic pricing.
-- Twitter deployed a load-balanced architecture with caching of trending topics and tweets to quickly serve millions of users and handle real-time data flows efficiently.
+* Netflix ย้ายระบบ Backend ทั้งหมดจาก Monolith ไปเป็น Microservices โดยเริ่มจากบริการเข้ารหัสและบริการส่วนติดต่อผู้ใช้ และดำเนินการย้ายเสร็จสมบูรณ์ภายในปี 2011 เพื่อให้สามารถขยายระบบได้อย่างรวดเร็วในช่วงที่มีภาระงานสูง เช่น ช่วงเทศกาลวันหยุด
+* Uber ใช้สถาปัตยกรรมแบบขับเคลื่อนด้วยเหตุการณ์ โดยคำขอเดินทาง การอัปเดตตำแหน่ง และการเปลี่ยนแปลงค่าโดยสารจะสร้างเหตุการณ์ที่กระตุ้นระบบแบบเรียลไทม์ เช่น การจับคู่คนขับ การเรียกเก็บเงิน และการกำหนดราคาแบบปรับเปลี่ยนตามสถานการณ์
+* Twitter ใช้สถาปัตยกรรมที่มีการกระจายภาระงานร่วมกับการแคชหัวข้อยอดนิยมและโพสต์ เพื่อให้บริการผู้ใช้หลายล้านคนได้อย่างรวดเร็วและจัดการการไหลของข้อมูลแบบเรียลไทม์ได้อย่างมีประสิทธิภาพ
 
-## **Low-Level Design (LLD)**
+## **การออกแบบระดับล่าง (LLD)**
 
-Low-Level Design (LLD) focuses on the internal implementation details of each component in the system. It provides developers with a clear and detailed blueprint for how modules, classes, and functions should be built.
+การออกแบบระดับล่าง (LLD: Low-Level Design) มุ่งเน้นรายละเอียดการพัฒนาภายในของแต่ละส่วนประกอบในระบบ โดยมอบพิมพ์เขียวที่ชัดเจนและละเอียดให้นักพัฒนาใช้เป็นแนวทางในการสร้างโมดูล คลาส และฟังก์ชัน
 
-- Describes the internal logic, classes, methods, and data structures of each module.
-- Converts the High-Level Design into detailed implementation plans.
-- Usually created by senior developers or designers before coding begins.
+* อธิบายตรรกะภายใน คลาส เมธอด และโครงสร้างข้อมูลของแต่ละโมดูล
+* แปลงการออกแบบระดับสูงให้เป็นแผนการพัฒนาที่มีรายละเอียด
+* โดยทั่วไปจัดทำโดยนักพัฒนาอาวุโสหรือนักออกแบบก่อนเริ่มเขียนโค้ด
 
-### **Prerequisite Technical Knowledge for LLD**
+### **ความรู้ทางเทคนิคพื้นฐานที่จำเป็นสำหรับ LLD**
 
-Before creating a Low-Level Design, developers should have a strong understanding of core programming and software design concepts.
+ก่อนสร้างการออกแบบระดับล่าง นักพัฒนาควรมีความเข้าใจอย่างดีเกี่ยวกับแนวคิดหลักด้านการเขียนโปรแกรมและการออกแบบซอฟต์แวร์
 
-- Basic Coding Skills (Data Structures and Algorithms)
-- Strong grasp of OOP concepts **(Encapsulation, inheritance, polymorphism & abstraction)**
+* ทักษะการเขียนโค้ดพื้นฐาน เช่น โครงสร้างข้อมูลและอัลกอริทึม
+* มีความเข้าใจอย่างดีเกี่ยวกับแนวคิด OOP ได้แก่ **การห่อหุ้มข้อมูล การสืบทอดคุณสมบัติ พหุสัณฐาน และนามธรรม**
 
-### **Topics Covered in LLD**
+### **หัวข้อที่ครอบคลุมใน LLD**
 
-Covers how each component is implemented, including classes, methods, and logic.
+ครอบคลุมวิธีการพัฒนาแต่ละส่วนประกอบ รวมถึงคลาส เมธอด และตรรกะการทำงาน
 
-- **Component/module breakdown**: Detailed internal logic for each module—with class responsibilities, methods, attributes, interactions
-- **Database schema & structure**: Designing tables, keys, indexes, relationships with SQL/NoSQL refinements
-- **API & interface definitions**: Precise request/response formats, error codes, methods, endpoints, and internal interfacing
-- **Error handling & validation logic**: Define how each module manages invalid inputs, failures, edge cases, and logging
-- **Design patterns & SOLID**: Implement design patterns and solid principles to ensure clean, extensible, maintainable code
-- **UML and pseudocode artifacts**: Class diagrams, sequence diagrams, pseudocode or flowcharts to clarify logic paths and method calls
+* **การแบ่งส่วนประกอบหรือโมดูล:** รายละเอียดตรรกะภายในของแต่ละโมดูล รวมถึงความรับผิดชอบของคลาส เมธอด แอตทริบิวต์ และการทำงานร่วมกัน
+* **สคีมาและโครงสร้างฐานข้อมูล:** การออกแบบตาราง คีย์ ดัชนี และความสัมพันธ์ พร้อมการปรับรายละเอียดสำหรับ SQL หรือ NoSQL
+* **ข้อกำหนดของ API และส่วนต่อประสาน:** กำหนดรูปแบบคำขอและการตอบกลับ รหัสข้อผิดพลาด เมธอด Endpoint และการเชื่อมต่อภายในอย่างแม่นยำ
+* **การจัดการข้อผิดพลาดและตรรกะการตรวจสอบ:** กำหนดวิธีที่แต่ละโมดูลจัดการข้อมูลนำเข้าที่ไม่ถูกต้อง ความล้มเหลว กรณีขอบ และการบันทึก Log
+* **รูปแบบการออกแบบและ SOLID:** ใช้รูปแบบการออกแบบและหลักการ SOLID เพื่อให้โค้ดสะอาด ขยายต่อได้ และบำรุงรักษาได้ง่าย
+* **สิ่งส่งมอบในรูปแบบ UML และ Pseudocode:** แผนภาพคลาส แผนภาพลำดับ Pseudocode หรือผังงาน เพื่ออธิบายเส้นทางการทำงานของตรรกะและการเรียกใช้เมธอดให้ชัดเจน
 
-## **Difference between Low Level Design and High Level Design**
+## **ความแตกต่างระหว่างการออกแบบระดับล่างและการออกแบบระดับสูง**
 
-HLD defines the overall system architecture, while LLD focuses on the detailed implementation of individual components.
+HLD กำหนดสถาปัตยกรรมโดยรวมของระบบ ส่วน LLD มุ่งเน้นรายละเอียดการพัฒนาของแต่ละส่วนประกอบ
 
-| **HIGH-LEVEL DESIGN (HLD)** | **LOW-LEVEL DESIGN (LLD)** |
-| --- | --- |
-| Defines the overall system architecture | Focuses on detailed component-level design |
-| Describes modules and their interactions | Describes internal logic of each module |
-| Also known as macro-level/system design | Also known as micro-level/detailed design |
-| Created by solution architects | Created by developers/designers |
-| Based on SRS (Software Requirement Specification) | Based on reviewed HLD |
+| **การออกแบบระดับสูง (HLD)**                          | **การออกแบบระดับล่าง (LLD)**                                |
+| ---------------------------------------------------- | ----------------------------------------------------------- |
+| กำหนดสถาปัตยกรรมโดยรวมของระบบ                        | มุ่งเน้นการออกแบบรายละเอียดในระดับส่วนประกอบ                |
+| อธิบายโมดูลและการทำงานร่วมกัน                        | อธิบายตรรกะภายในของแต่ละโมดูล                               |
+| เรียกอีกอย่างว่าการออกแบบระดับมหภาคหรือการออกแบบระบบ | เรียกอีกอย่างว่าการออกแบบระดับจุลภาคหรือการออกแบบโดยละเอียด |
+| จัดทำโดยสถาปนิกโซลูชัน                               | จัดทำโดยนักพัฒนาหรือนักออกแบบ                               |
+| อ้างอิงจาก SRS หรือข้อกำหนดความต้องการของซอฟต์แวร์   | อ้างอิงจาก HLD ที่ผ่านการตรวจสอบแล้ว                        |
 
-## **Steps for getting started with System Design**
+## **ขั้นตอนเริ่มต้นเรียนรู้การออกแบบระบบ**
 
-Here are some steps to get started with system design:
+ขั้นตอนต่อไปนี้สามารถใช้สำหรับเริ่มต้นเรียนรู้การออกแบบระบบได้
 
-<img src="https://media.geeksforgeeks.org/wp-content/uploads/20260410124919776366/system_design.webp" />
+* **ทำความเข้าใจความต้องการ:** รวบรวมและวิเคราะห์ความต้องการทางธุรกิจ เพื่อกำหนดความสามารถของระบบให้ชัดเจนและหลีกเลี่ยงปัญหา
 
-- **Understand Requirements:** Gather and analyze business needs to clearly define system functionality and avoid issues.**Example:** For a food delivery app, requirements may include user login, restaurant listing, order placement, and online payment.
-- **Define Architecture:** Plan overall system structure, components, and their interactions.**Example:** In an e-commerce system, the architecture may include services like user service, product service, order service, and payment service.
-- **Choose Tech Stack:** Select suitable technologies, frameworks, and databases based on requirements and scalability.**Example:** A web application might use React for frontend, Node.js for backend, and MongoDB as the database.
-- **Design Modules:** Divide the system into smaller components with specific responsibilities.**Example:** In a banking system, modules may include account management, transaction processing, and customer management.
-- **Plan for Scalability:** Design the system to handle growth using scalable solutions and identifying bottlenecks.**Example:** A video streaming platform may use multiple servers and caching to handle millions of users at the same time.
-- **Ensure Security & Privacy:** Apply security measures like authentication, encryption, and secure communication.**Example:** An online banking system uses secure login, encrypted transactions, and multi-factor authentication.
-- **Test & Validate:** Test the system to ensure it meets functional and performance requirements.**Example:** Testing a ride-hailing app to ensure booking, driver matching, and payment processing work correctly.
+  **ตัวอย่าง:** สำหรับแอปส่งอาหาร ความต้องการอาจประกอบด้วยการเข้าสู่ระบบของผู้ใช้ รายการร้านอาหาร การสั่งอาหาร และการชำระเงินออนไลน์
+  
+* **กำหนดสถาปัตยกรรม:** วางแผนโครงสร้างโดยรวมของระบบ ส่วนประกอบ และการทำงานร่วมกัน
 
-## **Tips and Tricks to Solve a System Design Problem**
+  **ตัวอย่าง:** ในระบบอีคอมเมิร์ซ สถาปัตยกรรมอาจประกอบด้วยบริการผู้ใช้ บริการสินค้า บริการคำสั่งซื้อ และบริการชำระเงิน
+  
+* **เลือกชุดเทคโนโลยี:** เลือกเทคโนโลยี เฟรมเวิร์ก และฐานข้อมูลที่เหมาะสมตามความต้องการและความสามารถในการขยายระบบ
 
-System design problems become manageable when broken into smaller, structured steps. There’s no single correct solution, multiple valid approaches can exist.
+  **ตัวอย่าง:** เว็บแอปพลิเคชันอาจใช้ React สำหรับ Frontend, Node.js สำหรับ Backend และ MongoDB เป็นฐานข้อมูล
+  
+* **ออกแบบโมดูล:** แบ่งระบบออกเป็นส่วนประกอบขนาดเล็กที่มีความรับผิดชอบเฉพาะ
 
-- **Clarify the requirements**: Start by asking questions to fully understand the problem, including functional and non-functional requirements. This helps you avoid making incorrect assumptions.
-- **Start with a high-level design:** Draw a simple architecture showing the main components such as clients, servers, databases, and APIs. This gives a clear overview before going into details.
-- **Break the system into components**: Divide the system into smaller services or modules and define their responsibilities and interactions. This makes the design easier to explain and scale.
-- **Consider scalability and performance**: Think about how the system will handle large traffic by using techniques like load balancing, caching, and database sharding.
-- **Discuss trade-offs**: Explain why you choose a particular design or technology and what trade-offs it involves, such as cost vs performance or simplicity vs scalability.
-- **Refine the design gradually**: After the high-level design, go deeper into areas like database design, APIs, and data flow to complete the solution.
+  **ตัวอย่าง:** ในระบบธนาคาร โมดูลอาจประกอบด้วยการจัดการบัญชี การประมวลผลธุรกรรม และการจัดการลูกค้า
+  
+* **วางแผนรองรับการขยายระบบ:** ออกแบบระบบให้รองรับการเติบโตโดยใช้โซลูชันที่ขยายได้และระบุจุดคอขวด
 
-## **Important points to consider when designing a software system**
+  **ตัวอย่าง:** แพลตฟอร์มสตรีมวิดีโออาจใช้เซิร์ฟเวอร์หลายเครื่องและการแคชเพื่อรองรับผู้ใช้หลายล้านคนพร้อมกัน
+  
+* **รักษาความปลอดภัยและความเป็นส่วนตัว:** ใช้มาตรการรักษาความปลอดภัย เช่น การยืนยันตัวตน การเข้ารหัส และการสื่อสารที่ปลอดภัย
 
-Designing a software system requires balancing performance, scalability, and maintainability to meet both current and future business needs.
+  **ตัวอย่าง:** ระบบธนาคารออนไลน์ใช้การเข้าสู่ระบบที่ปลอดภัย ธุรกรรมที่เข้ารหัส และการยืนยันตัวตนหลายปัจจัย
+  
+* **ทดสอบและตรวจสอบ:** ทดสอบระบบเพื่อให้มั่นใจว่าระบบตอบสนองความต้องการเชิงฟังก์ชันและด้านประสิทธิภาพ
 
-1. **Scalability:** The system should be designed to handle increased loads and be able to scale horizontally or vertically as needed.
-2. **Performance:** The system should be designed to perform efficiently and effectively, with minimal latency and response time.
-3. **Reliability:** The system should be reliable and available, with minimal downtime or system failures.
-4. **Security:** The system should be designed with security in mind, including measures to prevent unauthorized access and protect sensitive data.
-5. **Maintainability:** The system should be designed to be easy to maintain and update, with clear documentation and well-organized code.
-6. **Interoperability:** The system should be designed to work seamlessly with other systems and components, with clear and well-defined interfaces.
-7. **Usability:** The system should be designed to be user-friendly and intuitive, with a clear and consistent user interface.
-8. **Cost-effectiveness:** The system should be designed to be cost-effective, with a focus on minimizing development and operational costs while still meeting the requirements.
+  **ตัวอย่าง:** ทดสอบแอปเรียกรถเพื่อให้มั่นใจว่าการจอง การจับคู่คนขับ และการประมวลผลการชำระเงินทำงานได้อย่างถูกต้อง
+
+## **เคล็ดลับในการแก้โจทย์การออกแบบระบบ**
+
+ปัญหาด้านการออกแบบระบบจะจัดการได้ง่ายขึ้นเมื่อแบ่งออกเป็นขั้นตอนย่อยที่มีโครงสร้าง ไม่มีคำตอบที่ถูกต้องเพียงคำตอบเดียว และอาจมีแนวทางที่ถูกต้องได้หลายแบบ
+
+* **ทำความต้องการให้ชัดเจน:** เริ่มต้นด้วยการถามคำถามเพื่อทำความเข้าใจปัญหาอย่างครบถ้วน ทั้งความต้องการเชิงฟังก์ชันและความต้องการที่ไม่ใช่เชิงฟังก์ชัน ซึ่งช่วยหลีกเลี่ยงการตั้งสมมติฐานที่ไม่ถูกต้อง
+* **เริ่มต้นด้วยการออกแบบระดับสูง:** วาดสถาปัตยกรรมอย่างง่ายที่แสดงส่วนประกอบหลัก เช่น Client, Server, ฐานข้อมูล และ API เพื่อให้เห็นภาพรวมที่ชัดเจนก่อนลงรายละเอียด
+* **แบ่งระบบออกเป็นส่วนประกอบ:** แบ่งระบบออกเป็นบริการหรือโมดูลขนาดเล็ก พร้อมกำหนดความรับผิดชอบและการทำงานร่วมกัน ซึ่งช่วยให้อธิบายและขยายระบบได้ง่ายขึ้น
+* **พิจารณาความสามารถในการขยายระบบและประสิทธิภาพ:** พิจารณาว่าระบบจะรองรับทราฟฟิกจำนวนมากอย่างไร โดยใช้เทคนิคต่างๆ เช่น การกระจายภาระงาน การแคช และการแบ่งฐานข้อมูลแบบ Sharding
+* **อธิบายข้อแลกเปลี่ยน:** อธิบายเหตุผลที่เลือกการออกแบบหรือเทคโนโลยีนั้น รวมถึงข้อแลกเปลี่ยนที่เกี่ยวข้อง เช่น ต้นทุนกับประสิทธิภาพ หรือความเรียบง่ายกับความสามารถในการขยายระบบ
+* **ปรับปรุงการออกแบบอย่างเป็นลำดับ:** หลังจากออกแบบระดับสูงแล้ว ให้ลงรายละเอียดเพิ่มเติมในส่วนต่างๆ เช่น การออกแบบฐานข้อมูล API และการไหลของข้อมูล เพื่อทำให้โซลูชันสมบูรณ์
+
+## **ประเด็นสำคัญที่ควรพิจารณาเมื่อออกแบบระบบซอฟต์แวร์**
+
+การออกแบบระบบซอฟต์แวร์จำเป็นต้องสร้างสมดุลระหว่างประสิทธิภาพ ความสามารถในการขยายระบบ และความสามารถในการบำรุงรักษา เพื่อรองรับความต้องการทางธุรกิจทั้งในปัจจุบันและอนาคต
+
+1. **ความสามารถในการขยายระบบ:** ระบบควรได้รับการออกแบบให้รองรับภาระงานที่เพิ่มขึ้น และสามารถขยายระบบในแนวนอนหรือแนวตั้งได้ตามความจำเป็น
+2. **ประสิทธิภาพ:** ระบบควรได้รับการออกแบบให้ทำงานอย่างมีประสิทธิภาพ โดยมีเวลาแฝงและระยะเวลาตอบสนองต่ำที่สุด
+3. **ความน่าเชื่อถือ:** ระบบควรมีความน่าเชื่อถือและพร้อมใช้งาน โดยมีช่วงเวลาหยุดทำงานหรือความล้มเหลวของระบบให้น้อยที่สุด
+4. **ความปลอดภัย:** ระบบควรได้รับการออกแบบโดยคำนึงถึงความปลอดภัย รวมถึงมาตรการป้องกันการเข้าถึงโดยไม่ได้รับอนุญาตและการปกป้องข้อมูลที่ละเอียดอ่อน
+5. **ความสามารถในการบำรุงรักษา:** ระบบควรได้รับการออกแบบให้บำรุงรักษาและอัปเดตได้ง่าย พร้อมเอกสารที่ชัดเจนและโค้ดที่จัดระเบียบอย่างเหมาะสม
+6. **ความสามารถในการทำงานร่วมกัน:** ระบบควรได้รับการออกแบบให้ทำงานร่วมกับระบบและส่วนประกอบอื่นได้อย่างราบรื่น โดยมีส่วนต่อประสานที่ชัดเจนและกำหนดไว้อย่างเหมาะสม
+7. **ความสะดวกในการใช้งาน:** ระบบควรได้รับการออกแบบให้ใช้งานง่ายและเข้าใจได้โดยไม่ซับซ้อน พร้อมส่วนติดต่อผู้ใช้ที่ชัดเจนและสอดคล้องกัน
+8. **ความคุ้มค่าด้านต้นทุน:** ระบบควรได้รับการออกแบบให้คุ้มค่า โดยมุ่งลดต้นทุนการพัฒนาและการดำเนินงาน พร้อมทั้งยังคงตอบสนองความต้องการที่กำหนดไว้
