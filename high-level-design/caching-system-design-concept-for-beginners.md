@@ -1,125 +1,125 @@
-# **Caching - System Design Concept**
+# **Caching - แนวคิดการออกแบบระบบ**
 
-Caching is a concept that involves storing frequently accessed data in a location that is easily and quickly accessible. The purpose of caching is to improve the performance and efficiency of a system by reducing the amount of time it takes to access frequently accessed data.
+Caching คือแนวคิดในการจัดเก็บข้อมูลที่ถูกเรียกใช้งานบ่อยไว้ในตำแหน่งที่สามารถเข้าถึงได้ง่ายและรวดเร็ว จุดประสงค์ของ Caching คือการปรับปรุงประสิทธิภาพและความมีประสิทธิผลของระบบ โดยลดระยะเวลาที่ใช้ในการเข้าถึงข้อมูลที่ถูกเรียกใช้งานบ่อย
 
-- Caching acts as the local store for the data and retrieving the data from this local or temporary storage is easier and faster than retrieving it from the database.
-- In a typical web application, we can add an application server cache and an in-memory store like [Redis](https://www.geeksforgeeks.org/system-design/introduction-to-redis-server/) alongside our application server.
+- Caching ทำหน้าที่เป็นพื้นที่จัดเก็บข้อมูลภายใน และการดึงข้อมูลจากพื้นที่จัดเก็บภายในหรือชั่วคราวนี้ทำได้ง่ายและรวดเร็วกว่าการดึงข้อมูลจากฐานข้อมูล
+- ในเว็บแอปพลิเคชันทั่วไป เราสามารถเพิ่มแคชของ Application Server และที่เก็บข้อมูลในหน่วยความจำอย่าง [Redis](https://www.geeksforgeeks.org/system-design/introduction-to-redis-server/) ไว้ร่วมกับ Application Server ของเราได้
 
-> ***Example:** In twitter, when a tweet becomes viral, a huge number of clients request the same tweet, so to reduce the number of calls to the database, we can use cache and the tweets can be provided much faster.*
+> ***ตัวอย่าง:** ใน Twitter เมื่อทวีตหนึ่งกลายเป็นไวรัล จะมี Client จำนวนมากร้องขอทวีตเดียวกัน ดังนั้นเพื่อลดจำนวนครั้งที่ต้องเรียกฐานข้อมูล เราสามารถใช้ Cache เพื่อส่งทวีตให้ผู้ใช้ได้รวดเร็วยิ่งขึ้น*
 > 
 
-## **Working**
+## **การทำงาน**
 
-Web application stores data in a database. Reading data from the database needs network calls and I/O operations which is a time-consuming process. Cache reduces the network calls to the database and speeds up the performance of the system.
+เว็บแอปพลิเคชันจัดเก็บข้อมูลไว้ในฐานข้อมูล การอ่านข้อมูลจากฐานข้อมูลต้องอาศัยการเรียกผ่านเครือข่ายและการทำงาน I/O ซึ่งเป็นกระบวนการที่ใช้เวลา Cache ช่วยลดการเรียกผ่านเครือข่ายไปยังฐานข้อมูลและเพิ่มความเร็วในการทำงานของระบบ
 
-- When a request is made the first time a call will have to be made to the database to process the query. This is known as a cache miss.
-- Before giving back the result to the user, the result will be saved in the cache.
-- When the second time a user makes the same request, the application will check your cache first to see if the result for that request is cached or not.
-- If it is then the result will be returned from the cache. This is known as a cache hit.
-- The response time for the second time request will be a lot less than the first time.
+- เมื่อมีการร้องขอเป็นครั้งแรก ระบบจะต้องเรียกฐานข้อมูลเพื่อประมวลผล Query ซึ่งเรียกว่า Cache Miss
+- ก่อนส่งผลลัพธ์กลับไปยังผู้ใช้ ผลลัพธ์นั้นจะถูกบันทึกไว้ใน Cache
+- เมื่อผู้ใช้ส่งคำขอเดิมเป็นครั้งที่สอง แอปพลิเคชันจะตรวจสอบ Cache ก่อนว่ามีผลลัพธ์ของคำขอนั้นถูกจัดเก็บไว้หรือไม่
+- หากมี ระบบจะส่งผลลัพธ์กลับจาก Cache ซึ่งเรียกว่า Cache Hit
+- เวลาตอบสนองของคำขอครั้งที่สองจะน้อยกว่าครั้งแรกอย่างมาก
 
 <img src="https://media.geeksforgeeks.org/wp-content/uploads/20260330163320156294/4208515-660.webp" alt="Working" />
 
-## Challenges of Storing All Data in Cache
+## ความท้าทายของการจัดเก็บข้อมูลทั้งหมดไว้ใน Cache
 
-As you know there are many benefits of the cache but that doesn't mean we will store all the information in the cache memory for faster access, we can't do this for multiple reasons, such as:
+อย่างที่ทราบกันว่า Cache มีประโยชน์หลายอย่าง แต่ไม่ได้หมายความว่าเราควรจัดเก็บข้อมูลทั้งหมดไว้ในหน่วยความจำ Cache เพื่อให้เข้าถึงได้เร็วขึ้น เพราะเราไม่สามารถทำเช่นนั้นได้ด้วยเหตุผลหลายประการ เช่น:
 
-- Hardware of the cache which is much more expensive than a normal database.
-- Also, the search time will increase if you store tons of data in your cache.
-- Cache is a typically volatile storage, meaning data is lost if the system crashes or restart. For critical and long-term data, storing it only in cache would risk data loss.
-- In short, a cache needs to have the most relevant information according to the request which is going to come in the future.
+- ฮาร์ดแวร์สำหรับ Cache มีราคาแพงกว่าฐานข้อมูลทั่วไปมาก
+- นอกจากนี้ เวลาที่ใช้ในการค้นหาจะเพิ่มขึ้นหากจัดเก็บข้อมูลจำนวนมากไว้ใน Cache
+- โดยทั่วไป Cache เป็นพื้นที่จัดเก็บข้อมูลแบบ Volatile ซึ่งหมายความว่าข้อมูลจะสูญหายหากระบบล่มหรือรีสตาร์ต สำหรับข้อมูลสำคัญและข้อมูลระยะยาว การจัดเก็บไว้เฉพาะใน Cache จะมีความเสี่ยงต่อการสูญหายของข้อมูล
+- กล่าวโดยสรุป Cache ควรมีข้อมูลที่เกี่ยวข้องกับคำขอที่คาดว่าจะเข้ามาในอนาคตมากที่สุด
 
-## **Types of Cache**
+## **ประเภทของ Cache**
 
-In common there are four types of Cache:
+โดยทั่วไป Cache มีอยู่ 4 ประเภท:
 
 ### **1. Application Server Cache**
 
-An Application Server Cache is a storage layer within an application server that temporarily holds frequently accessed data, so it can be quickly retrieved without needing to go back to the main database each time. This helps applications run faster by reducing the load on the database and speeding up response times for users.
+Application Server Cache คือชั้นจัดเก็บข้อมูลภายใน Application Server ที่เก็บข้อมูลซึ่งถูกเรียกใช้งานบ่อยไว้ชั่วคราว เพื่อให้สามารถดึงข้อมูลได้อย่างรวดเร็วโดยไม่ต้องกลับไปที่ฐานข้อมูลหลักทุกครั้ง วิธีนี้ช่วยให้แอปพลิเคชันทำงานได้เร็วขึ้นด้วยการลดภาระของฐานข้อมูลและลดเวลาตอบสนองให้ผู้ใช้
 
-> ***Example:** When an app frequently needs certain data, the application server can store this data in the cache. When users request it, app can instantly provide the cached version instead of processing a full database query.*
+> ***ตัวอย่าง:** เมื่อแอปพลิเคชันต้องใช้ข้อมูลบางอย่างบ่อยครั้ง Application Server สามารถจัดเก็บข้อมูลนั้นไว้ใน Cache ได้ เมื่อผู้ใช้ร้องขอข้อมูล แอปพลิเคชันสามารถส่งข้อมูลจาก Cache ให้ได้ทันที แทนที่จะต้องประมวลผล Query จากฐานข้อมูลทั้งหมดอีกครั้ง*
 
 <img src="https://media.geeksforgeeks.org/wp-content/uploads/20260330162625416328/420851520-660.webp" alt="Application Server Cache" />
 
-**Drawbacks:**
+**ข้อเสีย:**
 
-- When you add multiple servers to handle a high volume of requests.
-- With several servers, a load balancer sends requests to different nodes, but each node only has its own cache and doesn’t know about the cached data on other nodes.
-- This results in many cache misses, meaning the data has to be re-fetched frequently, slowing things down.
+- เมื่อเพิ่ม Server หลายเครื่องเพื่อรองรับคำขอจำนวนมาก
+- เมื่อมี Server หลายเครื่อง Load Balancer จะส่งคำขอไปยัง Node ต่างๆ แต่แต่ละ Node จะมีเพียง Cache ของตนเองและไม่รับรู้ถึงข้อมูลที่ถูก Cache ไว้ใน Node อื่น
+- ส่งผลให้เกิด Cache Miss จำนวนมาก ทำให้ต้องดึงข้อมูลใหม่บ่อยครั้งและทำให้ระบบช้าลง
 
-> ***Note:** To fix this, there are two main options: Distributed Cache and Global Cache.*
+> ***หมายเหตุ:** วิธีแก้ปัญหานี้มีสองแนวทางหลัก ได้แก่ Distributed Cache และ Global Cache*
 > 
 
 ### **2. Distributed Cache**
 
-In the [distributed cache](https://www.geeksforgeeks.org/system-design/what-is-a-distributed-cache/), each node will have a part of the whole cache space and then using the consistent hashing function each request can be routed to where the cache request could be found.
+ใน [Distributed Cache](https://www.geeksforgeeks.org/system-design/what-is-a-distributed-cache/) แต่ละ Node จะเก็บข้อมูลเพียงส่วนหนึ่งของพื้นที่ Cache ทั้งหมด จากนั้นใช้ฟังก์ชัน Consistent Hashing เพื่อกำหนดเส้นทางของแต่ละคำขอไปยังตำแหน่งที่สามารถพบข้อมูล Cache ที่ต้องการได้
 
-- Each of its nodes will have a small part of the cached data.
-- To identify which node has which request the cache is divided up using a consistent hashing function, so that each request can be routed to where the cached request could be found.
-- If a requesting node is looking for a certain piece of data, it can quickly know where to look within the distributed cache to check if the data is available.
+- แต่ละ Node จะมีข้อมูลที่ถูก Cache ไว้เพียงส่วนหนึ่ง
+- เพื่อระบุว่า Node ใดมีข้อมูลของคำขอใด Cache จะถูกแบ่งโดยใช้ฟังก์ชัน Consistent Hashing เพื่อให้แต่ละคำขอถูกส่งไปยังตำแหน่งที่สามารถพบข้อมูล Cache ที่ต้องการได้
+- หาก Node ที่ส่งคำขอกำลังค้นหาข้อมูลบางส่วน มันสามารถทราบได้อย่างรวดเร็วว่าควรค้นหาที่ใดภายใน Distributed Cache เพื่อตรวจสอบว่ามีข้อมูลนั้นอยู่หรือไม่
 
 <img src="https://media.geeksforgeeks.org/wp-content/uploads/20260330162625546955/420851521-660.webp" alt="Distributed Cache" />
 
 ### **3. Global Cache**
 
-As the name suggests, you will have a single cache space and all the nodes use this single space. Every request will go to this single cache space. There are two kinds of the global cache.
+ตามชื่อของมัน ระบบจะมีพื้นที่ Cache เพียงแห่งเดียว และทุก Node จะใช้พื้นที่เดียวกันนี้ ทุกคำขอจะถูกส่งมายังพื้นที่ Cache เดียว โดย Global Cache มีอยู่สองรูปแบบ
 
-- First, when a cache request is not found in the global cache, it's the responsibility of the cache to find out the missing piece of data from anywhere underlying the store (database, disk, etc).
-- Second, if the request comes and the cache doesn't find the data then the requesting node will directly communicate with the DB or the server to fetch the requested data.
+- แบบแรก เมื่อไม่พบข้อมูลที่ร้องขอใน Global Cache ตัว Cache จะมีหน้าที่ค้นหาข้อมูลที่ขาดหายไปจากแหล่งจัดเก็บข้อมูลเบื้องหลัง เช่น ฐานข้อมูล ดิสก์ เป็นต้น
+- แบบที่สอง หากมีคำขอเข้ามาและ Cache ไม่พบข้อมูล Node ที่ส่งคำขอจะติดต่อกับ DB หรือ Server โดยตรงเพื่อดึงข้อมูลที่ต้องการ
 
 <img src="https://media.geeksforgeeks.org/wp-content/uploads/20260330162625680555/420851522-660.webp" alt="Global Cache" />
 
 ### **4. CDN (Content Delivery Network)/ Edge Cache**
 
-A [CDN](https://www.geeksforgeeks.org/system-design/designing-content-delivery-network-cdn-system-design/) is essentially a group of servers that are strategically placed across the globe with the purpose of accelerating the delivery of web content. A CDN:
+[CDN](https://www.geeksforgeeks.org/system-design/designing-content-delivery-network-cdn-system-design/) คือกลุ่มของ Server ที่ถูกวางไว้ตามตำแหน่งต่างๆ ทั่วโลกอย่างมีกลยุทธ์ โดยมีจุดประสงค์เพื่อเพิ่มความเร็วในการส่งมอบเนื้อหาบนเว็บ CDN:
 
-- Manages servers that are geographically distributed over different locations.
-- Stores the web content in its servers.
-- Attempts to direct each user to a server that is part of the CDN and close to the user so as to deliver content quickly.
-- Used where a large amount of static content is served by the website.
+- จัดการ Server ที่กระจายอยู่ตามตำแหน่งทางภูมิศาสตร์ต่างๆ
+- จัดเก็บเนื้อหาเว็บไว้ใน Server ของตน
+- พยายามส่งผู้ใช้แต่ละคนไปยัง Server ที่เป็นส่วนหนึ่งของ CDN และอยู่ใกล้ผู้ใช้ เพื่อให้สามารถส่งเนื้อหาได้อย่างรวดเร็ว
+- ใช้ในกรณีที่เว็บไซต์ให้บริการ Static Content จำนวนมาก
 
-> ***Note:** It can be an HTML, CSS, JavaScript Files, pictures, videos, etc. First, request ask CDN for data, if it exists then the data will be returned. If not, CDN will query the backend servers and then cache it locally.*
+> ***หมายเหตุ:** เนื้อหาอาจเป็น HTML, CSS, ไฟล์ JavaScript, รูปภาพ, วิดีโอ เป็นต้น เมื่อมีคำขอเข้ามา ระบบจะร้องขอข้อมูลจาก CDN ก่อน หากมีข้อมูลอยู่ก็จะส่งข้อมูลกลับทันที หากไม่มี CDN จะ Query ไปยัง Backend Server แล้วนำข้อมูลมา Cache ไว้ภายใน*
 > 
 
 <img src="https://media.geeksforgeeks.org/wp-content/uploads/20260330162625828874/420851523-660.webp" alt="CDN" />
 
-## **Applications**
+## **การใช้งาน**
 
-Caching is used in many areas to speed up processes, reduce load and make systems more efficient. Below are some common applications of caching:
+Caching ถูกนำไปใช้ในหลายส่วนเพื่อเพิ่มความเร็วของกระบวนการ ลดภาระ และทำให้ระบบมีประสิทธิภาพมากขึ้น ด้านล่างคือตัวอย่างการใช้งาน Caching ที่พบบ่อย:
 
-- **Web Page Caching**: In order to speed up loading times in the future, browsers save copies of frequently visited websites. This saves bandwidth and shortens the time it takes for a web page to load.
-- **Database Caching**: Frequent database queries can strain servers and cause lag. Caching allows apps to quickly retrieve frequently used data without repeatedly asking the database by storing it in memory.
-- **Content Delivery Networks (CDNs)**: CDNs use caching to keep copies of data (such as pictures and videos) in several places throughout the globe. This enhances website performance by enabling visitors to obtain content more quickly from a nearby server.
-- **Session Caching**: Applications store session data in a cache to remember user information (like login status) between visits, making the experience seamless and personalized without needing to re-login.
-- **API Response Caching**: Frequently requested API data, like stock prices or weather data, can be cached so responses are faster, reducing the load on the server and delivering data in real-time.
+- **Web Page Caching**: เพื่อให้การโหลดในครั้งถัดไปเร็วขึ้น Browser จะบันทึกสำเนาของเว็บไซต์ที่เข้าชมบ่อย วิธีนี้ช่วยประหยัด Bandwidth และลดเวลาที่ใช้ในการโหลดหน้าเว็บ
+- **Database Caching**: การ Query ฐานข้อมูลบ่อยครั้งอาจสร้างภาระให้ Server และทำให้เกิดความล่าช้า Caching ช่วยให้แอปพลิเคชันดึงข้อมูลที่ใช้งานบ่อยได้อย่างรวดเร็วโดยไม่ต้องร้องขอจากฐานข้อมูลซ้ำๆ ด้วยการจัดเก็บข้อมูลไว้ในหน่วยความจำ
+- **Content Delivery Networks (CDNs)**: CDN ใช้ Caching เพื่อเก็บสำเนาข้อมูล เช่น รูปภาพและวิดีโอ ไว้ในหลายตำแหน่งทั่วโลก วิธีนี้ช่วยเพิ่มประสิทธิภาพของเว็บไซต์โดยทำให้ผู้ใช้สามารถรับเนื้อหาได้รวดเร็วขึ้นจาก Server ที่อยู่ใกล้
+- **Session Caching**: แอปพลิเคชันจัดเก็บข้อมูล Session ไว้ใน Cache เพื่อจดจำข้อมูลของผู้ใช้ เช่น สถานะการ Login ระหว่างการเข้าใช้งาน ทำให้ประสบการณ์ใช้งานต่อเนื่องและเหมาะกับผู้ใช้โดยไม่ต้อง Login ใหม่
+- **API Response Caching**: ข้อมูลจาก API ที่ถูกร้องขอบ่อย เช่น ราคาหุ้นหรือข้อมูลสภาพอากาศ สามารถถูก Cache ไว้เพื่อให้ตอบสนองได้รวดเร็วขึ้น ลดภาระของ Server และส่งข้อมูลได้แบบ Real-time
 
-## **Cache Invalidation Strategies**
+## **กลยุทธ์ Cache Invalidation**
 
-For systems that use caching to improve performance, cache invalidation is essential. Data is temporarily kept for faster access when it is cached. However, the cached version goes out of date if the original data changes.
+สำหรับระบบที่ใช้ Caching เพื่อเพิ่มประสิทธิภาพ Cache Invalidation เป็นสิ่งสำคัญ เมื่อข้อมูลถูก Cache ข้อมูลนั้นจะถูกเก็บไว้ชั่วคราวเพื่อให้เข้าถึงได้เร็วขึ้น อย่างไรก็ตาม หากข้อมูลต้นฉบับมีการเปลี่ยนแปลง ข้อมูลที่อยู่ใน Cache จะกลายเป็นข้อมูลล้าสมัย
 
-- In order to guarantee that users obtain the most recent information, [cache invalidation techniques](https://www.geeksforgeeks.org/system-design/cache-invalidation-and-the-methods-to-invalidate-cache/) make sure that out-of-date records are either updated or deleted.
-- Common strategies include time-based expiration, where cached data is discarded after a certain time and event-driven invalidation, triggered by changes to the underlying data.
-- Proper cache invalidation optimizes performance and avoids serving users with obsolete or inaccurate content from the cache.
+- เพื่อให้มั่นใจว่าผู้ใช้ได้รับข้อมูลล่าสุด [เทคนิค Cache Invalidation](https://www.geeksforgeeks.org/system-design/cache-invalidation-and-the-methods-to-invalidate-cache/) จะช่วยให้ข้อมูลที่ล้าสมัยถูกอัปเดตหรือลบออก
+- กลยุทธ์ที่พบบ่อย ได้แก่ การหมดอายุตามเวลา ซึ่งข้อมูลใน Cache จะถูกลบหลังจากระยะเวลาหนึ่ง และ Event-driven Invalidation ซึ่งทำงานเมื่อข้อมูลต้นทางมีการเปลี่ยนแปลง
+- การทำ Cache Invalidation อย่างเหมาะสมช่วยเพิ่มประสิทธิภาพและป้องกันไม่ให้ระบบส่งเนื้อหาที่ล้าสมัยหรือไม่ถูกต้องจาก Cache ให้ผู้ใช้
 
-## **Eviction Policies**
+## **นโยบาย Eviction**
 
-For caching systems to effectively manage their limited cache capacity, eviction policies are essential. An [eviction policy](https://www.geeksforgeeks.org/system-design/cache-eviction-policies-system-design/) decides which existing item to remove when the cache is full and a new item needs to be stored.
+เพื่อให้ระบบ Caching สามารถบริหารความจุของ Cache ที่มีจำกัดได้อย่างมีประสิทธิภาพ นโยบาย Eviction จึงมีความสำคัญ [Eviction Policy](https://www.geeksforgeeks.org/system-design/cache-eviction-policies-system-design/) ใช้ตัดสินใจว่าจะลบข้อมูลรายการใดออกเมื่อ Cache เต็มและจำเป็นต้องจัดเก็บข้อมูลรายการใหม่
 
-- The Least Recently Used (LRU) policy is a popular strategy that eliminates the item that has been accessed the least recently. According to this assumption, items which have been used recently are more likely to be utilized again shortly.
-- Another method is the Least Frequently Used (LFU) policy, removing the least frequently accessed items.
-- Alternatively, there's the First-In-First-Out (FIFO) policy, evicting the oldest cached item.
+- นโยบาย Least Recently Used (LRU) เป็นกลยุทธ์ที่ได้รับความนิยม โดยจะลบรายการที่ไม่ได้ถูกเข้าถึงมาเป็นเวลานานที่สุด แนวคิดนี้ตั้งอยู่บนสมมติฐานว่ารายการที่เพิ่งถูกใช้งานมีแนวโน้มที่จะถูกใช้งานอีกในเร็วๆ นี้
+- อีกวิธีหนึ่งคือนโยบาย Least Frequently Used (LFU) ซึ่งจะลบรายการที่ถูกเข้าถึงน้อยที่สุด
+- อีกทางเลือกหนึ่งคือนโยบาย First-In-First-Out (FIFO) ซึ่งจะนำรายการที่ถูก Cache ไว้นานที่สุดออกก่อน
 
-## **Pros**
+## **ข้อดี**
 
-As it maximizes resource utilization, reduces server loads and enhances overall scalability, caching is a helpful technique in software development.
+Caching เป็นเทคนิคที่มีประโยชน์ในการพัฒนาซอฟต์แวร์ เพราะช่วยเพิ่มการใช้ทรัพยากรให้เกิดประโยชน์สูงสุด ลดภาระของ Server และเพิ่มความสามารถในการขยายระบบโดยรวม
 
-- **Reduced load on the original source:** By significantly reducing down on the time it takes to get frequently used data, caching can enhance system responsiveness and performance.
-- **Cost savings:** Caching can reduce the need for expensive hardware or infrastructure upgrades by improving the efficiency of existing resources.
+- **ลดภาระของแหล่งข้อมูลต้นทาง:** การลดเวลาที่ใช้ในการดึงข้อมูลที่ถูกใช้งานบ่อยลงอย่างมากด้วย Caching ช่วยเพิ่มความรวดเร็วในการตอบสนองและประสิทธิภาพของระบบ
+- **ประหยัดค่าใช้จ่าย:** Caching สามารถลดความจำเป็นในการอัปเกรดฮาร์ดแวร์หรือโครงสร้างพื้นฐานที่มีราคาแพงได้ ด้วยการเพิ่มประสิทธิภาพในการใช้ทรัพยากรที่มีอยู่
 
-## **Cons**
+## **ข้อเสีย**
 
-Despite its advantages, caching comes with drawbacks also and some of them are:
+แม้จะมีข้อดี แต่ Caching ก็มีข้อเสียเช่นกัน โดยบางส่วนได้แก่:
 
-- **Data inconsistency:** If cache consistency is not maintained properly, caching can introduce issues with data consistency.
-- **Cache eviction issues:** If cache eviction policies are not designed properly, caching can result in performance issues or data loss.
-- **Additional complexity:** Caching can add additional complexity to a system, which can make it more difficult to design, implement and maintain.
+- **ความไม่สอดคล้องของข้อมูล:** หากไม่มีการรักษาความสอดคล้องของ Cache อย่างเหมาะสม Caching อาจทำให้เกิดปัญหาความไม่สอดคล้องของข้อมูล
+- **ปัญหา Cache Eviction:** หากนโยบาย Cache Eviction ถูกออกแบบไม่เหมาะสม Caching อาจทำให้เกิดปัญหาด้านประสิทธิภาพหรือการสูญหายของข้อมูล
+- **ความซับซ้อนที่เพิ่มขึ้น:** Caching สามารถเพิ่มความซับซ้อนให้กับระบบ ซึ่งอาจทำให้การออกแบบ การนำไปใช้งาน และการบำรุงรักษาทำได้ยากขึ้น
