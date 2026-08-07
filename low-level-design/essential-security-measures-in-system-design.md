@@ -1,132 +1,132 @@
-# **Security Measures in System Design**
+# **มาตรการด้านความปลอดภัยในการออกแบบระบบ**
 
-As cyberattacks and digital risks grow, companies need strong system security to protect important data, follow rules, and keep their business safe from financial loss or damage to their reputation.
+เมื่อการโจมตีทางไซเบอร์และความเสี่ยงทางดิจิทัลเพิ่มมากขึ้น บริษัทต่างๆ จึงจำเป็นต้องมีระบบรักษาความปลอดภัยที่แข็งแกร่ง เพื่อปกป้องข้อมูลสำคัญ ปฏิบัติตามข้อกำหนด และป้องกันธุรกิจจากความเสียหายทางการเงินหรือชื่อเสียง
 
-- Protects against cyberattacks, data breaches, and unauthorized access while ensuring compliance with regulations like GDPR, HIPAA, and CCPA.
-- Maintains system availability by preventing downtime caused by security threats and attacks.
+- ป้องกันการโจมตีทางไซเบอร์ การรั่วไหลของข้อมูล และการเข้าถึงโดยไม่ได้รับอนุญาต พร้อมทั้งช่วยให้เป็นไปตามข้อกำหนด เช่น GDPR, HIPAA และ CCPA
+- รักษาความพร้อมใช้งานของระบบโดยป้องกัน Downtime ที่เกิดจากภัยคุกคามและการโจมตีด้านความปลอดภัย
 
-> ***Example:** A financial services company implements multi-factor authentication and encryption for customer data. This prevents hackers from accessing sensitive account information, safeguarding both the company and its users.*
+> ***ตัวอย่าง:** บริษัทให้บริการทางการเงินนำ Multi-Factor Authentication และการเข้ารหัสมาใช้กับข้อมูลลูกค้า ซึ่งช่วยป้องกันแฮกเกอร์ไม่ให้เข้าถึงข้อมูลบัญชีที่มีความละเอียดอ่อน และช่วยปกป้องทั้งบริษัทและผู้ใช้งาน*
 > 
 
-## **Steps and ways to ensure the security of a system**
+## **ขั้นตอนและวิธีการเพื่อให้ระบบมีความปลอดภัย**
 
-Securing a system involves multiple layers of protection to safeguard data, users, and resources from unauthorized access and cyber threats.
+การรักษาความปลอดภัยของระบบต้องอาศัยการป้องกันหลายชั้น เพื่อปกป้องข้อมูล ผู้ใช้งาน และทรัพยากรจากการเข้าถึงโดยไม่ได้รับอนุญาตและภัยคุกคามทางไซเบอร์
 
-### **1. Authentication and Authorization**
+### **1. Authentication และ Authorization**
 
-Authentication is a crucial step to verify the identity of a user accessing the system. Some of the most popular ways of **authenticating** are
+Authentication เป็นขั้นตอนสำคัญในการตรวจสอบตัวตนของผู้ใช้ที่กำลังเข้าถึงระบบ วิธีที่นิยมใช้สำหรับ **Authentication** ได้แก่
 
 - Multi-Factor Authentication (MFA)
 - Biometrics
-- Emphasis on strong password policy
-- Single Sign-On.
+- การให้ความสำคัญกับนโยบายรหัสผ่านที่แข็งแกร่ง
+- Single Sign-On
 
-Authorization is a process in which the authority of the particular user trying to access a system is checked. Some of the most common ways of **authorization** are
+Authorization เป็นกระบวนการตรวจสอบสิทธิ์ของผู้ใช้ที่กำลังพยายามเข้าถึงระบบ วิธีที่พบบ่อยสำหรับ **Authorization** ได้แก่
 
 - Attribute Based Access Control
 - Least Privilege Principle
-- Review the Accesses
-- Resource Based Authorization.
+- การตรวจสอบสิทธิ์การเข้าถึง
+- Resource Based Authorization
 
-> ***Example:** When you enter your Netflix account, authentication checks your username and password to confirm your identity, while authorization decides which profiles you can access and what content you’re allowed to watch.*
+> ***ตัวอย่าง:** เมื่อคุณเข้าสู่บัญชี Netflix ระบบ Authentication จะตรวจสอบชื่อผู้ใช้และรหัสผ่านเพื่อยืนยันตัวตนของคุณ ส่วน Authorization จะกำหนดว่าคุณสามารถเข้าถึงโปรไฟล์ใดได้บ้าง และได้รับอนุญาตให้รับชมเนื้อหาใด*
 > 
 
-### **2. Data Encryption**
+### **2. การเข้ารหัสข้อมูล**
 
-Data Encryption is also a crucial step to ensure the safety of any system. Some of the key aspects to ensure **data encryption** are
+การเข้ารหัสข้อมูลเป็นอีกขั้นตอนสำคัญในการรักษาความปลอดภัยของระบบ ประเด็นสำคัญในการทำ **Data Encryption** ได้แก่
 
-- Select strong encryption algorithm like AES
-- Use secure protocols like HTTPS, TLS, SSL while transferring data from source to destination.
-- Encrypt stored data using different encryption types like full-disk encryption.
-- Create a secure key management system to generate, store and update encryption keys whenever necessary.
-- Use End to End encryption for the user generated contents and other sensitive communications.
+- เลือกใช้อัลกอริทึมการเข้ารหัสที่แข็งแกร่ง เช่น AES
+- ใช้โปรโตคอลที่ปลอดภัย เช่น HTTPS, TLS และ SSL ขณะส่งข้อมูลจากต้นทางไปยังปลายทาง
+- เข้ารหัสข้อมูลที่จัดเก็บไว้ด้วยรูปแบบการเข้ารหัสต่างๆ เช่น Full-Disk Encryption
+- สร้างระบบจัดการกุญแจที่ปลอดภัยสำหรับสร้าง จัดเก็บ และอัปเดตกุญแจเข้ารหัสเมื่อจำเป็น
+- ใช้ End-to-End Encryption สำหรับเนื้อหาที่ผู้ใช้สร้างขึ้นและการสื่อสารอื่นๆ ที่มีความละเอียดอ่อน
 
-> ***Example:** A messaging app encrypts messages end-to-end using AES and TLS, so only the sender and receiver can read the content even if intercepted.*
+> ***ตัวอย่าง:** แอปส่งข้อความเข้ารหัสข้อความแบบ End-to-End โดยใช้ AES และ TLS ดังนั้นจึงมีเพียงผู้ส่งและผู้รับเท่านั้นที่สามารถอ่านข้อความได้ แม้ว่าข้อมูลจะถูกดักจับระหว่างทางก็ตาม*
 > 
 
-## **Secure Coding Practices**
+## **แนวทางการเขียนโค้ดอย่างปลอดภัย**
 
-Secure Coding Practices are necessary to safeguard a system from various types of Cyber Threats. Some of the Secure Coding Practices is given below:
+แนวทางการเขียนโค้ดอย่างปลอดภัยมีความจำเป็นในการปกป้องระบบจากภัยคุกคามทางไซเบอร์หลายรูปแบบ ตัวอย่างของแนวทางการเขียนโค้ดอย่างปลอดภัยมีดังนี้:
 
-- **Input validation:** It is necessary to always validate user inputs to prevent threats like SQL Injection and XSS (Cross Site Scripting).
-- **Access Control:** Implement proper access control mechanisms to ensure users can only access data they are authorized to use.
-- **Secure Authentication:** Use of secure authentication methods like MFA , Face Recognition etc.
-- **Error Handling:** Use meaningful error messages and logging information to avoid potential leak of sensitive and confidential data publicly which could be used by hackers.
-- **Regular Updates and Patch Management:** Updating the security components alongside libraries and patches is a must to safeguard the system from cyber attacks.
+- **Input Validation:** จำเป็นต้องตรวจสอบข้อมูลที่ผู้ใช้ป้อนเสมอ เพื่อป้องกันภัยคุกคาม เช่น SQL Injection และ XSS (Cross Site Scripting)
+- **Access Control:** ใช้กลไกควบคุมการเข้าถึงที่เหมาะสม เพื่อให้ผู้ใช้สามารถเข้าถึงได้เฉพาะข้อมูลที่ตนได้รับอนุญาตเท่านั้น
+- **Secure Authentication:** ใช้วิธี Authentication ที่ปลอดภัย เช่น MFA, Face Recognition เป็นต้น
+- **Error Handling:** ใช้ข้อความแสดงข้อผิดพลาดและข้อมูล Logging อย่างเหมาะสม เพื่อหลีกเลี่ยงการเปิดเผยข้อมูลที่มีความละเอียดอ่อนและเป็นความลับต่อสาธารณะ ซึ่งอาจถูกแฮกเกอร์นำไปใช้ได้
+- **Regular Updates and Patch Management:** ต้องอัปเดตองค์ประกอบด้านความปลอดภัย รวมถึงไลบรารีและ Patch อย่างสม่ำเสมอ เพื่อปกป้องระบบจากการโจมตีทางไซเบอร์
 
-## **Network Security**
+## **ความปลอดภัยของเครือข่าย**
 
-Having a strict network security policy creates a safe passage to transfer data or information keeping their integrity and security.
+การมีนโยบายความปลอดภัยของเครือข่ายที่เข้มงวดช่วยสร้างช่องทางที่ปลอดภัยสำหรับการรับส่งข้อมูลหรือสารสนเทศ พร้อมรักษาความถูกต้องและความปลอดภัยของข้อมูล
 
-- **Installing Firewalls and IDS:** Firewalls act as a filter to sort out the incoming packets from untrusted public networks and entering trusted private networks or devices. IDS (Intrusion Detection System) is also useful to identify if anything fishy is happening in the network.
-- **Use Encryption:** Use of encryption protocols like SSL or TLS to secure the data transmission, it restricts any third party from doing eavesdropping and data interception, ensuring the integrity of the data transmitted.
-- **Access Control:** Implement RBAC (Role Based Access Control) to ensure that no one gets any other extra access to any of the services which they shouldn't get. It is also necessary to review and make changes to those accesses regularly if needed.
-- **Network Monitoring and Logging:** Continuous monitoring of the network to ensure there is no unauthorized access or anomaly is found. Detailed log of the network activities can also be used to detect any anomaly or security vulnerabilities.
+- **การติดตั้ง Firewall และ IDS:** Firewall ทำหน้าที่เป็นตัวกรองเพื่อคัดแยก Packet ที่เข้ามาจากเครือข่ายสาธารณะที่ไม่น่าเชื่อถือ ก่อนเข้าสู่เครือข่ายหรืออุปกรณ์ส่วนตัวที่เชื่อถือได้ ส่วน IDS (Intrusion Detection System) มีประโยชน์ในการตรวจจับว่ามีกิจกรรมผิดปกติเกิดขึ้นในเครือข่ายหรือไม่
+- **ใช้การเข้ารหัส:** ใช้โปรโตคอลการเข้ารหัส เช่น SSL หรือ TLS เพื่อรักษาความปลอดภัยของการส่งข้อมูล ช่วยป้องกันบุคคลที่สามจากการดักฟังและดักจับข้อมูล และช่วยรักษาความถูกต้องของข้อมูลที่ส่ง
+- **Access Control:** ใช้ RBAC (Role Based Access Control) เพื่อให้มั่นใจว่าไม่มีผู้ใดได้รับสิทธิ์เพิ่มเติมในการเข้าถึงบริการที่ตนไม่ควรได้รับ และควรตรวจสอบรวมถึงปรับเปลี่ยนสิทธิ์เหล่านี้เป็นประจำเมื่อจำเป็น
+- **Network Monitoring and Logging:** ตรวจสอบเครือข่ายอย่างต่อเนื่องเพื่อให้แน่ใจว่าไม่มีการเข้าถึงโดยไม่ได้รับอนุญาตหรือพบความผิดปกติ นอกจากนี้ Log รายละเอียดของกิจกรรมในเครือข่ายยังสามารถใช้เพื่อตรวจจับความผิดปกติหรือช่องโหว่ด้านความปลอดภัยได้
 
-> ***Example:** A company uses a firewall to block untrusted traffic, encrypts all API communications with TLS, and monitors network logs to detect any unauthorized access attempts.*
+> ***ตัวอย่าง:** บริษัทใช้ Firewall เพื่อบล็อก Traffic ที่ไม่น่าเชื่อถือ เข้ารหัสการสื่อสารของ API ทั้งหมดด้วย TLS และตรวจสอบ Network Log เพื่อตรวจจับความพยายามเข้าถึงโดยไม่ได้รับอนุญาต*
 > 
 
-## **Incident Response and Disaster Recovery (IR/DR)**
+## **Incident Response และ Disaster Recovery (IR/DR)**
 
 ### **Incident Response (IR)**
 
-As the named suggests, Incident Response responds to the cybersecurity incidents happening in the system which can range from cyber attacks to data breaches and malware infections. A generic IR plan consists of following phases-
+ตามชื่อ Incident Response คือการตอบสนองต่อเหตุการณ์ด้านความปลอดภัยไซเบอร์ที่เกิดขึ้นในระบบ ซึ่งอาจครอบคลุมตั้งแต่การโจมตีทางไซเบอร์ การรั่วไหลของข้อมูล ไปจนถึงการติดมัลแวร์ โดยแผน IR ทั่วไปประกอบด้วยขั้นตอนต่อไปนี้-
 
-- **Preparation:** Creating a plan to respond with a particular incident, identify the critical assets and form a incident response team.
-- **Identification of the Issue:** By analyzing the system logs, the issue is being detected and categorized
-- **Containment:** Taking some immediate action to stop the spreading of the malware and affect the entire system.
-- **Eradication:** Identifying the root cause of the issue and remove it from all the affected areas of the system.
-- **Recovery:** After eradication, it is time to recover the system to it's original non affected status and improve the security measures to prevent future attacks.
+- **Preparation:** จัดทำแผนสำหรับตอบสนองต่อเหตุการณ์แต่ละประเภท ระบุทรัพยากรที่มีความสำคัญ และจัดตั้งทีม Incident Response
+- **Identification of the Issue:** ตรวจจับและจัดประเภทปัญหาโดยวิเคราะห์ System Log
+- **Containment:** ดำเนินการทันทีเพื่อหยุดการแพร่กระจายของมัลแวร์และป้องกันไม่ให้ส่งผลกระทบต่อทั้งระบบ
+- **Eradication:** ระบุสาเหตุหลักของปัญหาและกำจัดออกจากทุกส่วนของระบบที่ได้รับผลกระทบ
+- **Recovery:** หลังจากกำจัดปัญหาแล้ว ขั้นตอนต่อไปคือกู้คืนระบบกลับสู่สถานะปกติก่อนเกิดเหตุ และปรับปรุงมาตรการรักษาความปลอดภัยเพื่อป้องกันการโจมตีในอนาคต
 
-> ***Example:** A company detects unusual login activity indicating a potential breach. The IR team isolates affected servers, removes malware, restores clean backups, and implements stronger authentication measures.*
+> ***ตัวอย่าง:** บริษัทตรวจพบกิจกรรม Login ที่ผิดปกติซึ่งบ่งชี้ว่าอาจเกิดการเจาะระบบ ทีม IR จึงแยก Server ที่ได้รับผลกระทบ กำจัดมัลแวร์ กู้คืนข้อมูลจาก Backup ที่ปลอดภัย และเพิ่มมาตรการ Authentication ที่แข็งแกร่งขึ้น*
 > 
 
 ### **Disaster Recovery (DR)**
 
-Disaster Recovery mainly deals with Physical issues like Hard Disk failure, problems in Motherboard or RAM or any other physical part of the system. It deals with hardware based issue and tries to ensure that the system continues to work in the same way by solving the issues. This involves -
+Disaster Recovery มุ่งจัดการกับปัญหาทางกายภาพเป็นหลัก เช่น Hard Disk เสีย ปัญหาที่ Motherboard หรือ RAM หรือชิ้นส่วนทางกายภาพอื่นๆ ของระบบ โดยจะจัดการกับปัญหาที่เกี่ยวข้องกับ Hardware และพยายามทำให้ระบบสามารถทำงานต่อไปได้ตามปกติด้วยการแก้ไขปัญหา ซึ่งประกอบด้วย -
 
-- **Data Backup:** Backing up data regularly to a cloud based or any other place is a very important step to ensure the availability of the data even if the system faces any issue from hardware side.
-- **Redundancy:** Use redundant hardware, data center etc to make multiple copies of the same file so that if one system fails the file is still accessible.
-- **Business Continuity Planning:** Develop strategies to continue the essential business processes even after a disaster.
-- **Testing and Performing Drill:** Regularly test the disaster recovery plan via testing and simulation to ensure the system is ready to handle those kind of situations.
+- **Data Backup:** การสำรองข้อมูลอย่างสม่ำเสมอไปยัง Cloud หรือสถานที่อื่นเป็นขั้นตอนสำคัญมาก เพื่อให้ข้อมูลยังคงพร้อมใช้งานแม้ว่าระบบจะเกิดปัญหาด้าน Hardware
+- **Redundancy:** ใช้ Hardware, Data Center หรือองค์ประกอบอื่นแบบซ้ำซ้อน เพื่อสร้างสำเนาของไฟล์เดียวกันหลายชุด หากระบบหนึ่งล้มเหลว ไฟล์ก็ยังสามารถเข้าถึงได้
+- **Business Continuity Planning:** พัฒนากลยุทธ์เพื่อให้กระบวนการทางธุรกิจที่สำคัญสามารถดำเนินต่อไปได้แม้เกิดภัยพิบัติ
+- **Testing and Performing Drill:** ทดสอบแผน Disaster Recovery อย่างสม่ำเสมอด้วยการทดสอบและจำลองสถานการณ์ เพื่อให้มั่นใจว่าระบบพร้อมรับมือกับสถานการณ์เหล่านั้น
 
-> ***Example:** A server fails due to a hard drive crash. Because the company has a redundant server and cloud backups, operations continue seamlessly while the faulty hardware is replaced.*
+> ***ตัวอย่าง:** Server ล้มเหลวเนื่องจาก Hard Drive เสีย แต่เนื่องจากบริษัทมี Server สำรองและ Cloud Backup การดำเนินงานจึงสามารถดำเนินต่อได้โดยไม่สะดุดระหว่างที่ Hardware ที่เสียกำลังถูกเปลี่ยน*
 > 
 
-## **Physical Security**
+## **ความปลอดภัยทางกายภาพ**
 
-Physical Security is also a crucial component when it comes to system design. Below are some of the main reason why it is important.
+ความปลอดภัยทางกายภาพเป็นอีกองค์ประกอบสำคัญในการออกแบบระบบ ด้านล่างคือเหตุผลหลักบางประการว่าทำไมจึงมีความสำคัญ
 
-- **Protection of Hardware:** Physical security measures are crucial for safeguarding the hardware components of a system. Data Centers, Servers, Network Devices need to be protected from theft, vandalism or any other harm.
-- **Data Protection:** Gaining access to the Physical Hardware mostly means gaining access to the data stored in it, so to protect the data stored in the physical components, physical security is very much needed.
-- **Business Continuity:** Any kind of Disaster whether it is man made or natural can disrupt the operations, so to ensure that the system keeps working after some disaster like fire or failure of power supply, having a physical security measure is always good.
-- **Preventing Unauthorized Access:** Physical Security can also be used to prevent unauthorized access to sensitive data.
-- **Physical Asset Protection:** Physical Security is also useful to protect the physical assets, such as hardware devices from thefts, vandalize, damage or misuse.
+- **การปกป้อง Hardware:** มาตรการรักษาความปลอดภัยทางกายภาพมีความสำคัญต่อการปกป้ององค์ประกอบ Hardware ของระบบ เช่น Data Center, Server และอุปกรณ์เครือข่าย ต้องได้รับการป้องกันจากการโจรกรรม การทำลาย หรือความเสียหายรูปแบบอื่น
+- **การปกป้องข้อมูล:** การเข้าถึง Hardware ทางกายภาพมักหมายถึงการสามารถเข้าถึงข้อมูลที่จัดเก็บอยู่ภายใน ดังนั้นการรักษาความปลอดภัยทางกายภาพจึงมีความจำเป็นอย่างมากในการปกป้องข้อมูลที่จัดเก็บอยู่ในองค์ประกอบเหล่านี้
+- **Business Continuity:** ภัยพิบัติทุกประเภท ไม่ว่าจะเกิดจากมนุษย์หรือธรรมชาติ สามารถรบกวนการดำเนินงานได้ ดังนั้นเพื่อให้ระบบยังสามารถทำงานต่อได้หลังเกิดเหตุการณ์ เช่น ไฟไหม้หรือไฟฟ้าดับ การมีมาตรการรักษาความปลอดภัยทางกายภาพจึงเป็นสิ่งที่เหมาะสม
+- **ป้องกันการเข้าถึงโดยไม่ได้รับอนุญาต:** ความปลอดภัยทางกายภาพสามารถใช้เพื่อป้องกันการเข้าถึงข้อมูลที่มีความละเอียดอ่อนโดยไม่ได้รับอนุญาตได้
+- **การปกป้องทรัพย์สินทางกายภาพ:** ความปลอดภัยทางกายภาพยังช่วยปกป้องทรัพย์สิน เช่น อุปกรณ์ Hardware จากการโจรกรรม การทำลาย ความเสียหาย หรือการใช้งานในทางที่ผิด
 
-> ***Example:** A company installs biometric access controls and CCTV in its data center. Even if someone tries to break in, only authorized personnel can access the servers, protecting sensitive data and hardware.*
+> ***ตัวอย่าง:** บริษัทติดตั้งระบบควบคุมการเข้าถึงด้วย Biometrics และ CCTV ภายใน Data Center แม้ว่าจะมีผู้พยายามบุกรุก ก็มีเพียงบุคลากรที่ได้รับอนุญาตเท่านั้นที่สามารถเข้าถึง Server ได้ ซึ่งช่วยปกป้องข้อมูลที่มีความละเอียดอ่อนและ Hardware*
 > 
 
-## **Secure Communication Protocols**
+## **โปรโตคอลการสื่อสารที่ปลอดภัย**
 
-Using secure protocols like SSL/TLS and HTTPS while transferring data is highly recommended to securely transmit sensitive data, most of the industries use this. By safeguarding communication, systems mitigate the risk of data breaches, maintain it's credibility, and assure users that their information is safely stored or transmitted.
+ขอแนะนำอย่างยิ่งให้ใช้โปรโตคอลที่ปลอดภัย เช่น SSL/TLS และ HTTPS ขณะรับส่งข้อมูล เพื่อส่งข้อมูลที่มีความละเอียดอ่อนได้อย่างปลอดภัย ซึ่งอุตสาหกรรมส่วนใหญ่ใช้แนวทางนี้ การรักษาความปลอดภัยของการสื่อสารช่วยให้ระบบลดความเสี่ยงจากการรั่วไหลของข้อมูล รักษาความน่าเชื่อถือ และสร้างความมั่นใจให้ผู้ใช้ว่าข้อมูลของพวกเขาถูกจัดเก็บหรือส่งต่ออย่างปลอดภัย
 
-Some of the mostly used communication protocols are given below -
+โปรโตคอลการสื่อสารที่นิยมใช้มีดังนี้ -
 
-- **Secure Sockets Layer**/ Transport Layer Security (SSL/TLS).
-- **Hypertext Transfer Protocol** (Secured) (HTTPS)
-- **Secure Shell** (SSH)
-- **Internet Protocol Security** (IPSec)
-- **S/MIME** (Secure/Multipurpose Internet Mail Extensions)
-- **Pretty Good Privacy** (PGP)
+- **Secure Sockets Layer**/ Transport Layer Security (SSL/TLS)
+- **Hypertext Transfer Protocol** (Secured) (HTTPS)
+- **Secure Shell** (SSH)
+- **Internet Protocol Security** (IPSec)
+- **S/MIME** (Secure/Multipurpose Internet Mail Extensions)
+- **Pretty Good Privacy** (PGP)
 
-> ***Example:** An e-commerce website uses HTTPS for all customer transactions. Even if a hacker intercepts network traffic, the data is encrypted and unreadable.*
+> ***ตัวอย่าง:** เว็บไซต์ E-commerce ใช้ HTTPS สำหรับธุรกรรมทั้งหมดของลูกค้า แม้ว่าแฮกเกอร์จะดักจับ Network Traffic ได้ ข้อมูลก็ยังถูกเข้ารหัสและไม่สามารถอ่านได้*
 > 
 
-## **Third-Party Risk Management**
+## **การบริหารความเสี่ยงจาก Third-Party**
 
-Modern Systems rely on various third party applications like APIs and Cloud Services, so it is easy to get affected by any of them.
+ระบบสมัยใหม่พึ่งพาแอปพลิเคชันจาก Third-Party หลายรูปแบบ เช่น API และ Cloud Services จึงมีโอกาสได้รับผลกระทบจากบริการเหล่านี้ได้ง่าย
 
-System Administrators need to evaluate their Security approaches from these third-party services. A failure or breach from the Third-Party service can lead to severe issues like data leak, system disruption and most importantly reputation damage.
+ผู้ดูแลระบบจำเป็นต้องประเมินแนวทางด้านความปลอดภัยของบริการ Third-Party เหล่านี้ ความล้มเหลวหรือการถูกเจาะระบบจากบริการ Third-Party สามารถนำไปสู่ปัญหาร้ายแรง เช่น ข้อมูลรั่วไหล ระบบหยุดชะงัก และที่สำคัญที่สุดคือความเสียหายต่อชื่อเสียง
 
-> ***Example:** A fintech company uses a third-party payment gateway but regularly audits its security certifications. This ensures customer payment data remains safe, even if the third-party service faces a threat.*
+> ***ตัวอย่าง:** บริษัท Fintech ใช้ Payment Gateway จาก Third-Party แต่มีการตรวจสอบใบรับรองด้านความปลอดภัยของผู้ให้บริการเป็นประจำ ซึ่งช่วยให้มั่นใจว่าข้อมูลการชำระเงินของลูกค้ายังคงปลอดภัย แม้ว่าบริการ Third-Party จะเผชิญกับภัยคุกคามก็ตาม*
 >
