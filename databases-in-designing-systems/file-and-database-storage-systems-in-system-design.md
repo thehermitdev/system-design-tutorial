@@ -1,110 +1,110 @@
-# **File and Database Storage Systems in System Design**
+# **ระบบจัดเก็บข้อมูลแบบไฟล์และฐานข้อมูลในการออกแบบระบบ**
 
-In system design, data can be stored using file systems or database systems, where file systems store data as files in directories and databases provide a structured way to manage data efficiently. Understanding these differences helps in selecting the right solution based on application requirements, scalability, and performance needs.
+ในการออกแบบระบบ ข้อมูลสามารถจัดเก็บได้โดยใช้ระบบไฟล์หรือระบบฐานข้อมูล โดยระบบไฟล์จะจัดเก็บข้อมูลเป็นไฟล์ภายในไดเรกทอรี ส่วนฐานข้อมูลจะมีรูปแบบที่เป็นโครงสร้างสำหรับจัดการข้อมูลได้อย่างมีประสิทธิภาพ การเข้าใจความแตกต่างเหล่านี้ช่วยให้สามารถเลือกโซลูชันที่เหมาะสมตามความต้องการของแอปพลิเคชัน ความสามารถในการปรับขนาด และความต้องการด้านประสิทธิภาพ
 
-- File systems store and manage data in files and folders and can handle both structured and unstructured data.
-- Database systems organize data in a structured way and provide advanced querying, indexing, and efficient data management, ensuring data availability, integrity, and retrieval.
+- ระบบไฟล์จัดเก็บและจัดการข้อมูลในรูปแบบไฟล์และโฟลเดอร์ และสามารถรองรับได้ทั้งข้อมูลที่มีโครงสร้างและไม่มีโครงสร้าง
+- ระบบฐานข้อมูลจัดระเบียบข้อมูลอย่างเป็นโครงสร้าง พร้อมความสามารถขั้นสูงในการ Query การทำ Indexing และการจัดการข้อมูลอย่างมีประสิทธิภาพ เพื่อให้มั่นใจว่าข้อมูลพร้อมใช้งาน มีความถูกต้องครบถ้วน และสามารถเรียกคืนได้
 
-> ***Example:** A photo storage application may store images in a file system, while user information and metadata are stored in a database.*
+> ***ตัวอย่าง:** แอปพลิเคชันจัดเก็บรูปภาพอาจเก็บรูปภาพไว้ในระบบไฟล์ ขณะที่ข้อมูลผู้ใช้และ Metadata ถูกจัดเก็บไว้ในฐานข้อมูล*
 > 
 
-## **File-based storage system**
+## **ระบบจัดเก็บข้อมูลแบบไฟล์**
 
-On a computer or server, a file-based storage system stores data as separate files organized in directories and subdirectories with unique names. It is simple and effective for structured and unstructured data like logs and images, but lacks advanced features like indexing and querying.
+บนคอมพิวเตอร์หรือเซิร์ฟเวอร์ ระบบจัดเก็บข้อมูลแบบไฟล์จะจัดเก็บข้อมูลเป็นไฟล์แยกกัน โดยจัดระเบียบไว้ในไดเรกทอรีและไดเรกทอรีย่อยที่มีชื่อเฉพาะ ระบบนี้เรียบง่ายและมีประสิทธิภาพสำหรับทั้งข้อมูลที่มีโครงสร้างและไม่มีโครงสร้าง เช่น Log และรูปภาพ แต่ไม่มีความสามารถขั้นสูงอย่าง Indexing และ Querying
 
-### **Pros**
+### **ข้อดี**
 
-File-based storage systems are simple storage solutions where data is stored and managed as files in directories.
+ระบบจัดเก็บข้อมูลแบบไฟล์เป็นโซลูชันการจัดเก็บข้อมูลที่เรียบง่าย โดยข้อมูลจะถูกจัดเก็บและจัดการเป็นไฟล์ภายในไดเรกทอรี
 
-- **Simplicity:** Easy to implement and manage without requiring complex configuration.
-- **Compatibility:** Works with most operating systems and standard file management tools.
-- **Cost-Effective:** Suitable for small applications that do not require advanced database features.
+- **ความเรียบง่าย:** นำไปใช้งานและจัดการได้ง่ายโดยไม่ต้องมีการกำหนดค่าที่ซับซ้อน
+- **ความเข้ากันได้:** ทำงานร่วมกับระบบปฏิบัติการส่วนใหญ่และเครื่องมือจัดการไฟล์มาตรฐานได้
+- **ประหยัดค่าใช้จ่าย:** เหมาะสำหรับแอปพลิเคชันขนาดเล็กที่ไม่ต้องการความสามารถขั้นสูงของฐานข้อมูล
 
-### **Cons**
+### **ข้อเสีย**
 
-Despite being simple, file-based storage systems have limitations when handling large or complex datasets.
+แม้ว่าระบบจัดเก็บข้อมูลแบบไฟล์จะเรียบง่าย แต่ก็มีข้อจำกัดเมื่อต้องจัดการกับชุดข้อมูลขนาดใหญ่หรือซับซ้อน
 
-- **Limited Scalability:** Not suitable for large-scale systems or rapidly growing data.
-- **No Querying Support:** Does not support advanced search or query capabilities like databases.
-- **Data Integrity Issues:** Managing duplicates, relationships, and consistency across files can be difficult.
+- **ความสามารถในการปรับขนาดมีจำกัด:** ไม่เหมาะสำหรับระบบขนาดใหญ่หรือข้อมูลที่เติบโตอย่างรวดเร็ว
+- **ไม่รองรับการ Query:** ไม่รองรับความสามารถในการค้นหาหรือ Query ขั้นสูงเหมือนฐานข้อมูล
+- **ปัญหาด้านความถูกต้องของข้อมูล:** การจัดการข้อมูลซ้ำ ความสัมพันธ์ และความสอดคล้องของข้อมูลระหว่างไฟล์อาจทำได้ยาก
 
-### **Working**
+### **การทำงาน**
 
-A file system is a simple storage mechanism where data is stored in files and organized using folders and directories. It does not use a query engine or structured schema.
+ระบบไฟล์เป็นกลไกจัดเก็บข้อมูลแบบเรียบง่าย ซึ่งข้อมูลจะถูกจัดเก็บไว้ในไฟล์และจัดระเบียบด้วยโฟลเดอร์และไดเรกทอรี โดยไม่มี Query Engine หรือ Schema ที่เป็นโครงสร้าง
 
-- Data is stored as individual files on disk.
-- Files are organized inside directories and subdirectories.
-- Each file has a unique path used to access it.
-- Applications directly read from or write to these files using file handling operations.
+- ข้อมูลถูกจัดเก็บเป็นไฟล์แต่ละไฟล์บนดิสก์
+- ไฟล์ถูกจัดระเบียบไว้ภายในไดเรกทอรีและไดเรกทอรีย่อย
+- แต่ละไฟล์มี Path ที่ไม่ซ้ำกันสำหรับใช้เข้าถึงไฟล์นั้น
+- แอปพลิเคชันจะอ่านจากหรือเขียนไปยังไฟล์เหล่านี้โดยตรงผ่านการดำเนินการจัดการไฟล์
 
-> ***Example:** A photo storage app saves images in folders like: **/users/images/profile.jpg.** The application directly accesses this file path to retrieve or store images.*
+> ***ตัวอย่าง:** แอปจัดเก็บรูปภาพบันทึกรูปภาพไว้ในโฟลเดอร์ เช่น **/users/images/profile.jpg.** แอปพลิเคชันจะเข้าถึง File Path นี้โดยตรงเพื่อเรียกดูหรือจัดเก็บรูปภาพ*
 > 
 
-## **Database Storage Systems**
+## **ระบบจัดเก็บข้อมูลด้วยฐานข้อมูล**
 
-A database storage system is a structured way to store, manage, and retrieve data efficiently. Unlike file-based systems, databases organize data into tables, rows, and columns, making it easier to query and maintain. These systems are commonly used in applications requiring data relationships, transactions, and large-scale processing.
+ระบบจัดเก็บข้อมูลด้วยฐานข้อมูลเป็นวิธีจัดเก็บ จัดการ และเรียกคืนข้อมูลอย่างเป็นโครงสร้างและมีประสิทธิภาพ แตกต่างจากระบบแบบไฟล์ ฐานข้อมูลจะจัดระเบียบข้อมูลเป็นตาราง แถว และคอลัมน์ ทำให้ Query และดูแลรักษาได้ง่ายขึ้น ระบบเหล่านี้มักใช้ในแอปพลิเคชันที่ต้องการความสัมพันธ์ของข้อมูล Transaction และการประมวลผลในขนาดใหญ่
 
-### **Pros**
+### **ข้อดี**
 
-Database storage systems are designed to manage structured data efficiently with advanced data management capabilities.
+ระบบจัดเก็บข้อมูลด้วยฐานข้อมูลถูกออกแบบมาเพื่อจัดการข้อมูลที่มีโครงสร้างอย่างมีประสิทธิภาพ พร้อมความสามารถขั้นสูงในการจัดการข้อมูล
 
-- **Efficient Querying:** Supports advanced searches and operations using query languages such as SQL.
-- **Data Integrity:** Maintains consistency and relationships between data using constraints and keys.
-- **Scalability:** Can handle increasing data volumes using techniques like sharding and replication.
+- **Query ได้อย่างมีประสิทธิภาพ:** รองรับการค้นหาและการดำเนินการขั้นสูงโดยใช้ภาษา Query เช่น SQL
+- **ความถูกต้องของข้อมูล:** รักษาความสอดคล้องและความสัมพันธ์ระหว่างข้อมูลด้วย Constraint และ Key
+- **ความสามารถในการปรับขนาด:** สามารถรองรับปริมาณข้อมูลที่เพิ่มขึ้นด้วยเทคนิค เช่น Sharding และ Replication
 
-### **Cons**
+### **ข้อเสีย**
 
-Although powerful, database systems can introduce complexity and additional costs.
+แม้ว่าระบบฐานข้อมูลจะมีความสามารถสูง แต่ก็อาจเพิ่มความซับซ้อนและค่าใช้จ่ายเพิ่มเติม
 
-- **Complex Setup:** Requires proper schema design, configuration, and maintenance.
-- **Higher Cost:** May involve licensing costs, infrastructure, and management overhead.
-- **Performance Overhead:** For very simple storage needs, databases can be slower compared to file-based storage.
+- **การตั้งค่าที่ซับซ้อน:** ต้องมีการออกแบบ Schema การกำหนดค่า และการบำรุงรักษาที่เหมาะสม
+- **ค่าใช้จ่ายสูงกว่า:** อาจมีค่า License ค่าโครงสร้างพื้นฐาน และค่าใช้จ่ายในการจัดการ
+- **Overhead ด้านประสิทธิภาพ:** สำหรับความต้องการจัดเก็บข้อมูลที่เรียบง่ายมาก ฐานข้อมูลอาจทำงานช้ากว่าการจัดเก็บข้อมูลแบบไฟล์
 
-### **Working**
+### **การทำงาน**
 
-A database system is a structured way of storing data where a DBMS (Database Management System) manages all operations like storage, retrieval, and updates.
+ระบบฐานข้อมูลเป็นวิธีจัดเก็บข้อมูลอย่างเป็นโครงสร้าง โดยมี DBMS (Database Management System) ทำหน้าที่จัดการการดำเนินการทั้งหมด เช่น การจัดเก็บ การเรียกคืน และการอัปเดตข้อมูล
 
-- Data is stored in structured formats such as tables (rows and columns).
-- Users interact with the database using queries (e.g., SQL).
-- The DBMS processes queries and retrieves optimized results.
-- Indexes are used to speed up search and access operations.
+- ข้อมูลถูกจัดเก็บในรูปแบบที่มีโครงสร้าง เช่น ตาราง (แถวและคอลัมน์)
+- ผู้ใช้โต้ตอบกับฐานข้อมูลผ่าน Query (เช่น SQL)
+- DBMS ประมวลผล Query และเรียกคืนผลลัพธ์ที่ผ่านการปรับให้มีประสิทธิภาพ
+- ใช้ Index เพื่อเพิ่มความเร็วในการค้นหาและการเข้าถึงข้อมูล
 
-### **Example**
+### **ตัวอย่าง**
 
-In an e-commerce system:
+ในระบบ E-commerce:
 
-- Users table stores customer details
-- Orders table stores purchase history
+- ตาราง Users จัดเก็บรายละเอียดของลูกค้า
+- ตาราง Orders จัดเก็บประวัติการสั่งซื้อ
 
-## **Differences between File and Database Storage Systems**
+## **ความแตกต่างระหว่างระบบจัดเก็บข้อมูลแบบไฟล์และฐานข้อมูล**
 
-Below are the differences between File and Database Storage Systems:
+ด้านล่างคือความแตกต่างระหว่างระบบจัดเก็บข้อมูลแบบไฟล์และฐานข้อมูล:
 
-| **File Storage System** | **Database Storage System** |
+| **ระบบจัดเก็บข้อมูลแบบไฟล์** | **ระบบจัดเก็บข้อมูลด้วยฐานข้อมูล** |
 | --- | --- |
-| Data is stored as individual files within folders or directories. | Data is organized in structured formats such as tables with rows and columns. |
-| Does not provide built-in support for relationships between files. | Supports relationships between data using keys, constraints, and joins. |
-| Does not support advanced querying; files must be accessed and processed manually. | Supports complex queries using languages such as SQL. |
-| Limited scalability and usually suitable for smaller datasets. | Highly scalable and designed to handle large volumes of data. |
-| Simple to implement and manage with minimal setup. | Requires proper schema design, configuration, and management. |
-| Best suited for storing documents, images, videos, or log files. | Ideal for transactional systems and applications requiring structured data management. |
+| ข้อมูลถูกจัดเก็บเป็นไฟล์แต่ละไฟล์ภายในโฟลเดอร์หรือไดเรกทอรี | ข้อมูลถูกจัดระเบียบในรูปแบบที่มีโครงสร้าง เช่น ตารางที่ประกอบด้วยแถวและคอลัมน์ |
+| ไม่มีการรองรับความสัมพันธ์ระหว่างไฟล์ในตัว | รองรับความสัมพันธ์ระหว่างข้อมูลด้วย Key, Constraint และ Join |
+| ไม่รองรับ Query ขั้นสูง โดยต้องเข้าถึงและประมวลผลไฟล์ด้วยตนเอง | รองรับ Query ที่ซับซ้อนโดยใช้ภาษา เช่น SQL |
+| มีความสามารถในการปรับขนาดจำกัด และโดยทั่วไปเหมาะกับชุดข้อมูลขนาดเล็ก | มีความสามารถในการปรับขนาดสูงและถูกออกแบบมาเพื่อรองรับข้อมูลปริมาณมาก |
+| นำไปใช้งานและจัดการได้ง่ายโดยต้องตั้งค่าเพียงเล็กน้อย | ต้องมีการออกแบบ Schema การกำหนดค่า และการจัดการที่เหมาะสม |
+| เหมาะที่สุดสำหรับจัดเก็บเอกสาร รูปภาพ วิดีโอ หรือไฟล์ Log | เหมาะสำหรับระบบ Transaction และแอปพลิเคชันที่ต้องการจัดการข้อมูลแบบมีโครงสร้าง |
 
-## **When to Use File System**
+## **เมื่อใดควรใช้ระบบไฟล์**
 
-File systems are best suited for simple storage needs where structured querying and relationships are not required.
+ระบบไฟล์เหมาะที่สุดสำหรับความต้องการจัดเก็บข้อมูลแบบเรียบง่าย ซึ่งไม่จำเป็นต้องมี Query แบบมีโครงสร้างหรือความสัมพันธ์ระหว่างข้อมูล
 
-- You need to store unstructured data like images, videos, PDFs, logs
-- The application is small or lightweight
-- Data access is simple (read/write operations only)
-- There is no requirement for complex queries
-- **Example:** Media storage apps (photos, videos)
+- คุณต้องจัดเก็บข้อมูลที่ไม่มีโครงสร้าง เช่น รูปภาพ วิดีโอ PDF และ Log
+- แอปพลิเคชันมีขนาดเล็กหรือไม่ซับซ้อน
+- การเข้าถึงข้อมูลเรียบง่าย (มีเพียงการอ่าน/เขียน)
+- ไม่มีความต้องการใช้ Query ที่ซับซ้อน
+- **ตัวอย่าง:** แอปจัดเก็บ Media (รูปภาพ วิดีโอ)
 
-## **When to Use Database System**
+## **เมื่อใดควรใช้ระบบฐานข้อมูล**
 
-Database systems are ideal when applications require structured data, relationships, and efficient querying.
+ระบบฐานข้อมูลเหมาะเมื่อแอปพลิเคชันต้องการข้อมูลที่มีโครงสร้าง ความสัมพันธ์ระหว่างข้อมูล และการ Query ที่มีประสิทธิภาพ
 
-- You need to perform complex queries and filtering
-- Data integrity and consistency are important
-- The system must handle large-scale or growing datasets
-- Multiple users need to access and update data simultaneously
-- **Example:** E-commerce platforms (users, orders, payments)
+- คุณต้องใช้ Query และการกรองข้อมูลที่ซับซ้อน
+- ความถูกต้องและความสอดคล้องของข้อมูลมีความสำคัญ
+- ระบบต้องรองรับชุดข้อมูลขนาดใหญ่หรือมีการเติบโตอย่างต่อเนื่อง
+- ผู้ใช้หลายคนต้องเข้าถึงและอัปเดตข้อมูลพร้อมกัน
+- **ตัวอย่าง:** แพลตฟอร์ม E-commerce (ผู้ใช้ คำสั่งซื้อ การชำระเงิน)
