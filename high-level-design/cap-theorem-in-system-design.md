@@ -1,130 +1,130 @@
-# **CAP Theorem in System Design**
+# **ทฤษฎีบท CAP ในการออกแบบระบบ**
 
-According to the CAP theorem, only two of the three desirable characteristics consistency, availability, and partition tolerance can be shared or present in a networked shared-data system or distributed system.
+ตามทฤษฎีบท CAP ระบบที่แชร์ข้อมูลผ่านเครือข่ายหรือระบบแบบกระจายสามารถมีคุณสมบัติที่ต้องการได้พร้อมกันเพียงสองในสามอย่าง ได้แก่ ความสอดคล้องของข้อมูล (Consistency), ความพร้อมใช้งาน (Availability) และความทนทานต่อการแบ่งเครือข่าย (Partition Tolerance)
 
-- The theorem provides a way of thinking about the trade-offs involved in designing and building distributed systems.
-- It helps to explain why certain types of systems may be more appropriate for certain use cases.
-- The theorem states that a distributed system can have at most two of these guarantees.
+- ทฤษฎีบทนี้ช่วยให้เราเข้าใจข้อแลกเปลี่ยนที่ต้องพิจารณาในการออกแบบและสร้างระบบแบบกระจาย
+- ช่วยอธิบายว่าเหตุใดระบบบางประเภทจึงเหมาะกับกรณีการใช้งานบางแบบมากกว่า
+- ทฤษฎีบทระบุว่าระบบแบบกระจายสามารถรับประกันคุณสมบัติเหล่านี้ได้พร้อมกันสูงสุดสองอย่าง
 
 <img src="https://media.geeksforgeeks.org/wp-content/uploads/20260119170452547687/Copy-of-devops_20-660.webp" alt="CAP Theorem" />
 
-## **Properties**
+## **คุณสมบัติ**
 
-The property of three distributed system characteristics to which CAP Theorem refers:
+คุณสมบัติทั้งสามของระบบแบบกระจายที่ทฤษฎีบท CAP กล่าวถึงมีดังนี้:
 
 <img src="https://media.geeksforgeeks.org/wp-content/uploads/20260119170629671756/devops_21-660.webp" alt="Properties of CAP Theorem" />
 
-### **1. Consistency**
+### **1. ความสอดคล้องของข้อมูล (Consistency)**
 
-[**Consistency**](https://www.geeksforgeeks.org/system-design/consistency-in-system-design/) defines that all clients see the same data simultaneously, no matter which node they connect to in a distributed system. For eventual consistency, the guarantees are a bit loose. Eventual consistency guarantee means client will eventually see the same data on all the nodes at some point of time in the future.
+[**ความสอดคล้องของข้อมูล (Consistency)**](https://www.geeksforgeeks.org/system-design/consistency-in-system-design/) กำหนดว่าไคลเอนต์ทั้งหมดจะต้องเห็นข้อมูลเดียวกันในเวลาเดียวกัน ไม่ว่าจะเชื่อมต่อกับโหนดใดในระบบแบบกระจายก็ตาม สำหรับ Eventual Consistency การรับประกันจะมีความผ่อนคลายมากกว่า โดย Eventual Consistency รับประกันว่าในท้ายที่สุด ไคลเอนต์จะเห็นข้อมูลเดียวกันบนทุกโหนดในช่วงเวลาหนึ่งในอนาคต
 
-**In the above Diagram**
+**จากแผนภาพด้านบน**
 
-- All nodes in the system see the same data at the same time. This is because the nodes are constantly communicating with each other and sharing updates.
-- Any changes made to the data on one node are immediately propagated to all other nodes, ensuring that everyone has the same up-to-date information.
+- ทุกโหนดในระบบเห็นข้อมูลเดียวกันในเวลาเดียวกัน เนื่องจากโหนดต่างๆ สื่อสารกันและแชร์การอัปเดตอย่างต่อเนื่อง
+- การเปลี่ยนแปลงใดๆ ที่เกิดขึ้นกับข้อมูลบนโหนดหนึ่งจะถูกส่งต่อไปยังโหนดอื่นทั้งหมดทันที เพื่อให้ทุกโหนดมีข้อมูลล่าสุดที่ตรงกัน
 
-### **2. Availability**
+### **2. ความพร้อมใช้งาน (Availability)**
 
-[Availability](https://www.geeksforgeeks.org/system-design/availability-in-system-design/) defines that all non-failing nodes in a [distributed system](https://www.geeksforgeeks.org/computer-networks/what-is-a-distributed-system/) return a response for all read and write requests in a bounded amount of time, even if one or more other nodes are down.
+[ความพร้อมใช้งาน (Availability)](https://www.geeksforgeeks.org/system-design/availability-in-system-design/) กำหนดว่าโหนดทั้งหมดใน[ระบบแบบกระจาย](https://www.geeksforgeeks.org/computer-networks/what-is-a-distributed-system/)ที่ยังทำงานได้จะต้องตอบกลับคำขออ่านและเขียนทั้งหมดภายในระยะเวลาที่กำหนด แม้ว่าจะมีโหนดอื่นหนึ่งโหนดหรือมากกว่านั้นหยุดทำงานก็ตาม
 
 <img src="https://media.geeksforgeeks.org/wp-content/uploads/20260119171041904735/devops_23-660.webp" alt="Availability" />
 
-**In above Diagram**
+**จากแผนภาพด้านบน**
 
-- User send requests, even though we don't see specific network components. This implies that the system is available and functioning.
-- Every request receives a response, whether successful or not. This is a crucial aspect of availability, as it guarantees that users always get feedback.
+- ผู้ใช้ส่งคำขอ แม้ว่าเราจะไม่เห็นส่วนประกอบของเครือข่ายที่เฉพาะเจาะจง ซึ่งแสดงให้เห็นว่าระบบยังพร้อมใช้งานและทำงานอยู่
+- ทุกคำขอได้รับการตอบกลับ ไม่ว่าจะสำเร็จหรือไม่ก็ตาม นี่เป็นส่วนสำคัญของความพร้อมใช้งาน เพราะรับประกันว่าผู้ใช้จะได้รับการตอบสนองเสมอ
 
-### **3. Partition Tolerance**
+### **3. ความทนทานต่อการแบ่งเครือข่าย (Partition Tolerance)**
 
-Partition Tolerance defines that the system continues to operate despite arbitrary message loss or failure in parts of the system. Distributed systems guaranteeing partition tolerance can gracefully recover from partitions once the partition heals.
+ความทนทานต่อการแบ่งเครือข่ายกำหนดว่าระบบจะยังคงทำงานต่อไปได้ แม้จะเกิดการสูญหายของข้อความหรือความล้มเหลวในบางส่วนของระบบ ระบบแบบกระจายที่รับประกัน Partition Tolerance จะสามารถกู้คืนจากการแบ่งเครือข่ายได้อย่างเหมาะสมเมื่อการเชื่อมต่อกลับมาเป็นปกติ
 
 <img src="https://media.geeksforgeeks.org/wp-content/uploads/20260119171247554094/devops_24-660.webp" alt="Partition Tolerance" />
 
-**In the above Diagram**
+**จากแผนภาพด้านบน**
 
-- Addresses network failures, a common cause of partitions. It suggests that the system is designed to function even when parts of the network become unreachable.
-- The system can adapt to arbitrary partitioning, meaning it can handle unpredictable network failures without complete failure.
+- รองรับความล้มเหลวของเครือข่าย ซึ่งเป็นสาเหตุทั่วไปของการแบ่งเครือข่าย แสดงให้เห็นว่าระบบถูกออกแบบมาให้ยังคงทำงานได้แม้ว่าบางส่วนของเครือข่ายจะไม่สามารถเข้าถึงกันได้
+- ระบบสามารถปรับตัวต่อการแบ่งเครือข่ายในรูปแบบต่างๆ ได้ หมายความว่าสามารถรับมือกับความล้มเหลวของเครือข่ายที่คาดเดาไม่ได้โดยไม่ทำให้ระบบทั้งหมดล้มเหลว
 
-## **Trade-Offs in the CAP Theorem**
+## **ข้อแลกเปลี่ยนในทฤษฎีบท CAP**
 
-The CAP Theorem states that a distributed system can provide only two out of three guarantees at the same time: Consistency (C), Availability (A), and Partition Tolerance (P). When a network partition occurs, a system must choose between maintaining consistency or availability.
+ทฤษฎีบท CAP ระบุว่าระบบแบบกระจายสามารถให้การรับประกันได้พร้อมกันเพียงสองในสามอย่าง ได้แก่ Consistency (C), Availability (A) และ Partition Tolerance (P) เมื่อเกิดการแบ่งเครือข่าย ระบบต้องเลือกระหว่างการรักษาความสอดคล้องของข้อมูลหรือความพร้อมใช้งาน
 
-We can classify the systems into the following three categories:
+เราสามารถแบ่งระบบออกเป็นสามประเภทดังต่อไปนี้:
 
 <img src="https://media.geeksforgeeks.org/wp-content/uploads/20260119171901596579/devops_26-660.webp" alt="Trade-offs in CAP theorem" />
 
-### **1. CA System**
+### **1. ระบบ CA**
 
-A CA system provides Consistency and Availability but does not tolerate network partitions. This means that all nodes always return the same data and the system remains accessible, but if a network partition occurs, the system cannot continue operating correctly.
+ระบบ CA ให้ทั้ง Consistency และ Availability แต่ไม่รองรับการแบ่งเครือข่าย หมายความว่าทุกโหนดจะส่งคืนข้อมูลเดียวกันเสมอและระบบยังคงเข้าถึงได้ แต่หากเกิดการแบ่งเครือข่าย ระบบจะไม่สามารถทำงานต่อไปได้อย่างถูกต้อง
 
-> **Example:** Traditional relational databases in a single data center are often designed as CA systems.
+> **ตัวอย่าง:** ฐานข้อมูลเชิงสัมพันธ์แบบดั้งเดิมที่ทำงานอยู่ภายใน Data Center เดียว มักถูกออกแบบให้เป็นระบบ CA
 
-### **2. CP System**
+### **2. ระบบ CP**
 
-A CP system provides Consistency and Partition Tolerance but sacrifices availability during network failures. When a partition occurs between nodes, the system may temporarily block requests to ensure that all nodes maintain consistent data.
+ระบบ CP ให้ทั้ง Consistency และ Partition Tolerance แต่ยอมลด Availability ลงเมื่อเกิดความล้มเหลวของเครือข่าย เมื่อเกิดการแบ่งเครือข่ายระหว่างโหนด ระบบอาจระงับคำขอบางส่วนชั่วคราวเพื่อให้มั่นใจว่าทุกโหนดยังคงมีข้อมูลที่สอดคล้องกัน
 
-> Systems that prefer consistency over availability during partitions.
-> **Examples:** MongoDB (default replica set behavior), HBase
+> ระบบที่ให้ความสำคัญกับ Consistency มากกว่า Availability เมื่อเกิดการแบ่งเครือข่าย
+> **ตัวอย่าง:** MongoDB (พฤติกรรมเริ่มต้นของ Replica Set), HBase
 
-### **3. AP System**
+### **3. ระบบ AP**
 
-An AP system provides Availability and Partition Tolerance but does not guarantee immediate consistency. During a network partition, the system continues to serve requests, but some nodes may return stale or outdated data until the system eventually synchronizes.
+ระบบ AP ให้ทั้ง Availability และ Partition Tolerance แต่ไม่รับประกัน Consistency ในทันที เมื่อเกิดการแบ่งเครือข่าย ระบบจะยังคงให้บริการคำขอต่อไป แต่บางโหนดอาจส่งคืนข้อมูลเก่าหรือข้อมูลที่ยังไม่อัปเดต จนกว่าระบบจะซิงโครไนซ์ข้อมูลกันในภายหลัง
 
-> *Systems that prefer availability and may return eventually consistent data.
-**Examples:** Apache Cassandra, DynamoDB*
+> *ระบบที่ให้ความสำคัญกับ Availability และอาจส่งคืนข้อมูลที่มีความสอดคล้องกันในภายหลัง
+**ตัวอย่าง:** Apache Cassandra, DynamoDB*
 > 
 
-## **Example**
+## **ตัวอย่าง**
 
-This example demonstrates how the CAP theorem trade-off works during a network partition in a distributed system.
+ตัวอย่างนี้แสดงให้เห็นว่าข้อแลกเปลี่ยนตามทฤษฎีบท CAP ทำงานอย่างไรเมื่อเกิดการแบ่งเครือข่ายในระบบแบบกระจาย
 
 <img src="https://media.geeksforgeeks.org/wp-content/uploads/20260119171657171234/devops_25-660.webp" alt="Example" />
 
-**In the above Diagram,**
+**จากแผนภาพด้านบน**
 
-- We have a simple [distributed system](https://www.geeksforgeeks.org/computer-networks/what-is-a-distributed-system/) where S1 and S2 are two server. The two server can talk to each other. Here, System is partition tolerant. Here We will prove that system can be either consistent or available.
-- Suppose there is a network failure and S1 and S2 cannot talk to each other. Now assume that the client makes a write to S1. The client then send a read to S2.
-- Given S1 and S2 cannot talk, they have different view of the data. If the system has to remain consistent, it must deny the request and thus give up on availability.
-- If the system is available, then the system has to give up on consistency. This proves the CAP Theorem.
+- เรามี[ระบบแบบกระจาย](https://www.geeksforgeeks.org/computer-networks/what-is-a-distributed-system/)อย่างง่าย โดย S1 และ S2 เป็นเซิร์ฟเวอร์สองเครื่องที่สามารถสื่อสารกันได้ ในกรณีนี้ระบบรองรับ Partition Tolerance และเราจะพิสูจน์ว่าระบบสามารถเลือกได้ว่าจะรักษา Consistency หรือ Availability
+- สมมติว่าเกิดความล้มเหลวของเครือข่าย และ S1 กับ S2 ไม่สามารถสื่อสารกันได้ จากนั้นสมมติว่าไคลเอนต์ส่งคำขอเขียนไปยัง S1 แล้วส่งคำขออ่านไปยัง S2
+- เนื่องจาก S1 และ S2 ไม่สามารถสื่อสารกันได้ ทั้งสองจึงมีมุมมองของข้อมูลที่แตกต่างกัน หากระบบต้องการรักษา Consistency ระบบจะต้องปฏิเสธคำขอ และทำให้ต้องยอมเสีย Availability
+- หากระบบต้องการรักษา Availability ระบบก็ต้องยอมเสีย Consistency นี่เป็นการพิสูจน์ทฤษฎีบท CAP
 
-## **Use Cases**
+## **กรณีการใช้งาน**
 
-Here we will see how we can use all the trade-off system in real application:
+ต่อไปเราจะดูว่าสามารถนำระบบแต่ละแบบตามข้อแลกเปลี่ยนเหล่านี้ไปใช้กับแอปพลิเคชันจริงได้อย่างไร:
 
-### **1. Banking Transactions (CP System)**
+### **1. ธุรกรรมธนาคาร (ระบบ CP)**
 
-**Problem Statement**
+**โจทย์ปัญหา**
 
-> *Imagine a bank teller updating your account balance on a secure computer system. This system prioritizes consistency (C) and partition tolerance (P).*
+> *ลองนึกภาพพนักงานธนาคารกำลังอัปเดตยอดเงินในบัญชีของคุณผ่านระบบคอมพิวเตอร์ที่ปลอดภัย ระบบนี้ให้ความสำคัญกับ Consistency (C) และ Partition Tolerance (P)*
 > 
 
-**We use CP System**
+**เราใช้ระบบ CP**
 
-- Each transaction must be accurately reflected across all servers (consistency) even if individual branches face network disruption (partition tolerance).
-- Inconsistency could lead to double spending or incorrect balances, unacceptable situations in financial transactions.
-- While data is always consistent, some users might experience momentary delays during network issues due to stricter synchronization requirements.
+- ทุกธุรกรรมต้องถูกสะท้อนอย่างถูกต้องบนทุกเซิร์ฟเวอร์ (Consistency) แม้ว่าแต่ละสาขาจะเผชิญกับปัญหาเครือข่าย (Partition Tolerance)
+- ความไม่สอดคล้องของข้อมูลอาจนำไปสู่การใช้จ่ายซ้ำหรือยอดเงินที่ไม่ถูกต้อง ซึ่งเป็นสถานการณ์ที่ยอมรับไม่ได้สำหรับธุรกรรมทางการเงิน
+- แม้ว่าข้อมูลจะสอดคล้องกันเสมอ แต่ผู้ใช้บางรายอาจพบความล่าช้าชั่วคราวเมื่อเกิดปัญหาเครือข่าย เนื่องจากระบบต้องการการซิงโครไนซ์ที่เข้มงวดกว่า
 
-### **2. Social Media Newsfeed (AP System)**
+### **2. ฟีดข่าวบนโซเชียลมีเดีย (ระบบ AP)**
 
-**Problem Statement**
+**โจทย์ปัญหา**
 
-> *Think of your newsfeed on a social media platform constantly updating with new posts and stories. This system prioritizes availability (A) and partition tolerance (P).*
+> *ลองนึกถึงฟีดข่าวบนแพลตฟอร์มโซเชียลมีเดียที่อัปเดตโพสต์และเรื่องราวใหม่ๆ อย่างต่อเนื่อง ระบบนี้ให้ความสำคัญกับ Availability (A) และ Partition Tolerance (P)*
 > 
 
-**We use AP System**
+**เราใช้ระบบ AP**
 
-- Users expect immediate access to their newsfeeds (availability) even if parts of the network are temporarily down (partition tolerance). Slight inconsistencies in data, like seeing a friend's post slightly sooner on one device than another, are tolerable in this context.
-- Data might not be perfectly consistent across all servers immediately after updates. Users might occasionally see slightly different versions of their newsfeed before data propagates across the system.
+- ผู้ใช้คาดหวังว่าจะเข้าถึงฟีดข่าวได้ทันที (Availability) แม้ว่าบางส่วนของเครือข่ายจะหยุดทำงานชั่วคราว (Partition Tolerance) ความไม่สอดคล้องของข้อมูลเล็กน้อย เช่น การเห็นโพสต์ของเพื่อนบนอุปกรณ์หนึ่งเร็วกว่าอีกอุปกรณ์เล็กน้อย ถือว่ายอมรับได้ในบริบทนี้
+- ข้อมูลอาจยังไม่สอดคล้องกันอย่างสมบูรณ์บนทุกเซิร์ฟเวอร์ทันทีหลังการอัปเดต ผู้ใช้อาจเห็นฟีดข่าวในเวอร์ชันที่แตกต่างกันเล็กน้อยเป็นครั้งคราว ก่อนที่ข้อมูลจะกระจายไปทั่วทั้งระบบ
 
-### **3. Online Shopping Cart (Hybrid System CAP System):**
+### **3. ตะกร้าสินค้าออนไลน์ (ระบบ CAP แบบผสม):**
 
-**Problem Statement**
+**โจทย์ปัญหา**
 
-> *Imagine an online shopping cart, adding items, and checking out. This system might employ a hybrid approach balancing CAP trade-offs.*
+> *ลองนึกภาพตะกร้าสินค้าออนไลน์ที่มีการเพิ่มสินค้าและดำเนินการชำระเงิน ระบบนี้อาจใช้แนวทางแบบผสมเพื่อสร้างสมดุลระหว่างข้อแลกเปลี่ยนของ CAP*
 > 
 
-**We use AP and CP System**
+**เราใช้ระบบ AP และ CP**
 
-- Adding items to the cart could be available and partition-tolerant (AP), allowing uninterrupted browsing even if temporary network glitches occur.
-- But when confirming the order and processing payment, the system might switch to a CP mode, ensuring consistency across all servers before finalizing the transaction.
-- The system requires careful design to switch seamlessly between availability and consistency modes at the right points to handle different stages of the user journey effectively.
+- การเพิ่มสินค้าลงในตะกร้าสามารถออกแบบให้มี Availability และ Partition Tolerance (AP) เพื่อให้ผู้ใช้เลือกดูสินค้าได้อย่างต่อเนื่องแม้ว่าจะเกิดปัญหาเครือข่ายชั่วคราว
+- แต่เมื่อยืนยันคำสั่งซื้อและประมวลผลการชำระเงิน ระบบอาจเปลี่ยนไปใช้โหมด CP เพื่อให้มั่นใจว่าข้อมูลบนทุกเซิร์ฟเวอร์สอดคล้องกันก่อนทำธุรกรรมให้เสร็จสมบูรณ์
+- ระบบต้องได้รับการออกแบบอย่างรอบคอบเพื่อสลับระหว่างโหมด Availability และ Consistency ได้อย่างราบรื่นในจุดที่เหมาะสม เพื่อรองรับแต่ละขั้นตอนของเส้นทางการใช้งานของผู้ใช้ได้อย่างมีประสิทธิภาพ
