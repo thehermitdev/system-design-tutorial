@@ -5,10 +5,9 @@
 - เพิ่มเซิร์ฟเวอร์หรือ Instance เพื่อกระจายภาระงานและรองรับ Traffic ปริมาณมากได้อย่างมีประสิทธิภาพ
 - อัปเกรด CPU, RAM หรือ Storage ของเซิร์ฟเวอร์เครื่องเดียวเพื่อเพิ่มความสามารถในการรองรับงาน
 
-> ***ตัวอย่าง:** แพลตฟอร์ม E-commerce ขนาดใหญ่อาจใช้ Horizontal Scaling โดยเพิ่มเซิร์ฟเวอร์ในช่วงที่มี Traffic สูง เช่น ช่วงลดราคา ขณะที่แอปพลิเคชันขนาดเล็กอาจใช้ Vertical Scaling โดยอัปเกรด RAM หรือ CPU ของเซิร์ฟเวอร์*
-> 
+> **ตัวอย่าง:** แพลตฟอร์ม E-commerce ขนาดใหญ่อาจใช้ Horizontal Scaling โดยเพิ่มเซิร์ฟเวอร์ในช่วงที่มี Traffic สูง เช่น ช่วงลดราคา ขณะที่แอปพลิเคชันขนาดเล็กอาจใช้ Vertical Scaling โดยอัปเกรด RAM หรือ CPU ของเซิร์ฟเวอร์
 
-https://media.geeksforgeeks.org/wp-content/uploads/20260416101913435205/vertical_and_horizontal_scaling-660.webp
+<img src="https://media.geeksforgeeks.org/wp-content/uploads/20260416101913435205/vertical_and_horizontal_scaling-660.webp" />
 
 ## **ความจำเป็นของการขยายระบบ**
 
@@ -29,7 +28,7 @@ Vertical Scaling หรือที่เรียกว่า Scaling Up คื
 - เราอัปเกรดระบบเดิมแทนที่จะเพิ่มระบบใหม่ โดยเพิ่มพลังให้กับเครื่องด้วยการใช้ Processor ที่ดีขึ้น เพิ่ม RAM หรือปรับปรุงส่วนอื่นๆ เพื่อเพิ่มประสิทธิภาพ
 - นำไปใช้งานได้ง่ายและเหมาะสำหรับแอปพลิเคชันแบบ Monolithic และแอปพลิเคชันขนาดเล็ก
 
-https://media.geeksforgeeks.org/wp-content/uploads/20260416101913555886/vertical_scaling-660.webp
+<img src="https://media.geeksforgeeks.org/wp-content/uploads/20260416101913555886/vertical_scaling-660.webp" />
 
 ### **ตัวอย่าง**
 
@@ -61,7 +60,7 @@ Horizontal Scaling หรือที่เรียกว่า Scaling Out ค
 - ไม่จำเป็นต้องเปลี่ยนความสามารถของเซิร์ฟเวอร์หรือเปลี่ยนเซิร์ฟเวอร์เดิม
 - การเพิ่มเซิร์ฟเวอร์มักช่วยหลีกเลี่ยง Downtime ทั้งระบบได้ แต่อาจมีความล่าช้าจากการ Deploy, ระยะเวลา Warm-up หรือการกระจาย Traffic ใหม่
 
-https://media.geeksforgeeks.org/wp-content/uploads/20260416102019816617/xyz-660.webp
+<img src="https://media.geeksforgeeks.org/wp-content/uploads/20260416102019816617/xyz-660.webp" />
 
 ### **ตัวอย่าง**
 
@@ -93,7 +92,7 @@ Horizontal Scaling ช่วยเพิ่มความสามารถแ�
 
 ส่วนนี้แสดงความแตกต่างสำคัญระหว่างการขยายระบบด้วยการเพิ่มจำนวนเครื่อง กับการอัปเกรดเครื่องเพียงเครื่องเดียว
 
-https://media.geeksforgeeks.org/wp-content/uploads/20260416101913318503/21-660.webp
+<img src="https://media.geeksforgeeks.org/wp-content/uploads/20260416101913318503/21-660.webp" />
 
 เราได้เข้าใจความหมายของการขยายแอปพลิเคชันทั้งสองประเภทหลักแล้ว และยังได้กล่าวถึงข้อดีและข้อเสียของแต่ละวิธีด้วย ต่อไปเป็นการเปรียบเทียบทั้งสองแนวทางอย่างรวดเร็วจากข้อดีและข้อเสียเหล่านี้
 
