@@ -1,160 +1,160 @@
-# **Web and Application Server in Designing Systems**
+# **Web Server และ Application Server ในการออกแบบระบบ**
 
-Web servers and application servers are essential components in system design that handle user requests and deliver responses efficiently. A web server manages client communication, while an application server processes business logic and dynamic operations.
+Web Server และ Application Server เป็นองค์ประกอบสำคัญในการออกแบบระบบที่ทำหน้าที่จัดการคำขอจากผู้ใช้และส่งผลลัพธ์กลับอย่างมีประสิทธิภาพ โดย Web Server จะจัดการการสื่อสารกับ Client ส่วน Application Server จะประมวลผล Business Logic และการทำงานแบบ Dynamic
 
-- Web servers handle HTTP requests, serve static content, and manage communication between clients and servers.
-- Application servers execute business logic, process dynamic data, and generate responses for client requests.
+- Web Server จัดการคำขอ HTTP ให้บริการ Static Content และจัดการการสื่อสารระหว่าง Client กับ Server
+- Application Server ทำงานกับ Business Logic ประมวลผลข้อมูลแบบ Dynamic และสร้าง Response สำหรับคำขอจาก Client
 
 ## **Web Server**
 
-A web server is a system that stores, processes, and delivers web content to users over the internet. It handles requests from clients (like browsers) and responds with web pages, images, or data. A web server can be both hardware (machine) and software that manages these requests.
+Web Server คือระบบที่จัดเก็บ ประมวลผล และส่งมอบเนื้อหาบนเว็บให้กับผู้ใช้ผ่านอินเทอร์เน็ต โดยจะรับคำขอจาก Client (เช่น Browser) และตอบกลับด้วยหน้าเว็บ รูปภาพ หรือข้อมูล Web Server สามารถหมายถึงได้ทั้ง Hardware (เครื่อง) และ Software ที่ใช้จัดการคำขอเหล่านี้
 
-- Hosts websites and serves content to users, running web server software like Apache or IIS.
-- Requires continuous internet connectivity to handle incoming client requests.
+- ใช้ Hosting เว็บไซต์และให้บริการเนื้อหาแก่ผู้ใช้ โดยทำงานด้วย Web Server Software เช่น Apache หรือ IIS
+- ต้องเชื่อมต่ออินเทอร์เน็ตอย่างต่อเนื่องเพื่อรองรับคำขอที่เข้ามาจาก Client
 
-> **Example:** When you type a website URL in your browser, the request goes to a web server, which processes it and sends back the webpage to be displayed.
+> **ตัวอย่าง:** เมื่อคุณพิมพ์ URL ของเว็บไซต์ใน Browser คำขอจะถูกส่งไปยัง Web Server ซึ่งจะประมวลผลและส่งหน้าเว็บกลับมาเพื่อแสดงผล
 
-Every web server connected to the internet is given a unique address of 4 digits that are separated by dots as **68.122.31.125**
+Web Server ทุกเครื่องที่เชื่อมต่อกับอินเทอร์เน็ตจะได้รับ Address ที่ไม่ซ้ำกัน ซึ่งประกอบด้วยตัวเลข 4 ชุดที่คั่นด้วยจุด เช่น **68.122.31.125**
 
 <img src="https://media.geeksforgeeks.org/wp-content/uploads/20260411151404076805/web_broser_request_to_web_server-660.webp" alt="Web Server" />
 
-### **Types of web server**
+### **ประเภทของ Web Server**
 
-Web servers can be categorized based on how they host websites and handle traffic.
+Web Server สามารถแบ่งประเภทตามรูปแบบการ Hosting เว็บไซต์และวิธีจัดการ Traffic
 
-- **Shared Hosting:** Hosts multiple websites (often 100+) on a single server. It is cost-effective and suitable for small or personal websites.
-- **Dedicated Hosting:** A single server is dedicated to one or a few websites, offering better performance, control, and security.
-- **Custom Hosting:** Built specifically for large-scale applications with unique requirements, allowing full customization and high scalability.
+- **Shared Hosting:** Hosting หลายเว็บไซต์ (มักมี 100 เว็บไซต์ขึ้นไป) บน Server เครื่องเดียว มีต้นทุนคุ้มค่าและเหมาะกับเว็บไซต์ขนาดเล็กหรือเว็บไซต์ส่วนตัว
+- **Dedicated Hosting:** Server หนึ่งเครื่องถูกจัดสรรให้กับเว็บไซต์หนึ่งหรือไม่กี่เว็บไซต์ ทำให้มีประสิทธิภาพ การควบคุม และความปลอดภัยที่ดีกว่า
+- **Custom Hosting:** สร้างขึ้นโดยเฉพาะสำหรับแอปพลิเคชันขนาดใหญ่ที่มีความต้องการเฉพาะ สามารถปรับแต่งได้เต็มรูปแบบและรองรับการขยายระบบได้สูง
 
-Small or personal websites usually use shared hosting, while high-traffic applications prefer dedicated or custom hosting for better performance and control.
+เว็บไซต์ขนาดเล็กหรือเว็บไซต์ส่วนตัวมักใช้ Shared Hosting ส่วนแอปพลิเคชันที่มี Traffic สูงจะนิยมใช้ Dedicated Hosting หรือ Custom Hosting เพื่อให้ได้ประสิทธิภาพและการควบคุมที่ดีกว่า
 
 <img src="https://media.geeksforgeeks.org/wp-content/uploads/20260411151403846243/shared_and_dedicated_hosts-660.webp" alt="Shared and Dedicated Hosts" />
 
-### **Working**
+### **การทำงาน**
 
-A web server processes client requests and returns the required web content using HTTP/HTTPS protocols. It acts as a bridge between the user (browser) and the backend systems.
+Web Server จะประมวลผลคำขอจาก Client และส่ง Web Content ที่ต้องการกลับไปโดยใช้ Protocol HTTP/HTTPS โดยทำหน้าที่เป็นตัวกลางระหว่างผู้ใช้ (Browser) กับระบบ Backend
 
-- When a user sends a request (like opening a website), the browser sends an HTTP request to the web server.
-- If the requested content is static (HTML, CSS, images), the web server directly sends it back to the client.
-- If the request is for dynamic content, the web server forwards it to an application server or backend service for processing.
-- The application server processes the request (e.g., fetching data from a database) and sends the result back to the web server.
-- Finally, the web server returns the response to the client’s browser.
+- เมื่อผู้ใช้ส่งคำขอ (เช่น เปิดเว็บไซต์) Browser จะส่ง HTTP Request ไปยัง Web Server
+- หากเนื้อหาที่ร้องขอเป็น Static Content (HTML, CSS, รูปภาพ) Web Server จะส่งเนื้อหานั้นกลับไปยัง Client โดยตรง
+- หากคำขอเป็น Dynamic Content Web Server จะส่งต่อไปยัง Application Server หรือ Backend Service เพื่อประมวลผล
+- Application Server จะประมวลผลคำขอ (เช่น ดึงข้อมูลจาก Database) และส่งผลลัพธ์กลับไปยัง Web Server
+- สุดท้าย Web Server จะส่ง Response กลับไปยัง Browser ของ Client
 
-> **Example:** When you open a shopping website, the homepage (static content) loads directly from the web server. But when you search for a product, the request goes to the backend, which fetches results from the database and sends them back through the web server to your browser.
+> **ตัวอย่าง:** เมื่อคุณเปิดเว็บไซต์ Shopping หน้า Homepage (Static Content) จะโหลดจาก Web Server โดยตรง แต่เมื่อคุณค้นหาสินค้า คำขอจะถูกส่งไปยัง Backend ซึ่งจะดึงผลลัพธ์จาก Database และส่งกลับผ่าน Web Server ไปยัง Browser ของคุณ
 
 <img src="https://media.geeksforgeeks.org/wp-content/uploads/20260411151404139226/working_of_server-660.webp" alt="Working of server" />
 
-### **Role of Web Servers**
+### **บทบาทของ Web Server**
 
-Web servers play a crucial role in handling client requests and delivering web content efficiently and securely.
+Web Server มีบทบาทสำคัญในการจัดการคำขอจาก Client และส่งมอบ Web Content อย่างมีประสิทธิภาพและปลอดภัย
 
-- **Handling Client Requests:** Web servers receive and process incoming HTTP/HTTPS requests from clients (browsers) and route them to the appropriate resources or services.
-- **Serving Static and Dynamic Content:** They directly serve static content (HTML, CSS, images) and work with application servers to generate and deliver dynamic content.
-- **Load Balancing:** In large systems, web servers distribute incoming traffic across multiple backend servers to improve performance and prevent overload.
-- **Content Delivery & Caching:** Web servers cache frequently accessed content to reduce response time and decrease server load.
-- **SSL/TLS Termination:** They handle encryption and decryption of data, ensuring secure communication between clients and servers without burdening backend systems.
+- **การจัดการคำขอจาก Client:** Web Server รับและประมวลผลคำขอ HTTP/HTTPS ที่เข้ามาจาก Client (Browser) และส่งต่อไปยัง Resource หรือ Service ที่เหมาะสม
+- **การให้บริการ Static และ Dynamic Content:** ให้บริการ Static Content (HTML, CSS, รูปภาพ) โดยตรง และทำงานร่วมกับ Application Server เพื่อสร้างและส่งมอบ Dynamic Content
+- **Load Balancing:** ในระบบขนาดใหญ่ Web Server จะกระจาย Traffic ที่เข้ามาไปยัง Backend Server หลายเครื่อง เพื่อเพิ่มประสิทธิภาพและป้องกันการทำงานหนักเกินไป
+- **Content Delivery & Caching:** Web Server ทำ Cache เนื้อหาที่ถูกเรียกใช้งานบ่อย เพื่อลด Response Time และลดภาระของ Server
+- **SSL/TLS Termination:** จัดการการเข้ารหัสและถอดรหัสข้อมูล เพื่อให้การสื่อสารระหว่าง Client กับ Server มีความปลอดภัยโดยไม่เพิ่มภาระให้ระบบ Backend
 
-### **Static Vs Dynamic Web Servers**
+### **Static Web Server Vs Dynamic Web Server**
 
-Web servers can serve both static and dynamic content based on the type of application and backend processing involved.
+Web Server สามารถให้บริการได้ทั้ง Static Content และ Dynamic Content ตามประเภทของแอปพลิเคชันและการประมวลผลใน Backend
 
 <img src="https://media.geeksforgeeks.org/wp-content/uploads/20260411151403948173/static_website-660.webp" alt="Static and Dynamic Website" />
 
-**Static Web Servers**: Serve content exactly as stored, without any modification.
+**Static Web Server**: ให้บริการเนื้อหาตามที่จัดเก็บไว้โดยไม่มีการแก้ไข
 
-- Sends files like HTML, CSS, images directly to the browser
-- Faster performance as no processing is required
-- Suitable for blogs, portfolios, and simple websites
+- ส่งไฟล์ เช่น HTML, CSS และรูปภาพ ไปยัง Browser โดยตรง
+- ทำงานได้เร็วกว่าเพราะไม่ต้องมีการประมวลผลเพิ่มเติม
+- เหมาะสำหรับ Blog, Portfolio และเว็บไซต์แบบเรียบง่าย
 
-**Dynamic Web Servers**: Generate and update content in real-time using additional software like application servers and databases.
+**Dynamic Web Server**: สร้างและอัปเดตเนื้อหาแบบ Real-time โดยใช้ Software เพิ่มเติม เช่น Application Server และ Database
 
-- Processes user input and fetches data dynamically
-- Provides personalized and interactive content
-- Suitable for social media, e-commerce, and web apps
+- ประมวลผลข้อมูลจากผู้ใช้และดึงข้อมูลแบบ Dynamic
+- ให้เนื้อหาที่ปรับให้เหมาะกับผู้ใช้และสามารถโต้ตอบได้
+- เหมาะสำหรับ Social Media, E-commerce และ Web App
 
-### **Protocols Used**
+### **Protocol ที่ใช้**
 
-Web servers use standard communication protocols to exchange data with clients over the internet.
+Web Server ใช้ Communication Protocol มาตรฐานในการแลกเปลี่ยนข้อมูลกับ Client ผ่านอินเทอร์เน็ต
 
-- **HTTP (HyperText Transfer Protocol):** Used to transfer web pages and resources between client and server
-- **HTTPS:** Secure version of HTTP that uses SSL/TLS encryption to protect data during transmission
-- **FTP (File Transfer Protocol):** Used for transferring files between systems, often for uploading website content
+- **HTTP (HyperText Transfer Protocol):** ใช้สำหรับส่งหน้าเว็บและ Resource ระหว่าง Client กับ Server
+- **HTTPS:** HTTP เวอร์ชันที่ปลอดภัย โดยใช้การเข้ารหัส SSL/TLS เพื่อปกป้องข้อมูลระหว่างการรับส่ง
+- **FTP (File Transfer Protocol):** ใช้สำหรับถ่ายโอนไฟล์ระหว่างระบบ มักใช้ในการอัปโหลดเนื้อหาเว็บไซต์
 
-### **Examples**
+### **ตัวอย่าง**
 
-Some of the popular web servers used in real-world applications are:
+Web Server ที่ได้รับความนิยมและถูกใช้งานจริง ได้แก่:
 
-- **Apache HTTP Server:** One of the most widely used web servers, it handles HTTP requests and serves web pages and files efficiently. It is highly reliable and supported by a large ecosystem.
-- **Tomcat Server:** Commonly used for Java-based web applications. It acts as both a web server and a servlet container, but it is not a full-fledged application server.
-- **Node.js Server:** Provides a built-in HTTP module that allows developers to create lightweight and fast web servers, especially for real-time applications.
+- **Apache HTTP Server:** หนึ่งใน Web Server ที่ได้รับความนิยมมากที่สุด ใช้จัดการ HTTP Request และให้บริการหน้าเว็บและไฟล์ได้อย่างมีประสิทธิภาพ มีความน่าเชื่อถือสูงและมี Ecosystem ขนาดใหญ่รองรับ
+- **Tomcat Server:** นิยมใช้กับ Web Application ที่พัฒนาด้วย Java ทำหน้าที่ได้ทั้งเป็น Web Server และ Servlet Container แต่ไม่ใช่ Application Server แบบเต็มรูปแบบ
+- **Node.js Server:** มี HTTP Module ในตัวที่ช่วยให้นักพัฒนาสามารถสร้าง Web Server ที่มีน้ำหนักเบาและทำงานได้รวดเร็ว โดยเฉพาะสำหรับแอปพลิเคชันแบบ Real-time
 
 ## **Application Server**
 
-An application server is designed to run and manage business logic and complex operations required by applications. It provides an environment (hardware + software) to execute dynamic tasks and process client requests beyond simple content delivery.
+Application Server ถูกออกแบบมาเพื่อทำงานและจัดการ Business Logic รวมถึงการทำงานที่ซับซ้อนซึ่งแอปพลิเคชันต้องการ โดยจัดเตรียม Environment (Hardware + Software) สำหรับทำงานแบบ Dynamic และประมวลผลคำขอจาก Client ที่มากกว่าการส่งมอบเนื้อหาแบบง่ายๆ
 
-- Handles complex logic and computations (e.g., processing requests and transactions) and interacts with databases/services to generate dynamic content.
-- Provides an environment to run applications such as enterprise or cloud-based systems.
+- จัดการ Logic และการคำนวณที่ซับซ้อน (เช่น การประมวลผลคำขอและ Transaction) และทำงานร่วมกับ Database/Service เพื่อสร้าง Dynamic Content
+- จัดเตรียม Environment สำหรับรันแอปพลิเคชัน เช่น ระบบ Enterprise หรือระบบที่ทำงานบน Cloud
 
-> **Example:** When you log in to a banking app, the application server verifies your credentials, fetches account data from the database, and sends the result back to the web server to display in your browser.
+> **ตัวอย่าง:** เมื่อคุณ Login เข้าแอปธนาคาร Application Server จะตรวจสอบข้อมูล Credentials ของคุณ ดึงข้อมูลบัญชีจาก Database และส่งผลลัพธ์กลับไปยัง Web Server เพื่อแสดงผลใน Browser
 
 <img src="https://media.geeksforgeeks.org/wp-content/uploads/20260411152025366950/application_server-660.webp" alt="Application Server" />
 
-> **Note:** An application server is used when the system requires heavy processing or dynamic operations that a web server alone cannot efficiently handle.
+> **หมายเหตุ:** Application Server ถูกใช้เมื่อระบบต้องการการประมวลผลหนักหรือการทำงานแบบ Dynamic ซึ่ง Web Server เพียงอย่างเดียวไม่สามารถจัดการได้อย่างมีประสิทธิภาพ
 
-### **Working**
+### **การทำงาน**
 
-Application servers follow a client-server model where they process user requests, execute business logic, and return dynamic responses. They act as the core layer that handles application functionality and data processing.
+Application Server ทำงานตาม Client-Server Model โดยประมวลผลคำขอจากผู้ใช้ ทำงานกับ Business Logic และส่ง Dynamic Response กลับไป โดยทำหน้าที่เป็น Layer หลักที่จัดการ Functionality ของแอปพลิเคชันและการประมวลผลข้อมูล
 
-- The client (browser/mobile app) sends a request to the web server
-- The web server forwards dynamic requests to the application server
-- The application server executes business logic (e.g., authentication, transactions)
-- It interacts with databases or external services to fetch or update data
-- The processed result is sent back to the web server, which returns it to the client
+- Client (Browser/Mobile App) ส่งคำขอไปยัง Web Server
+- Web Server ส่งต่อ Dynamic Request ไปยัง Application Server
+- Application Server ทำงานกับ Business Logic (เช่น Authentication, Transaction)
+- Application Server ติดต่อกับ Database หรือ External Service เพื่อดึงหรืออัปเดตข้อมูล
+- ผลลัพธ์ที่ประมวลผลแล้วจะถูกส่งกลับไปยัง Web Server ซึ่งจะส่งต่อกลับไปยัง Client
 
-**Layers Involved:**
+**Layer ที่เกี่ยวข้อง:**
 
-- Presentation Layer: Handles user interface and request/response formatting
-- Application Layer: Contains business logic and processing
-- Data Access Layer: Manages interaction with databases
+- Presentation Layer: จัดการ User Interface และรูปแบบ Request/Response
+- Application Layer: ประกอบด้วย Business Logic และการประมวลผล
+- Data Access Layer: จัดการการติดต่อกับ Database
 
 <img src="https://media.geeksforgeeks.org/wp-content/uploads/20260411151403763567/clien-660.webp" alt="clien" />
 
-### **Popular Application Servers**
+### **Application Server ที่ได้รับความนิยม**
 
-Application servers provide an environment to run and manage applications, supporting different technologies and frameworks.
+Application Server จัดเตรียม Environment สำหรับรันและจัดการแอปพลิเคชัน โดยรองรับ Technology และ Framework ที่แตกต่างกัน
 
-- **Apache Tomcat:** Widely used for Java-based web applications; acts as a servlet container and lightweight application server
-- **JBoss (WildFly):** A full-featured Java EE application server used for enterprise applications
-- **IBM WebSphere Application Server:** Enterprise-grade server designed for large-scale, secure, and high-performance applications
-- **Oracle WebLogic Server:** Robust application server used for mission-critical enterprise systems
-- **Microsoft IIS (Internet Information Services):** Supports ASP.NET applications and is commonly used in Windows-based environments
+- **Apache Tomcat:** นิยมใช้อย่างแพร่หลายสำหรับ Web Application ที่พัฒนาด้วย Java ทำหน้าที่เป็น Servlet Container และ Application Server แบบ Lightweight
+- **JBoss (WildFly):** Application Server แบบ Java EE ที่มีความสามารถครบถ้วน ใช้สำหรับ Enterprise Application
+- **IBM WebSphere Application Server:** Server ระดับ Enterprise ที่ออกแบบมาสำหรับแอปพลิเคชันขนาดใหญ่ มีความปลอดภัยและประสิทธิภาพสูง
+- **Oracle WebLogic Server:** Application Server ที่มีความแข็งแกร่ง ใช้สำหรับระบบ Enterprise ที่มีความสำคัญสูง
+- **Microsoft IIS (Internet Information Services):** รองรับแอปพลิเคชัน ASP.NET และนิยมใช้ใน Environment ที่ใช้ Windows
 
-### **Advantages**
+### **ข้อดี**
 
-Application servers provide powerful features for handling complex and dynamic applications.
+Application Server มีความสามารถที่ทรงพลังสำหรับจัดการแอปพลิเคชันที่ซับซ้อนและเป็น Dynamic
 
-- **Handles Complex Logic:** Efficiently processes business logic and heavy computations
-- **Scalability:** Can handle increasing users and traffic with proper configuration
-- **Integration Support:** Easily connects with databases, APIs, and external services
-- **Security Features:** Supports authentication, authorization, and secure transactions
+- **จัดการ Logic ที่ซับซ้อน:** ประมวลผล Business Logic และการคำนวณหนักได้อย่างมีประสิทธิภาพ
+- **Scalability:** สามารถรองรับจำนวนผู้ใช้และ Traffic ที่เพิ่มขึ้นได้เมื่อมีการกำหนดค่าอย่างเหมาะสม
+- **รองรับการ Integration:** สามารถเชื่อมต่อกับ Database, API และ External Service ได้ง่าย
+- **ความสามารถด้าน Security:** รองรับ Authentication, Authorization และ Transaction ที่ปลอดภัย
 
-### **Disadvantages**
+### **ข้อเสีย**
 
-Despite their benefits, application servers also have some limitations.
+แม้ Application Server จะมีข้อดี แต่ก็มีข้อจำกัดบางประการ
 
-- **High Complexity:** More complex to set up and manage compared to web servers
-- **Higher Cost:** Maintenance and deployment can be expensive
-- **Latency Overhead:** Additional processing may increase response time
-- **Not Needed for Simple Apps:** Overkill for small or static websites
+- **มีความซับซ้อนสูง:** ตั้งค่าและจัดการได้ซับซ้อนกว่า Web Server
+- **มีต้นทุนสูงกว่า:** การบำรุงรักษาและ Deploy อาจมีค่าใช้จ่ายสูง
+- **Latency Overhead:** การประมวลผลเพิ่มเติมอาจทำให้ Response Time เพิ่มขึ้น
+- **ไม่จำเป็นสำหรับแอปที่เรียบง่าย:** ซับซ้อนเกินความจำเป็นสำหรับเว็บไซต์ขนาดเล็กหรือ Static Website
 
 ## **Web Server Vs Application Server**
 
-These two servers differ based on their roles, where a web server handles client requests and content delivery, while an application server processes business logic and dynamic operations.
+Server ทั้งสองประเภทมีความแตกต่างกันตามบทบาท โดย Web Server ทำหน้าที่จัดการคำขอจาก Client และส่งมอบเนื้อหา ส่วน Application Server ทำหน้าที่ประมวลผล Business Logic และการทำงานแบบ Dynamic
 
 | **Web Server** | **Application Server** |
 | --- | --- |
-| Handles HTTP/HTTPS requests | Handles business logic and processing |
-| Serves static content | Generates dynamic content |
-| Lightweight and faster | Heavier and resource-intensive |
-| Limited or no database interaction | Direct interaction with databases |
-| **Example:** Apache, Nginx | **Example:** Tomcat, WebLogic |
+| จัดการคำขอ HTTP/HTTPS | จัดการ Business Logic และการประมวลผล |
+| ให้บริการ Static Content | สร้าง Dynamic Content |
+| Lightweight และทำงานได้เร็วกว่า | ใช้ Resource มากกว่าและมีขนาดใหญ่กว่า |
+| มีการติดต่อกับ Database อย่างจำกัดหรือไม่มีเลย | ติดต่อกับ Database โดยตรง |
+| **ตัวอย่าง:** Apache, Nginx | **ตัวอย่าง:** Tomcat, WebLogic |
