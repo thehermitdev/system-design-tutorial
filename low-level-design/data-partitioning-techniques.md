@@ -1,162 +1,162 @@
-# **Data Partitioning Techniques in System Design**
+# **เทคนิคการแบ่งพาร์ติชันข้อมูลในการออกแบบระบบ**
 
-The process of splitting a dataset into more manageable, smaller pieces in order to improve efficiency, [scalability](https://www.geeksforgeeks.org/system-design/what-is-scalability/), and performance is known as data partitioning.
+กระบวนการแบ่งชุดข้อมูลออกเป็นส่วนย่อยที่มีขนาดเล็กลงและจัดการได้ง่ายขึ้น เพื่อเพิ่มประสิทธิภาพ [ความสามารถในการรองรับการขยายตัว](https://www.geeksforgeeks.org/system-design/what-is-scalability/) และสมรรถนะของระบบ เรียกว่า การแบ่งพาร์ติชันข้อมูล (Data Partitioning)
 
-- It can be accomplished by either vertical partitioning, which separates data into columns, or horizontal partitioning, which divides data into rows according to particular criteria.
-- This method is especially helpful in databases, big data processing frameworks, and machine learning applications since it enables quicker query execution, simpler management of massive datasets, and better resource use.
+- สามารถทำได้ทั้งแบบ Vertical Partitioning ซึ่งแยกข้อมูลตามคอลัมน์ หรือ Horizontal Partitioning ซึ่งแบ่งข้อมูลตามแถวโดยอิงตามเกณฑ์ที่กำหนด
+- วิธีนี้มีประโยชน์อย่างมากกับฐานข้อมูล เฟรมเวิร์กสำหรับประมวลผล Big Data และแอปพลิเคชัน Machine Learning เพราะช่วยให้ประมวลผล Query ได้เร็วขึ้น จัดการชุดข้อมูลขนาดใหญ่ได้ง่ายขึ้น และใช้ทรัพยากรได้อย่างมีประสิทธิภาพมากขึ้น
 
-> **Example:** In a sales database, records can be partitioned by year, where one partition stores sales data for 2023 and another for 2024.
+> **ตัวอย่าง:** ในฐานข้อมูลการขาย สามารถแบ่ง Record ตามปีได้ โดยพาร์ติชันหนึ่งเก็บข้อมูลการขายของปี 2023 และอีกพาร์ติชันเก็บข้อมูลของปี 2024
 
-## **Real-World Examples**
+## **ตัวอย่างในโลกจริง**
 
-Some real-world examples of data partitioning are:
+ตัวอย่างการใช้งาน Data Partitioning ในโลกจริง ได้แก่:
 
-- **E-commerce Platforms:** Customer data is partitioned by region (e.g., North America, Europe) to optimize shipping, inventory, and localized marketing, improving performance and user experience.
-- **Banking and Finance:** Transaction data is partitioned by account type or date (e.g., daily) for faster processing, reporting, and more efficient fraud detection.
-- **Social Media:** User data is split by demographics or interests to enable targeted ads and content, enhancing relevance and system efficiency.
+- **แพลตฟอร์ม E-commerce:** แบ่งข้อมูลลูกค้าตามภูมิภาค เช่น อเมริกาเหนือและยุโรป เพื่อเพิ่มประสิทธิภาพด้านการจัดส่ง สินค้าคงคลัง และการทำการตลาดเฉพาะพื้นที่ ซึ่งช่วยปรับปรุงทั้งประสิทธิภาพและประสบการณ์ของผู้ใช้
+- **ธนาคารและการเงิน:** แบ่งข้อมูลธุรกรรมตามประเภทบัญชีหรือวันที่ เช่น รายวัน เพื่อให้ประมวลผลและจัดทำรายงานได้เร็วขึ้น รวมถึงตรวจจับการทุจริตได้อย่างมีประสิทธิภาพมากขึ้น
+- **Social Media:** แบ่งข้อมูลผู้ใช้ตามข้อมูลประชากรหรือความสนใจ เพื่อรองรับโฆษณาและเนื้อหาแบบเจาะจงกลุ่ม ช่วยเพิ่มความเกี่ยวข้องของเนื้อหาและประสิทธิภาพของระบบ
 
-## **Importance**
+## **ความสำคัญ**
 
-Data partitioning is essential for several reasons:
+Data Partitioning มีความสำคัญด้วยเหตุผลหลายประการ:
 
-- **Performance Improvement**: By breaking data into smaller segments, systems can access only the relevant partitions, leading to faster query execution and reduced load times.
-- **Scalability**: As datasets grow, partitioning allows for easier management and distribution across multiple servers or storage systems, enabling horizontal scaling.
-- **Efficient Resource Utilization**: It helps optimize the use of resources by allowing systems to focus processing power on specific partitions rather than the entire dataset.
-- **Enhanced Manageability**: Smaller partitions are easier to back up, restore, and maintain, facilitating better data governance and maintenance practices.
+- **เพิ่มประสิทธิภาพ:** การแบ่งข้อมูลออกเป็นส่วนย่อยช่วยให้ระบบเข้าถึงเฉพาะพาร์ติชันที่เกี่ยวข้อง ทำให้ Query ทำงานได้เร็วขึ้นและลดเวลาในการโหลด
+- **Scalability:** เมื่อชุดข้อมูลมีขนาดใหญ่ขึ้น การแบ่งพาร์ติชันช่วยให้จัดการและกระจายข้อมูลไปยังหลาย Server หรือ Storage System ได้ง่ายขึ้น ทำให้สามารถทำ Horizontal Scaling ได้
+- **ใช้ทรัพยากรอย่างมีประสิทธิภาพ:** ช่วยให้ระบบใช้พลังประมวลผลกับพาร์ติชันที่ต้องการแทนที่จะประมวลผลทั้งชุดข้อมูล
+- **จัดการได้ง่ายขึ้น:** พาร์ติชันขนาดเล็กสามารถสำรอง กู้คืน และบำรุงรักษาได้ง่ายกว่า ช่วยให้การกำกับดูแลและดูแลข้อมูลมีประสิทธิภาพมากขึ้น
 
-## **Methods of Data Partitioning**
+## **วิธีการแบ่งพาร์ติชันข้อมูล**
 
-The main methods of Data Partitioning are:
+วิธีหลักของ Data Partitioning ได้แก่:
 
 ### **1. Horizontal Partitioning/Sharding**
 
-[Horizontal Partitioning](https://www.geeksforgeeks.org/system-design/database-sharding-a-system-design-concept/) divides data by rows, but all partitions may still exist on the same server. When these horizontal partitions are placed across multiple servers, the approach is called Sharding.
+[Horizontal Partitioning](https://www.geeksforgeeks.org/system-design/database-sharding-a-system-design-concept/) แบ่งข้อมูลตามแถว แต่พาร์ติชันทั้งหมดอาจยังอยู่บน Server เดียวกัน เมื่อพาร์ติชันแนวนอนเหล่านี้ถูกกระจายไปยังหลาย Server วิธีนี้จะเรียกว่า Sharding
 
-Sharding is a special case of horizontal partitioning that provides true horizontal scalability and high availability by distributing partitions across multiple machines.
+Sharding เป็นกรณีเฉพาะของ Horizontal Partitioning ที่ช่วยให้เกิด Horizontal Scalability และ High Availability อย่างแท้จริง ด้วยการกระจายพาร์ติชันไปยังหลายเครื่อง
 
 <img src="https://media.geeksforgeeks.org/wp-content/uploads/20260522003509151535/oning--660.webp" alt="Horizontal Partitioning" />
 
-### **Advantages**
+### **ข้อดี**
 
-Horizontal partitioning divides a table into multiple parts by distributing rows across different partitions or servers.
+Horizontal Partitioning แบ่งตารางออกเป็นหลายส่วนด้วยการกระจายแถวไปยังพาร์ติชันหรือ Server ที่แตกต่างกัน
 
-- **Scalability:** Allows parallel processing of large datasets across multiple nodes.
-- **Load Balancing:** Distributes workload evenly, reducing system bottlenecks.
-- **Fault Tolerance:** Each partition works independently, improving reliability during failures.
+- **Scalability:** รองรับการประมวลผลชุดข้อมูลขนาดใหญ่แบบขนานบนหลาย Node
+- **Load Balancing:** กระจาย Workload อย่างสมดุล ช่วยลดคอขวดของระบบ
+- **Fault Tolerance:** แต่ละพาร์ติชันทำงานอย่างอิสระ ช่วยเพิ่มความน่าเชื่อถือเมื่อเกิดความล้มเหลว
 
-### **Disadvantages**
+### **ข้อเสีย**
 
-Despite its scalability benefits, it introduces some complexity in database operations.
+แม้จะช่วยเพิ่ม Scalability แต่ก็ทำให้การดำเนินงานของฐานข้อมูลมีความซับซ้อนมากขึ้น
 
-- **Complex Joins:** Joins across multiple partitions can be slower and harder to manage.
-- **Data Skew:** Uneven data distribution may cause certain partitions to handle more load than others.
+- **Join ที่ซับซ้อน:** การ Join ข้ามหลายพาร์ติชันอาจช้าลงและจัดการได้ยากขึ้น
+- **Data Skew:** การกระจายข้อมูลที่ไม่สมดุลอาจทำให้บางพาร์ติชันรับภาระงานมากกว่าพาร์ติชันอื่น
 
 ### **2. Vertical Partitioning**
 
-Vertical partitioning divides a dataset based on columns (attributes) instead of rows. Each partition contains only a subset of columns for all rows, depending on access patterns. It is useful when different columns are accessed more frequently or independently.
+Vertical Partitioning แบ่งชุดข้อมูลตามคอลัมน์ (Attribute) แทนการแบ่งตามแถว แต่ละพาร์ติชันจะมีเพียงบางคอลัมน์ของทุกแถว โดยพิจารณาจากรูปแบบการเข้าถึงข้อมูล วิธีนี้มีประโยชน์เมื่อคอลัมน์แต่ละส่วนถูกเข้าถึงด้วยความถี่ต่างกันหรือถูกใช้งานอย่างอิสระต่อกัน
 
 <img src="https://media.geeksforgeeks.org/wp-content/uploads/20260416162956976083/vertical_partitioning-660.webp" alt="Vertical Partitioning" />
 
-### **Advantages**
+### **ข้อดี**
 
-Vertical partitioning divides a table by separating columns into different partitions based on usage or functionality.
+Vertical Partitioning แบ่งตารางด้วยการแยกคอลัมน์ไปยังพาร์ติชันต่างๆ ตามรูปแบบการใช้งานหรือหน้าที่
 
-- **Better Query Performance:** Reduces data read by isolating frequently accessed columns.
-- **Efficient Retrieval:** Fetches only needed columns, saving I/O and storage.
-- **Easier Schema Changes:** Simplifies adding or removing columns.
+- **Query ทำงานได้ดีขึ้น:** ลดปริมาณข้อมูลที่ต้องอ่านด้วยการแยกคอลัมน์ที่ถูกเข้าถึงบ่อยออกมา
+- **ดึงข้อมูลได้อย่างมีประสิทธิภาพ:** ดึงเฉพาะคอลัมน์ที่ต้องการ ช่วยประหยัด I/O และ Storage
+- **ปรับ Schema ได้ง่ายขึ้น:** ทำให้การเพิ่มหรือลบคอลัมน์ง่ายขึ้น
 
-### **Disadvantages**
+### **ข้อเสีย**
 
-Although useful for column-level optimization, it can introduce additional query complexity.
+แม้จะมีประโยชน์ต่อการปรับประสิทธิภาพในระดับคอลัมน์ แต่ก็อาจทำให้ Query มีความซับซ้อนเพิ่มขึ้น
 
-- **Query Complexity:** Queries may need to access multiple partitions.
-- **Slower Joins:** Combining data from different partitions adds overhead.
-- **Limited Scalability:** Not ideal for datasets with rapidly growing columns.
+- **Query ซับซ้อนขึ้น:** Query อาจต้องเข้าถึงหลายพาร์ติชัน
+- **Join ช้าลง:** การรวมข้อมูลจากพาร์ติชันที่แตกต่างกันทำให้เกิด Overhead เพิ่มขึ้น
+- **Scalability จำกัด:** ไม่เหมาะกับชุดข้อมูลที่จำนวนคอลัมน์เพิ่มขึ้นอย่างรวดเร็ว
 
 ### **3. Key-based Partitioning**
 
-Divides data based on a specific key or attribute, with each partition holding all data related to that key. Common in distributed systems for uniform data distribution and efficient key-based lookups.
+แบ่งข้อมูลโดยอิงจาก Key หรือ Attribute ที่กำหนด โดยแต่ละพาร์ติชันจะเก็บข้อมูลทั้งหมดที่เกี่ยวข้องกับ Key นั้น วิธีนี้นิยมใช้ใน Distributed System เพื่อกระจายข้อมูลอย่างสม่ำเสมอและค้นหาข้อมูลตาม Key ได้อย่างมีประสิทธิภาพ
 
 <img src="https://media.geeksforgeeks.org/wp-content/uploads/20260416162956426668/key_nased_positioning-660.webp" alt="Key Based Partitioning" />
 
-### **Advantages**
+### **ข้อดี**
 
-Key-based partitioning distributes data across partitions using a specific key, usually through a hashing mechanism.
+Key-based Partitioning กระจายข้อมูลไปยังพาร์ติชันต่างๆ โดยใช้ Key ที่กำหนด ซึ่งมักทำผ่านกลไก Hashing
 
-- **Even Distribution**: Stores data with the same key together for efficient lookups.
-- **Scalability**: Enables parallel processing across partitions.
-- **Load Balancing:** Distributes workload to avoid performance bottlenecks.
+- **กระจายข้อมูลอย่างสมดุล:** เก็บข้อมูลที่มี Key เดียวกันไว้ด้วยกันเพื่อให้ค้นหาได้อย่างมีประสิทธิภาพ
+- **Scalability:** รองรับการประมวลผลแบบขนานระหว่างพาร์ติชัน
+- **Load Balancing:** กระจาย Workload เพื่อลดปัญหาคอขวดด้านประสิทธิภาพ
 
-### **Disadvantages**
+### **ข้อเสีย**
 
-Improper key selection can lead to uneven workloads and performance issues.
+การเลือก Key ที่ไม่เหมาะสมอาจทำให้ Workload ไม่สมดุลและเกิดปัญหาด้านประสิทธิภาพ
 
-- **Data Skew**: Uneven key access can create hotspots.
-- **Limited Flexibility**: Less efficient for range or multi-key queries.
-- **Partition Overhead**: Requires careful management as data or key patterns evolve.
+- **Data Skew:** การเข้าถึง Key ที่ไม่สมดุลอาจทำให้เกิด Hotspot
+- **ความยืดหยุ่นจำกัด:** มีประสิทธิภาพน้อยกว่าสำหรับ Range Query หรือ Query ที่ใช้หลาย Key
+- **Overhead ในการจัดการพาร์ติชัน:** ต้องมีการจัดการอย่างรอบคอบเมื่อข้อมูลหรือรูปแบบของ Key เปลี่ยนแปลง
 
 ### **4. Range Partitioning**
 
-The dataset is divided using range partitioning based on a preset range of values. For example, if your dataset has timestamps, you can divide it according to a specific time range. Range partitioning might be useful when you have data with natural ordering and wish to distribute it evenly based on the range of values.
+Range Partitioning แบ่งชุดข้อมูลตามช่วงค่าที่กำหนดไว้ล่วงหน้า ตัวอย่างเช่น หากชุดข้อมูลมี Timestamp ก็สามารถแบ่งข้อมูลตามช่วงเวลาได้ วิธีนี้เหมาะเมื่อข้อมูลมีลำดับตามธรรมชาติและต้องการกระจายข้อมูลตามช่วงค่าอย่างเหมาะสม
 
 <img src="https://media.geeksforgeeks.org/wp-content/uploads/20260416162956609722/range_partiotoing-660.webp" alt="Range Partitioning" />
 
-### **Advantages**
+### **ข้อดี**
 
-Range partitioning divides data into partitions based on specific value ranges such as dates, IDs, or numbers.
+Range Partitioning แบ่งข้อมูลออกเป็นพาร์ติชันตามช่วงค่าที่กำหนด เช่น วันที่ ID หรือตัวเลข
 
-- **Natural Ordering:** Ideal for data with an inherent range-based structure.
-- **Efficient Range Queries:** Quickly locates data within specified value ranges.
-- **Simplified Query Planning:** System easily identifies relevant partitions for range conditions.
+- **มีลำดับตามธรรมชาติ:** เหมาะกับข้อมูลที่มีโครงสร้างตามช่วงค่าอยู่แล้ว
+- **Range Query มีประสิทธิภาพ:** สามารถค้นหาข้อมูลภายในช่วงค่าที่กำหนดได้อย่างรวดเร็ว
+- **วางแผน Query ได้ง่ายขึ้น:** ระบบสามารถระบุพาร์ติชันที่เกี่ยวข้องกับเงื่อนไขแบบช่วงค่าได้ง่าย
 
-### **Disadvantages**
+### **ข้อเสีย**
 
-Improper range design can lead to uneven data distribution and management challenges.
+การออกแบบช่วงค่าที่ไม่เหมาะสมอาจทำให้ข้อมูลกระจายไม่สมดุลและจัดการได้ยาก
 
-- **Data Skew:** Uneven data across ranges can affect performance.
-- **Growth Management:** Adding or adjusting ranges requires ongoing maintenance.
-- **Complex Joins:** Joins and non-contiguous range queries can be slower and harder to manage.
+- **Data Skew:** การกระจายข้อมูลในแต่ละช่วงที่ไม่สมดุลอาจกระทบต่อประสิทธิภาพ
+- **การจัดการการเติบโต:** การเพิ่มหรือปรับช่วงค่าต้องมีการดูแลอย่างต่อเนื่อง
+- **Join ที่ซับซ้อน:** การ Join และ Query หลายช่วงที่ไม่ต่อเนื่องกันอาจช้าลงและจัดการยากขึ้น
 
 ### **5. Hash-based Partitioning**
 
-Hash partitioning uses a hash function to map data into different partitions. The hash value determines which partition the data belongs to, enabling even distribution and faster lookup. It helps with load balancing by spreading data randomly across partitions and improves data retrieval performance by reducing hotspots.
+Hash Partitioning ใช้ Hash Function เพื่อ Map ข้อมูลไปยังพาร์ติชันต่างๆ ค่า Hash จะเป็นตัวกำหนดว่าข้อมูลควรอยู่ในพาร์ติชันใด ช่วยให้ข้อมูลกระจายอย่างสม่ำเสมอและค้นหาได้เร็วขึ้น วิธีนี้ช่วยทำ Load Balancing ด้วยการกระจายข้อมูลแบบสุ่มไปยังพาร์ติชัน และเพิ่มประสิทธิภาพการดึงข้อมูลด้วยการลด Hotspot
 
 <img src="https://media.geeksforgeeks.org/wp-content/uploads/20260416162955927824/hash_based-660.webp" alt="Hash-Based Partitioning" />
 
-### **Advantages**
+### **ข้อดี**
 
-Hash-based partitioning distributes data across partitions using a hash function applied to a specific key.
+Hash-based Partitioning กระจายข้อมูลไปยังพาร์ติชันต่างๆ โดยใช้ Hash Function กับ Key ที่กำหนด
 
-- **Even Distribution**: Randomized hashing spreads data uniformly across partitions.
-- **Scalability:** Supports parallel processing across multiple nodes.
-- **Simplicity:** Easy to implement and doesn’t rely on data order.
+- **กระจายข้อมูลอย่างสมดุล:** การ Hash แบบสุ่มช่วยกระจายข้อมูลอย่างสม่ำเสมอไปยังพาร์ติชันต่างๆ
+- **Scalability:** รองรับการประมวลผลแบบขนานบนหลาย Node
+- **เรียบง่าย:** นำไปใช้ได้ง่ายและไม่ต้องพึ่งลำดับของข้อมูล
 
-### **Disadvantages**
+### **ข้อเสีย**
 
-Although effective for distribution, it can introduce limitations in query flexibility.
+แม้จะมีประสิทธิภาพในการกระจายข้อมูล แต่ก็อาจมีข้อจำกัดด้านความยืดหยุ่นในการ Query
 
-- **Inefficient Lookups**: Poor performance for key-based or range queries.
-- **Possible Imbalances:** Hashing may not always ensure perfect load distribution.
-- **Maintenance Overhead:** Scaling may require repartitioning and rehashing data.
+- **การค้นหาบางรูปแบบไม่มีประสิทธิภาพ:** ทำงานได้ไม่ดีสำหรับ Query แบบ Range หรือบางกรณีของการค้นหาตาม Key
+- **อาจเกิดความไม่สมดุล:** Hashing ไม่ได้รับประกันว่าภาระงานจะถูกกระจายอย่างสมบูรณ์แบบเสมอไป
+- **Overhead ในการบำรุงรักษา:** การ Scale อาจต้องทำ Repartitioning และ Rehash ข้อมูลใหม่
 
 ### **6. Round-Robin Partitioning**
 
-Data is cyclically and equally distributed among partitions in round-robin partitioning. Regardless of the properties of the data, each split is sequentially assigned the next accessible data item. Implementing round-robin partitioning is simple and can offer a minimal degree of load balancing.
+Round-Robin Partitioning จะกระจายข้อมูลไปยังพาร์ติชันต่างๆ แบบวนรอบและเท่าๆ กัน โดยไม่ขึ้นกับคุณสมบัติของข้อมูล แต่ละพาร์ติชันจะได้รับข้อมูลรายการถัดไปตามลำดับ การนำ Round-Robin Partitioning ไปใช้ทำได้ง่ายและช่วยทำ Load Balancing ได้ในระดับหนึ่ง
 
 <img src="https://media.geeksforgeeks.org/wp-content/uploads/20260416162956796613/round_robin_partitioning-660.webp" alt="Round Robin Partitioning" />
 
-### **Advantages**
+### **ข้อดี**
 
-Round-robin partitioning distributes records sequentially across partitions without using any specific key.
+Round-Robin Partitioning กระจาย Record ไปยังพาร์ติชันตามลำดับโดยไม่ใช้ Key ใดเป็นพิเศษ
 
-- **Even Data Distribution:** Ensures near-uniform distribution of records across partitions.
-- **Simple Implementation:** Very easy to implement; no hashing or key logic required.
-- **Good Load Balancing:** Works well for write-heavy workloads and parallel processing.
+- **กระจายข้อมูลอย่างสมดุล:** ช่วยให้ Record ถูกกระจายไปยังพาร์ติชันต่างๆ ได้ใกล้เคียงกัน
+- **นำไปใช้ได้ง่าย:** ทำได้ง่ายมากโดยไม่ต้องใช้ Hashing หรือ Logic ที่เกี่ยวกับ Key
+- **Load Balancing ที่ดี:** เหมาะกับ Workload ที่มีการเขียนข้อมูลจำนวนมากและการประมวลผลแบบขนาน
 
-### **Disadvantages**
+### **ข้อเสีย**
 
-Because it does not use a partitioning key, it can make data retrieval less efficient.
+เนื่องจากไม่ได้ใช้ Partitioning Key จึงอาจทำให้การค้นคืนข้อมูลมีประสิทธิภาพลดลง
 
-- **Inefficient Lookups:** Poor performance for key-based or range queries.
-- **No Data Locality:** Related records may be spread across different partitions.
-- **Limited Query Optimization:** Not suitable for analytical queries that depend on grouping or ranges.
+- **การค้นหาไม่มีประสิทธิภาพ:** ทำงานได้ไม่ดีสำหรับ Query ที่อิง Key หรือช่วงค่า
+- **ไม่มี Data Locality:** Record ที่เกี่ยวข้องกันอาจกระจายอยู่คนละพาร์ติชัน
+- **การปรับ Query มีข้อจำกัด:** ไม่เหมาะกับ Analytical Query ที่อาศัยการ Grouping หรือช่วงค่า
