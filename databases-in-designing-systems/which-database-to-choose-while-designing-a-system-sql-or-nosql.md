@@ -1,93 +1,93 @@
-# **SQL Vs NoSQL Databases in System Design**
+# **ฐานข้อมูล SQL กับ NoSQL ในการออกแบบระบบ**
 
-When designing a system, one of the most critical decisions is choosing between SQL and NoSQL databases. This choice can significantly impact the system’s performance, scalability, and overall success.
+เมื่อออกแบบระบบ หนึ่งในการตัดสินใจที่สำคัญที่สุดคือการเลือกระหว่างฐานข้อมูล SQL และ NoSQL การเลือกนี้สามารถส่งผลอย่างมากต่อประสิทธิภาพ ความสามารถในการขยายระบบ และความสำเร็จโดยรวมของระบบ
 
-- SQL databases use structured schemas with tables and support strong consistency, making them ideal for complex queries and reliable transactions.
-- NoSQL databases use flexible schemas and are designed for high scalability, making them suitable for large-scale and unstructured data.
+- ฐานข้อมูล SQL ใช้ Schema ที่มีโครงสร้างร่วมกับตาราง และรองรับความสอดคล้องของข้อมูลที่เข้มงวด จึงเหมาะสำหรับ Query ที่ซับซ้อนและ Transaction ที่เชื่อถือได้
+- ฐานข้อมูล NoSQL ใช้ Schema ที่ยืดหยุ่นและออกแบบมาเพื่อรองรับการขยายระบบในระดับสูง จึงเหมาะสำหรับข้อมูลขนาดใหญ่และข้อมูลที่ไม่มีโครงสร้าง
 
-## **SQL Database**
+## **ฐานข้อมูล SQL**
 
-SQL databases are relational systems that store structured data in tables with predefined schemas. They use SQL for data management and support strong consistency. These databases are ideal for applications requiring complex queries and reliable transactions.
+ฐานข้อมูล SQL เป็นระบบฐานข้อมูลเชิงสัมพันธ์ที่จัดเก็บข้อมูลแบบมีโครงสร้างไว้ในตารางที่มี Schema กำหนดไว้ล่วงหน้า โดยใช้ SQL สำหรับจัดการข้อมูลและรองรับความสอดคล้องของข้อมูลที่เข้มงวด ฐานข้อมูลประเภทนี้เหมาะสำหรับแอปพลิเคชันที่ต้องการ Query ที่ซับซ้อนและ Transaction ที่เชื่อถือได้
 
-### **Characteristics**
+### **คุณลักษณะ**
 
-SQL databases follow a structured approach to store and manage data efficiently.
+ฐานข้อมูล SQL ใช้แนวทางที่มีโครงสร้างเพื่อจัดเก็บและจัดการข้อมูลอย่างมีประสิทธิภาพ
 
-- **Tabular Data Model:** SQL databases organize records into tables with rows and columns.
-- **Fixed Schema:** SQL databases require a predefined schema, which means that you must define the structure of the records, specifying record types and relationships earlier than adding records to the database.
-- **ACID Compliance:** SQL databases are commonly ACID-compliant, which means they ensure data consistency and integrity and integrity via Atomicity, Consistency, Isolation, and Durability.
-- **Structured Query Language (SQL):** SQL databases use a standardized query language to control and retrieve data. SQL is strong and supports complex queries, making it suitable for applications requiring statistical analytics and reporting.
+- **โมเดลข้อมูลแบบตาราง (Tabular Data Model):** ฐานข้อมูล SQL จัดระเบียบ Record เป็นตารางที่ประกอบด้วยแถวและคอลัมน์
+- **Schema แบบตายตัว (Fixed Schema):** ฐานข้อมูล SQL ต้องกำหนด Schema ไว้ล่วงหน้า ซึ่งหมายความว่าคุณต้องกำหนดโครงสร้างของ Record โดยระบุประเภทของ Record และความสัมพันธ์ก่อนเพิ่ม Record ลงในฐานข้อมูล
+- **รองรับ ACID (ACID Compliance):** โดยทั่วไปฐานข้อมูล SQL รองรับ ACID ซึ่งหมายความว่าจะช่วยรับประกันความสอดคล้องและความถูกต้องสมบูรณ์ของข้อมูล และความถูกต้องสมบูรณ์ของข้อมูล ผ่าน Atomicity, Consistency, Isolation และ Durability
+- **Structured Query Language (SQL):** ฐานข้อมูล SQL ใช้ภาษาสำหรับ Query ที่เป็นมาตรฐานเพื่อควบคุมและดึงข้อมูล SQL มีความสามารถสูงและรองรับ Query ที่ซับซ้อน จึงเหมาะสำหรับแอปพลิเคชันที่ต้องการการวิเคราะห์ทางสถิติและการจัดทำรายงาน
 
-### **Example**
+### **ตัวอย่าง**
 
-Common SQL databases widely used in real-world applications.
+ฐานข้อมูล SQL ที่นิยมใช้อย่างแพร่หลายในแอปพลิเคชันจริง
 
-- **MySQL:** An open-source relational database widely used in various applications.
-- **PostgreSQL:** A powerful open-source relational database known for its extensibility and support for advanced features.
+- **MySQL:** ฐานข้อมูลเชิงสัมพันธ์แบบ Open Source ที่ใช้อย่างแพร่หลายในแอปพลิเคชันหลากหลายประเภท
+- **PostgreSQL:** ฐานข้อมูลเชิงสัมพันธ์แบบ Open Source ที่มีประสิทธิภาพสูง เป็นที่รู้จักในด้านความสามารถในการขยายและการรองรับฟีเจอร์ขั้นสูง
 
-### **Applications**
+### **การนำไปใช้งาน**
 
-SQL databases are commonly used in systems requiring structured data and strong consistency.
+ฐานข้อมูล SQL มักใช้ในระบบที่ต้องการข้อมูลแบบมีโครงสร้างและความสอดคล้องของข้อมูลที่เข้มงวด
 
-- **E-commerce / Financial Systems / CMS :** Managing structured data, relationships, and ensuring transactional integrity and use SQL.
-- **Banking & Inventory Management :** Ensures accuracy when transferring funds or updating inventory.
+- **E-commerce / ระบบการเงิน / CMS :** ใช้ SQL เพื่อจัดการข้อมูลแบบมีโครงสร้าง ความสัมพันธ์ และรับประกันความถูกต้องสมบูรณ์ของ Transaction
+- **ธนาคารและการจัดการสินค้าคงคลัง :** ช่วยรับประกันความถูกต้องเมื่อต้องโอนเงินหรืออัปเดตสินค้าคงคลัง
 
-## **NoSQL Database**
+## **ฐานข้อมูล NoSQL**
 
-NoSQL databases are designed to store and manage unstructured or semi-structured data. They provide high flexibility, scalability, and performance, making them suitable for modern applications that handle large and rapidly changing datasets.
+ฐานข้อมูล NoSQL ออกแบบมาเพื่อจัดเก็บและจัดการข้อมูลที่ไม่มีโครงสร้างหรือกึ่งมีโครงสร้าง โดยมีความยืดหยุ่น ความสามารถในการขยายระบบ และประสิทธิภาพสูง จึงเหมาะสำหรับแอปพลิเคชันสมัยใหม่ที่ต้องจัดการ Dataset ขนาดใหญ่และเปลี่ยนแปลงอย่างรวดเร็ว
 
-### **Characteristics**
+### **คุณลักษณะ**
 
-NoSQL databases are designed to handle flexible, scalable, and distributed data efficiently.
+ฐานข้อมูล NoSQL ออกแบบมาเพื่อจัดการข้อมูลที่ยืดหยุ่น ขยายระบบได้ และกระจายอยู่หลายส่วนได้อย่างมีประสิทธิภาพ
 
-- **Flexible Data Model:** NoSQL databases support different types of data storage, such as key-value, document, column, and graph formats.
-- **Schema-less:** NoSQL databases are schema-less, this means data can be inserted without a predefined schema.
-- **BASE (Basically Available, Soft State, Eventually Consistent):** Instead of ACID compliance, NoSQL databases frequently follow the BASE model. BASE prioritizes high availability and performance over strict consistency.
-- **Proprietary Query Language:** NoSQL databases typically have their own query languages tailored to their specific data models. These query languages are often simpler and better suited to the data structure.
+- **โมเดลข้อมูลที่ยืดหยุ่น (Flexible Data Model):** ฐานข้อมูล NoSQL รองรับการจัดเก็บข้อมูลหลายรูปแบบ เช่น Key-Value, Document, Column และ Graph
+- **ไม่มี Schema ตายตัว (Schema-less):** ฐานข้อมูล NoSQL ไม่มี Schema ตายตัว ซึ่งหมายความว่าสามารถเพิ่มข้อมูลได้โดยไม่ต้องกำหนด Schema ไว้ล่วงหน้า
+- **BASE (Basically Available, Soft State, Eventually Consistent):** แทนที่จะยึดตาม ACID ฐานข้อมูล NoSQL มักใช้โมเดล BASE โดย BASE ให้ความสำคัญกับ Availability และประสิทธิภาพสูงมากกว่าความสอดคล้องของข้อมูลแบบเข้มงวด
+- **ภาษาสำหรับ Query เฉพาะระบบ (Proprietary Query Language):** โดยทั่วไปฐานข้อมูล NoSQL จะมีภาษาสำหรับ Query ของตนเองที่ออกแบบให้เหมาะกับโมเดลข้อมูลแต่ละประเภท ภาษาสำหรับ Query เหล่านี้มักเรียบง่ายกว่าและเหมาะกับโครงสร้างข้อมูลมากกว่า
 
-### **Example**
+### **ตัวอย่าง**
 
-Popular NoSQL databases used in modern applications.
+ฐานข้อมูล NoSQL ยอดนิยมที่ใช้ในแอปพลิเคชันสมัยใหม่
 
-- **MongoDB:** A popular document store that offers flexibility and scalability.
-- **Cassandra:** A wide-column store designed to handle large amounts of data and support high write speeds.
+- **MongoDB:** ฐานข้อมูลแบบ Document Store ยอดนิยมที่ให้ความยืดหยุ่นและรองรับการขยายระบบ
+- **Cassandra:** ฐานข้อมูลแบบ Wide-Column Store ที่ออกแบบมาเพื่อจัดการข้อมูลปริมาณมากและรองรับความเร็วในการเขียนข้อมูลสูง
 
-### **Applications**
+### **การนำไปใช้งาน**
 
-NoSQL databases are commonly used in systems requiring scalability and handling unstructured data.
+ฐานข้อมูล NoSQL มักใช้ในระบบที่ต้องรองรับการขยายระบบและจัดการข้อมูลที่ไม่มีโครงสร้าง
 
-- **Social Media & Big Data Platforms :** Handling unstructured user-generated content at scale. Code submissions on GeeksforGeeks Practice.
-- **Real-Time Analytics, IoT Applications :** High write volume, schema flexibility, and the need for fast access.
+- **โซเชียลมีเดียและแพลตฟอร์ม Big Data :** จัดการเนื้อหาที่ผู้ใช้สร้างขึ้นซึ่งไม่มีโครงสร้างในระดับขนาดใหญ่ การส่งโค้ดบน GeeksforGeeks Practice
+- **การวิเคราะห์แบบ Real-Time, แอปพลิเคชัน IoT :** รองรับปริมาณการเขียนข้อมูลสูง ความยืดหยุ่นของ Schema และความต้องการเข้าถึงข้อมูลอย่างรวดเร็ว
 
-## **Situations Where SQL Databases Are a Better Choice**
+## **สถานการณ์ที่ฐานข้อมูล SQL เป็นตัวเลือกที่ดีกว่า**
 
-SQL databases are appropriate for situations such as:
+ฐานข้อมูล SQL เหมาะสำหรับสถานการณ์ต่างๆ เช่น:
 
-- **Complex Queries:** If your application requires advanced queries and complex reporting, SQL databases excel in this area because of their structured schema and SQL query language.
-- **Data Integrity:** When data consistency and integrity are paramount, particularly in financial or regulatory applications, SQL databases with ACID compliance are the desired preference.
-- **Transactions:** SQL databases are the go-to option for applications that require support for multi-step, ACID-compliant transactions, like e-commerce systems.
+- **Query ที่ซับซ้อน:** หากแอปพลิเคชันของคุณต้องการ Query ขั้นสูงและการจัดทำรายงานที่ซับซ้อน ฐานข้อมูล SQL มีความโดดเด่นในด้านนี้ เนื่องจากมี Schema ที่เป็นโครงสร้างและใช้ภาษา SQL สำหรับ Query
+- **ความถูกต้องสมบูรณ์ของข้อมูล:** เมื่อความสอดคล้องและความถูกต้องสมบูรณ์ของข้อมูลมีความสำคัญสูง โดยเฉพาะในแอปพลิเคชันด้านการเงินหรือที่ต้องปฏิบัติตามข้อกำหนด ฐานข้อมูล SQL ที่รองรับ ACID เป็นตัวเลือกที่เหมาะสม
+- **Transaction:** ฐานข้อมูล SQL เป็นตัวเลือกหลักสำหรับแอปพลิเคชันที่ต้องรองรับ Transaction หลายขั้นตอนที่เป็นไปตาม ACID เช่น ระบบ E-commerce
 
-## **Situations Where NoSQL Databases Are a Better Choice**
+## **สถานการณ์ที่ฐานข้อมูล NoSQL เป็นตัวเลือกที่ดีกว่า**
 
-NoSQL databases perform better in certain situations:
+ฐานข้อมูล NoSQL ทำงานได้ดีกว่าในบางสถานการณ์:
 
-- **High Scalability:** If your system needs to handle large amounts of data and traffic, NoSQL databases provide horizontal scalability, making them a top desire for net and mobile programs.
-- **Flexible Schema:** When your data structure is dynamic and may evolve through the years, NoSQL databases with schema-less designs allow easier changes and updates.
-- **Real-time Analytics:** NoSQL databases are often preferred for real-time analytics because of their speed and flexibility.
+- **ความสามารถในการขยายระบบสูง:** หากระบบของคุณต้องจัดการข้อมูลและ Traffic ปริมาณมาก ฐานข้อมูล NoSQL รองรับการขยายระบบในแนวนอน จึงเป็นตัวเลือกที่เหมาะอย่างยิ่งสำหรับแอปพลิเคชันเว็บและมือถือ
+- **Schema ที่ยืดหยุ่น:** เมื่อโครงสร้างข้อมูลของคุณเปลี่ยนแปลงได้และอาจพัฒนาไปตามเวลา ฐานข้อมูล NoSQL ที่ออกแบบแบบ Schema-less ช่วยให้เปลี่ยนแปลงและอัปเดตได้ง่ายขึ้น
+- **การวิเคราะห์แบบ Real-Time:** ฐานข้อมูล NoSQL มักเป็นตัวเลือกที่นิยมสำหรับการวิเคราะห์แบบ Real-Time เนื่องจากมีความเร็วและความยืดหยุ่น
 
-## **Differences between SQL and NoSQL**
+## **ความแตกต่างระหว่าง SQL และ NoSQL**
 
-Below are the important differences between SQL and NoSQL:
+ด้านล่างคือความแตกต่างที่สำคัญระหว่าง SQL และ NoSQL:
 
-| **SQL Databases** | **NoSQL Databases** |
+| **ฐานข้อมูล SQL** | **ฐานข้อมูล NoSQL** |
 | --- | --- |
-| Use a relational data model with tables consisting of rows and columns. | Use non-relational models such as document, key-value, column-family, or graph. |
-| Require a fixed and predefined schema before storing data. | Follow a schema-less or flexible schema approach. |
-| Best suited for structured data with clear relationships. | Suitable for unstructured or semi-structured data. |
-| Use Structured Query Language (SQL) to manage and query data. | Use database-specific query languages or APIs. |
-| Usually scale vertically by increasing resources on a single server. | Designed to scale horizontally by adding more servers. |
-| Follow ACID properties for strong consistency and reliable transactions. | Often follow the BASE model focusing on availability and eventual consistency. |
-| Handle complex relationships using joins and keys. | Relationships are usually handled at the application level. |
-| Less flexible when schema changes are required. | Highly flexible because schema can change easily. |
-| Ideal for complex queries and transactional systems. | Optimized for large-scale data and high-speed operations. |
-| Examples include MySQL, PostgreSQL, and Oracle. | Examples include MongoDB, Cassandra, and Redis. |
+| ใช้โมเดลข้อมูลเชิงสัมพันธ์ โดยจัดเก็บข้อมูลในตารางที่ประกอบด้วยแถวและคอลัมน์ | ใช้โมเดลที่ไม่ใช่เชิงสัมพันธ์ เช่น Document, Key-Value, Column-Family หรือ Graph |
+| ต้องกำหนด Schema แบบตายตัวไว้ล่วงหน้าก่อนจัดเก็บข้อมูล | ใช้แนวทางแบบ Schema-less หรือ Schema ที่ยืดหยุ่น |
+| เหมาะที่สุดสำหรับข้อมูลแบบมีโครงสร้างที่มีความสัมพันธ์ชัดเจน | เหมาะสำหรับข้อมูลที่ไม่มีโครงสร้างหรือกึ่งมีโครงสร้าง |
+| ใช้ Structured Query Language (SQL) เพื่อจัดการและ Query ข้อมูล | ใช้ภาษาสำหรับ Query หรือ API ที่เฉพาะเจาะจงกับฐานข้อมูลแต่ละประเภท |
+| โดยทั่วไปขยายระบบในแนวตั้งด้วยการเพิ่มทรัพยากรให้กับ Server เครื่องเดียว | ออกแบบมาให้ขยายระบบในแนวนอนด้วยการเพิ่ม Server หลายเครื่อง |
+| ใช้คุณสมบัติ ACID เพื่อให้ได้ความสอดคล้องของข้อมูลที่เข้มงวดและ Transaction ที่เชื่อถือได้ | มักใช้โมเดล BASE โดยให้ความสำคัญกับ Availability และ Eventual Consistency |
+| จัดการความสัมพันธ์ที่ซับซ้อนด้วย Join และ Key | โดยทั่วไปความสัมพันธ์จะถูกจัดการในระดับแอปพลิเคชัน |
+| มีความยืดหยุ่นน้อยกว่าเมื่อต้องเปลี่ยนแปลง Schema | มีความยืดหยุ่นสูง เนื่องจากสามารถเปลี่ยน Schema ได้ง่าย |
+| เหมาะสำหรับ Query ที่ซับซ้อนและระบบที่เน้น Transaction | ปรับให้เหมาะกับข้อมูลขนาดใหญ่และการทำงานที่ต้องการความเร็วสูง |
+| ตัวอย่าง ได้แก่ MySQL, PostgreSQL และ Oracle | ตัวอย่าง ได้แก่ MongoDB, Cassandra และ Redis |
