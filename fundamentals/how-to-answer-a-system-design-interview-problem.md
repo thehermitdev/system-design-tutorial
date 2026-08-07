@@ -1,140 +1,140 @@
-# **How to Answer a System Design Interview Problem/Question?**
+# **ควรตอบโจทย์/คำถาม System Design Interview อย่างไร?**
 
-[**System design**](https://www.geeksforgeeks.org/system-design/what-is-system-design-learn-system-design/) interviews are crucial for software engineering roles, especially senior positions. These interviews assess your ability to architect scalable, efficient systems. Unlike coding interviews, they focus on overall design, problem-solving, and communication skills. You need to understand requirements, make informed trade-offs, and justify your decisions to succeed. This article offers practical tips and strategies to help you confidently tackle system design interview problems
+การสัมภาษณ์ [**System Design**](https://www.geeksforgeeks.org/system-design/what-is-system-design-learn-system-design/) มีความสำคัญสำหรับตำแหน่ง Software Engineering โดยเฉพาะตำแหน่งระดับ Senior การสัมภาษณ์ลักษณะนี้ใช้ประเมินความสามารถในการออกแบบสถาปัตยกรรมระบบที่รองรับการขยายตัวและมีประสิทธิภาพ ซึ่งแตกต่างจาก Coding Interview ที่จะเน้นการออกแบบโดยรวม การแก้ปัญหา และทักษะการสื่อสาร คุณจำเป็นต้องเข้าใจ Requirements พิจารณา Trade-off อย่างมีเหตุผล และอธิบายเหตุผลของการตัดสินใจให้ได้ บทความนี้นำเสนอเคล็ดลับและแนวทางเชิงปฏิบัติที่จะช่วยให้คุณรับมือกับโจทย์ System Design Interview ได้อย่างมั่นใจ
 
 <img src="https://media.geeksforgeeks.org/wp-content/uploads/20240604135139/How-to-Answer-a-System-Design-Interview-Problem-660.webp" alt="How-to-Answer-a-System-Design-Interview-Problem" />
 
-Below are the steps to Answer a System Design Interview Problem:
+ด้านล่างคือขั้นตอนในการตอบโจทย์ System Design Interview:
 
-**Important Steps for Answering a System Design Interview Problem**
+**ขั้นตอนสำคัญในการตอบโจทย์ System Design Interview**
 
-- **Step 1: Clarify Requirements**
-- **Step 2: Capacity Estimation**
-- **Step 3: High-Level Design**
-- **Step 4: Low-Level Design**
-- **Step 5: Database Design**
-- **Step 6: API Design**
-- **Step 7: Key Components of the system**
-- **Step 8: Problem Areas**
-- **Practice Problems for System Design**
+- **ขั้นตอนที่ 1: ทำความเข้าใจ Requirements ให้ชัดเจน**
+- **ขั้นตอนที่ 2: ประเมิน Capacity**
+- **ขั้นตอนที่ 3: High-Level Design**
+- **ขั้นตอนที่ 4: Low-Level Design**
+- **ขั้นตอนที่ 5: ออกแบบ Database**
+- **ขั้นตอนที่ 6: ออกแบบ API**
+- **ขั้นตอนที่ 7: องค์ประกอบสำคัญของระบบ**
+- **ขั้นตอนที่ 8: ประเด็นปัญหาที่ต้องพิจารณา**
+- **โจทย์ฝึกทำ System Design**
 
-## Step 1: Clarify [Requirements](./what-is-requirements-gathering-process.md)
+## ขั้นตอนที่ 1: ทำความเข้าใจ [Requirements](./what-is-requirements-gathering-process.md) ให้ชัดเจน
 
-### **1. Understand the Problem Statement**
+### **1. ทำความเข้าใจ Problem Statement**
 
-- **Listen Carefully:** This calls for one to be very certain about the meaning of the question that is being asked. If the student fails to understand the question, he or she is supposed to ask for a repeat or explanation of the question.
-- **Summarize the Problem:** Ask yourself if you have understood what you have read by reading the problem statement and then paraphrasing what you have read. This helps to avoid any misunderstanding that you or the interviewer may have in regard to something.
+- **ตั้งใจฟัง:** ต้องแน่ใจว่าคุณเข้าใจความหมายของคำถามที่ถูกถามอย่างถูกต้อง หากไม่เข้าใจคำถาม ควรขอให้ผู้สัมภาษณ์พูดซ้ำหรืออธิบายเพิ่มเติม
+- **สรุปปัญหา:** ตรวจสอบว่าคุณเข้าใจสิ่งที่อ่านโดยอ่าน Problem Statement แล้วอธิบายใหม่ด้วยคำพูดของคุณเอง วิธีนี้ช่วยลดความเข้าใจผิดระหว่างคุณกับผู้สัมภาษณ์ได้
 
-### **2. Ask Clarifying Questions**
+### **2. ถามคำถามเพื่อทำความเข้าใจให้ชัดเจน**
 
-**Scope and Constraints:**
+**ขอบเขตและข้อจำกัด:**
 
-- **User Base**: Estimate of the number of users who will use the site in other words, is it an intranet or an extranet?
-- **Scale:** Number of requests per second expected, database requirements, and throughput.
-- **Latency and Performance:** What are the input performance or latency requirements of this application?
+- **ฐานผู้ใช้:** ประเมินจำนวนผู้ใช้ที่จะใช้งานเว็บไซต์ หรือกล่าวอีกอย่างคือ ระบบนี้เป็น Intranet หรือ Extranet?
+- **Scale:** จำนวน Request ต่อวินาทีที่คาดว่าจะเกิดขึ้น ความต้องการด้าน Database และ Throughput
+- **Latency และ Performance:** แอปพลิเคชันนี้มีข้อกำหนดด้าน Performance หรือ Latency อย่างไร?
 
-**Features and [Functional Requirements](https://www.geeksforgeeks.org/system-design/what-are-functional-requirements-in-system-design-examples-definition/):**
+**ฟีเจอร์และ [Functional Requirements](https://www.geeksforgeeks.org/system-design/what-are-functional-requirements-in-system-design-examples-definition/):**
 
-- **Core Functionality:** Alright, so what are the main activities that the system is required to carry out?
-- **Optional Features:** Is there any additional feature that a person might want to find in the program but this functionality is not necessary?
-- **Use Cases:** A few opening questions: – Typical scenarios that the system should be able to perform.
+- **ฟังก์ชันหลัก:** ระบบจำเป็นต้องทำงานหลักอะไรบ้าง?
+- **ฟีเจอร์เสริม:** มีฟีเจอร์เพิ่มเติมใดที่ผู้ใช้อาจต้องการ แต่ไม่ใช่ฟังก์ชันที่จำเป็นหรือไม่?
+- **Use Cases:** ตัวอย่างสถานการณ์ทั่วไปที่ระบบควรรองรับได้
 
 [**Non-Functional Requirements:**](https://www.geeksforgeeks.org/system-design/what-are-non-functional-requirements-in-system-design-examples-definition/)
 
-- [**Availability:**](https://www.geeksforgeeks.org/system-design/availability-in-system-design/) What SLA (Service Level Agreement) should be assumed? Does the system serve a critical function?
-- [**Scalability:**](https://www.geeksforgeeks.org/system-design/what-is-scalability/) Is there fast growth necessary in the system? How much is the elasticity – how much?
-- **Security:** What kind of security arrangements is to be made? Are there any regulations regarding this by the relevant authorities or organizations?
-- [**Maintainability:**](https://www.geeksforgeeks.org/system-design/maintainability-in-system-design/) So just how ‘user friendly’ and ‘up-grade able’ should the system be?
+- [**Availability:**](https://www.geeksforgeeks.org/system-design/availability-in-system-design/) ควรกำหนด SLA (Service Level Agreement) ไว้ที่ระดับใด? ระบบรองรับฟังก์ชันที่มีความสำคัญสูงหรือไม่?
+- [**Scalability:**](https://www.geeksforgeeks.org/system-design/what-is-scalability/) ระบบจำเป็นต้องรองรับการเติบโตอย่างรวดเร็วหรือไม่? ต้องการ Elasticity ในระดับใด?
+- **Security:** ต้องจัดเตรียมมาตรการด้าน Security แบบใด? มีข้อกำหนดจากหน่วยงานหรือองค์กรที่เกี่ยวข้องหรือไม่?
+- [**Maintainability:**](https://www.geeksforgeeks.org/system-design/maintainability-in-system-design/) ระบบควรใช้งานง่ายและสามารถ Upgrade ได้ง่ายในระดับใด?
 
-## Step 2: Capacity Estimation
+## ขั้นตอนที่ 2: ประเมิน Capacity
 
-### **1. Traffic Estimates**
+### **1. ประเมิน Traffic**
 
-- **Users:** To forecast how many DAUs are there at a particular time.
-- **Requests:** Guess the number of requests per second during their high loads.
+- **Users:** คาดการณ์จำนวน DAU ที่มีอยู่ในช่วงเวลาหนึ่ง
+- **Requests:** ประเมินจำนวน Request ต่อวินาทีในช่วงที่มี Load สูง
 
-### **2. Storage Estimates**
+### **2. ประเมิน Storage**
 
-- **Data Volume:** calculate how much data is being produced per day, per month, and per year.
-- **Data Growth:** The future growth rates should also be counted.
+- **ปริมาณข้อมูล:** คำนวณว่ามีข้อมูลถูกสร้างขึ้นมากเท่าใดต่อวัน ต่อเดือน และต่อปี
+- **การเติบโตของข้อมูล:** ต้องคำนึงถึงอัตราการเติบโตในอนาคตด้วย
 
 ### **3. Network Bandwidth**
 
-Deduce bandwidth needs from figures like the amount of data being passed and RPS.
+ประเมินความต้องการ Bandwidth จากข้อมูล เช่น ปริมาณข้อมูลที่รับส่งและ RPS
 
-## Step 3: [High-Level Design](https://www.geeksforgeeks.org/system-design/what-is-high-level-design-learn-system-design/)
+## ขั้นตอนที่ 3: [High-Level Design](https://www.geeksforgeeks.org/system-design/what-is-high-level-design-learn-system-design/)
 
-### **1. Architectural Overview**
+### **1. ภาพรวมของสถาปัตยกรรม**
 
-- **Components:** Determine elements, including major components (e. g. Frameworks (front-end, Back-end, database, Caching layer, Load Balancer).
-- **Interactions:** Design a data flow or activity diagram at a logical level illustrating communication between objects.
+- **Components:** ระบุองค์ประกอบหลัก เช่น Front-end, Back-end, Database, Caching Layer และ Load Balancer
+- **Interactions:** ออกแบบ Data Flow หรือ Activity Diagram ในระดับ Logical เพื่อแสดงการสื่อสารระหว่าง Object ต่างๆ
 
-### **2. Design Principles**
+### **2. หลักการออกแบบ**
 
-- **Modularity:** It is necessary that the design be built with loosely coupled components.
-- [**Scalability:**](https://www.geeksforgeeks.org/system-design/what-is-scalability/) Sustainable design should also be done with an eye toward the future (e. g. This includes techniques such as load balancers, and horizontal scaling).
-- [**Reliability:**](https://www.geeksforgeeks.org/system-design/reliability-in-system-design/) Take the additional parts like those that will add to reliability. g. , redundancy, failover mechanisms).
+- **Modularity:** การออกแบบควรประกอบด้วย Component ที่เชื่อมโยงกันแบบ Loose Coupling
+- [**Scalability:**](https://www.geeksforgeeks.org/system-design/what-is-scalability/) ควรออกแบบโดยคำนึงถึงการรองรับการเติบโตในอนาคต เช่น การใช้ Load Balancer และ Horizontal Scaling
+- [**Reliability:**](https://www.geeksforgeeks.org/system-design/reliability-in-system-design/) เพิ่มองค์ประกอบที่ช่วยเพิ่ม Reliability เช่น Redundancy และ Failover Mechanism
 
-## Step 4: [Low-Level Design](https://www.geeksforgeeks.org/system-design/what-is-low-level-design-or-lld-learn-system-design/)
+## ขั้นตอนที่ 4: [Low-Level Design](https://www.geeksforgeeks.org/system-design/what-is-low-level-design-or-lld-learn-system-design/)
 
-- **Detailed Component Design:** Implement designs with greater depth for each component that has been included in the high-level design. Show diagrams and describe how each component works.
-- **Data Flow:** Explain how the data moves around the system. It should have information about processing and communication of data among components.
+- **การออกแบบ Component แบบละเอียด:** ออกแบบแต่ละ Component ที่อยู่ใน High-Level Design ให้ละเอียดมากขึ้น แสดง Diagram และอธิบายการทำงานของแต่ละ Component
+- **Data Flow:** อธิบายว่าข้อมูลเคลื่อนที่ภายในระบบอย่างไร โดยควรมีรายละเอียดเกี่ยวกับการประมวลผลและการสื่อสารข้อมูลระหว่าง Component
 
-## Step 5: [Database Design](https://www.geeksforgeeks.org/system-design/complete-reference-to-databases-in-designing-systems/)
+## ขั้นตอนที่ 5: [ออกแบบ Database](https://www.geeksforgeeks.org/system-design/complete-reference-to-databases-in-designing-systems/)
 
-### **1. Schema Design**
+### **1. ออกแบบ Schema**
 
-- **Entities and Relationships:** Identify the primary actors and the connections between them.
-- **Normalization:** Take care that the database does not have any redundancy, that is, the database schema should be properly normalized.
+- **Entities และ Relationships:** ระบุ Entity หลักและความสัมพันธ์ระหว่าง Entity เหล่านั้น
+- **Normalization:** ตรวจสอบว่า Database ไม่มีข้อมูลซ้ำซ้อน กล่าวคือ Database Schema ควรถูก Normalize อย่างเหมาะสม
 
-### **2. Storage Solutions**
+### **2. โซลูชันด้าน Storage**
 
-- **Select suitable DBMS:** Select a suitable technology for the database. g. , SQL, NoSQL.
-- Explain it with the help of use case scenario conditions as to why this one was chosen
+- **เลือก DBMS ที่เหมาะสม:** เลือกเทคโนโลยี Database ที่เหมาะสม เช่น SQL หรือ NoSQL
+- อธิบายโดยใช้เงื่อนไขของ Use Case ว่าเหตุใดจึงเลือกเทคโนโลยีนี้
 
-### **3. Indexes and Queries**
+### **3. Indexes และ Queries**
 
-- Create indices to improve searching.
-- Specify how they will make queries efficient and meet the performance requirements.
+- สร้าง Index เพื่อเพิ่มประสิทธิภาพในการค้นหา
+- ระบุว่าจะทำให้ Query มีประสิทธิภาพและตอบโจทย์ Performance Requirements ได้อย่างไร
 
-## Step 6: API Design
+## ขั้นตอนที่ 6: ออกแบบ API
 
-- **Endpoints:** Estimate the required public API endpoints for each significant functionality. Enforce RESTful design constraints (or other architectural ones).
-- **Request and Response Formats:** Select media types: Request and Response formats (e.g. JSON, XML). Include sample payloads.
-- **Error Handling:** Determine the error policies such as how the errors are going to be handled or communicated. g. , standard error codes).
+- **Endpoints:** ประเมิน Public API Endpoint ที่จำเป็นสำหรับแต่ละฟังก์ชันสำคัญ และบังคับใช้ข้อกำหนดของการออกแบบแบบ RESTful หรือรูปแบบสถาปัตยกรรมอื่นๆ
+- **รูปแบบ Request และ Response:** เลือก Media Type และรูปแบบ Request/Response เช่น JSON หรือ XML พร้อมตัวอย่าง Payload
+- **Error Handling:** กำหนดนโยบายการจัดการ Error เช่น จะจัดการหรือสื่อสาร Error อย่างไร เช่น ใช้ Standard Error Code
 
-## Step 7: Key Components of the system
+## ขั้นตอนที่ 7: องค์ประกอบสำคัญของระบบ
 
 - **Frontend:**
-    - UI/UX: Explain these in brief- the UI and UX of the product.
-    - Client-Side Logic: Describe the application logic on the client side (for example). g. , SPAs, and mobile apps).
+    - UI/UX: อธิบาย UI และ UX ของผลิตภัณฑ์โดยย่อ
+    - Client-Side Logic: อธิบาย Application Logic ฝั่ง Client เช่น SPA และ Mobile App
 - **Backend:**
-    - Business Logic: Explain what happens on the server side of the system in terms of business logic.
-    - Microservices: Microservices: If it is microservices, then briefly explain what it is and how it is implemented.
-- **Database:** See the database design section for details of schema and storage.
-- **Caching:** Explain various caching techniques to mitigate the workload and improve the response time of applications. g. , Redis, Memcached).
-- **Load Balancer:** Outline the benefits of using load balancers to handle traffic and uptime.
+    - Business Logic: อธิบายสิ่งที่เกิดขึ้นฝั่ง Server ของระบบในส่วนของ Business Logic
+    - Microservices: หากระบบใช้ Microservices ให้อธิบายโดยย่อว่าคืออะไรและนำมาใช้งานอย่างไร
+- **Database:** ดูรายละเอียดของ Schema และ Storage ได้ในส่วนการออกแบบ Database
+- **Caching:** อธิบายเทคนิค Caching ต่างๆ ที่ช่วยลด Workload และเพิ่มความเร็วในการตอบสนองของแอปพลิเคชัน เช่น Redis และ Memcached
+- **Load Balancer:** อธิบายประโยชน์ของการใช้ Load Balancer เพื่อจัดการ Traffic และ Uptime
 
-## Step 8: Problem Areas
+## ขั้นตอนที่ 8: ประเด็นปัญหาที่ต้องพิจารณา
 
 ### **1. Scalability**
 
-- **Horizontal vs Vertical Scaling:** Discuss how the system may be scaled up by adding machines or increasing power in the existing ones.
-- **Load Balancing:** Balance traffic with load balancers across nodes.
-- **Partitioning and Sharding** **Components:** Explain partitioning techniques for big data for large datasets.
+- **Horizontal vs Vertical Scaling:** อธิบายว่าระบบสามารถ Scale ได้อย่างไรด้วยการเพิ่มจำนวนเครื่อง หรือเพิ่มความสามารถของเครื่องที่มีอยู่
+- **Load Balancing:** กระจาย Traffic ระหว่าง Node ด้วย Load Balancer
+- **Partitioning และ Sharding Components:** อธิบายเทคนิค Partitioning สำหรับ Big Data หรือ Dataset ขนาดใหญ่
 
 ### **2. Reliability**
 
-- **Redundancy:** multiplication at different levels (e. g. >, user-oriented technologies (for example, RAID - the technology of the multiple instances, data replication).
-- **Failover Mechanisms:** Make the design for self-healing when one of the components malfunctions.
-- **Monitoring and Alerts:** Implementing timely detection and mitigation strategies through the use of monitoring and alerting tools.
+- **Redundancy:** เพิ่มความซ้ำซ้อนในระดับต่างๆ เช่น RAID, การใช้หลาย Instance และ Data Replication
+- **Failover Mechanisms:** ออกแบบให้ระบบสามารถฟื้นตัวได้เองเมื่อ Component ใด Component หนึ่งเกิดความผิดปกติ
+- **Monitoring และ Alerts:** ใช้เครื่องมือ Monitoring และ Alerting เพื่อให้สามารถตรวจจับและแก้ไขปัญหาได้อย่างทันท่วงที
 
-## **Practice Problems for System Design**
+## **โจทย์ฝึกทำ System Design**
 
-Below are some of the practice problems for system design:
+ด้านล่างคือตัวอย่างโจทย์สำหรับฝึก System Design:
 
 - [**System Design | URL Shortener (bit.ly, TinyURL, etc)**](https://www.geeksforgeeks.org/system-design/system-design-url-shortening-service/)
-- [**Design Restaurant Management System**](https://www.geeksforgeeks.org/system-design/design-restaurant-management-system-system-design/)
-- [**System Design Netflix | A Complete Architecture**](https://www.geeksforgeeks.org/system-design/system-design-netflix-a-complete-architecture/)
-- [**Designing Google Maps**](https://www.geeksforgeeks.org/system-design/designing-google-maps-system-design/)
-- [**System Design of the Uber App**](https://www.geeksforgeeks.org/system-design/system-design-of-uber-app-uber-system-architecture/)
+- [**ออกแบบ Restaurant Management System**](https://www.geeksforgeeks.org/system-design/design-restaurant-management-system-system-design/)
+- [**System Design Netflix | สถาปัตยกรรมฉบับสมบูรณ์**](https://www.geeksforgeeks.org/system-design/system-design-netflix-a-complete-architecture/)
+- [**ออกแบบ Google Maps**](https://www.geeksforgeeks.org/system-design/designing-google-maps-system-design/)
+- [**System Design ของแอป Uber**](https://www.geeksforgeeks.org/system-design/system-design-of-uber-app-uber-system-architecture/)
