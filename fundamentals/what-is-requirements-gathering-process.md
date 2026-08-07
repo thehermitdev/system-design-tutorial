@@ -1,97 +1,97 @@
-# **Requirements Gathering in System Design**
+# **การรวบรวมความต้องการในการออกแบบระบบ**
 
-**Requirements Gathering** is the process of gathering and recording what users and stakeholders want the system to do, so developers know exactly what to build and the final product meets everyone’s needs.
+**การรวบรวมความต้องการ (Requirements Gathering)** คือกระบวนการรวบรวมและบันทึกสิ่งที่ผู้ใช้และผู้มีส่วนได้ส่วนเสียต้องการให้ระบบทำ เพื่อให้นักพัฒนาทราบอย่างชัดเจนว่าต้องสร้างอะไร และทำให้ผลิตภัณฑ์สุดท้ายตอบสนองความต้องการของทุกฝ่าย
 
-<img src="https://media.geeksforgeeks.org/wp-content/uploads/20231228150056/Processes-of-Requirements-Gathering-in-Software-Development-660.jpg" alt="Processes-of-Requirements-Gathering-in-Software-Development" />
+<img src="https://media.geeksforgeeks.org/wp-content/uploads/20231228150056/Processes-of-Requirements-Gathering-in-Software-Development-660.jpg" alt="กระบวนการรวบรวมความต้องการในการพัฒนาซอฟต์แวร์" />
 
-## **Identify Stakeholders**
+## **ระบุผู้มีส่วนได้ส่วนเสีย**
 
-Effective requirements gathering begins with the identification of all stakeholders involved in or impacted by the system. Stakeholders are individuals or groups who have an interest in the project's outcome and can influence or be influenced by its results.
+การรวบรวมความต้องการอย่างมีประสิทธิภาพเริ่มต้นจากการระบุผู้มีส่วนได้ส่วนเสียทั้งหมดที่เกี่ยวข้องกับระบบหรือได้รับผลกระทบจากระบบ ผู้มีส่วนได้ส่วนเสียคือบุคคลหรือกลุ่มที่มีส่วนได้ส่วนเสียต่อผลลัพธ์ของโครงการ และสามารถมีอิทธิพลต่อหรือได้รับอิทธิพลจากผลลัพธ์เหล่านั้น
 
-### **Types of Stakeholders**
+### **ประเภทของผู้มีส่วนได้ส่วนเสีย**
 
-Stakeholders can be divided into several groups, each with a unique role in the project:
+ผู้มีส่วนได้ส่วนเสียสามารถแบ่งออกเป็นหลายกลุ่ม โดยแต่ละกลุ่มมีบทบาทเฉพาะในโครงการ:
 
-- **End-Users:** The users of the system are the individuals who will ultimately utilize it.
-- **Clients:** Entities that grant the project. They define high-level needs and business goals.
-- **Managers:** Project managers and team leaders who supervise the project's progress and ensure it meets organizational goals.
-- **Subject Matter Experts (SMEs):** Professionals with specialized knowledge related to the project. They provide insight on both functional and technical requirements.
-- **Developers:** Technical team members responsible for designing and building the system. Their grasp of technical limits and possibilities is crucial.
-- **Other Relevant Parties:** This includes regulatory bodies, external consultants, and support staff who have an interest in the project.
+- **ผู้ใช้ปลายทาง (End-Users):** ผู้ใช้ระบบคือบุคคลที่จะนำระบบไปใช้งานจริงในท้ายที่สุด
+- **ลูกค้า (Clients):** หน่วยงานหรือบุคคลที่มอบหมายโครงการ โดยเป็นผู้กำหนดความต้องการในระดับสูงและเป้าหมายทางธุรกิจ
+- **ผู้จัดการ (Managers):** ผู้จัดการโครงการและหัวหน้าทีมที่ดูแลความคืบหน้าของโครงการ และทำให้มั่นใจว่าโครงการเป็นไปตามเป้าหมายขององค์กร
+- **ผู้เชี่ยวชาญเฉพาะด้าน (Subject Matter Experts หรือ SMEs):** ผู้เชี่ยวชาญที่มีความรู้เฉพาะทางที่เกี่ยวข้องกับโครงการ โดยให้ข้อมูลเชิงลึกเกี่ยวกับทั้งความต้องการด้านฟังก์ชันและด้านเทคนิค
+- **นักพัฒนา (Developers):** สมาชิกทีมด้านเทคนิคที่รับผิดชอบการออกแบบและสร้างระบบ ความเข้าใจเกี่ยวกับข้อจำกัดและความเป็นไปได้ทางเทคนิคของพวกเขามีความสำคัญอย่างมาก
+- **ฝ่ายอื่นๆ ที่เกี่ยวข้อง (Other Relevant Parties):** รวมถึงหน่วยงานกำกับดูแล ที่ปรึกษาภายนอก และเจ้าหน้าที่สนับสนุนที่มีส่วนได้ส่วนเสียในโครงการ
 
-#### **Steps to Identify Stakeholders**
+#### **ขั้นตอนในการระบุผู้มีส่วนได้ส่วนเสีย**
 
-1. **Consult Experts:** To make sure no stakeholder is missed, get guidance from knowledgeable team members and subject matter experts.
-2. **Stakeholder Mapping:** To illustrate the connections and objectives of various stakeholders, make a stakeholder map or matrix.
-3. **Continuous Updates:** As the project develops and new stakeholders appear, update the stakeholder list on a regular basis.
+1. **ปรึกษาผู้เชี่ยวชาญ:** เพื่อให้มั่นใจว่าไม่มีผู้มีส่วนได้ส่วนเสียรายใดถูกมองข้าม ให้ขอคำแนะนำจากสมาชิกทีมที่มีความรู้และผู้เชี่ยวชาญเฉพาะด้าน
+2. **จัดทำแผนผังผู้มีส่วนได้ส่วนเสีย:** จัดทำแผนผังหรือเมทริกซ์ผู้มีส่วนได้ส่วนเสียเพื่อแสดงความเชื่อมโยงและเป้าหมายของผู้มีส่วนได้ส่วนเสียแต่ละฝ่าย
+3. **อัปเดตอย่างต่อเนื่อง:** เมื่อโครงการพัฒนาไปและมีผู้มีส่วนได้ส่วนเสียรายใหม่เกิดขึ้น ให้ปรับปรุงรายชื่อผู้มีส่วนได้ส่วนเสียอย่างสม่ำเสมอ
 
-## Define Objectives and Scope
+## กำหนดวัตถุประสงค์และขอบเขต
 
-Defining the **objectives and scope** is a fundamental step in the requirements gathering process. It sets clear expectations for what the system aims to achieve and outlines the boundaries within which the project will operate.
+การกำหนด **วัตถุประสงค์และขอบเขต** เป็นขั้นตอนพื้นฐานในกระบวนการรวบรวมความต้องการ โดยช่วยกำหนดความคาดหวังที่ชัดเจนว่าระบบมีเป้าหมายที่จะบรรลุอะไร และระบุขอบเขตที่โครงการจะดำเนินงานอยู่ภายใน
 
-### **Defining the Project Scope**
+### **การกำหนดขอบเขตของโครงการ**
 
-The project scope outlines the functionalities and features that the system will provide, as well as any constraints or limitations. Key elements to consider when defining the scope include:
+ขอบเขตของโครงการระบุฟังก์ชันและคุณสมบัติที่ระบบจะมี รวมถึงข้อจำกัดต่างๆ องค์ประกอบสำคัญที่ควรพิจารณาเมื่อกำหนดขอบเขต ได้แก่:
 
-- **Functionalities:** Specify the core functionalities and features that the system will deliver. This includes both [functional requirements](https://www.geeksforgeeks.org/system-design/what-are-functional-requirements-in-system-design-examples-definition/) (what the system should do) and [non-functional requirements](https://www.geeksforgeeks.org/software-engineering/non-functional-requirements-in-software-engineering/) (how the system should perform).
-- **Constraints:** Identify any constraints that may impact the project, such as budget limitations, time constraints,- technical limitations, and regulatory requirements.
-- **Limitations:** Clearly state what is out of scope for the project to manage stakeholder expectations and avoid scope creep.
+- **ฟังก์ชันการทำงาน:** ระบุฟังก์ชันหลักและคุณสมบัติที่ระบบจะมอบให้ ซึ่งรวมถึงทั้ง [ความต้องการเชิงฟังก์ชัน (Functional Requirements)](https://www.geeksforgeeks.org/system-design/what-are-functional-requirements-in-system-design-examples-definition/) (ระบบควรทำอะไร) และ [ความต้องการที่ไม่ใช่เชิงฟังก์ชัน (Non-Functional Requirements)](https://www.geeksforgeeks.org/software-engineering/non-functional-requirements-in-software-engineering/) (ระบบควรทำงานอย่างไร)
+- **ข้อจำกัด:** ระบุข้อจำกัดที่อาจส่งผลต่อโครงการ เช่น ข้อจำกัดด้านงบประมาณ ข้อจำกัดด้านเวลา,- ข้อจำกัดด้านเทคนิค และข้อกำหนดจากหน่วยงานกำกับดูแล
+- **ข้อจำกัดของขอบเขต:** ระบุอย่างชัดเจนว่าสิ่งใดอยู่นอกขอบเขตของโครงการ เพื่อจัดการความคาดหวังของผู้มีส่วนได้ส่วนเสียและหลีกเลี่ยงการขยายขอบเขตของโครงการโดยไม่ควบคุม
 
-## Conduct Interviews and Workshops
+## ดำเนินการสัมภาษณ์และเวิร์กช็อป
 
-Another essential phase in obtaining specific needs and insights involves communicating with stakeholders through workshops and interviews. These sessions facilitate direct communication and collaboration, ensuring that all perspectives are considered.
+อีกขั้นตอนสำคัญในการรวบรวมความต้องการและข้อมูลเชิงลึกที่เฉพาะเจาะจงคือการสื่อสารกับผู้มีส่วนได้ส่วนเสียผ่านเวิร์กช็อปและการสัมภาษณ์ กิจกรรมเหล่านี้ช่วยให้เกิดการสื่อสารและการทำงานร่วมกันโดยตรง ทำให้มั่นใจว่ามุมมองของทุกฝ่ายได้รับการพิจารณา
 
-- **Direct Engagement:** Interviews and workshops allow for direct interaction with stakeholders, providing deeper insights into their needs and expectations.
-- **Diverse Perspectives:** These sessions bring together various stakeholders, fostering a collaborative environment that encourages the sharing and development of ideas.
-- **Open-Ended Questions:** Utilizing open-ended questions helps stakeholders express their thoughts freely, leading to more comprehensive and detailed requirements.
+- **การมีส่วนร่วมโดยตรง:** การสัมภาษณ์และเวิร์กช็อปช่วยให้สามารถโต้ตอบกับผู้มีส่วนได้ส่วนเสียโดยตรง ทำให้เข้าใจความต้องการและความคาดหวังของพวกเขาได้ลึกซึ้งยิ่งขึ้น
+- **มุมมองที่หลากหลาย:** กิจกรรมเหล่านี้นำผู้มีส่วนได้ส่วนเสียหลายฝ่ายมารวมกัน สร้างสภาพแวดล้อมแห่งการทำงานร่วมกันที่ส่งเสริมการแบ่งปันและพัฒนาแนวคิด
+- **คำถามปลายเปิด:** การใช้คำถามปลายเปิดช่วยให้ผู้มีส่วนได้ส่วนเสียสามารถแสดงความคิดเห็นได้อย่างอิสระ ทำให้ได้ความต้องการที่ครอบคลุมและมีรายละเอียดมากขึ้น
 
-## Document Requirements
+## จัดทำเอกสารความต้องการ
 
-Documenting requirements systematically is essential for ensuring clarity and precision in what the system is expected to deliver. In this process, the requirements and expectations of stakeholders are captured and expressed utilizing a variety of ways.
+การจัดทำเอกสารความต้องการอย่างเป็นระบบเป็นสิ่งสำคัญเพื่อให้มั่นใจว่าสิ่งที่ระบบต้องส่งมอบมีความชัดเจนและแม่นยำ ในกระบวนการนี้ ความต้องการและความคาดหวังของผู้มีส่วนได้ส่วนเสียจะถูกบันทึกและถ่ายทอดออกมาด้วยวิธีการที่หลากหลาย
 
-- **Functional Requirements Specifications (FRS):** Detail the specific behaviors and functions the system must support, providing a clear guide for what needs to be developed and implemented.
-- **Non-Functional Requirements Specifications (NFRS):** It addresses system attributes such as performance, security, and usability, ensuring that the system not only functions correctly but also meets quality standards.
-- **Clarity and Precision:** Ensure that all documented requirements are clear, concise, and unambiguous to prevent misunderstandings and provide a solid foundation for system design and development.
+- **ข้อกำหนดความต้องการเชิงฟังก์ชัน (Functional Requirements Specifications หรือ FRS):** อธิบายพฤติกรรมและฟังก์ชันเฉพาะที่ระบบต้องรองรับอย่างละเอียด เพื่อเป็นแนวทางที่ชัดเจนว่าสิ่งใดจำเป็นต้องได้รับการพัฒนาและนำไปใช้งาน
+- **ข้อกำหนดความต้องการที่ไม่ใช่เชิงฟังก์ชัน (Non-Functional Requirements Specifications หรือ NFRS):** ครอบคลุมคุณลักษณะของระบบ เช่น ประสิทธิภาพ ความปลอดภัย และความสามารถในการใช้งาน เพื่อให้มั่นใจว่าระบบไม่เพียงทำงานได้อย่างถูกต้อง แต่ยังเป็นไปตามมาตรฐานด้านคุณภาพด้วย
+- **ความชัดเจนและความแม่นยำ:** ทำให้มั่นใจว่าความต้องการทั้งหมดที่จัดทำเป็นเอกสารมีความชัดเจน กระชับ และไม่กำกวม เพื่อป้องกันความเข้าใจผิดและเป็นรากฐานที่มั่นคงสำหรับการออกแบบและพัฒนาระบบ
 
-> *Checkout [Functional vs Non-Functional](https://www.geeksforgeeks.org/software-engineering/functional-vs-non-functional-requirements/) in more details.*
+> *อ่านรายละเอียดเพิ่มเติมเกี่ยวกับ [Functional vs Non-Functional](https://www.geeksforgeeks.org/software-engineering/functional-vs-non-functional-requirements/)*
 
-## Verify & Validate Requirements
+## ตรวจสอบและยืนยันความต้องการ
 
-Validating requirements with stakeholders ensures the documented needs accurately reflect their expectations. This involves reviewing requirements together, resolving any conflicts or ambiguities through discussion, and reaching consensus. This process helps improve requirements and ensures the final solution meets project goals.
+การยืนยันความต้องการร่วมกับผู้มีส่วนได้ส่วนเสียช่วยให้มั่นใจว่าความต้องการที่จัดทำเป็นเอกสารสะท้อนถึงความคาดหวังของพวกเขาได้อย่างถูกต้อง กระบวนการนี้ประกอบด้วยการตรวจสอบความต้องการร่วมกัน การแก้ไขข้อขัดแย้งหรือความกำกวมผ่านการพูดคุย และการหาข้อสรุปร่วมกัน กระบวนการนี้ช่วยปรับปรุงความต้องการและทำให้มั่นใจว่าโซลูชันสุดท้ายตอบโจทย์เป้าหมายของโครงการ
 
-### **Iterate and Refine**
+### **ทำซ้ำและปรับปรุง**
 
-Iterating and refining requirements is essential for adapting to feedback and changes. This ensures that the project remains in line with the objectives and expectations of the stakeholders.
+การทบทวนและปรับปรุงความต้องการอย่างต่อเนื่องเป็นสิ่งสำคัญในการปรับตัวตามข้อเสนอแนะและการเปลี่ยนแปลง ซึ่งช่วยให้โครงการยังคงสอดคล้องกับวัตถุประสงค์และความคาดหวังของผู้มีส่วนได้ส่วนเสีย
 
-- **Incorporate Feedback:** Regularly update requirements based on stakeholder feedback to keep them relevant and accurate.
-- **Adapt to Changes:** Stay flexible to adjust to new insights and shifting priorities, maintaining project relevance.
+- **นำข้อเสนอแนะมาปรับใช้:** ปรับปรุงความต้องการอย่างสม่ำเสมอตามข้อเสนอแนะจากผู้มีส่วนได้ส่วนเสีย เพื่อให้ความต้องการยังคงเกี่ยวข้องและถูกต้อง
+- **ปรับตัวต่อการเปลี่ยนแปลง:** มีความยืดหยุ่นในการปรับตัวตามข้อมูลเชิงลึกใหม่และลำดับความสำคัญที่เปลี่ยนแปลง เพื่อให้โครงการยังคงมีความเหมาะสม
 
-### **Manage Requirements Changes**
+### **จัดการการเปลี่ยนแปลงความต้องการ**
 
-Establishing a process for managing requirements changes is important throughout the project lifecycle. It ensures that any modifications are systematically evaluated, approved, and tracked to maintain project alignment and control scope creep.
+การกำหนดกระบวนการสำหรับจัดการการเปลี่ยนแปลงความต้องการมีความสำคัญตลอดวงจรชีวิตของโครงการ โดยช่วยให้มั่นใจว่าการเปลี่ยนแปลงใดๆ ได้รับการประเมิน อนุมัติ และติดตามอย่างเป็นระบบ เพื่อให้โครงการยังคงสอดคล้องกับเป้าหมายและควบคุมการขยายขอบเขตของโครงการโดยไม่ตั้งใจ
 
-- **Change Control Mechanism:** Implement a structured approach to assess the impact of proposed changes, ensuring they align with project goals and are formally approved before implementation.
-- **Documentation and Tracking:** Maintain thorough documentation of all changes and their status, facilitating transparency and accountability throughout the project lifecycle.
-- **Stakeholder Communication:** Regularly update **stakeholders** on changes to requirements, ensuring they are informed and their feedback is considered in the decision-making process.
+- **กลไกควบคุมการเปลี่ยนแปลง:** ใช้แนวทางที่มีโครงสร้างในการประเมินผลกระทบของการเปลี่ยนแปลงที่เสนอ เพื่อให้มั่นใจว่าสอดคล้องกับเป้าหมายของโครงการและได้รับการอนุมัติอย่างเป็นทางการก่อนนำไปใช้งาน
+- **การจัดทำเอกสารและการติดตาม:** จัดเก็บเอกสารของการเปลี่ยนแปลงทั้งหมดและสถานะของแต่ละรายการอย่างครบถ้วน เพื่อสนับสนุนความโปร่งใสและความรับผิดชอบตลอดวงจรชีวิตของโครงการ
+- **การสื่อสารกับผู้มีส่วนได้ส่วนเสีย:** อัปเดต **ผู้มีส่วนได้ส่วนเสีย** เกี่ยวกับการเปลี่ยนแปลงความต้องการอย่างสม่ำเสมอ เพื่อให้มั่นใจว่าพวกเขาได้รับข้อมูล และข้อเสนอแนะของพวกเขาถูกนำมาพิจารณาในกระบวนการตัดสินใจ
 
-### **Review and Approval**
+### **การตรวจสอบและอนุมัติ**
 
-Reviewing and finalizing requirements documentation with stakeholders is pourposely done to ensure accuracy and agreement before proceeding to subsequent project phases.
+การตรวจสอบและสรุปเอกสารความต้องการร่วมกับผู้มีส่วนได้ส่วนเสียมีจุดประสงค์เพื่อให้มั่นใจถึงความถูกต้องและความเห็นพ้องกันก่อนดำเนินไปยังขั้นตอนถัดไปของโครงการ
 
-- **Stakeholder Review Sessions:** Conduct sessions with stakeholders to review the requirements, ensuring they accurately reflect stakeholder needs and expectations.
-- **Formal Approval Process:** To validate the project's direction, get stakeholders to formally sign off, certifying to their comprehension and agreement with the requirements.
-- **Addressing Feedback:** Incorporate any feedback or concerns raised during the review process, refining requirements to ensure they are comprehensive and clear.
+- **การประชุมตรวจสอบร่วมกับผู้มีส่วนได้ส่วนเสีย:** จัดการประชุมร่วมกับผู้มีส่วนได้ส่วนเสียเพื่อตรวจสอบความต้องการ และทำให้มั่นใจว่าความต้องการเหล่านั้นสะท้อนถึงความต้องการและความคาดหวังของผู้มีส่วนได้ส่วนเสียได้อย่างถูกต้อง
+- **กระบวนการอนุมัติอย่างเป็นทางการ:** เพื่อยืนยันทิศทางของโครงการ ให้ผู้มีส่วนได้ส่วนเสียลงนามอนุมัติอย่างเป็นทางการ เพื่อยืนยันว่าพวกเขาเข้าใจและเห็นด้วยกับความต้องการ
+- **การจัดการข้อเสนอแนะ:** นำข้อเสนอแนะหรือข้อกังวลที่เกิดขึ้นระหว่างกระบวนการตรวจสอบมาปรับใช้ โดยปรับปรุงความต้องการให้ครอบคลุมและชัดเจน
 
-## Prioritize Requirements
+## จัดลำดับความสำคัญของความต้องการ
 
-Prioritize the requirements based on their importance to the project goals and constraints. This step helps in creating a roadmap for development, guiding the team on which features to prioritize. Prioritization is essential, especially when resources and time are limited.
+จัดลำดับความสำคัญของความต้องการตามความสำคัญต่อเป้าหมายและข้อจำกัดของโครงการ ขั้นตอนนี้ช่วยสร้าง Roadmap สำหรับการพัฒนา และช่วยชี้แนะแก่ทีมว่าควรให้ความสำคัญกับฟีเจอร์ใดก่อน การจัดลำดับความสำคัญมีความจำเป็นอย่างยิ่ง โดยเฉพาะเมื่อทรัพยากรและเวลามีจำกัด
 
-## **Benefits of Requirements Gathering Process**
+## **ประโยชน์ของกระบวนการรวบรวมความต้องการ**
 
-1. **Stakeholder Alignment:** Early involvement ensures the product meets their needs, boosting satisfaction and project success.
-2. **Clear Scope:** Defines objectives and constraints, preventing misunderstandings and scope creep.
-3. **Risk Identification:** Detects risks and constraints early, enabling proactive management.
-4. **Better Communication:** Fosters collaboration and clear communication among all parties.
-5. **Resource Efficiency:** Prioritizes requirements to allocate resources effectively and deliver key features on time and budget.
+1. **ความสอดคล้องของผู้มีส่วนได้ส่วนเสีย:** การมีส่วนร่วมตั้งแต่ระยะแรกช่วยให้ผลิตภัณฑ์ตอบสนองความต้องการของพวกเขา เพิ่มความพึงพอใจและโอกาสความสำเร็จของโครงการ
+2. **ขอบเขตที่ชัดเจน:** กำหนดวัตถุประสงค์และข้อจำกัด ช่วยป้องกันความเข้าใจผิดและการขยายขอบเขตของโครงการโดยไม่ควบคุม
+3. **การระบุความเสี่ยง:** ตรวจพบความเสี่ยงและข้อจำกัดตั้งแต่เนิ่นๆ ทำให้สามารถจัดการเชิงรุกได้
+4. **การสื่อสารที่ดีขึ้น:** ส่งเสริมการทำงานร่วมกันและการสื่อสารที่ชัดเจนระหว่างทุกฝ่าย
+5. **ประสิทธิภาพในการใช้ทรัพยากร:** จัดลำดับความสำคัญของความต้องการเพื่อจัดสรรทรัพยากรอย่างมีประสิทธิภาพ และส่งมอบฟีเจอร์สำคัญได้ตามเวลาและงบประมาณ
 
-Effective requirements gathering lays the groundwork for successful system design and development. It ensures that the final system meets stakeholder needs, expectations, and quality standards. This process requires active engagement, communication, and ongoing refinement to achieve its goals.
+การรวบรวมความต้องการอย่างมีประสิทธิภาพเป็นรากฐานของการออกแบบและพัฒนาระบบที่ประสบความสำเร็จ โดยทำให้มั่นใจว่าระบบสุดท้ายตอบสนองความต้องการ ความคาดหวัง และมาตรฐานด้านคุณภาพของผู้มีส่วนได้ส่วนเสีย กระบวนการนี้ต้องอาศัยการมีส่วนร่วม การสื่อสาร และการปรับปรุงอย่างต่อเนื่องเพื่อให้บรรลุเป้าหมาย
