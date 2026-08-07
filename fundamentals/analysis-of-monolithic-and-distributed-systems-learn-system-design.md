@@ -1,182 +1,182 @@
-# **Analysis of Monolithic and Distributed Systems - Learn System Design**
+# **การวิเคราะห์ระบบแบบ Monolithic และ Distributed - เรียนรู้การออกแบบระบบ**
 
-System Analysis and Design is the process of understanding business requirements and creating a structured solution to meet those needs. System analysis focuses on identifying problems and gathering requirements, while system design focuses on building the architecture and components of the system.
+การวิเคราะห์และออกแบบระบบ (System Analysis and Design) คือกระบวนการทำความเข้าใจความต้องการทางธุรกิจ และสร้างโซลูชันที่มีโครงสร้างเพื่อให้ตอบโจทย์ความต้องการเหล่านั้น การวิเคราะห์ระบบมุ่งเน้นไปที่การระบุปัญหาและรวบรวมความต้องการ ส่วนการออกแบบระบบมุ่งเน้นไปที่การสร้างสถาปัตยกรรมและองค์ประกอบต่างๆ ของระบบ
 
-- Helps identify system requirements and problems before development.
-- Improves system structure, performance, and component interaction.
-- Converts requirements into an efficient and scalable system design.
+- ช่วยระบุความต้องการและปัญหาของระบบก่อนเริ่มพัฒนา
+- ช่วยปรับปรุงโครงสร้าง ประสิทธิภาพ และการทำงานร่วมกันระหว่างองค์ประกอบของระบบ
+- แปลงความต้องการให้เป็นการออกแบบระบบที่มีประสิทธิภาพและรองรับการขยายตัว
 
-## **Types of Systems in System Analysis and Design**
+## **ประเภทของระบบในการวิเคราะห์และออกแบบระบบ**
 
-Now that we understand system analysis and how it differs from system design, it is important to explore the major types of systems used in system design. These systems define how applications are structured and deployed in real-world scenarios.
+เมื่อเราเข้าใจการวิเคราะห์ระบบและความแตกต่างระหว่างการวิเคราะห์ระบบกับการออกแบบระบบแล้ว สิ่งสำคัญต่อไปคือการทำความรู้จักประเภทหลักของระบบที่ใช้ในการออกแบบระบบ ระบบเหล่านี้เป็นตัวกำหนดว่าแอปพลิเคชันจะถูกจัดโครงสร้างและนำไปใช้งานจริงอย่างไร
 
-Generally, systems can be categorized into two main types:
+โดยทั่วไป ระบบสามารถแบ่งออกได้เป็น 2 ประเภทหลัก ได้แก่:
 
-- Monolithic Systems
-- Distributed Systems
+- ระบบแบบ Monolithic
+- ระบบแบบ Distributed
 
-## **Monolithic Systems**
+## **ระบบแบบ Monolithic**
 
-A monolithic application is a software system where all functionalities exist within a single codebase. It is built as one large, unified block, with tightly integrated components that are developed and deployed together.
+แอปพลิเคชันแบบ Monolithic คือระบบซอฟต์แวร์ที่ฟังก์ชันทั้งหมดอยู่ภายใน Codebase เดียว ระบบถูกสร้างขึ้นเป็นก้อนขนาดใหญ่หนึ่งก้อน โดยองค์ประกอบต่างๆ เชื่อมโยงกันอย่างแน่นหนา และถูกพัฒนาและ Deploy ไปพร้อมกัน
 
-- **Single Deployment:** All features are packaged and deployed as one unit.
-- **Tightly Coupled Components:** Changes in one part can affect the entire system.
+- **Deploy เป็นหน่วยเดียว:** ฟีเจอร์ทั้งหมดถูกจัดรวมและ Deploy เป็นหน่วยเดียวกัน
+- **องค์ประกอบเชื่อมโยงกันอย่างแน่นหนา:** การเปลี่ยนแปลงในส่วนหนึ่งอาจส่งผลกระทบต่อทั้งระบบ
 
-### **Monolithic Architecture**
+### **สถาปัตยกรรมแบบ Monolithic**
 
-The Monolithic system architecture can be visualized by considering three sections or three layers:
+สถาปัตยกรรมของระบบแบบ Monolithic สามารถมองออกเป็น 3 ส่วน หรือ 3 Layer ดังนี้:
 
-- **Client Tier or User Layer or Presentation Layer:** It is the closest layer to the user and hence it can be either a webpage or a web application where the user gets things done. It takes input lead from the user, interacts with the server, and displays the user result. Hence we call it a front-end layer.
-- **Middle Tier or Service Layer:** It compromises all the logic behind the application and is there in the application server. The application server includes the business logic, receives requests from the client, acts on them, and correspondingly stores the data.
-- **Data Tier or Persistence Layer:** It includes a data persistence mechanism(DB) and communication with other applications. It includes databases, message queues, etc. Database server will be used by application server for the persistence of data. ****
+- **Client Tier หรือ User Layer หรือ Presentation Layer:** เป็น Layer ที่อยู่ใกล้ผู้ใช้มากที่สุด จึงอาจเป็นหน้าเว็บหรือเว็บแอปพลิเคชันที่ผู้ใช้ใช้ทำงานต่างๆ Layer นี้รับข้อมูลจากผู้ใช้ ติดต่อกับเซิร์ฟเวอร์ และแสดงผลลัพธ์ให้ผู้ใช้ ดังนั้นเราจึงเรียกว่า Front-end Layer
+- **Middle Tier หรือ Service Layer:** ประกอบด้วย Logic ทั้งหมดที่อยู่เบื้องหลังแอปพลิเคชัน และอยู่ภายใน Application Server โดย Application Server จะมี Business Logic รับคำขอจาก Client ประมวลผลคำขอเหล่านั้น และจัดเก็บข้อมูลตามความเหมาะสม
+- **Data Tier หรือ Persistence Layer:** ประกอบด้วยกลไกสำหรับจัดเก็บข้อมูลแบบถาวร (DB) และการสื่อสารกับแอปพลิเคชันอื่นๆ เช่น Database, Message Queue เป็นต้น โดย Database Server จะถูกใช้โดย Application Server สำหรับการจัดเก็บข้อมูลแบบถาวร ****
 
 <picture>
   <img src="https://media.geeksforgeeks.org/wp-content/uploads/20260330174407531257/monolithic_archietecture-660.webp" alt="Monolithic" />
   <cite>Monolithic</cite>
 </picture>
 
-### **Advantages**
+### **ข้อดี**
 
-Monolithic architecture is simple to build and manage, making it suitable for small to medium-sized applications.
+สถาปัตยกรรมแบบ Monolithic สร้างและจัดการได้ง่าย จึงเหมาะกับแอปพลิเคชันขนาดเล็กถึงขนาดกลาง
 
-- It follows a traditional approach and is easier to develop initially since all components are part of a single codebase.
-- All components exist in one repository, so the entire application can be deployed as a single unit.
-- Due to tight integration, end-to-end testing is straightforward and easier to perform using testing tools.
+- เป็นแนวทางแบบดั้งเดิมและพัฒนาได้ง่ายกว่าในช่วงเริ่มต้น เนื่องจากองค์ประกอบทั้งหมดอยู่ภายใน Codebase เดียวกัน
+- องค์ประกอบทั้งหมดอยู่ใน Repository เดียว จึงสามารถ Deploy ทั้งแอปพลิเคชันเป็นหน่วยเดียวได้
+- เนื่องจากองค์ประกอบต่างๆ เชื่อมโยงกันอย่างแน่นหนา การทดสอบแบบ End-to-End จึงตรงไปตรงมาและทำได้ง่ายด้วยเครื่องมือทดสอบ
 
-> ***Tip:** Monolithic architecture is commonly used by organizations in the early stages because it has fewer cross-cutting concerns such as caching, logging, and handling. Since everything is managed in a single system, it becomes easier to develop, debug, and maintain initially.*
+> ***เคล็ดลับ:** สถาปัตยกรรมแบบ Monolithic มักถูกใช้งานโดยองค์กรในช่วงเริ่มต้น เนื่องจากมี Cross-cutting Concerns เช่น Caching, Logging และ Handling น้อยกว่า เพราะทุกอย่างถูกจัดการอยู่ภายในระบบเดียว จึงทำให้การพัฒนา Debug และดูแลรักษาในช่วงแรกทำได้ง่ายกว่า*
 
-### **Disadvantages**
+### **ข้อเสีย**
 
-Monolithic architecture can become difficult to manage and scale as the application grows in size and complexity.
+สถาปัตยกรรมแบบ Monolithic อาจจัดการและขยายระบบได้ยากขึ้น เมื่อแอปพลิเคชันมีขนาดใหญ่และซับซ้อนมากขึ้น
 
-- The codebase is stored in a single repository, which can make it difficult to understand and maintain over time.
-- Any changes in the codebase require complete redeployment of the entire application.
-- Less reusable, as components are tightly coupled within the system.
-- Less scalable because different components may have different scalability requirements, but must be scaled together.
+- Codebase ถูกเก็บไว้ใน Repository เดียว ซึ่งอาจทำให้ทำความเข้าใจและดูแลรักษาได้ยากขึ้นเมื่อเวลาผ่านไป
+- การเปลี่ยนแปลงใดๆ ใน Codebase จำเป็นต้อง Deploy ทั้งแอปพลิเคชันใหม่ทั้งหมด
+- นำกลับมาใช้ซ้ำได้น้อยกว่า เนื่องจากองค์ประกอบต่างๆ เชื่อมโยงกันอย่างแน่นหนาภายในระบบ
+- รองรับการขยายระบบได้น้อยกว่า เพราะแต่ละองค์ประกอบอาจมีความต้องการด้านการ Scale แตกต่างกัน แต่จำเป็นต้อง Scale ไปพร้อมกัน
 
 ## **Microservices**
 
-Microservices is an architectural style in which an application is built as a collection of small, independent services. Each service handles a specific functionality and communicates with other services using lightweight protocols such as HTTP.
+Microservices คือรูปแบบสถาปัตยกรรมที่สร้างแอปพลิเคชันขึ้นจากกลุ่ม Service ขนาดเล็กที่ทำงานแยกจากกัน แต่ละ Service รับผิดชอบฟังก์ชันเฉพาะ และสื่อสารกับ Service อื่นผ่าน Protocol ที่มีน้ำหนักเบา เช่น HTTP
 
-### **Microservices Architecture**
+### **สถาปัตยกรรมแบบ Microservices**
 
-The Microservice architecture has a significant impact on the relationship between the application and the database.
+สถาปัตยกรรมแบบ Microservices ส่งผลอย่างมากต่อความสัมพันธ์ระหว่างแอปพลิเคชันกับ Database
 
-- Instead of sharing a single database with other microservices, each microservice has its own database.
-- It often results in duplication of some data, but having a database per microservice is essential if you want to benefit from this architecture, as it ensures loose coupling.
-- Another advantage of having a separate database per microservice is that each microservice can use the type of database best suited for its needs.
-- Each service offers a secure module boundary so that different services can be written in different programming languages.
-- There are many patterns involved in microservice architecture like service discovery & registry, caching, API gateway & communication, observability, security, etc.
+- แทนที่จะใช้ Database เดียวร่วมกับ Microservice อื่น แต่ละ Microservice จะมี Database ของตัวเอง
+- วิธีนี้มักทำให้ข้อมูลบางส่วนซ้ำกัน แต่การมี Database แยกสำหรับแต่ละ Microservice เป็นสิ่งสำคัญหากต้องการใช้ประโยชน์จากสถาปัตยกรรมนี้ เพราะช่วยให้แต่ละส่วนเชื่อมโยงกันแบบหลวม (Loose Coupling)
+- ข้อดีอีกประการของการมี Database แยกสำหรับแต่ละ Microservice คือแต่ละ Microservice สามารถเลือกใช้ประเภท Database ที่เหมาะสมกับความต้องการของตัวเองได้
+- แต่ละ Service มีขอบเขตของ Module ที่ปลอดภัย ทำให้ Service ต่างๆ สามารถพัฒนาด้วยภาษาโปรแกรมที่แตกต่างกันได้
+- สถาปัตยกรรมแบบ Microservices มี Pattern หลายรูปแบบ เช่น Service Discovery & Registry, Caching, API Gateway & Communication, Observability, Security เป็นต้น
 
 <picture>
   <img src="https://media.geeksforgeeks.org/wp-content/uploads/20260330174407384509/microservices_archietecture-660.webp" alt="Microservices" />
   <cite>Microservices</cite>
 </picture>
 
-### **Advantages**
+### **ข้อดี**
 
-Microservices architecture improves scalability, flexibility, and system resilience by dividing the application into independent services.
+สถาปัตยกรรมแบบ Microservices ช่วยเพิ่มความสามารถในการ Scale ความยืดหยุ่น และความทนทานของระบบ ด้วยการแบ่งแอปพลิเคชันออกเป็น Service ที่ทำงานแยกจากกัน
 
-- **Scalability:** Each service can scale independently, helping optimize resource utilization and reduce infrastructure costs.
-- **Flexibility:** Services can be developed, deployed, and updated independently, allowing teams to work on different parts simultaneously.
-- **Resilience:** Failure of one service does not impact others, making the overall system more reliable.
-- **Technology Heterogeneity:** Different services can use different technologies and programming languages, as long as they can communicate effectively.
+- **Scalability:** แต่ละ Service สามารถ Scale ได้อย่างอิสระ ช่วยให้ใช้ทรัพยากรได้อย่างเหมาะสมและลดต้นทุนด้าน Infrastructure
+- **Flexibility:** แต่ละ Service สามารถพัฒนา Deploy และอัปเดตได้อย่างอิสระ ทำให้แต่ละทีมสามารถทำงานในส่วนต่างๆ พร้อมกันได้
+- **Resilience:** ความล้มเหลวของ Service หนึ่งไม่ส่งผลกระทบต่อ Service อื่น ทำให้ระบบโดยรวมมีความน่าเชื่อถือมากขึ้น
+- **Technology Heterogeneity:** แต่ละ Service สามารถใช้เทคโนโลยีและภาษาโปรแกรมที่แตกต่างกันได้ ตราบใดที่ยังสามารถสื่อสารกันได้อย่างมีประสิทธิภาพ
 
-### **Disadvantages**
+### **ข้อเสีย**
 
-Despite its benefits, microservices architecture introduces complexity and operational challenges.
+แม้จะมีข้อดี แต่สถาปัตยกรรมแบบ Microservices ก็เพิ่มความซับซ้อนและความท้าทายด้านการปฏิบัติการ
 
-- **Complexity:** Managing a large number of small services increases development, deployment, and maintenance complexity.
-- **Increased overhead:** More network communication and data consistency handling are required between services.
-- **Testing complexity:** Ensuring all independent services work together correctly makes testing more difficult.
-- **Distributed systems:** Being a distributed system introduces challenges in monitoring, debugging, and management.
+- **Complexity:** การจัดการ Service ขนาดเล็กจำนวนมากเพิ่มความซับซ้อนในการพัฒนา Deploy และดูแลรักษา
+- **Increased overhead:** ต้องมีการสื่อสารผ่านเครือข่ายและการจัดการความสอดคล้องของข้อมูลระหว่าง Service มากขึ้น
+- **Testing complexity:** การตรวจสอบให้แน่ใจว่า Service ที่ทำงานแยกจากกันทั้งหมดสามารถทำงานร่วมกันได้อย่างถูกต้อง ทำให้การทดสอบซับซ้อนมากขึ้น
+- **Distributed systems:** การเป็นระบบแบบ Distributed ทำให้เกิดความท้าทายในการ Monitoring, Debugging และการจัดการระบบ
 
-## **Monolithic Vs Microservices architecture**
+## **สถาปัตยกรรมแบบ Monolithic เทียบกับ Microservices**
 
-This comparison highlights the key differences between **monolithic and microservices architectures** in terms of structure, scalability, deployment, and maintainability.
+การเปรียบเทียบนี้แสดงให้เห็นความแตกต่างที่สำคัญระหว่าง **สถาปัตยกรรมแบบ Monolithic และ Microservices** ในด้านโครงสร้าง ความสามารถในการ Scale การ Deploy และการดูแลรักษา
 
 <picture>
   <img src="https://media.geeksforgeeks.org/wp-content/uploads/20260330174406980628/420851598-660.webp" alt="Monolithic VS Microservies" />
   <cite>Microservices</cite>
 </picture>
 
-| **Monolithic Architecture** | **Microservice Architecture** |
+| **สถาปัตยกรรมแบบ Monolithic** | **สถาปัตยกรรมแบบ Microservice** |
 | --- | --- |
-| Single-tier architecture | Multi-tier architecture |
-| Built as one large application with tightly coupled components | Composed of small, loosely coupled services components |
-| Deployed as a single unit | Individual services can be deployed independently |
-| Horizontal scaling can be challenging | Easier to scale horizontally |
-| Development is simpler initially | Development is more complex due to multiple services |
-| Technology stack choices are usually limited | Freedom to choose the best technology for each service |
-| Entire application may fail if a part fails | Individual services can fail without affecting others |
-| Easier to maintain due to its simplicity | Requires more effort to manage multiple services |
-| Less flexible as all components are tightly coupled | More flexible as components can be developed, deployed, and scaled independently |
-| Communication between components is faster | Communication may be slower due to network calls |
+| สถาปัตยกรรมแบบ Single-tier | สถาปัตยกรรมแบบ Multi-tier |
+| สร้างเป็นแอปพลิเคชันขนาดใหญ่หนึ่งระบบ โดยองค์ประกอบเชื่อมโยงกันอย่างแน่นหนา | ประกอบด้วย Service ขนาดเล็กที่เชื่อมโยงกันแบบหลวม |
+| Deploy เป็นหน่วยเดียว | แต่ละ Service สามารถ Deploy ได้อย่างอิสระ |
+| การทำ Horizontal Scaling อาจทำได้ยาก | ทำ Horizontal Scaling ได้ง่ายกว่า |
+| การพัฒนาในช่วงเริ่มต้นทำได้ง่ายกว่า | การพัฒนาซับซ้อนกว่าเนื่องจากมีหลาย Service |
+| ตัวเลือก Technology Stack มักมีข้อจำกัด | สามารถเลือกเทคโนโลยีที่เหมาะสมที่สุดสำหรับแต่ละ Service ได้อย่างอิสระ |
+| ทั้งแอปพลิเคชันอาจล้มเหลวหากส่วนใดส่วนหนึ่งล้มเหลว | แต่ละ Service สามารถล้มเหลวได้โดยไม่ส่งผลกระทบต่อ Service อื่น |
+| ดูแลรักษาได้ง่ายกว่าเนื่องจากมีความเรียบง่าย | ต้องใช้ความพยายามมากขึ้นในการจัดการ Service หลายตัว |
+| มีความยืดหยุ่นน้อยกว่า เนื่องจากองค์ประกอบทั้งหมดเชื่อมโยงกันอย่างแน่นหนา | มีความยืดหยุ่นมากกว่า เพราะแต่ละองค์ประกอบสามารถพัฒนา Deploy และ Scale ได้อย่างอิสระ |
+| การสื่อสารระหว่างองค์ประกอบทำได้เร็วกว่า | การสื่อสารอาจช้ากว่าเนื่องจากต้องเรียกใช้งานผ่านเครือข่าย |
 
-## **Distributed Systems Vs Microservices**
+## **Distributed Systems เทียบกับ Microservices**
 
-When adopting a Microservices architecture or migrating from a Monolithic architecture, it’s not feasible to handle all components on a single system—doing so would contradict the modular nature of Microservices. This is precisely where Distributed Systems come into play.
+เมื่อเลือกใช้สถาปัตยกรรมแบบ Microservices หรือย้ายจากสถาปัตยกรรมแบบ Monolithic เราไม่สามารถจัดการองค์ประกอบทั้งหมดไว้บนระบบเดียวได้ เพราะจะขัดกับลักษณะการแบ่งเป็น Module ของ Microservices และนี่คือจุดที่ Distributed Systems เข้ามามีบทบาท
 
-Distributed Systems not only bring modularity to your architecture but also provide a foundation that makes implementing Microservices more efficient and effective. They enable seamless scaling, independent service deployment, and better resource utilization, allowing you to fully leverage the benefits of a Microservices approach.
+Distributed Systems ไม่เพียงช่วยให้สถาปัตยกรรมมีความเป็น Modular มากขึ้น แต่ยังเป็นพื้นฐานที่ช่วยให้การนำ Microservices มาใช้งานมีประสิทธิภาพและเกิดผลได้ดีขึ้น ระบบเหล่านี้ช่วยให้ Scale ได้อย่างราบรื่น สามารถ Deploy แต่ละ Service ได้อย่างอิสระ และใช้ทรัพยากรได้ดีขึ้น ทำให้สามารถใช้ประโยชน์จากแนวทาง Microservices ได้อย่างเต็มที่
 
 ### **Distributed Systems**
 
-A Distributed System is a collection of independent computers connected through a network that work together by sharing resources to achieve a common goal. These systems communicate and coordinate with each other to perform tasks efficiently and reliably.
+Distributed System คือกลุ่มของคอมพิวเตอร์ที่ทำงานเป็นอิสระและเชื่อมต่อกันผ่านเครือข่าย โดยทำงานร่วมกันด้วยการแบ่งปันทรัพยากรเพื่อบรรลุเป้าหมายร่วมกัน ระบบเหล่านี้สื่อสารและประสานงานกันเพื่อทำงานได้อย่างมีประสิทธิภาพและน่าเชื่อถือ
 
-- They support high scalability by distributing workloads and resources across multiple machines or servers.
-- They reduce the risk of Single Point of Failure (SPOF), improving system reliability and fault tolerance.
+- รองรับ Scalability ในระดับสูงด้วยการกระจาย Workload และทรัพยากรไปยังหลายเครื่องหรือหลาย Server
+- ลดความเสี่ยงของ Single Point of Failure (SPOF) ช่วยเพิ่มความน่าเชื่อถือและความสามารถในการทนต่อความล้มเหลวของระบบ
 
 <picture>
   <img src="https://media.geeksforgeeks.org/wp-content/uploads/20260330174407185829/distributed_systems-660.webp" alt="Distributed system" />
   <cite>Distributed system</cite>
 </picture>
 
-In a distributed system, data is replicated across multiple geographically distributed servers. If one node fails due to issues like power failure, the replicated data on other servers remains available, ensuring reliability and fault tolerance.
+ในระบบแบบ Distributed ข้อมูลจะถูก Replicate ไปยัง Server หลายเครื่องที่กระจายอยู่ตามพื้นที่ทางภูมิศาสตร์ หาก Node หนึ่งล้มเหลวจากปัญหา เช่น ไฟฟ้าดับ ข้อมูลที่ถูก Replicate ไว้บน Server อื่นยังคงพร้อมใช้งาน ช่วยให้ระบบมีความน่าเชื่อถือและทนต่อความล้มเหลว
 
-- Replication and redundancy prevent data loss by maintaining backup copies across multiple nodes.
-- They eliminate Single Point of Failure (SPOF) and ensure continuous system availability even during failures.
+- Replication และ Redundancy ช่วยป้องกันข้อมูลสูญหาย ด้วยการเก็บสำเนาสำรองไว้ในหลาย Node
+- ช่วยกำจัด Single Point of Failure (SPOF) และทำให้ระบบยังคงพร้อมใช้งานอย่างต่อเนื่องแม้เกิดความล้มเหลว
 
-> ***Example:** Telecommunication Networks*
+> ***ตัวอย่าง:** เครือข่ายโทรคมนาคม*
 
 <picture>
   <img src="https://media.geeksforgeeks.org/wp-content/uploads/20260330174407666393/telecom_applications-660.webp" alt="Telecom Applications" />
   <cite>Telecom Applications</cite>
 </picture>
 
-### **Advantages**
+### **ข้อดี**
 
-Distributed systems provide high scalability, reliability, and improved performance by using multiple interconnected machines.
+ระบบแบบ Distributed มี Scalability และความน่าเชื่อถือสูง พร้อมช่วยเพิ่มประสิทธิภาพด้วยการใช้เครื่องหลายเครื่องที่เชื่อมต่อกัน
 
-- **Scalable:** Since it consists of independent machines, horizontal scaling can be easily achieved.
-- **Reliable:** Eliminates Single Point of Failure (SPOF); even if one node fails, others continue to operate.
-- **Low latency:** Multiple geographically distributed servers help serve users faster by reducing response time.
+- **Scalable:** เนื่องจากประกอบด้วยเครื่องที่ทำงานเป็นอิสระ จึงสามารถทำ Horizontal Scaling ได้ง่าย
+- **Reliable:** ช่วยกำจัด Single Point of Failure (SPOF) แม้ Node หนึ่งล้มเหลว Node อื่นก็ยังสามารถทำงานต่อได้
+- **Low latency:** Server หลายเครื่องที่กระจายอยู่ตามพื้นที่ทางภูมิศาสตร์ช่วยให้บริการผู้ใช้ได้เร็วขึ้นด้วยการลด Response Time
 
-### **Disadvantages**
+### **ข้อเสีย**
 
-Despite their benefits, distributed systems introduce complexity in management, communication, and data consistency.
+แม้จะมีข้อดี แต่ระบบแบบ Distributed ก็เพิ่มความซับซ้อนในการจัดการ การสื่อสาร และการรักษาความสอดคล้องของข้อมูล
 
-- **Complexity:** A large number of nodes and network connections make the system difficult to design and maintain.
-- **Consistency:** Maintaining synchronized data across multiple nodes becomes challenging.
-- **Network Failure:** Communication depends on network calls, so failures can lead to delays, data conflicts, or system issues.
+- **Complexity:** จำนวน Node และการเชื่อมต่อเครือข่ายที่มาก ทำให้ระบบออกแบบและดูแลรักษาได้ยาก
+- **Consistency:** การรักษาข้อมูลในหลาย Node ให้ Synchronize กันเป็นเรื่องที่ท้าทาย
+- **Network Failure:** การสื่อสารต้องพึ่งพาการเรียกใช้งานผ่านเครือข่าย ดังนั้นความล้มเหลวอาจทำให้เกิดความล่าช้า ความขัดแย้งของข้อมูล หรือปัญหาในระบบได้
 
-> ***Note:** Management is also a disadvantage here out because of load balancing functionality(It is a process of distributing the load to the nodes), logging, caching and monitoing is required to manage the systemto prevent failures.*
+> ***หมายเหตุ:** การจัดการระบบก็เป็นข้อเสียอีกประการหนึ่ง เนื่องจากต้องมีการทำ Load Balancing (กระบวนการกระจาย Load ไปยัง Node ต่างๆ) รวมถึง Logging, Caching และ Monitoring เพื่อจัดการระบบและป้องกันความล้มเหลว*
 
-## **Race Conditions in Monolithic and Distributed Systems**
+## **Race Conditions ในระบบแบบ Monolithic และ Distributed**
 
-A race condition occurs when multiple processes or services execute concurrently and the final outcome depends on the timing or order of execution. It typically arises in systems with parallelism where shared resources are accessed without proper synchronization.
+Race Condition เกิดขึ้นเมื่อหลาย Process หรือ Service ทำงานพร้อมกัน และผลลัพธ์สุดท้ายขึ้นอยู่กับจังหวะเวลาหรือลำดับการทำงาน โดยมักเกิดขึ้นในระบบที่มีการทำงานแบบ Parallel และมีการเข้าถึงทรัพยากรร่วมกันโดยไม่มีการ Synchronize อย่างเหมาะสม
 
-Race conditions are commonly seen in operating systems and also occur in scalable systems where multiple requests are processed at the same time, leading to conflicts or inconsistent results.
+Race Condition พบได้บ่อยในระบบปฏิบัติการ และยังเกิดขึ้นในระบบที่รองรับการ Scale ซึ่งมีการประมวลผล Request หลายรายการพร้อมกัน ส่งผลให้เกิดความขัดแย้งหรือผลลัพธ์ที่ไม่สอดคล้องกัน
 
-> ***Example:** Consider a banking system where multiple microservices handle operations like credit card approval. Suppose a service checks a user’s CIBIL score before approving a credit card.*
+> ***ตัวอย่าง:** ลองพิจารณาระบบธนาคารที่มี Microservice หลายตัวจัดการงาน เช่น การอนุมัติบัตรเครดิต สมมติว่า Service หนึ่งตรวจสอบคะแนน CIBIL ของผู้ใช้ก่อนอนุมัติบัตรเครดิต*
 
-Now, if multiple requests for the same user are processed simultaneously, two services might read outdated data and both approve or reject incorrectly. This overlapping of operations leads to a race condition.
+หากมี Request หลายรายการของผู้ใช้คนเดียวกันถูกประมวลผลพร้อมกัน Service สองตัวอาจอ่านข้อมูลที่ล้าสมัย และทั้งคู่อนุมัติหรือปฏิเสธอย่างไม่ถูกต้อง การทำงานที่ซ้อนทับกันในลักษณะนี้ทำให้เกิด Race Condition
 
-> ***Note:** Race conditions are very common in distributed systems because multiple services and nodes process requests concurrently. Due to this parallelism, operations may interleave in unpredictable ways, leading to inconsistent or incorrect results if not handled properly.*
+> ***หมายเหตุ:** Race Condition พบได้บ่อยมากในระบบแบบ Distributed เนื่องจากมี Service และ Node หลายตัวประมวลผล Request พร้อมกัน จากการทำงานแบบ Parallel นี้ การดำเนินงานต่างๆ อาจสลับลำดับกันในรูปแบบที่คาดเดาไม่ได้ และนำไปสู่ผลลัพธ์ที่ไม่สอดคล้องหรือไม่ถูกต้อง หากไม่มีการจัดการอย่างเหมาะสม*
 
-### **Handling Race Conditions in Distributed Systems**
+### **การจัดการ Race Conditions ในระบบแบบ Distributed**
 
-Proper handling of race conditions is essential to ensure data consistency and system correctness.
+การจัดการ Race Condition อย่างเหมาะสมเป็นสิ่งสำคัญ เพื่อรักษาความสอดคล้องของข้อมูลและความถูกต้องของระบบ
 
-- **Atomic Operations:** Atomic operations combine validation and update steps into a single indivisible operation to maintain data consistency. This helps prevent partial updates and race conditions in distributed systems.
-- **Service Refactoring**: Service refactoring moves validation and business logic into a centralized service to ensure consistent decision-making across the system. It improves maintainability and reduces duplicated logic between services.
-- **Additional Approaches:** Additional techniques like locking, idempotency, distributed transactions, and event-driven patterns help maintain consistency and reliability in distributed systems. These approaches prevent duplicate operations and coordinate updates across multiple services.
+- **Atomic Operations:** Atomic Operation รวมขั้นตอนการตรวจสอบและการอัปเดตให้เป็นการทำงานเดียวที่ไม่สามารถแบ่งแยกได้ เพื่อรักษาความสอดคล้องของข้อมูล วิธีนี้ช่วยป้องกันการอัปเดตเพียงบางส่วนและ Race Condition ในระบบแบบ Distributed
+- **Service Refactoring**: Service Refactoring คือการย้าย Validation และ Business Logic ไปไว้ใน Service ส่วนกลาง เพื่อให้การตัดสินใจทั่วทั้งระบบมีความสอดคล้องกัน ช่วยเพิ่มความสามารถในการดูแลรักษาและลด Logic ที่ซ้ำกันระหว่าง Service
+- **Additional Approaches:** เทคนิคเพิ่มเติม เช่น Locking, Idempotency, Distributed Transactions และ Event-driven Patterns ช่วยรักษาความสอดคล้องและความน่าเชื่อถือในระบบแบบ Distributed แนวทางเหล่านี้ช่วยป้องกันการทำงานซ้ำและประสานการอัปเดตระหว่างหลาย Service
