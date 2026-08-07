@@ -1,120 +1,120 @@
-# **Scalability in System Design**
+# **ความสามารถในการปรับขนาดใน System Design**
 
-Scalability refers to a system’s ability to handle increasing workloads, users, or data without affecting performance.. A scalable system can expand resources such as servers, storage, or processing power when needed.
+ความสามารถในการปรับขนาดหมายถึงความสามารถของระบบในการรองรับปริมาณงาน ผู้ใช้ หรือข้อมูลที่เพิ่มขึ้นโดยไม่ส่งผลกระทบต่อประสิทธิภาพ ระบบที่สามารถปรับขนาดได้สามารถเพิ่มทรัพยากร เช่น เซิร์ฟเวอร์ พื้นที่จัดเก็บข้อมูล หรือกำลังประมวลผลได้เมื่อจำเป็น
 
-- When a system's workload or scope rises, it should be able to maintain or even improve its performance, efficiency, and dependability. This is known as scalability.
-- A system must be scalable in order to accommodate growing user traffic, data volumes, or computing demands without suffering a major performance hit or necessitating a total redesign.
+- เมื่อปริมาณงานหรือขอบเขตของระบบเพิ่มขึ้น ระบบควรสามารถรักษาหรือแม้แต่ปรับปรุงประสิทธิภาพ ประสิทธิผล และความน่าเชื่อถือได้ สิ่งนี้เรียกว่าความสามารถในการปรับขนาด
+- ระบบต้องสามารถปรับขนาดได้เพื่อรองรับจำนวนผู้ใช้ ปริมาณข้อมูล หรือความต้องการด้านการประมวลผลที่เพิ่มขึ้น โดยไม่ทำให้ประสิทธิภาพลดลงอย่างมากหรือจำเป็นต้องออกแบบระบบใหม่ทั้งหมด
 
-> ***Example:** A video streaming platform that automatically adds more servers when millions of users start watching content at the same time.*
+> ***ตัวอย่าง:** แพลตฟอร์มสตรีมวิดีโอที่เพิ่มเซิร์ฟเวอร์โดยอัตโนมัติเมื่อผู้ใช้หลายล้านคนเริ่มรับชมเนื้อหาในเวลาเดียวกัน*
 
-## **Real-World Examples of Scalable Systems**
+## **ตัวอย่างระบบที่สามารถปรับขนาดได้ในโลกจริง**
 
-There are many real-world examples of scalable systems that demonstrate the importance and impact of scalability in modern technology.
+มีตัวอย่างระบบที่สามารถปรับขนาดได้ในโลกจริงอยู่มากมาย ซึ่งแสดงให้เห็นถึงความสำคัญและผลกระทบของความสามารถในการปรับขนาดในเทคโนโลยีสมัยใหม่
 
-- **Google:** Uses a highly scalable distributed system (Bigtable, MapReduce, Spanner) to handle billions of searches globally.
-- **AWS:** Offers scalable cloud services that let businesses easily scale compute, storage, and databases on demand.
-- **Netflix:** Relies on cloud infrastructure, microservices, and caching to stream content to millions of users at once.
+- **Google:** ใช้ระบบแบบกระจายที่สามารถปรับขนาดได้สูง (Bigtable, MapReduce, Spanner) เพื่อรองรับการค้นหาหลายพันล้านครั้งทั่วโลก
+- **AWS:** ให้บริการคลาวด์ที่สามารถปรับขนาดได้ ช่วยให้ธุรกิจสามารถเพิ่มหรือลดทรัพยากรด้านการประมวลผล พื้นที่จัดเก็บข้อมูล และฐานข้อมูลได้ตามความต้องการ
+- **Netflix:** ใช้โครงสร้างพื้นฐานบนคลาวด์ ไมโครเซอร์วิส และการแคช เพื่อสตรีมเนื้อหาให้ผู้ใช้หลายล้านคนพร้อมกัน
 
-These examples highlight how scalability helps companies deliver reliable performance, handle traffic spikes, and grow rapidly without infrastructure limitations.
+ตัวอย่างเหล่านี้แสดงให้เห็นว่าความสามารถในการปรับขนาดช่วยให้บริษัทสามารถรักษาประสิทธิภาพที่เชื่อถือได้ รองรับปริมาณการใช้งานที่พุ่งสูงขึ้น และเติบโตอย่างรวดเร็วโดยไม่ติดข้อจำกัดด้านโครงสร้างพื้นฐาน
 
-## **Ways to Achieve Scalability**
+## **แนวทางในการทำให้ระบบสามารถปรับขนาดได้**
 
-These are common approaches used to handle increasing load and improve system performance efficiently.
+ต่อไปนี้คือแนวทางทั่วไปที่ใช้เพื่อรองรับโหลดที่เพิ่มขึ้นและปรับปรุงประสิทธิภาพของระบบอย่างมีประสิทธิผล
 
-### **1. Make It Bigger**
+### **1. ทำให้ใหญ่ขึ้น**
 
-[**Vertical Scaling**](https://www.geeksforgeeks.org/system-design/system-design-horizontal-and-vertical-scaling/), Like upgrading a car with a bigger engine for more power.
+[**การปรับขนาดแนวตั้ง**](https://www.geeksforgeeks.org/system-design/system-design-horizontal-and-vertical-scaling/) เปรียบเหมือนการอัปเกรดรถด้วยเครื่องยนต์ที่ใหญ่ขึ้นเพื่อให้มีกำลังมากขึ้น
 
-- Upgrading a system by adding more CPU, memory, or storage to a single server, similar to increasing a car’s engine power.
-- Suitable for small applications and quick scaling, but limited by hardware constraints and cannot scale indefinitely.
+- อัปเกรดระบบด้วยการเพิ่ม CPU หน่วยความจำ หรือพื้นที่จัดเก็บข้อมูลให้กับเซิร์ฟเวอร์เครื่องเดียว คล้ายกับการเพิ่มกำลังเครื่องยนต์ของรถ
+- เหมาะสำหรับแอปพลิเคชันขนาดเล็กและการปรับขนาดอย่างรวดเร็ว แต่มีข้อจำกัดด้านฮาร์ดแวร์และไม่สามารถเพิ่มขนาดได้อย่างไม่มีที่สิ้นสุด
 
-### **2. Get More Cars**
+### **2. เพิ่มจำนวนรถ**
 
-[**Horizontal Scaling**](https://www.geeksforgeeks.org/system-design/system-design-horizontal-and-vertical-scaling/), Like using multiple cars to share the workload.
+[**การปรับขนาดแนวนอน**](https://www.geeksforgeeks.org/system-design/system-design-horizontal-and-vertical-scaling/) เปรียบเหมือนการใช้รถหลายคันเพื่อแบ่งกันรับภาระงาน
 
-- Scaling by adding multiple servers or instances to share the workload, similar to using multiple cars instead of one.
-- Distributes traffic across resources efficiently, making it ideal for large-scale applications with high user demand.
+- ปรับขนาดด้วยการเพิ่มเซิร์ฟเวอร์หรืออินสแตนซ์หลายตัวเพื่อแบ่งกันรับภาระงาน คล้ายกับการใช้รถหลายคันแทนการใช้รถเพียงคันเดียว
+- กระจายทราฟฟิกไปยังทรัพยากรต่างๆ ได้อย่างมีประสิทธิภาพ จึงเหมาะสำหรับแอปพลิเคชันขนาดใหญ่ที่มีความต้องการจากผู้ใช้สูง
 
-### **3. Divide and Conquer**
+### **3. แบ่งแล้วจัดการ**
 
-[**Microservices**](https://www.geeksforgeeks.org/system-design/microservices/), Treats the app as small, independent services.
+[**ไมโครเซอร์วิส**](https://www.geeksforgeeks.org/system-design/microservices/) มองแอปพลิเคชันเป็นบริการขนาดเล็กที่ทำงานแยกจากกัน
 
-- Breaks the application into small, independent services that handle specific functionalities.
-- Allows scaling of only required parts, improving flexibility and efficient resource utilization.
+- แบ่งแอปพลิเคชันออกเป็นบริการขนาดเล็กที่ทำงานแยกจากกัน โดยแต่ละบริการรับผิดชอบฟังก์ชันเฉพาะ
+- ทำให้สามารถปรับขนาดเฉพาะส่วนที่จำเป็นได้ ช่วยเพิ่มความยืดหยุ่นและใช้ทรัพยากรได้อย่างมีประสิทธิภาพ
 
-### **4. No Servers, No Problems**
+### **4. ไม่มีเซิร์ฟเวอร์ ก็ไม่มีปัญหา**
 
-[**Serverless**](https://www.geeksforgeeks.org/system-design/serverless-architectures/), Removes the need to manage servers.
+[**เซิร์ฟเวอร์เลส**](https://www.geeksforgeeks.org/system-design/serverless-architectures/) ช่วยลดความจำเป็นในการจัดการเซิร์ฟเวอร์
 
-- Automatically scales based on demand without requiring manual server management.
-- Cost-efficient for variable workloads, with services like AWS Lambda handling execution and scaling.
+- ปรับขนาดโดยอัตโนมัติตามความต้องการ โดยไม่จำเป็นต้องจัดการเซิร์ฟเวอร์ด้วยตนเอง
+- คุ้มค่าด้านต้นทุนสำหรับปริมาณงานที่เปลี่ยนแปลง โดยบริการอย่าง AWS Lambda จะจัดการการทำงานและการปรับขนาดให้
 
 <img src="https://media.geeksforgeeks.org/wp-content/uploads/20251227125119433395/vertical_horizontal_scaling-660.webp" />
 
-## **Factors Affecting Scalability**
+## **ปัจจัยที่ส่งผลต่อความสามารถในการปรับขนาด**
 
-The factors that affects the scalability with their explanation are:
+ปัจจัยที่ส่งผลต่อความสามารถในการปรับขนาดพร้อมคำอธิบายมีดังนี้:
 
-### **1. Performance Bottlenecks**
+### **1. คอขวดด้านประสิทธิภาพ**
 
-Performance bottlenecks are components or processes in a system that limit overall performance and slow down operations.
+คอขวดด้านประสิทธิภาพคือองค์ประกอบหรือกระบวนการในระบบที่จำกัดประสิทธิภาพโดยรวมและทำให้การทำงานช้าลง
 
-- Performance bottlenecks are parts of a system that slow down overall performance.
-- They are often caused by slow databases, inefficient code, or limited resources.
+- คอขวดด้านประสิทธิภาพคือส่วนของระบบที่ทำให้ประสิทธิภาพโดยรวมช้าลง
+- มักเกิดจากฐานข้อมูลที่ทำงานช้า โค้ดที่ไม่มีประสิทธิภาพ หรือทรัพยากรที่มีจำกัด
 
-### **2. Resource Utilization**
+### **2. การใช้ทรัพยากร**
 
-Efficient use of system resources is important to maintain performance and support system scalability.
+การใช้ทรัพยากรของระบบอย่างมีประสิทธิภาพมีความสำคัญต่อการรักษาประสิทธิภาพและรองรับความสามารถในการปรับขนาดของระบบ
 
-- Efficiently using resources such as CPU, memory, and disk space is essential for scalability.
-- Inefficient resource utilization can lead to bottlenecks and limit the system's ability to scale.
+- การใช้ทรัพยากร เช่น CPU หน่วยความจำ และพื้นที่ดิสก์อย่างมีประสิทธิภาพ เป็นสิ่งสำคัญสำหรับความสามารถในการปรับขนาด
+- การใช้ทรัพยากรอย่างไม่มีประสิทธิภาพอาจทำให้เกิดคอขวดและจำกัดความสามารถของระบบในการปรับขนาด
 
-### **3. Network Latency**
+### **3. ความหน่วงของเครือข่าย**
 
-Network latency refers to the delay that occurs when data travels between systems or network nodes.
+ความหน่วงของเครือข่ายหมายถึงความล่าช้าที่เกิดขึ้นเมื่อข้อมูลเดินทางระหว่างระบบหรือโหนดในเครือข่าย
 
-- Network latency is the delay in data transmission.
-- High latency slows node communication and affects scalability.
+- ความหน่วงของเครือข่ายคือความล่าช้าในการส่งข้อมูล
+- ความหน่วงที่สูงทำให้การสื่อสารระหว่างโหนดช้าลงและส่งผลต่อความสามารถในการปรับขนาด
 
-### **4. Data Storage and Access**
+### **4. การจัดเก็บและการเข้าถึงข้อมูล**
 
-The way data is stored and accessed plays a major role in determining how well a system can scale.
+วิธีการจัดเก็บและเข้าถึงข้อมูลมีบทบาทสำคัญในการกำหนดว่าระบบจะสามารถปรับขนาดได้ดีเพียงใด
 
-- Data storage and access patterns affect scalability.
-- Distributed databases and caching help systems scale better.
+- รูปแบบการจัดเก็บและการเข้าถึงข้อมูลส่งผลต่อความสามารถในการปรับขนาด
+- ฐานข้อมูลแบบกระจายและการแคชช่วยให้ระบบสามารถปรับขนาดได้ดีขึ้น
 
-### **5. Concurrency and Parallelism**
+### **5. การทำงานพร้อมกันและการประมวลผลแบบขนาน**
 
-Concurrency and parallelism allow systems to process multiple tasks at the same time to improve performance.
+การทำงานพร้อมกันและการประมวลผลแบบขนานช่วยให้ระบบสามารถประมวลผลงานหลายรายการในเวลาเดียวกันเพื่อเพิ่มประสิทธิภาพ
 
-- Enables handling of multiple tasks simultaneously, improving scalability and system efficiency.
-- Increases throughput by processing more requests, but may introduce latency due to synchronization and overhead if not managed properly.
+- ช่วยให้รองรับงานหลายรายการพร้อมกัน ทำให้ความสามารถในการปรับขนาดและประสิทธิภาพของระบบดีขึ้น
+- เพิ่มปริมาณงานที่ระบบรองรับได้ด้วยการประมวลผลคำขอมากขึ้น แต่อาจทำให้เกิดความหน่วงจากการซิงโครไนซ์และค่าใช้จ่ายแฝงของระบบหากจัดการไม่เหมาะสม
 
-### **6. System Architecture**
+### **6. สถาปัตยกรรมระบบ**
 
-System architecture determines how components are structured and how easily the system can scale.
+สถาปัตยกรรมระบบเป็นตัวกำหนดว่าองค์ประกอบต่างๆ ถูกจัดโครงสร้างอย่างไร และระบบสามารถปรับขนาดได้ง่ายเพียงใด
 
-- System architecture defines how easily a system can scale, with modular and loosely coupled components improving flexibility.
-- Supports both horizontal scaling (adding instances) and vertical scaling (upgrading resources) for better performance.
+- สถาปัตยกรรมระบบกำหนดว่าระบบจะสามารถปรับขนาดได้ง่ายเพียงใด โดยองค์ประกอบที่เป็นโมดูลและเชื่อมโยงกันอย่างหลวมๆ จะช่วยเพิ่มความยืดหยุ่น
+- รองรับทั้งการปรับขนาดแนวนอน (เพิ่มอินสแตนซ์) และการปรับขนาดแนวตั้ง (อัปเกรดทรัพยากร) เพื่อให้ได้ประสิทธิภาพที่ดีขึ้น
 
-## **Components that help to increase Scalability**
+## **องค์ประกอบที่ช่วยเพิ่มความสามารถในการปรับขนาด**
 
-Some of the main components that help to increase the scalability are:
+องค์ประกอบหลักบางส่วนที่ช่วยเพิ่มความสามารถในการปรับขนาดมีดังนี้:
 
-- **Load Balancer:** A [load balancer](https://www.geeksforgeeks.org/system-design/what-is-load-balancer-system-design/) distributes incoming traffic across multiple servers to avoid overload and improve performance and availability.
-- **Caching:** [Caching](https://www.geeksforgeeks.org/system-design/caching-system-design-concept-for-beginners/) stores frequently accessed data temporarily to reduce latency and backend load.
-- **Database Replication:** [Database replication](https://www.geeksforgeeks.org/system-design/database-replication-and-their-types-in-system-design/) creates multiple copies of data (often asynchronously) to improve availability and read performance, with trade-offs in consistency.
-- **Database Sharding:** [Database sharding](https://www.geeksforgeeks.org/system-design/database-sharding-a-system-design-concept/) splits data into smaller shards to scale databases across multiple instances.
-- **Microservices Architecture:** [Microservices architecture](https://www.geeksforgeeks.org/system-design/microservices/) divides applications into independent services that can scale separately.
-- **Data Partitioning:** [Data partitioning](https://www.geeksforgeeks.org/system-design/data-partitioning-techniques/) divides data based on criteria like user or region to improve scalability.
-- **Content Delivery Networks (CDNs):** [CDNs](https://www.geeksforgeeks.org/system-design/designing-content-delivery-network-cdn-system-design/) deliver cached content from locations closer to users, reducing latency.
-- **Queueing Systems:** [Queueing systems](https://www.geeksforgeeks.org/system-design/message-queues-system-design/) handle requests asynchronously to manage traffic spikes and prevent overload.
+- **Load Balancer:** [Load Balancer](https://www.geeksforgeeks.org/system-design/what-is-load-balancer-system-design/) กระจายทราฟฟิกขาเข้าไปยังเซิร์ฟเวอร์หลายเครื่อง เพื่อหลีกเลี่ยงการทำงานหนักเกินไปและเพิ่มประสิทธิภาพรวมถึงความพร้อมใช้งาน
+- **Caching:** [การแคช](https://www.geeksforgeeks.org/system-design/caching-system-design-concept-for-beginners/) จัดเก็บข้อมูลที่ถูกเข้าถึงบ่อยไว้ชั่วคราว เพื่อลดความหน่วงและลดภาระของระบบ Backend
+- **Database Replication:** [การจำลองฐานข้อมูล](https://www.geeksforgeeks.org/system-design/database-replication-and-their-types-in-system-design/) สร้างสำเนาข้อมูลหลายชุด (โดยมักทำแบบอะซิงโครนัส) เพื่อเพิ่มความพร้อมใช้งานและประสิทธิภาพในการอ่าน โดยมีข้อแลกเปลี่ยนด้านความสอดคล้องของข้อมูล
+- **Database Sharding:** [การแบ่งฐานข้อมูลเป็น Shard](https://www.geeksforgeeks.org/system-design/database-sharding-a-system-design-concept/) แบ่งข้อมูลออกเป็น Shard ขนาดเล็ก เพื่อให้ฐานข้อมูลสามารถปรับขนาดข้ามหลายอินสแตนซ์ได้
+- **Microservices Architecture:** [สถาปัตยกรรมไมโครเซอร์วิส](https://www.geeksforgeeks.org/system-design/microservices/) แบ่งแอปพลิเคชันออกเป็นบริการที่ทำงานแยกจากกันและสามารถปรับขนาดแยกกันได้
+- **Data Partitioning:** [การแบ่งพาร์ทิชันข้อมูล](https://www.geeksforgeeks.org/system-design/data-partitioning-techniques/) แบ่งข้อมูลตามเกณฑ์ เช่น ผู้ใช้หรือภูมิภาค เพื่อเพิ่มความสามารถในการปรับขนาด
+- **Content Delivery Networks (CDNs):** [CDN](https://www.geeksforgeeks.org/system-design/designing-content-delivery-network-cdn-system-design/) ส่งมอบเนื้อหาที่แคชไว้จากตำแหน่งที่อยู่ใกล้ผู้ใช้มากขึ้น เพื่อลดความหน่วง
+- **Queueing Systems:** [ระบบคิว](https://www.geeksforgeeks.org/system-design/message-queues-system-design/) จัดการคำขอแบบอะซิงโครนัสเพื่อรองรับทราฟฟิกที่พุ่งสูงขึ้นและป้องกันระบบทำงานหนักเกินไป
 
-## **Challenges and Trade-offs in Scalability**
+## **ความท้าทายและข้อแลกเปลี่ยนของความสามารถในการปรับขนาด**
 
-Challenges and trade-offs include:
+ความท้าทายและข้อแลกเปลี่ยนมีดังนี้:
 
-- **Cost Vs Scalability:** Scaling improves performance and availability but often increases infrastructure and operational costs.
-- **Complexity:** As systems scale, they become harder to manage, maintain, and debug, raising operational overhead.
-- **Latency Vs Throughput**: There is often a trade-off between [latency and throughput](https://www.geeksforgeeks.org/system-design/latency-in-system-design/). Optimizing for low latency may reduce throughput, and vice versa.
-- **Data Partitioning Trade-offs**: [Partitioning](https://www.geeksforgeeks.org/system-design/data-partitioning-techniques/) boosts scalability but requires careful balance of partition size, data movement, and data locality.
+- **ต้นทุนเทียบกับความสามารถในการปรับขนาด:** การปรับขนาดช่วยเพิ่มประสิทธิภาพและความพร้อมใช้งาน แต่มักเพิ่มต้นทุนด้านโครงสร้างพื้นฐานและการดำเนินงาน
+- **ความซับซ้อน:** เมื่อระบบมีขนาดใหญ่ขึ้น การจัดการ บำรุงรักษา และดีบักจะยากขึ้น ทำให้ภาระด้านการดำเนินงานเพิ่มขึ้น
+- **ความหน่วงเทียบกับปริมาณงานที่รองรับได้**: มักมีข้อแลกเปลี่ยนระหว่าง[ความหน่วงและปริมาณงานที่รองรับได้](https://www.geeksforgeeks.org/system-design/latency-in-system-design/) การปรับให้ความหน่วงต่ำอาจลดปริมาณงานที่รองรับได้ และในทางกลับกัน
+- **ข้อแลกเปลี่ยนของการแบ่งพาร์ทิชันข้อมูล**: [การแบ่งพาร์ทิชัน](https://www.geeksforgeeks.org/system-design/data-partitioning-techniques/) ช่วยเพิ่มความสามารถในการปรับขนาด แต่ต้องรักษาสมดุลของขนาดพาร์ทิชัน การย้ายข้อมูล และตำแหน่งที่อยู่ของข้อมูลอย่างระมัดระวัง
