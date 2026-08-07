@@ -1,147 +1,147 @@
-# **Database Sharding - System Design**
+# **Database Sharding - การออกแบบระบบ**
 
-Database sharding is a technique used to scale databases by distributing data across multiple servers. It helps improve performance and handle large datasets efficiently.
+Database Sharding เป็นเทคนิคที่ใช้ขยายขนาดฐานข้อมูลด้วยการกระจายข้อมูลไปยังเซิร์ฟเวอร์หลายเครื่อง ช่วยเพิ่มประสิทธิภาพและรองรับชุดข้อมูลขนาดใหญ่ได้อย่างมีประสิทธิภาพ
 
-- Data is split into smaller parts called shards, each stored on a different database instance to distribute load.
-- It reduces pressure on a single database, improving query performance and scalability.
+- ข้อมูลจะถูกแบ่งออกเป็นส่วนย่อยที่เรียกว่า Shard โดยแต่ละ Shard จะถูกจัดเก็บไว้ใน Database Instance ที่แตกต่างกันเพื่อกระจายภาระงาน
+- ช่วยลดภาระของฐานข้อมูลเพียงเครื่องเดียว ทำให้ประสิทธิภาพของ Query และความสามารถในการขยายระบบดีขึ้น
 
 <img src="https://media.geeksforgeeks.org/wp-content/uploads/20250930141857544212/database.webp" alt="database" />
 
-It is basically a database architecture pattern in which we split a large dataset into smaller chunks (logical shards) and we store/distribute these chunks in different machines/database nodes (physical shards).
+โดยพื้นฐานแล้ว นี่คือรูปแบบสถาปัตยกรรมฐานข้อมูลที่เราแบ่งชุดข้อมูลขนาดใหญ่ออกเป็นส่วนย่อยๆ (Logical Shard) แล้วจัดเก็บหรือกระจายส่วนเหล่านี้ไปยังเครื่องหรือโหนดฐานข้อมูลที่แตกต่างกัน (Physical Shard)
 
-- Each chunk/partition is known as a "shard" and each shard has the same database schema as the original database.
-- We distribute the data in such a way that each row appears in exactly one shard.
-- It's a good mechanism to improve the scalability of an application.
+- แต่ละส่วนหรือ Partition จะเรียกว่า "Shard" และแต่ละ Shard จะมี Database Schema เหมือนกับฐานข้อมูลต้นฉบับ
+- เรากระจายข้อมูลในลักษณะที่แต่ละ Row จะอยู่ใน Shard เพียงหนึ่งเดียวเท่านั้น
+- เป็นกลไกที่ดีในการเพิ่มความสามารถในการขยายระบบของแอปพลิเคชัน
 
 <img src="https://media.geeksforgeeks.org/wp-content/uploads/20260114163512510798/database_sharding-660.webp" alt="database_sharding" />
 
-## **Methods of Sharding**
+## **วิธีการทำ Sharding**
 
-Sharding can be done using Range-based, Hash-based, Directory-based, or Geographic-based partitioning to distribute data across multiple servers.
+Sharding สามารถทำได้ด้วยการแบ่งข้อมูลแบบ Range-based, Hash-based, Directory-based หรือ Geographic-based เพื่อกระจายข้อมูลไปยังเซิร์ฟเวอร์หลายเครื่อง
 
 ### **1. Key Based Sharding**
 
-Key Based Sharding is a technique, also known as hash-based sharding. Here, we take the value of an entity such as customer ID, customer email, IP address of a client, zip code, etc and we use this value as an input of the hash function. This process generates a hash value which is used to determine which shard we need to use to store the data.
+Key Based Sharding เป็นเทคนิคที่รู้จักกันในชื่อ Hash-based Sharding โดยเราจะนำค่าของ Entity เช่น Customer ID, อีเมลของลูกค้า, IP Address ของ Client, รหัสไปรษณีย์ เป็นต้น มาใช้เป็น Input ของ Hash Function กระบวนการนี้จะสร้าง Hash Value ซึ่งใช้กำหนดว่าเราต้องใช้ Shard ใดในการจัดเก็บข้อมูล
 
-- We need to keep in mind that the values entered into the hash function should all come from the **same column** (shard key) just to ensure that data is placed in the correct order and in a consistent manner.
-- Basically, shard keys act like a primary key or a unique identifier for individual rows.
+- เราต้องคำนึงว่าค่าที่ส่งเข้า Hash Function ควรมาจาก **Column เดียวกัน** (Shard Key) เพื่อให้แน่ใจว่าข้อมูลถูกจัดวางอย่างถูกต้องและสม่ำเสมอ
+- โดยพื้นฐานแล้ว Shard Key ทำหน้าที่คล้าย Primary Key หรือ Unique Identifier สำหรับแต่ละ Row
 
-> ***Example**: You have 3 database servers and each request has an application id which is incremented by 1 every time a new application is registered.*
+> ***ตัวอย่าง**: คุณมี Database Server 3 เครื่อง และแต่ละ Request มี Application ID ซึ่งจะเพิ่มขึ้นทีละ 1 ทุกครั้งที่มีการลงทะเบียน Application ใหม่*
 
-To determine which server data should be placed on, we perform a modulo operation on these applications id with the number 3. Then the remainder is used to identify the server to store our data.
+เพื่อกำหนดว่าควรจัดเก็บข้อมูลไว้ที่ Server ใด เราจะนำ Application ID เหล่านี้ไปทำ Modulo ด้วยเลข 3 จากนั้นใช้เศษที่ได้เพื่อระบุ Server ที่จะจัดเก็บข้อมูล
 
 <img src="https://media.geeksforgeeks.org/wp-content/uploads/20260114163512087066/key_based_sharding-660.webp" alt="key_based_sharding" />
 
-#### **Advantages**
+#### **ข้อดี**
 
-Key-based sharding helps distribute data across shards using a hashing mechanism.
+Key-based Sharding ช่วยกระจายข้อมูลไปยัง Shard ต่างๆ โดยใช้กลไก Hashing
 
-- **Key Assignment:** Assigns each key to a specific shard, ensuring uniform and consistent data distribution.
-- **Range Query Optimization:** Can be optimized to efficiently handle queries over consecutive key ranges.
+- **การกำหนด Key:** กำหนดแต่ละ Key ให้กับ Shard ที่เฉพาะเจาะจง เพื่อให้การกระจายข้อมูลมีความสม่ำเสมอและคงที่
+- **การเพิ่มประสิทธิภาพ Range Query:** สามารถปรับแต่งให้รองรับ Query ที่ทำงานกับช่วงของ Key ที่ต่อเนื่องกันได้อย่างมีประสิทธิภาพ
 
-#### **Disadvantages**
+#### **ข้อเสีย**
 
-Despite its efficiency, improper shard key selection can cause performance issues.
+แม้จะมีประสิทธิภาพ แต่การเลือก Shard Key ที่ไม่เหมาะสมอาจก่อให้เกิดปัญหาด้านประสิทธิภาพได้
 
-- **Uneven Data Distribution:** Can occur if the sharding key isn’t well-distributed.
-- **Scalability Limitation:** Scalability may be limited when certain keys receive heavy traffic or data is skewed.
+- **การกระจายข้อมูลไม่สม่ำเสมอ:** อาจเกิดขึ้นได้หาก Sharding Key ไม่ได้กระจายตัวอย่างเหมาะสม
+- **ข้อจำกัดด้าน Scalability:** ความสามารถในการขยายระบบอาจถูกจำกัดเมื่อ Key บางค่ามี Traffic สูง หรือข้อมูลมีการกระจายแบบไม่สมดุล
 
-### **2. Horizontal or Range Based Sharding**
+### **2. Horizontal หรือ Range Based Sharding**
 
-In Horizontal or Range Based Sharding, we divide the data by separating it into different parts based on the range of a specific value within each record. Let's say you have a database of your online customers' names and email information. You can split this information into two shards.
+ใน Horizontal หรือ Range Based Sharding เราจะแบ่งข้อมูลออกเป็นส่วนต่างๆ ตามช่วงของค่าที่ระบุในแต่ละ Record สมมติว่าคุณมีฐานข้อมูลที่เก็บชื่อและอีเมลของลูกค้าออนไลน์ คุณสามารถแบ่งข้อมูลนี้ออกเป็นสอง Shard ได้
 
-- In one shard you can keep the info of customers whose first name starts with A-P.
-- In another shard, keep the information of the rest of the customers.
+- ใน Shard หนึ่ง คุณสามารถเก็บข้อมูลของลูกค้าที่ชื่อขึ้นต้นด้วย A-P
+- ในอีก Shard หนึ่ง ให้เก็บข้อมูลของลูกค้าที่เหลือ
 
-> **Example**: In a customer database, one shard may store records where names start with A–P, while another shard stores records where names start with Q–Z.
+> **ตัวอย่าง**: ในฐานข้อมูลลูกค้า Shard หนึ่งอาจเก็บ Record ที่ชื่อขึ้นต้นด้วย A–P ขณะที่อีก Shard เก็บ Record ที่ชื่อขึ้นต้นด้วย Q–Z
 
 <img src="https://media.geeksforgeeks.org/wp-content/uploads/20260114163512296190/horizontal_or_range_based_sharding-660.webp" alt="horizontal_or_range_based_sharding" />
 
-#### **Advantages**
+#### **ข้อดี**
 
-Horizontal or range-based sharding distributes data across multiple shards based on specific value ranges.
+Horizontal หรือ Range-based Sharding กระจายข้อมูลไปยังหลาย Shard โดยอิงตามช่วงของค่าที่กำหนด
 
-- **Scalability:** Horizontal or range-based sharding allows for seamless scalability by distributing data across multiple shards, accommodating growing datasets.
-- **Improved Performance:** Data distribution among shards enhances query performance through parallelization, ensuring faster operations with smaller subsets of data handled by each shard.
+- **Scalability:** Horizontal หรือ Range-based Sharding ช่วยให้ขยายระบบได้อย่างราบรื่นด้วยการกระจายข้อมูลไปยังหลาย Shard เพื่อรองรับชุดข้อมูลที่เพิ่มขึ้น
+- **ประสิทธิภาพที่ดีขึ้น:** การกระจายข้อมูลระหว่าง Shard ช่วยเพิ่มประสิทธิภาพของ Query ด้วยการประมวลผลแบบขนาน ทำให้แต่ละ Shard จัดการข้อมูลเพียงส่วนย่อยที่มีขนาดเล็กลงและทำงานได้เร็วขึ้น
 
-#### **Disadvantages**
+#### **ข้อเสีย**
 
-Managing and querying data across multiple shards can introduce additional complexity.
+การจัดการและ Query ข้อมูลข้ามหลาย Shard อาจเพิ่มความซับซ้อน
 
-- **Complex Querying Across Shards:** Coordinating queries involving multiple shards can be challenging.
-- **Uneven Data Distribution:** Poorly managed data distribution may lead to uneven workloads among shards.
+- **ความซับซ้อนของ Query ข้าม Shard:** การประสานงาน Query ที่เกี่ยวข้องกับหลาย Shard อาจทำได้ยาก
+- **การกระจายข้อมูลไม่สม่ำเสมอ:** หากจัดการการกระจายข้อมูลไม่ดี อาจทำให้แต่ละ Shard มีภาระงานไม่เท่ากัน
 
 ### **3. Vertical Sharding**
 
-Vertical sharding divides a database by separating columns of a table into different shards or tables. Each shard stores a specific set of columns related to a particular feature or functionality. This helps distribute workload and manage large tables more efficiently.
+Vertical Sharding แบ่งฐานข้อมูลด้วยการแยก Column ของ Table ไปไว้ใน Shard หรือ Table ที่แตกต่างกัน แต่ละ Shard จะเก็บชุด Column ที่เกี่ยวข้องกับ Feature หรือ Functionality เฉพาะ วิธีนี้ช่วยกระจายภาระงานและจัดการ Table ขนาดใหญ่ได้อย่างมีประสิทธิภาพมากขึ้น
 
-- Each shard contains a subset of columns while rows remain logically related to the same entity.
-- Different features of an entity can be stored on separate machines to improve performance and manageability.
+- แต่ละ Shard จะมี Column เพียงบางส่วน ขณะที่ Row ยังคงมีความสัมพันธ์เชิงตรรกะกับ Entity เดียวกัน
+- Feature ที่แตกต่างกันของ Entity สามารถจัดเก็บไว้บนเครื่องแยกกันเพื่อเพิ่มประสิทธิภาพและความสะดวกในการจัดการ
 
-> ***Example**: On Twitter users might have a profile, number of followers, and some tweets posted by his/her own. We can place the user profiles on one shard, followers in the second shard, and tweets on a third shard.*
+> ***ตัวอย่าง**: บน Twitter ผู้ใช้อาจมี Profile, จำนวนผู้ติดตาม และ Tweet ที่โพสต์ด้วยตนเอง เราสามารถวาง Profile ของผู้ใช้ไว้ใน Shard หนึ่ง ผู้ติดตามไว้ใน Shard ที่สอง และ Tweet ไว้ใน Shard ที่สาม*
 
 <img src="https://media.geeksforgeeks.org/wp-content/uploads/20260114163511692882/vertical_sharding-660.webp" alt="vertical_sharding" />
 
-#### **Advantages**
+#### **ข้อดี**
 
-Vertical sharding divides a database by separating columns into different shards based on functionality.
+Vertical Sharding แบ่งฐานข้อมูลโดยแยก Column ไปยัง Shard ต่างๆ ตาม Functionality
 
-- **Query Performance:** Vertical sharding can improve query performance by allowing each shard to focus on a specific subset of columns. This specialization enhances the efficiency of queries that involve only a subset of the available columns.
-- **Simplified Queries:** Queries that require a specific set of columns can be simplified, as they only need to interact with the shard containing the relevant columns.
+- **ประสิทธิภาพของ Query:** Vertical Sharding สามารถเพิ่มประสิทธิภาพของ Query ได้โดยให้แต่ละ Shard มุ่งจัดการ Column เฉพาะกลุ่ม การแยกหน้าที่นี้ช่วยให้ Query ที่ใช้เพียงบาง Column ทำงานได้อย่างมีประสิทธิภาพมากขึ้น
+- **Query ที่ง่ายขึ้น:** Query ที่ต้องใช้ Column เฉพาะชุดสามารถทำให้ง่ายขึ้นได้ เพราะต้องติดต่อเฉพาะ Shard ที่มี Column ที่เกี่ยวข้องเท่านั้น
 
-#### **Disadvantages**
+#### **ข้อเสีย**
 
-Splitting columns across shards can introduce operational and workload challenges.
+การแยก Column ไปยังหลาย Shard อาจทำให้เกิดความท้าทายด้านการดำเนินงานและภาระงาน
 
-- **Potential for Hotspots:** Certain shards may become hotspots if they contain highly accessed columns, leading to uneven distribution of workloads.
-- **Challenges in Schema Changes:** Making changes to the schema, such as adding or removing columns, may be more challenging in a vertically sharded system. Changes can impact multiple shards and require careful coordination.
+- **ความเสี่ยงในการเกิด Hotspot:** Shard บางตัวอาจกลายเป็น Hotspot หากมี Column ที่ถูกเข้าถึงบ่อย ส่งผลให้ภาระงานกระจายไม่สมดุล
+- **ความท้าทายในการเปลี่ยน Schema:** การเปลี่ยน Schema เช่น การเพิ่มหรือลบ Column อาจทำได้ยากขึ้นในระบบที่ใช้ Vertical Sharding การเปลี่ยนแปลงอาจกระทบหลาย Shard และต้องมีการประสานงานอย่างรอบคอบ
 
 ### **4. Directory-Based Sharding**
 
-In Directory-Based Sharding, we create and maintain a lookup service or lookup table for the original database. Basically we use a shard key for lookup table and we do mapping for each entity that exists in the database. This way we keep track of which database shards hold which data.
+ใน Directory-Based Sharding เราจะสร้างและดูแล Lookup Service หรือ Lookup Table สำหรับฐานข้อมูลต้นฉบับ โดยพื้นฐานแล้ว เราใช้ Shard Key สำหรับ Lookup Table และทำ Mapping ให้กับแต่ละ Entity ที่อยู่ในฐานข้อมูล วิธีนี้ช่วยให้เราติดตามได้ว่า Database Shard ใดเก็บข้อมูลใดอยู่
 
-> ***Example**: A user database may use a lookup table that maps each user ID to the specific shard where that user’s data is stored. When a request is made, the system first checks the lookup table and then routes the query to the correct shard.*
+> ***ตัวอย่าง**: ฐานข้อมูลผู้ใช้อาจใช้ Lookup Table ที่จับคู่ User ID แต่ละตัวกับ Shard ที่จัดเก็บข้อมูลของผู้ใช้นั้น เมื่อมี Request เข้ามา ระบบจะตรวจสอบ Lookup Table ก่อน จากนั้นจึงส่ง Query ไปยัง Shard ที่ถูกต้อง*
 
 <img src="https://media.geeksforgeeks.org/wp-content/uploads/20260114163511883644/pre_sharded_table-660.webp" alt="pre_sharded_table" />
 
-The lookup table holds a static set of information about where specific data can be found.
+Lookup Table จะเก็บชุดข้อมูลแบบคงที่เกี่ยวกับตำแหน่งที่สามารถค้นหาข้อมูลเฉพาะได้
 
-In the above image, you can see that we have used the delivery zone as a shard key:
+จากภาพด้านบน คุณจะเห็นว่าเราใช้ Delivery Zone เป็น Shard Key:
 
-- Firstly the client application queries the lookup service to find out the shard (database partition) on which the data is placed.
-- When the lookup service returns the shard it queries/updates that shard.
+- ขั้นแรก Client Application จะ Query ไปยัง Lookup Service เพื่อค้นหา Shard (Database Partition) ที่จัดเก็บข้อมูลไว้
+- เมื่อ Lookup Service ส่ง Shard กลับมา ระบบจะ Query หรือ Update Shard นั้น
 
-#### **Advantages**
+#### **ข้อดี**
 
-Directory-based sharding uses a central lookup service that keeps track of where each piece of data is stored.
+Directory-based Sharding ใช้ Lookup Service แบบศูนย์กลางเพื่อติดตามว่าข้อมูลแต่ละส่วนถูกจัดเก็บไว้ที่ใด
 
-- **Flexible Data Distribution:** Directory-based sharding allows for flexible data distribution, where the central directory can dynamically manage and update the mapping of data to shard locations.
-- **Efficient Query Routing:** Queries can be efficiently routed to the appropriate shard using the information stored in the directory. This results in improved query performance.
-- **Dynamic Scalability:** The system can dynamically scale by adding or removing shards without requiring changes to the application logic.
+- **การกระจายข้อมูลที่ยืดหยุ่น:** Directory-based Sharding รองรับการกระจายข้อมูลที่ยืดหยุ่น โดย Central Directory สามารถจัดการและอัปเดต Mapping ระหว่างข้อมูลกับตำแหน่งของ Shard ได้แบบ Dynamic
+- **การ Routing Query อย่างมีประสิทธิภาพ:** Query สามารถถูกส่งไปยัง Shard ที่เหมาะสมได้อย่างมีประสิทธิภาพโดยใช้ข้อมูลที่จัดเก็บใน Directory ซึ่งช่วยเพิ่มประสิทธิภาพของ Query
+- **Dynamic Scalability:** ระบบสามารถขยายหรือลดขนาดได้แบบ Dynamic ด้วยการเพิ่มหรือลบ Shard โดยไม่ต้องเปลี่ยนแปลง Application Logic
 
-#### **Disadvantages**
+#### **ข้อเสีย**
 
-While flexible, this approach introduces dependency on the central directory.
+แม้แนวทางนี้จะมีความยืดหยุ่น แต่ก็ทำให้ระบบต้องพึ่งพา Central Directory
 
-- **Centralized Point of Failure:** The central directory represents a single point of failure. If the directory becomes unavailable or experiences issues, it can disrupt the entire system, impacting data access and query routing.
-- **Increased Latency:** Query routing through a central directory introduces an additional layer, potentially leading to increased latency compared to other sharding strategies.
+- **จุดล้มเหลวแบบรวมศูนย์:** Central Directory เป็น Single Point of Failure หาก Directory ไม่พร้อมใช้งานหรือเกิดปัญหา อาจส่งผลกระทบต่อทั้งระบบ รวมถึงการเข้าถึงข้อมูลและการ Routing Query
+- **Latency ที่เพิ่มขึ้น:** การ Routing Query ผ่าน Central Directory เพิ่มอีกหนึ่ง Layer ซึ่งอาจทำให้ Latency สูงขึ้นเมื่อเทียบกับกลยุทธ์ Sharding แบบอื่น
 
-## **Ways to optimize database sharding for even data distribution**
+## **วิธีปรับ Database Sharding ให้กระจายข้อมูลอย่างสม่ำเสมอ**
 
-Here are some simple ways to optimize database sharding for even data distribution:
+ต่อไปนี้คือวิธีง่ายๆ ในการปรับ Database Sharding เพื่อให้กระจายข้อมูลได้อย่างสม่ำเสมอ:
 
-- **Use Consistent Hashing**: This helps distribute data more evenly across all shards by using a hashing function that assigns records to different shards based on their key values.
-- **Choose a Good Sharding Key**: Picking a well-balanced sharding key is crucial. A key that doesn’t create hotspots ensures that data spreads out evenly across all servers.
-- **Range-Based Sharding with Caution**: If using range-based sharding, make sure the ranges are properly defined so that one shard doesn’t get overloaded with more data than others.
-- **Regularly Monitor and Rebalance**: Keep an eye on data distribution and rebalance shards when necessary to avoid uneven loads as data grows.
-- **Automate Sharding Logic**: Implement automation tools or built-in database features that automatically distribute data and handle sharding to maintain balance across shards.
+- **ใช้ Consistent Hashing**: วิธีนี้ช่วยกระจายข้อมูลไปยัง Shard ทั้งหมดได้สม่ำเสมอมากขึ้น โดยใช้ Hashing Function ที่กำหนด Record ไปยัง Shard ต่างๆ ตามค่า Key ของ Record
+- **เลือก Sharding Key ที่ดี**: การเลือก Sharding Key ที่สมดุลเป็นสิ่งสำคัญ Key ที่ไม่ก่อให้เกิด Hotspot จะช่วยให้ข้อมูลกระจายอย่างสม่ำเสมอไปยัง Server ทั้งหมด
+- **ใช้ Range-Based Sharding อย่างระมัดระวัง**: หากใช้ Range-based Sharding ต้องกำหนดช่วงข้อมูลให้เหมาะสม เพื่อไม่ให้ Shard ใด Shard หนึ่งมีข้อมูลมากเกินไปเมื่อเทียบกับ Shard อื่น
+- **Monitor และ Rebalance อย่างสม่ำเสมอ**: คอยตรวจสอบการกระจายข้อมูลและทำ Rebalance Shard เมื่อจำเป็น เพื่อหลีกเลี่ยงภาระงานที่ไม่สมดุลเมื่อข้อมูลเพิ่มขึ้น
+- **ทำ Sharding Logic แบบอัตโนมัติ**: ใช้เครื่องมือ Automation หรือ Feature ที่มีมาในฐานข้อมูลเพื่อกระจายข้อมูลและจัดการ Sharding โดยอัตโนมัติ เพื่อรักษาสมดุลระหว่าง Shard
 
-## **Alternatives to database sharding**
+## **ทางเลือกอื่นแทน Database Sharding**
 
-Below are some of the alternatives to database sharding:
+ต่อไปนี้คือทางเลือกบางส่วนที่สามารถใช้แทน Database Sharding ได้:
 
-1. **Vertical Scaling**: [**Vertical Scaling**](https://www.geeksforgeeks.org/system-design/system-design-horizontal-and-vertical-scaling/) means upgrading the same server by adding more CPU, RAM, or storage to handle more load, but it has a fixed hardware limit so it can’t scale forever.
-2. **Replication**: [**Replication**](https://www.geeksforgeeks.org/system-design/database-replication-and-their-types-in-system-design/) means creating database copies on multiple servers for load balancing and high availability, but replicas may face synchronization issues.
-3. **Partitioning**: [**Partitioning**](https://www.geeksforgeeks.org/system-design/data-partitioning-techniques/) means splitting data into smaller parts within the same server to improve performance for large datasets without using multiple servers.
-4. **Caching**: [**Caching**](https://www.geeksforgeeks.org/system-design/caching-system-design-concept-for-beginners/) means storing frequently used data in Redis/Memcached to reduce database load and speed up responses.
-5. **CDNs**: [**CDNs**](https://www.geeksforgeeks.org/system-design/what-is-content-delivery-networkcdn-in-system-design/) mean using a Content Delivery Network for read-heavy data to reduce direct database access and deliver content faster.
+1. **Vertical Scaling**: [**Vertical Scaling**](https://www.geeksforgeeks.org/system-design/system-design-horizontal-and-vertical-scaling/) หมายถึงการอัปเกรด Server เดิมด้วยการเพิ่ม CPU, RAM หรือ Storage เพื่อรองรับภาระงานที่มากขึ้น แต่มีข้อจำกัดด้าน Hardware ที่แน่นอน จึงไม่สามารถขยายได้ตลอดไป
+2. **Replication**: [**Replication**](https://www.geeksforgeeks.org/system-design/database-replication-and-their-types-in-system-design/) หมายถึงการสร้างสำเนาฐานข้อมูลบน Server หลายเครื่องเพื่อทำ Load Balancing และเพิ่ม High Availability แต่ Replica อาจพบปัญหาเรื่องการ Synchronization
+3. **Partitioning**: [**Partitioning**](https://www.geeksforgeeks.org/system-design/data-partitioning-techniques/) หมายถึงการแบ่งข้อมูลออกเป็นส่วนย่อยภายใน Server เดียวกัน เพื่อเพิ่มประสิทธิภาพสำหรับชุดข้อมูลขนาดใหญ่โดยไม่ต้องใช้ Server หลายเครื่อง
+4. **Caching**: [**Caching**](https://www.geeksforgeeks.org/system-design/caching-system-design-concept-for-beginners/) หมายถึงการจัดเก็บข้อมูลที่ถูกใช้งานบ่อยไว้ใน Redis/Memcached เพื่อลดภาระของฐานข้อมูลและเพิ่มความเร็วในการตอบสนอง
+5. **CDNs**: [**CDNs**](https://www.geeksforgeeks.org/system-design/what-is-content-delivery-networkcdn-in-system-design/) หมายถึงการใช้ Content Delivery Network สำหรับข้อมูลที่มีการอ่านจำนวนมาก เพื่อลดการเข้าถึงฐานข้อมูลโดยตรงและส่งมอบ Content ได้เร็วขึ้น
