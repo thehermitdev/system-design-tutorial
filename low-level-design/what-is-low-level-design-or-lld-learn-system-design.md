@@ -1,69 +1,69 @@
-# **Low Level Design or LLD**
+# **Low-Level Design หรือ LLD**
 
-Low-Level Design (LLD) plays a crucial role in software development, transforming high-level abstract concepts into detailed, actionable components that developers can use to build the system.
+Low-Level Design (LLD) มีบทบาทสำคัญในการพัฒนาซอฟต์แวร์ โดยเปลี่ยนแนวคิดเชิงนามธรรมระดับสูงให้กลายเป็นองค์ประกอบที่มีรายละเอียดและสามารถนำไปพัฒนาได้จริง เพื่อให้นักพัฒนานำไปใช้สร้างระบบ
 
-- LLD is the blueprint that guides developers on how to implement specific components of a system, such as classes, methods, algorithms, and data structures.
-- Whether we are working on a microservice architecture, a web application, or a mobile app, understanding LLD is essential for building scalable, maintainable, and efficient systems.
+- LLD คือพิมพ์เขียวที่ช่วยให้นักพัฒนาทราบว่าจะนำองค์ประกอบเฉพาะของระบบไปพัฒนาอย่างไร เช่น คลาส เมธอด อัลกอริทึม และโครงสร้างข้อมูล
+- ไม่ว่าเราจะทำงานกับสถาปัตยกรรมแบบ Microservice, Web Application หรือ Mobile App การเข้าใจ LLD เป็นสิ่งสำคัญสำหรับการสร้างระบบที่รองรับการขยายตัว ดูแลรักษาง่าย และมีประสิทธิภาพ
 
 <img src="https://media.geeksforgeeks.org/wp-content/uploads/20260414102919491982/design.webp" />
 
-## **Difference Between HLD and LLD**
+## **ความแตกต่างระหว่าง HLD และ LLD**
 
-HLD and LLD are both important in system design, but they focus on different levels of detail. HLD gives a big-picture view of the system, while LLD focuses on the detailed implementation.
+ทั้ง HLD และ LLD มีความสำคัญในการออกแบบระบบ แต่เน้นรายละเอียดในระดับที่แตกต่างกัน โดย HLD ให้ภาพรวมของระบบในระดับกว้าง ส่วน LLD เน้นรายละเอียดในการนำไปพัฒนาจริง
 
-1. **High-Level Design (HLD):** Focuses on overall system architecture, including frameworks, databases, component integration, and how the system works at a broader level.
-2. **Low-Level Design (LLD):** Focuses on detailed design of components and modules, including interactions, UML diagrams, behavior, and the algorithms and data structures used.
+1. **High-Level Design (HLD):** เน้นสถาปัตยกรรมโดยรวมของระบบ รวมถึง Framework, Database, การเชื่อมต่อระหว่าง Component และการทำงานของระบบในภาพรวม
+2. **Low-Level Design (LLD):** เน้นการออกแบบ Component และ Module อย่างละเอียด รวมถึงการทำงานร่วมกัน, UML Diagram, พฤติกรรม ตลอดจน Algorithm และ Data Structure ที่ใช้
 
-> **Example:** In an e-commerce system, HLD decides components like user service, payment service, and database, while LLD defines how the “Order” class works, what methods it has, and how it interacts with other classes.
+> **ตัวอย่าง:** ในระบบ E-commerce นั้น HLD จะกำหนด Component เช่น User Service, Payment Service และ Database ส่วน LLD จะกำหนดว่า Class “Order” ทำงานอย่างไร มี Method อะไรบ้าง และทำงานร่วมกับ Class อื่นอย่างไร
 
-## **Concepts Needed to Create a LLD from given HLD**
+## **แนวคิดที่จำเป็นสำหรับการสร้าง LLD จาก HLD ที่กำหนด**
 
-For HLD to LLD conversion, we generally use [Unified Modelling Language (UML) diagrams](https://www.geeksforgeeks.org/system-design/unified-modeling-language-uml-introduction/). Adding to these diagrams we use OOP principles and [SOLID principles](https://www.geeksforgeeks.org/system-design/solid-principle-in-programming-understand-with-real-life-examples/) and design patterns while designing.
+ในการเปลี่ยนจาก HLD ไปเป็น LLD โดยทั่วไปเราจะใช้ [Unified Modelling Language (UML) Diagram](https://www.geeksforgeeks.org/system-design/unified-modeling-language-uml-introduction/) นอกจาก Diagram เหล่านี้แล้ว เรายังใช้หลักการ OOP, [SOLID Principles](https://www.geeksforgeeks.org/system-design/solid-principle-in-programming-understand-with-real-life-examples/) และ Design Pattern ในระหว่างการออกแบบอีกด้วย
 
 <img src="https://media.geeksforgeeks.org/wp-content/uploads/20260414102919609290/roadmap_to_low_level_design_lld_-660.webp" />
 
-### **Step 1. Understanding Object-Oriented Principles**
+### **ขั้นตอนที่ 1 ทำความเข้าใจหลักการ Object-Oriented**
 
-User requirements are translated into design using OOP concepts, which form the foundation of Low-Level Design (LLD). A strong understanding of OOP principles helps build maintainable, scalable, and well-structured components.
+Requirement ของผู้ใช้จะถูกนำมาแปลงเป็นแบบออกแบบด้วยแนวคิด OOP ซึ่งเป็นพื้นฐานของ Low-Level Design (LLD) การเข้าใจหลักการ OOP อย่างถ่องแท้ช่วยให้สามารถสร้าง Component ที่ดูแลรักษาง่าย รองรับการขยายตัว และมีโครงสร้างที่ดี
 
-- **Encapsulation**: Bundling data and the methods that operate on that data within one unit.
-- **Inheritance**: Mechanism where a new class can inherit the properties and methods of an existing class.
-- **Polymorphism**: Ability of different classes to respond to the same method in different ways.
-- **Abstraction**: Hiding the complex implementation details while showing only the essential features of an object.
+- **Encapsulation**: การรวมข้อมูลและ Method ที่ทำงานกับข้อมูลนั้นไว้ภายในหน่วยเดียวกัน
+- **Inheritance**: กลไกที่ทำให้ Class ใหม่สามารถสืบทอด Property และ Method จาก Class ที่มีอยู่แล้วได้
+- **Polymorphism**: ความสามารถของ Class ที่แตกต่างกันในการตอบสนองต่อ Method เดียวกันด้วยวิธีที่แตกต่างกัน
+- **Abstraction**: การซ่อนรายละเอียดการทำงานที่ซับซ้อน และแสดงเฉพาะคุณสมบัติสำคัญของ Object
 
-### **Step 2. Analyzing and Designing Components**
+### **ขั้นตอนที่ 2 วิเคราะห์และออกแบบ Component**
 
-LLD requires you to analyze real-world problems and break them down into object-world problems using OOP concepts. This is a critical step where real-world entities are modeled into objects and classes.
+LLD ต้องอาศัยการวิเคราะห์ปัญหาในโลกจริงและแยกปัญหาเหล่านั้นออกมาเป็นปัญหาในโลกของ Object ด้วยแนวคิด OOP ขั้นตอนนี้มีความสำคัญอย่างมาก เพราะเป็นการนำ Entity ในโลกจริงมาสร้างแบบจำลองเป็น Object และ Class
 
-We should focus on:
+เราควรให้ความสำคัญกับ:
 
-- Identifying classes and objects based on the system requirements.
-- Determining relationships (like associations, inheritance, etc.) between different entities.
-- Using SOLID principles to ensure your design is clean, maintainable, and scalable.
+- การระบุ Class และ Object จาก Requirement ของระบบ
+- การกำหนดความสัมพันธ์ระหว่าง Entity ต่างๆ เช่น Association และ Inheritance
+- การใช้ SOLID Principles เพื่อให้การออกแบบสะอาด ดูแลรักษาง่าย และรองรับการขยายตัว
 
-### **Step 3. Implementing Design Patterns**
+### **ขั้นตอนที่ 3 นำ Design Pattern มาใช้**
 
-Implementation of object-oriented design is supported by design patterns, which provide reusable solutions to common problems. They help build scalable, maintainable, and efficient systems by following proven best practices.
+การพัฒนา Object-Oriented Design สามารถใช้ Design Pattern ช่วยสนับสนุนได้ โดย Design Pattern เป็นแนวทางที่นำกลับมาใช้ซ้ำได้สำหรับแก้ปัญหาที่พบบ่อย และช่วยสร้างระบบที่รองรับการขยายตัว ดูแลรักษาง่าย และมีประสิทธิภาพตามแนวทางปฏิบัติที่ได้รับการพิสูจน์แล้ว
 
-- **Creational Patterns** (e.g., Singleton, Factory): These patterns deal with object creation mechanisms, trying to create objects in a way that is appropriate to the situation.
-- **Behavioral Patterns** (e.g., Observer, Strategy): Focus on communication between objects and how they interact with each other.
-- **Structural Patterns** (e.g., Adapter, Composite): These patterns are concerned with simplifying the structure of the system and its components.
+- **Creational Patterns** (เช่น Singleton, Factory): Pattern เหล่านี้เกี่ยวข้องกับกลไกการสร้าง Object โดยพยายามสร้าง Object ด้วยวิธีที่เหมาะสมกับสถานการณ์
+- **Behavioral Patterns** (เช่น Observer, Strategy): เน้นการสื่อสารระหว่าง Object และวิธีที่ Object ทำงานร่วมกัน
+- **Structural Patterns** (เช่น Adapter, Composite): Pattern เหล่านี้เกี่ยวข้องกับการทำให้โครงสร้างของระบบและ Component เข้าใจและจัดการได้ง่ายขึ้น
 
-### **Step 4. Use of UML Diagram in LLD**
+### **ขั้นตอนที่ 4 การใช้ UML Diagram ใน LLD**
 
-Unified Modeling Language (UML) is used to visually model and design systems, helping transition from HLD to LLD. It clearly represents components and their relationships, making system understanding easier for developers.
+Unified Modeling Language (UML) ใช้สำหรับสร้างแบบจำลองและออกแบบระบบในรูปแบบภาพ เพื่อช่วยในการเปลี่ยนจาก HLD ไปเป็น LLD โดยแสดง Component และความสัมพันธ์ระหว่างกันอย่างชัดเจน ทำให้นักพัฒนาเข้าใจระบบได้ง่ายขึ้น
 
-- **Class Diagrams**: Represent the structure of the system in terms of its classes and the relationships between them.
-- **Sequence Diagrams**: Illustrate how objects interact over time, showing the sequence of method calls.
-- **Activity Diagrams**: Show the workflow or activities of a system component.
-- **State Diagrams**: Represent the different states of a component or object and the transitions between these states.
-- **Use Case Diagrams**: Define the functional requirements of the system by showing different user interactions.
+- **Class Diagrams**: แสดงโครงสร้างของระบบในรูปแบบของ Class และความสัมพันธ์ระหว่าง Class เหล่านั้น
+- **Sequence Diagrams**: แสดงให้เห็นว่า Object ทำงานร่วมกันตามลำดับเวลาอย่างไร รวมถึงลำดับการเรียกใช้ Method
+- **Activity Diagrams**: แสดง Workflow หรือกิจกรรมของ Component ในระบบ
+- **State Diagrams**: แสดง State ต่างๆ ของ Component หรือ Object และการเปลี่ยนผ่านระหว่าง State เหล่านั้น
+- **Use Case Diagrams**: กำหนด Functional Requirement ของระบบโดยแสดงรูปแบบการโต้ตอบต่างๆ ของผู้ใช้
 
-These diagrams play a significant role in LLD, providing a clear visual representation of the components and their interactions.
+Diagram เหล่านี้มีบทบาทสำคัญใน LLD เพราะช่วยแสดง Component และการทำงานร่วมกันในรูปแบบภาพอย่างชัดเจน
 
-### **5. Implementing SOLID Principles**
+### **5. นำ SOLID Principles มาใช้**
 
-These are sets of 5 principles(rules) that are strictly followed as per requirements of the system or requirements for optimal designing. In order to write scalable, flexible, maintainable, and reusable code:
+SOLID คือชุดของหลักการ 5 ข้อที่นำมาใช้ตาม Requirement ของระบบหรือ Requirement สำหรับการออกแบบที่เหมาะสม เพื่อให้สามารถเขียน Code ที่รองรับการขยายตัว ยืดหยุ่น ดูแลรักษาง่าย และนำกลับมาใช้ซ้ำได้:
 
 1. Single-responsibility principle (SRP)
 2. Open-closed principle (OCP)
@@ -71,35 +71,35 @@ These are sets of 5 principles(rules) that are strictly followed as per requirem
 4. Interface Segregation Principle (ISP)
 5. Dependency Inversion Principle (DIP)
 
-It's important to keep in mind that SOLID principles are just guidelines and not strict rules to be followed. The key is to strike a balance between following these principles and considering the specific needs and constraints of your business requirement.
+สิ่งสำคัญคือต้องเข้าใจว่า SOLID Principles เป็นเพียงแนวทาง ไม่ใช่กฎตายตัวที่ต้องปฏิบัติตามอย่างเคร่งครัด หัวใจสำคัญคือการหาสมดุลระหว่างการปฏิบัติตามหลักการเหล่านี้กับการพิจารณาความต้องการและข้อจำกัดเฉพาะของ Business Requirement
 
-## **Benefits**
+## **ประโยชน์**
 
-Low-Level Design offers a detailed and structured approach to building software systems, providing multiple benefits:
+Low-Level Design เป็นแนวทางที่ละเอียดและมีโครงสร้างสำหรับการสร้างระบบซอฟต์แวร์ ซึ่งมีประโยชน์หลายด้าน:
 
-- **Clear Component Functionality**: LLD provides a detailed plan for how each part of the software will work, making development and debugging easier.
-- **Scalability and Flexibility**: It provides a well-structured design, which makes simpler to update or fix parts of the system without affecting the entire software.
-- **Improved Communication**: LLD helps team members communicate more effectively because everyone has a clear understanding of how components are working.
-- **Cleaner Code**: Following the design principles in LLD leads to more cleaner, organized code, making it less prone to errors.
-- **Faster Coding**: A proper LLD speeds up the coding process because developers can follow the detailed plan made earlier.
+- **การทำงานของ Component ที่ชัดเจน**: LLD มีแผนอย่างละเอียดว่าแต่ละส่วนของซอฟต์แวร์จะทำงานอย่างไร ทำให้การพัฒนาและ Debug ง่ายขึ้น
+- **Scalability และ Flexibility**: การออกแบบที่มีโครงสร้างที่ดีช่วยให้การแก้ไขหรือปรับปรุงส่วนต่างๆ ของระบบทำได้ง่ายขึ้นโดยไม่กระทบกับซอฟต์แวร์ทั้งระบบ
+- **การสื่อสารที่ดีขึ้น**: LLD ช่วยให้สมาชิกในทีมสื่อสารกันได้อย่างมีประสิทธิภาพมากขึ้น เพราะทุกคนเข้าใจอย่างชัดเจนว่า Component ต่างๆ ทำงานอย่างไร
+- **Code ที่สะอาดขึ้น**: การปฏิบัติตามหลักการออกแบบใน LLD ช่วยให้ Code สะอาดและเป็นระเบียบมากขึ้น รวมถึงลดโอกาสเกิดข้อผิดพลาด
+- **เขียน Code ได้เร็วขึ้น**: LLD ที่เหมาะสมช่วยให้กระบวนการเขียน Code เร็วขึ้น เพราะนักพัฒนาสามารถทำตามแผนรายละเอียดที่ออกแบบไว้ก่อนหน้าได้
 
-## **Best Practices for Low-Level Design(LLD)**
+## **แนวทางปฏิบัติที่ดีสำหรับ Low-Level Design (LLD)**
 
-Some of the best practices to form a good Low-Level Design are:
+แนวทางปฏิบัติที่ดีบางส่วนสำหรับการสร้าง Low-Level Design ที่ดี ได้แก่:
 
-- **Modular Design:** Always try to break down the system into small, independent components that contain specific functionalities.
-- **Clear Interfaces:** Clearly define the interfaces for each component, which should include methods, inputs, outputs. This helps in maintaining proper communication between components
-- **Use Design Patterns:** Include OOPS Principles to promote code reusability, flexibility and maintainability.
-- **Adopt SOLID Principles:** Follow Solid Principles which will lead to more robust and maintainable design.
-- **Error Handling:** plan in advance for error handling and validation of the system by including validation checks in the design
+- **Modular Design:** พยายามแบ่งระบบออกเป็น Component ขนาดเล็กที่เป็นอิสระต่อกัน และแต่ละ Component มีหน้าที่เฉพาะ
+- **Clear Interfaces:** กำหนด Interface ของแต่ละ Component ให้ชัดเจน ซึ่งควรรวมถึง Method, Input และ Output เพื่อช่วยให้การสื่อสารระหว่าง Component เป็นไปอย่างเหมาะสม
+- **Use Design Patterns:** ใช้หลักการ OOPS เพื่อส่งเสริมการนำ Code กลับมาใช้ซ้ำ ความยืดหยุ่น และความสามารถในการดูแลรักษา
+- **Adopt SOLID Principles:** ปฏิบัติตาม SOLID Principles ซึ่งจะช่วยให้การออกแบบมีความแข็งแรงและดูแลรักษาได้ง่ายขึ้น
+- **Error Handling:** วางแผนล่วงหน้าสำหรับการจัดการ Error และการตรวจสอบความถูกต้องของระบบ โดยรวม Validation Check ไว้ในการออกแบบ
 
-## **Roadmap to Learn LLD**
+## **Roadmap สำหรับเรียนรู้ LLD**
 
-To master Low-Level Design, follow this structured learning path:
+หากต้องการเชี่ยวชาญ Low-Level Design ให้เรียนรู้ตามลำดับต่อไปนี้:
 
-### **1. Object-Oriented and Design Principles**
+### **1. หลักการ Object-Oriented และหลักการออกแบบ**
 
-- [**Object-Oriented Programming (OOPS) Concepts**](https://www.geeksforgeeks.org/system-design/object-oriented-programingoop-concepts-for-designing-sytems/)
+- [**แนวคิด Object-Oriented Programming (OOPS)**](https://www.geeksforgeeks.org/system-design/object-oriented-programingoop-concepts-for-designing-sytems/)
 - [**Object-Oriented Analysis and Design**](https://www.geeksforgeeks.org/software-engineering/object-oriented-analysis-and-design/)
 - [**SOLID Principles**](https://www.geeksforgeeks.org/system-design/solid-principle-in-programming-understand-with-real-life-examples/)
 
@@ -108,9 +108,9 @@ To master Low-Level Design, follow this structured learning path:
 - [**Creational Design Patterns**](https://www.geeksforgeeks.org/system-design/creational-design-pattern/)
 - [**Behavioral Design Patterns**](https://www.geeksforgeeks.org/system-design/behavioral-design-patterns/)
 - [**Structural Design Patterns**](https://www.geeksforgeeks.org/system-design/structural-design-patterns/)
-- [**When to choose which design pattern?**](https://www.geeksforgeeks.org/system-design/design-patterns-cheat-sheet-when-to-use-which-design-pattern/)
+- [**ควรเลือกใช้ Design Pattern แบบใดเมื่อไร?**](https://www.geeksforgeeks.org/system-design/design-patterns-cheat-sheet-when-to-use-which-design-pattern/)
 
-### **3. UML and Modeling in LLD**
+### **3. UML และการสร้างแบบจำลองใน LLD**
 
 - [**Class Diagrams**](https://www.geeksforgeeks.org/system-design/unified-modeling-language-uml-class-diagrams/)
 - [**Sequence Diagrams**](https://www.geeksforgeeks.org/system-design/unified-modeling-language-uml-sequence-diagrams/)
@@ -119,25 +119,25 @@ To master Low-Level Design, follow this structured learning path:
 - [**Use Case Diagrams**](https://www.geeksforgeeks.org/system-design/use-case-diagram/)
 - [**Object Diagrams**](https://www.geeksforgeeks.org/system-design/unified-modeling-language-uml-object-diagrams/)
 
-### **4. LLD Best Practices**
+### **4. แนวทางปฏิบัติที่ดีสำหรับ LLD**
 
-- [**Data Structures and Algorithms for System Design**](https://www.geeksforgeeks.org/system-design/data-structures-and-algorithms-for-system-design/)
-- [**Essential Security Measures in System Design**](https://www.geeksforgeeks.org/system-design/essential-security-measures-in-system-design/)
-- [**Introduction to Modularity and Interfaces**](https://www.geeksforgeeks.org/system-design/inroduction-to-modularity-and-interfaces-in-system-design/)
-- [**Difference between LLD and HLD**](https://www.geeksforgeeks.org/system-design/difference-between-high-level-design-and-low-level-design/)
-- [**Performance vs Scalability**](https://www.geeksforgeeks.org/system-design/performance-vs-scalability-in-system-design/)
-- [**Speed vs. Quality**](https://www.geeksforgeeks.org/system-design/speed-vs-quality-in-system-design/)
-- [**Coding Standards Best Practices**](https://www.geeksforgeeks.org/system-design/coding-standards-and-best-practices-for-system-design/)
+- [**Data Structures และ Algorithms สำหรับ System Design**](https://www.geeksforgeeks.org/system-design/data-structures-and-algorithms-for-system-design/)
+- [**มาตรการด้าน Security ที่สำคัญใน System Design**](https://www.geeksforgeeks.org/system-design/essential-security-measures-in-system-design/)
+- [**บทนำสู่ Modularity และ Interfaces**](https://www.geeksforgeeks.org/system-design/inroduction-to-modularity-and-interfaces-in-system-design/)
+- [**ความแตกต่างระหว่าง LLD และ HLD**](https://www.geeksforgeeks.org/system-design/difference-between-high-level-design-and-low-level-design/)
+- [**Performance เทียบกับ Scalability**](https://www.geeksforgeeks.org/system-design/performance-vs-scalability-in-system-design/)
+- [**Speed เทียบกับ Quality**](https://www.geeksforgeeks.org/system-design/speed-vs-quality-in-system-design/)
+- [**แนวทางปฏิบัติที่ดีสำหรับ Coding Standards**](https://www.geeksforgeeks.org/system-design/coding-standards-and-best-practices-for-system-design/)
 
-### **5. LLD Case Studies**
+### **5. กรณีศึกษาสำหรับ LLD**
 
-- [**Elevator System Low-Level Design**](https://www.geeksforgeeks.org/system-design/elevator-system-low-level-design-lld/)
-- [**Tic-Tac-Toe Low-Level Design**](https://www.geeksforgeeks.org/system-design/low-level-design-of-tic-tac-toe-system-design/)
-- [**Amazon Low Level Design**](https://www.geeksforgeeks.org/system-design/amazon-low-level-designlld/)
-- [**Vending Machine Low Level Design**](https://www.geeksforgeeks.org/system-design/vending-machine-low-level-design/)
+- [**Low-Level Design ของระบบลิฟต์**](https://www.geeksforgeeks.org/system-design/elevator-system-low-level-design-lld/)
+- [**Low-Level Design ของ Tic-Tac-Toe**](https://www.geeksforgeeks.org/system-design/low-level-design-of-tic-tac-toe-system-design/)
+- [**Low-Level Design ของ Amazon**](https://www.geeksforgeeks.org/system-design/amazon-low-level-designlld/)
+- [**Low-Level Design ของเครื่องขายสินค้าอัตโนมัติ**](https://www.geeksforgeeks.org/system-design/vending-machine-low-level-design/)
 
-### **6. Interview Preparation**
+### **6. การเตรียมตัวสัมภาษณ์**
 
-- [**How to Prepare for Low-Level Design Interviews?**](https://www.geeksforgeeks.org/system-design/how-to-prepare-for-low-level-design-interviews/)
-- [**Top Low-Level Design(LLD) Interview Questions 2024**](https://www.geeksforgeeks.org/system-design/top-low-level-system-designlld-interview-questions-2024/)
-- [**Best Books for Learning Low-Level Design(LLD) 2024**](https://www.geeksforgeeks.org/system-design/best-books-for-learning-low-level-designlld-2024/)
+- [**เตรียมตัวสำหรับการสัมภาษณ์ Low-Level Design อย่างไร?**](https://www.geeksforgeeks.org/system-design/how-to-prepare-for-low-level-design-interviews/)
+- [**คำถามสัมภาษณ์ Low-Level Design (LLD) ยอดนิยมปี 2024**](https://www.geeksforgeeks.org/system-design/top-low-level-system-designlld-interview-questions-2024/)
+- [**หนังสือที่ดีที่สุดสำหรับเรียนรู้ Low-Level Design (LLD) ปี 2024**](https://www.geeksforgeeks.org/system-design/best-books-for-learning-low-level-designlld-2024/)
