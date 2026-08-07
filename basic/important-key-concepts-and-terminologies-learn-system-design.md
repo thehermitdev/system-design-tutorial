@@ -1,8 +1,8 @@
-# **Important Key Concepts and Terminologies – Learn System Design**
+# **แนวคิดสำคัญและคำศัพท์ที่ควรรู้ – เรียนรู้การออกแบบระบบ**
 
-> [**System Design**](./getting-started-with-system-design.md) is the core concept behind the design of any distributed systems. System Design is defined as a process of creating an architecture for different components, interfaces, and modules of the system and providing corresponding data helpful in implementing such elements in systems.*
+> [**การออกแบบระบบ**](./getting-started-with-system-design.md) เป็นแนวคิดหลักที่อยู่เบื้องหลังการออกแบบระบบแบบกระจายทุกประเภท การออกแบบระบบหมายถึงกระบวนการสร้างสถาปัตยกรรมสำหรับส่วนประกอบ อินเทอร์เฟซ และโมดูลต่างๆ ของระบบ พร้อมทั้งกำหนดข้อมูลที่เกี่ยวข้องเพื่อช่วยในการนำองค์ประกอบเหล่านั้นไปพัฒนาใช้งานในระบบ*
 
-In this article, we'll cover the standard terms and key concepts of system design and performance, such as:
+ในบทความนี้ เราจะกล่าวถึงคำศัพท์มาตรฐานและแนวคิดสำคัญเกี่ยวกับการออกแบบระบบและประสิทธิภาพ เช่น:
 
 - Latency,
 - Throughput,
@@ -13,196 +13,196 @@ In this article, we'll cover the standard terms and key concepts of system desig
 - Lamport's Logical Clock Theorem.
 
 <aside>
-  <img src="https://media.geeksforgeeks.org/wp-content/uploads/20221209100348/Important-Key-Concepts-and-Termenologies-In-System-Design.png" alt="Important Key Concepts and Terminologies In System Design – Learn System Design" />
-  <cite>Important Key Concepts and Terminologies In System Design – Learn System Design</cite>
+  <img src="https://media.geeksforgeeks.org/wp-content/uploads/20221209100348/Important-Key-Concepts-and-Termenologies-In-System-Design.png" alt="แนวคิดสำคัญและคำศัพท์ในการออกแบบระบบ – เรียนรู้การออกแบบระบบ" />
+  <cite>แนวคิดสำคัญและคำศัพท์ในการออกแบบระบบ – เรียนรู้การออกแบบระบบ</cite>
 </aside>
 
-Let us see them one by one.
+มาดูทีละหัวข้อกัน
 
-## Throughput in System Design
+## Throughput ในการออกแบบระบบ
 
-> ***Throughput** is defined as the **measure of amount of data transmitted** successfully in a system, in a certain amount of time. In simple terms, throughput is considered as **how much data is transmitted** successfully over a period of time.*
+> ***Throughput** หมายถึง **ปริมาณข้อมูลที่ส่งผ่านได้สำเร็จ** ภายในระบบในช่วงเวลาหนึ่ง กล่าวอย่างง่ายคือ Throughput คือ **ปริมาณข้อมูลที่สามารถส่งผ่านได้สำเร็จ** ในช่วงเวลาที่กำหนด*
 
 <aside>
   <img src="https://media.geeksforgeeks.org/wp-content/uploads/20221209100347/Throughput.png" alt="Throughput"/>
   <cite>Throughput</cite>
 </aside>
 
-The unit of measure for throughput is **bits per second or bps.**
+หน่วยที่ใช้วัด Throughput คือ **บิตต่อวินาที หรือ bps**
 
-## Latency in System Design
+## Latency ในการออกแบบระบบ
 
-> ***Latency** is defined as the **amount of time** required **for a single data to be delivered** successfully. Latency is measured in **milliseconds (ms).***
+> ***Latency** หมายถึง **ระยะเวลา** ที่ใช้ **ในการส่งข้อมูลหนึ่งชุดให้สำเร็จ** โดย Latency วัดเป็นหน่วย **มิลลิวินาที (ms)***
 
 <aside>
   <img src="https://media.geeksforgeeks.org/wp-content/uploads/20221209100346/Latency.png" alt="Latency" />
   <cite>Latency</cite>
 </aside>
 
-We all have encountered situations where websites and web applications take longer to respond, or there is buffering while playing a video despite having good network connectivity. Then the latency for such systems is said to be comparatively **high**.
+เราทุกคนคงเคยเจอสถานการณ์ที่เว็บไซต์หรือเว็บแอปพลิเคชันใช้เวลาตอบสนองนาน หรือวิดีโอเกิดการบัฟเฟอร์ทั้งที่การเชื่อมต่อเครือข่ายดี ในกรณีเช่นนี้ถือว่าระบบมี Latency ค่อนข้าง **สูง**
 
-There is a certain amount of time required for user input over the website and there is a certain amount of time for the response from the web application to the user. So the **delay between user input and web application response to the same input is known as latency**.
+การรับข้อมูลจากผู้ใช้ผ่านเว็บไซต์ต้องใช้เวลาช่วงหนึ่ง และการส่งผลลัพธ์จากเว็บแอปพลิเคชันกลับไปยังผู้ใช้ก็ต้องใช้เวลาเช่นกัน ดังนั้น **ความล่าช้าระหว่างข้อมูลที่ผู้ใช้ส่งเข้ามากับการตอบกลับจากเว็บแอปพลิเคชันต่อข้อมูลนั้นเรียกว่า Latency**
 
-### **Reasons for high Latency**
+### **สาเหตุของ Latency ที่สูง**
 
-Now you must be wondering about the factors that are responsible for delays. So high latency mainly depends on 2 factors:
+ตอนนี้คุณอาจสงสัยว่าปัจจัยใดเป็นสาเหตุของความล่าช้า โดย Latency ที่สูงขึ้นอยู่กับปัจจัยหลัก 2 อย่าง:
 
-1. Network Delays
-2. Mathematical Calculation Process Delays
+1. ความล่าช้าจากเครือข่าย
+2. ความล่าช้าจากกระบวนการคำนวณ
 
 <aside>
   <img src="https://media.geeksforgeeks.org/wp-content/uploads/20221209112031/Network-Latency.png" alt="Network Latency" />
   <cite>Network Latency</cite>
 </aside>
 
-In **monolithic architecture**, as we know there is only a single block and all network calls are local within hence network delay is zero and hence latency equals computational delays only (which if not latency equals zero in monolithic systems)
+ใน **สถาปัตยกรรมแบบ Monolithic** อย่างที่ทราบกันว่ามีเพียงระบบก้อนเดียวและการเรียกใช้งานผ่านเครือข่ายทั้งหมดเกิดขึ้นภายในระบบเดียวกัน ดังนั้นความล่าช้าจากเครือข่ายจึงเป็นศูนย์ และ Latency จะเท่ากับความล่าช้าจากการประมวลผลเท่านั้น (หากไม่มีความล่าช้าจากการประมวลผล Latency ของระบบ Monolithic ก็จะเป็นศูนย์)
 
-> *Latency = Mathematic Calculation Delays*
+> *Latency = ความล่าช้าจากการคำนวณ*
 
-In **distributed systems**, there is a networks over which signals are passed to and fro hence there will for sure be network delay.
+ใน **ระบบแบบกระจาย** จะมีเครือข่ายที่ใช้ส่งสัญญาณไปมา ดังนั้นจึงเกิดความล่าช้าจากเครือข่ายอย่างแน่นอน
 
-> *Latency = Mathematic Calculation Delays + Network Delays*
+> *Latency = ความล่าช้าจากการคำนวณ + ความล่าช้าจากเครือข่าย*
 
-Let us finally discuss are components affecting latency:
+ต่อไปมาดูส่วนประกอบที่ส่งผลต่อ Latency:
 
-### **Components Affecting Latency:**
+### **ส่วนประกอบที่ส่งผลต่อ Latency:**
 
-1. **Packet Size:** Smaller the packet chunk size faster the transmission and the lower the latency.
-2. **Packet Loss:** Transmission of huge packets of various sizes in medium losses to very few losses in packets. 
-3. **Medium of transmission:** Optical fiber is the fastest ****way of transmission.
-4. **Distance between Nodes:** Poor signal will increase latency and great connectivity decreases to a greater extent.
-5. **Signal strength:** Good signal strength reduces latency.
-6. **Storage delays:** Stored information in a database and fetching from it requires very little time which supports increasing latency.
-
-<aside>
-  <img src="https://media.geeksforgeeks.org/wp-content/uploads/20221209110527/Causes-of-Network-latency.png" alt="Causes of high network Latency" />
-  <cite>Causes of high network Latency</cite>
-</aside>
-
-### **How to Reduce latency:**
-
-1. **Use a content delivery network (CDN):** CDNs help to cut down on latency. In order to shorten the distance between users and reduce the amount of time that data must travel over great distances, CDN servers are situated at various locations.
-2. **Upgrading computer hardware/software:** Improving or fine-tuning mechanical, software, or hardware components can help cut down on computational lag, which in turn helps cut down on latency.
-3. **Cache:** A cache is a high-speed data storage layer used in computers that temporarily store large amounts of transient data. By caching this data, subsequent requests for it can be fulfilled more quickly than if the data were requested directly from its original storage location. This lessens latency as well.
-
-### **Applications of Latency**
-
-1. Vehicles
-2. Capital Market
-
-## Availability in System Design
-
-> ***Availability** is the **percentage of time the system is up** and working for the needs.*
-
-It is a very important factor when for tech companies to provide services while designing systems. As recorded, Meta went down for 6 hours, corresponding to loss of estimated 60 million dollars.
-
-There are levels associated with availability with respect to the service the system is offering. For instance, air traffic control requires a higher level of availability in comparison to the restaurant reservation system.
+1. **ขนาดแพ็กเก็ต:** ยิ่งแบ่งแพ็กเก็ตเป็นส่วนเล็ก การส่งข้อมูลก็ยิ่งเร็วและ Latency ยิ่งต่ำ
+2. **การสูญหายของแพ็กเก็ต:** การส่งแพ็กเก็ตขนาดใหญ่หลายขนาดผ่านตัวกลางอาจทำให้เกิดการสูญหายของแพ็กเก็ตได้ในระดับต่างๆ
+3. **สื่อที่ใช้ในการส่งข้อมูล:** ใยแก้วนำแสงเป็นวิธีการส่งข้อมูลที่เร็วที่สุด
+4. **ระยะห่างระหว่างโหนด:** สัญญาณที่ไม่ดีจะเพิ่ม Latency ขณะที่การเชื่อมต่อที่ดีจะช่วยลด Latency ได้อย่างมาก
+5. **ความแรงของสัญญาณ:** สัญญาณที่ดีช่วยลด Latency
+6. **ความล่าช้าจากการจัดเก็บข้อมูล:** การจัดเก็บข้อมูลในฐานข้อมูลและการดึงข้อมูลออกมาต้องใช้เวลา ซึ่งมีส่วนทำให้ Latency เพิ่มขึ้น
 
 <aside>
-  <img src="https://media.geeksforgeeks.org/wp-content/uploads/20221209110941/Availability-Formula.png" alt="How availability is measured?" />
-  <cite>How availability is measured?</cite>
+  <img src="https://media.geeksforgeeks.org/wp-content/uploads/20221209110527/Causes-of-Network-latency.png" alt="สาเหตุของ Network Latency ที่สูง" />
+  <cite>สาเหตุของ Network Latency ที่สูง</cite>
 </aside>
 
-### **How availability is measured?**
+### **วิธีลด Latency:**
 
-Now you must be thinking about what are these levels and how they are measured. Levels in availability are measured via downtime per year via order of 'nines'. More 'nines' lead to lesser downtime.
+1. **ใช้ Content Delivery Network (CDN):** CDN ช่วยลด Latency โดยเซิร์ฟเวอร์ CDN จะกระจายอยู่ตามตำแหน่งต่างๆ เพื่อช่วยลดระยะห่างระหว่างผู้ใช้กับข้อมูล และลดเวลาที่ข้อมูลต้องเดินทางในระยะทางไกล
+2. **อัปเกรดฮาร์ดแวร์/ซอฟต์แวร์ของคอมพิวเตอร์:** การปรับปรุงหรือปรับแต่งส่วนประกอบทางกล ซอฟต์แวร์ หรือฮาร์ดแวร์ สามารถช่วยลดความล่าช้าจากการประมวลผล ซึ่งส่งผลให้ Latency ลดลง
+3. **Cache:** Cache คือชั้นจัดเก็บข้อมูลความเร็วสูงที่ใช้ในคอมพิวเตอร์สำหรับเก็บข้อมูลชั่วคราวจำนวนมาก เมื่อเก็บข้อมูลเหล่านี้ไว้ใน Cache คำขอครั้งถัดไปสามารถดึงข้อมูลได้รวดเร็วกว่าการร้องขอข้อมูลโดยตรงจากแหล่งจัดเก็บต้นทาง ซึ่งช่วยลด Latency ได้เช่นกัน
 
-It is as shown below via table as follows:
+### **การประยุกต์ใช้ Latency**
 
-| **Availability(%)** | **Downtime/Year** |
+1. ยานพาหนะ
+2. ตลาดทุน
+
+## Availability ในการออกแบบระบบ
+
+> ***Availability** คือ **เปอร์เซ็นต์ของเวลาที่ระบบเปิดให้บริการ** และสามารถทำงานตามที่ต้องการได้*
+
+Availability เป็นปัจจัยสำคัญอย่างมากสำหรับบริษัทเทคโนโลยีในการให้บริการขณะออกแบบระบบ จากข้อมูลที่มีการบันทึกไว้ Meta เคยหยุดให้บริการเป็นเวลา 6 ชั่วโมง ซึ่งประเมินว่าสร้างความเสียหายประมาณ 60 ล้านดอลลาร์
+
+Availability มีหลายระดับตามลักษณะบริการที่ระบบให้ ตัวอย่างเช่น ระบบควบคุมการจราจรทางอากาศต้องการ Availability ในระดับที่สูงกว่าระบบจองร้านอาหาร
+
+<aside>
+  <img src="https://media.geeksforgeeks.org/wp-content/uploads/20221209110941/Availability-Formula.png" alt="Availability วัดอย่างไร?" />
+  <cite>Availability วัดอย่างไร?</cite>
+</aside>
+
+### **Availability วัดอย่างไร?**
+
+ตอนนี้คุณอาจสงสัยว่าระดับเหล่านี้คืออะไรและวัดอย่างไร ระดับของ Availability วัดจาก Downtime ต่อปีตามจำนวนเลขเก้า หรือ 'nines' ยิ่งมีเลขเก้ามาก Downtime ก็ยิ่งน้อยลง
+
+แสดงได้ตามตารางดังนี้:
+
+| **Availability(%)** | **Downtime/ปี** |
 | --- | --- |
-| 90 | ~36.5 days |
-| 99 | ~3.65 days |
-| 99.9 | ~8.7 Hours |
-| 99.99 | ~52 Minutes |
-| 99.999 | ~6 Minutes |
+| 90 | ~36.5 วัน |
+| 99 | ~3.65 วัน |
+| 99.9 | ~8.7 ชั่วโมง |
+| 99.99 | ~52 นาที |
+| 99.999 | ~6 นาที |
 
-> ***Note:** 5 nines is considered as the golden standard of availability the system is available(up) to perform tasks.*
+> ***หมายเหตุ:** Availability ระดับ 5 nines ถือเป็นมาตรฐานระดับสูงที่ระบบพร้อมให้บริการเพื่อทำงานตามที่ต้องการ*
 
-### **How to increase Availability?**
+### **วิธีเพิ่ม Availability**
 
-1. Eliminate SPOF(major and important)
-2. Verify Automatic Failover
-3. Use Geographic Redundancy
-4. Continue upgrading and improving
+1. กำจัด SPOF (สำคัญมาก)
+2. ตรวจสอบ Automatic Failover
+3. ใช้ Geographic Redundancy
+4. อัปเกรดและปรับปรุงระบบอย่างต่อเนื่อง
 
-From the above understanding, we can land up with two conclusions:
+จากความเข้าใจข้างต้น เราสามารถสรุปได้สองข้อ:
 
-1. **Availability is low in monolithic architecture** due to SPOF.
-2. **Availability is high in distributed architecture** due to redundancy.
+1. **Availability ต่ำในสถาปัตยกรรมแบบ Monolithic** เนื่องจากมี SPOF
+2. **Availability สูงในสถาปัตยกรรมแบบ Distributed** เนื่องจากมี Redundancy
 
-## Redundancy in System Design
+## Redundancy ในการออกแบบระบบ
 
-> ***Redundancy** is defined as a concept where certain entities are **duplicated** **with aim to scale up the system and reduce over all down-time**.*
-> 
+> ***Redundancy** คือแนวคิดที่มีการ **ทำสำเนา** องค์ประกอบบางส่วน **เพื่อรองรับการขยายระบบและลด Downtime โดยรวม***
+>
 
-For example, as seen in the image below, we are duplicating the server. So if one server goes down, then we have a **redundant server** in our system to balance the load.
+ตัวอย่างเช่น ตามภาพด้านล่าง เราทำสำเนาเซิร์ฟเวอร์ไว้ ดังนั้นหากเซิร์ฟเวอร์หนึ่งหยุดทำงาน เรายังมี **เซิร์ฟเวอร์สำรอง** ภายในระบบเพื่อช่วยรับภาระงาน
 
 <aside>
-  <img src="https://media.geeksforgeeks.org/wp-content/uploads/20221209112334/Redundancy-and-replication.png" alt="Redundancy in System Design" />
-  <cite>Redundancy in System Design</cite>
+  <img src="https://media.geeksforgeeks.org/wp-content/uploads/20221209112334/Redundancy-and-replication.png" alt="Redundancy ในการออกแบบระบบ" />
+  <cite>Redundancy ในการออกแบบระบบ</cite>
 </aside>
 
-Now from the above image, you must be wondering how these connections are handled meaning how to get all load over to another and not let to connect to server/s that are already down. Here we introduce a new term known as the **load balancer**.
+จากภาพข้างต้น คุณอาจสงสัยว่าการเชื่อมต่อเหล่านี้ถูกจัดการอย่างไร กล่าวคือจะย้ายภาระงานทั้งหมดไปยังเซิร์ฟเวอร์อื่นและป้องกันไม่ให้เชื่อมต่อกับเซิร์ฟเวอร์ที่หยุดทำงานแล้วได้อย่างไร ในส่วนนี้เราจะกล่าวถึงคำศัพท์ใหม่ที่เรียกว่า **Load Balancer**
 
 ### **Load Balancer**
 
-A load balancer works as a “traffic cop” sitting in front of your server and routing client requests across all servers. It simply distributes the set of requested operations (database write requests, cache queries) effectively across multiple servers and ensures that no single server bears too many requests that lead to degrading the overall performance of the application. A load balancer can be a physical device or a virtualized instance running on specialized hardware or a software process.
+Load Balancer ทำหน้าที่เหมือน “ตำรวจจราจร” ที่อยู่ด้านหน้าเซิร์ฟเวอร์และกระจายคำขอจาก Client ไปยังเซิร์ฟเวอร์ต่างๆ โดยทำหน้าที่กระจายชุดคำขอ เช่น คำขอเขียนข้อมูลลงฐานข้อมูลและคำขอไปยัง Cache ไปยังเซิร์ฟเวอร์หลายเครื่องอย่างมีประสิทธิภาพ และช่วยให้มั่นใจว่าไม่มีเซิร์ฟเวอร์เครื่องใดต้องรับคำขอมากเกินไปจนทำให้ประสิทธิภาพโดยรวมของแอปพลิเคชันลดลง Load Balancer อาจเป็นอุปกรณ์จริง อินสแตนซ์เสมือนที่ทำงานบนฮาร์ดแวร์เฉพาะ หรือกระบวนการซอฟต์แวร์ก็ได้
 
-Consider a scenario where an application is running on a single server and the client connects to that server directly without load balancing. It will look something like the one below.
+ลองพิจารณาสถานการณ์ที่แอปพลิเคชันทำงานบนเซิร์ฟเวอร์เพียงเครื่องเดียว และ Client เชื่อมต่อกับเซิร์ฟเวอร์นั้นโดยตรงโดยไม่มี Load Balancing ลักษณะจะคล้ายกับตัวอย่างด้านล่าง
 
 <aside>
   <img src="https://media.geeksforgeeks.org/wp-content/uploads/20221209113206/Single-Server-Without-Load-Balancer.png" alt="Load Balancer" />
-  <cite>Redundancy in System Design</cite>
+  <cite>Redundancy ในการออกแบบระบบ</cite>
 </aside>
 
-**How to handle the unavailability of a Load Balancer?**
+**จะจัดการอย่างไรเมื่อ Load Balancer ไม่พร้อมใช้งาน?**
 
-If the load balancer becomes unavailable, then the corresponding server will become unavailable and the system will go into downtime. In order to handle such cases, we do opt for two techniques:
+หาก Load Balancer ไม่พร้อมใช้งาน เซิร์ฟเวอร์ที่เกี่ยวข้องก็จะไม่สามารถใช้งานได้ และระบบจะเข้าสู่ภาวะ Downtime เพื่อรับมือกับกรณีดังกล่าว เราสามารถใช้สองเทคนิค:
 
-1. **Way 1:** Using backup load balancer technique: It contains primary and secondary load balancers involving concepts of 'floating ID' and 'Health check'.
-2. **Way 2:** **Using DNS Server**: For now newbies to understand associate this works quite similar to the redundancy principle.
+1. **วิธีที่ 1:** ใช้เทคนิค Backup Load Balancer ซึ่งประกอบด้วย Load Balancer หลักและสำรอง โดยเกี่ยวข้องกับแนวคิด 'floating ID' และ 'Health check'
+2. **วิธีที่ 2:** **ใช้ DNS Server:** สำหรับผู้เริ่มต้น ให้เข้าใจว่าการทำงานของวิธีนี้คล้ายกับหลักการ Redundancy
 
-> **Note:** Geeks do remember that DNS does not keep track of  whether load balancer is working so do we introduce **Monitor**  to keep track in case of DNS.
-> 
-> **Tip:** In system designing failures are inevitable, we could not eliminate them completely can only  work in minimizing them.
+> **หมายเหตุ:** ควรจำไว้ว่า DNS ไม่ได้ติดตามว่า Load Balancer ยังทำงานอยู่หรือไม่ ดังนั้นในกรณีที่ใช้ DNS เราจึงต้องมี **Monitor** เพื่อคอยตรวจสอบ
+>
+> **เคล็ดลับ:** ในการออกแบบระบบ ความล้มเหลวเป็นสิ่งที่หลีกเลี่ยงไม่ได้ เราไม่สามารถกำจัดได้ทั้งหมด แต่ทำได้เพียงลดผลกระทบให้น้อยที่สุด
 
-While considering the availability factor while designing systems is directly proportional to geographic location. For instance: For a corresponding service if a system goes down in a particular location (be India) the whole service is available at some other location to make the service operational. In the real world, we are having the complete hardware available across various locations so as not to hamper service at any cost.
+เมื่อพิจารณาปัจจัยด้าน Availability ในการออกแบบระบบ ปัจจัยนี้มีความสัมพันธ์โดยตรงกับตำแหน่งทางภูมิศาสตร์ ตัวอย่างเช่น สำหรับบริการหนึ่ง หากระบบหยุดทำงานในตำแหน่งหนึ่ง เช่น อินเดีย บริการทั้งหมดควรยังพร้อมใช้งานจากตำแหน่งอื่นเพื่อให้บริการดำเนินต่อไปได้ ในโลกจริง เราจึงมีฮาร์ดแวร์ครบชุดกระจายอยู่ตามตำแหน่งต่างๆ เพื่อไม่ให้บริการหยุดชะงักไม่ว่าในกรณีใด
 
-## Consistency in System Design
+## Consistency ในการออกแบบระบบ
 
-> **Consistency** is referred to as **data uniformity in systems**.
+> **Consistency** หมายถึง **ความสอดคล้องเป็นหนึ่งเดียวกันของข้อมูลภายในระบบ**
 
-When a user requests data, the system always returns the same data, regardless of the user's location, time, etc. Before a user receives data from any node, the server at which the data is updated or changed should successfully replicate the new data to all the nodes.                       **** 
+เมื่อผู้ใช้ร้องขอข้อมูล ระบบจะส่งกลับข้อมูลเดียวกันเสมอ ไม่ว่าผู้ใช้จะอยู่ที่ใด เวลาใด เป็นต้น ก่อนที่ผู้ใช้จะได้รับข้อมูลจากโหนดใด เซิร์ฟเวอร์ที่มีการอัปเดตหรือเปลี่ยนแปลงข้อมูลควรทำสำเนาข้อมูลใหม่ไปยังทุกโหนดให้สำเร็จ
 
-In order to understand consistency in simpler terms:
+เพื่อให้เข้าใจ Consistency ได้ง่ายขึ้น:
 
-- Consider three nodes **X, Y, and Z** in a system, where very little **t1** time is taken for data transmission for replication from **X** to **Y** and **t2** from **X** to **Z**.
-- Now the maximum among **t1** and **t2** is taken where no user is supposed to fetch info so as to avoid to get inconsistency in data by providing older records.
+- สมมติว่ามีสามโหนด **X, Y และ Z** ในระบบ โดยใช้เวลา **t1** เล็กน้อยในการส่งข้อมูลเพื่อทำ Replication จาก **X** ไปยัง **Y** และใช้เวลา **t2** จาก **X** ไปยัง **Z**
+- จากนั้นจะพิจารณาค่าที่มากที่สุดระหว่าง **t1** และ **t2** ซึ่งในช่วงเวลาดังกล่าวไม่ควรให้ผู้ใช้ดึงข้อมูล เพื่อหลีกเลี่ยงความไม่สอดคล้องของข้อมูลจากการได้รับข้อมูลเก่า
 
-**Example:** Account Transactions
+**ตัวอย่าง:** ธุรกรรมบัญชี
 
-> **Note:**  If the users gets the data somehow because of inconsistency in systems, it is known as **Dirty Reading.**
+> **หมายเหตุ:** หากผู้ใช้ได้รับข้อมูลที่ไม่ถูกต้องเนื่องจากความไม่สอดคล้องภายในระบบ กรณีนี้เรียกว่า **Dirty Reading**
 
-## Time in System Design
+## Time ในการออกแบบระบบ
 
-> **Time** is a measure of sequences of events happening which is measured here in seconds in its SI unit. 
-> It is measured using a clock which is of two types:
-> 1. **Physical Clock:** responsible for the time between systems.  
-> 2. **Logical Clock:** responsible for the time within a system.
+> **Time** คือการวัดลำดับของเหตุการณ์ที่เกิดขึ้น โดยในที่นี้วัดเป็นวินาทีตามหน่วย SI
+> เวลาใช้ Clock ในการวัด ซึ่งแบ่งออกเป็นสองประเภท:
+> 1. **Physical Clock:** รับผิดชอบการวัดเวลาระหว่างระบบ
+> 2. **Logical Clock:** รับผิดชอบการวัดเวลาภายในระบบ
 
 <aside>
-  <img src="https://media.geeksforgeeks.org/wp-content/uploads/20221209111921/Terminologies.png" alt="Time in System Design" />
-  <cite>Time in System Design</cite>
+  <img src="https://media.geeksforgeeks.org/wp-content/uploads/20221209111921/Terminologies.png" alt="Time ในการออกแบบระบบ" />
+  <cite>Time ในการออกแบบระบบ</cite>
 </aside>
 
-**Illustration:**
+**ตัวอย่างประกอบ:**
 
-List out all colleges in the world. So here the time taken between colleges for communication is a measure of the physical clock. Whereas the time taken within the hospital is a measure of a logical clock.
+ลองรวบรวมรายชื่อมหาวิทยาลัยทั้งหมดในโลก ในกรณีนี้เวลาที่ใช้ในการสื่อสารระหว่างมหาวิทยาลัยถือเป็นการวัดด้วย Physical Clock ส่วนเวลาที่ใช้ภายในโรงพยาบาลถือเป็นการวัดด้วย Logical Clock
 
-## CAP Theorem In System Design
+## CAP Theorem ในการออกแบบระบบ
 
-Three desirable characteristics of distributed systems with replicated data are referred to as CAP: partition tolerance, availability, and consistency (among replicated copies) (in the face of the nodes in the system being partitioned by a network fault). According to this theorem, in a distributed system with data replication, it is not possible to ensure all three of the required properties—consistency, availability, and partition tolerance—at the same time. It claims that only two of the three properties stated below can be supported strongly by networked shared-data systems:
+คุณสมบัติที่พึงประสงค์สามประการของระบบแบบกระจายที่มีการทำสำเนาข้อมูลเรียกรวมว่า CAP ได้แก่ Partition Tolerance, Availability และ Consistency ระหว่างสำเนาข้อมูล โดยเฉพาะในกรณีที่โหนดภายในระบบถูกแบ่งออกจากกันเนื่องจากความผิดพลาดของเครือข่าย ตามทฤษฎีบทนี้ ในระบบแบบกระจายที่มีการทำสำเนาข้อมูล จะไม่สามารถรับประกันคุณสมบัติทั้งสาม ได้แก่ Consistency, Availability และ Partition Tolerance ได้พร้อมกัน กล่าวคือระบบเครือข่ายที่ใช้ข้อมูลร่วมกันสามารถรองรับได้อย่างเข้มแข็งเพียงสองในสามคุณสมบัติต่อไปนี้:
 
 - **C**onsistency
 - **A**vailability
@@ -213,11 +213,11 @@ Three desirable characteristics of distributed systems with replicated data are 
   <cite>CAP Theorem</cite>
 </aside>
 
-The different combinations and their use cases are as follows:
+รูปแบบการจับคู่และกรณีใช้งานต่างๆ มีดังนี้:
 
-1. **CA: Consistency and Availability:**
-2. **AP: Availability and Partition Tolerance:**
-3. **CP: Consistency and Partition Tolerance:**
+1. **CA: Consistency และ Availability:**
+2. **AP: Availability และ Partition Tolerance:**
+3. **CP: Consistency และ Partition Tolerance:**
 
 <aside>
   <img src="https://media.geeksforgeeks.org/wp-content/uploads/20221209112208/Consistency-availability-partition-tolerance-768.png" alt="CAP Theorem" />
@@ -226,8 +226,8 @@ The different combinations and their use cases are as follows:
 
 ## Lamport's Logical Clock Theorem
 
-**Lamport's Logical Clock** is a process to ascertain the sequence in which events take place. It acts as the foundation for the more complex Vector Clock Algorithm. A logical clock is required because a distributed operating system (Lamport) lacks a global clock.
+**Lamport's Logical Clock** คือกระบวนการที่ใช้กำหนดลำดับการเกิดเหตุการณ์ และเป็นพื้นฐานของ Vector Clock Algorithm ที่ซับซ้อนกว่า จำเป็นต้องใช้ Logical Clock เนื่องจากระบบปฏิบัติการแบบกระจายตามแนวคิดของ Lamport ไม่มี Global Clock
 
-> **Remember:** Leslie Lamport came up with the idea for Lamport's Logical Clock.
+> **จำไว้:** Leslie Lamport เป็นผู้เสนอแนวคิด Lamport's Logical Clock
 
-**Tip: Refer here** to read more and understand better the Lamport Logical Clock Theorem.
+**เคล็ดลับ: ดูเพิ่มเติมที่นี่** เพื่ออ่านและทำความเข้าใจ Lamport Logical Clock Theorem ให้ดียิ่งขึ้น
