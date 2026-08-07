@@ -1,184 +1,184 @@
-# **Activity Diagrams - Unified Modeling Language (UML)**
+# **แผนภาพกิจกรรม - Unified Modeling Language (UML)**
 
-An Activity Diagram is a behavioral UML diagram used to represent workflows, processes, and the sequence of activities within a system. It shows how actions are connected and how control flows from one activity to another.
+แผนภาพกิจกรรม (Activity Diagram) คือแผนภาพเชิงพฤติกรรมของ UML ที่ใช้แสดงเวิร์กโฟลว์ กระบวนการ และลำดับของกิจกรรมภายในระบบ โดยแสดงให้เห็นว่าการกระทำต่างๆ เชื่อมโยงกันอย่างไร และการควบคุมไหลจากกิจกรรมหนึ่งไปยังอีกกิจกรรมหนึ่งอย่างไร
 
-- Illustrates sequential and concurrent activities, along with decision paths and control flow.
-- Starts with an initial node and ends with a final node, helping model system behavior over time.
+- แสดงกิจกรรมที่ทำงานตามลำดับและทำงานพร้อมกัน รวมถึงเส้นทางการตัดสินใจและการไหลของการควบคุม
+- เริ่มต้นด้วยโหนดเริ่มต้นและสิ้นสุดด้วยโหนดสิ้นสุด ช่วยให้สามารถจำลองพฤติกรรมของระบบตามลำดับเวลาได้
 
-> **Example:** An Online Shopping System activity diagram showing steps such as Browse Products-> Add to Cart -> Make Payment -> Order Confirmation.
+> **ตัวอย่าง:** แผนภาพกิจกรรมของระบบซื้อสินค้าออนไลน์ที่แสดงขั้นตอน เช่น เลือกดูสินค้า -> เพิ่มลงตะกร้า -> ชำระเงิน -> ยืนยันคำสั่งซื้อ
 
-## **Uses of Activity Diagram**
+## **การใช้งานแผนภาพกิจกรรม**
 
-Activity diagrams are used to visualize workflows, processes, and the dynamic behavior of a system.
+แผนภาพกิจกรรมใช้เพื่อแสดงเวิร์กโฟลว์ กระบวนการ และพฤติกรรมแบบไดนามิกของระบบให้เห็นภาพ
 
-- **Modeling Workflows or Processes:** Represents the sequence of activities in a business process or system workflow.
-- **Concurrent or Parallel Processing:** Shows multiple activities that can execute simultaneously.
-- **Understanding Dynamic Behavior:** Illustrates how a system behaves and responds to events over time.
-- **Clarifying Complex Logic:** Simplifies decision-making and branching processes for better understanding.
-- **System Design and Analysis:** Helps analyze, design, and communicate system behavior effectively.
-- **Describing Use Cases:** Visualizes the flow of actions and interactions within a use case.
+- **การจำลองเวิร์กโฟลว์หรือกระบวนการ:** แสดงลำดับของกิจกรรมในกระบวนการทางธุรกิจหรือเวิร์กโฟลว์ของระบบ
+- **การประมวลผลพร้อมกันหรือแบบขนาน:** แสดงกิจกรรมหลายรายการที่สามารถทำงานพร้อมกันได้
+- **การทำความเข้าใจพฤติกรรมแบบไดนามิก:** แสดงให้เห็นว่าระบบทำงานและตอบสนองต่อเหตุการณ์ต่างๆ ตามลำดับเวลาอย่างไร
+- **การทำให้ตรรกะที่ซับซ้อนเข้าใจง่ายขึ้น:** ช่วยให้กระบวนการตัดสินใจและการแตกแขนงของเส้นทางเข้าใจได้ง่ายขึ้น
+- **การออกแบบและวิเคราะห์ระบบ:** ช่วยในการวิเคราะห์ ออกแบบ และสื่อสารพฤติกรรมของระบบได้อย่างมีประสิทธิภาพ
+- **การอธิบาย Use Case:** แสดงลำดับการกระทำและการโต้ตอบภายใน Use Case ให้เห็นภาพ
 
-## **Activity Diagram Notations**
+## **สัญลักษณ์ในแผนภาพกิจกรรม**
 
 <img src="https://media.geeksforgeeks.org/wp-content/uploads/20240112151723/Activity-Diagram-Notations-660.jpg" alt="Activity-Diagram-Notations" />
 
-### **1. Initial State**
+### **1. สถานะเริ่มต้น**
 
-Represents the starting point of an activity or process.
+แสดงจุดเริ่มต้นของกิจกรรมหรือกระบวนการ
 
-- Shown as a filled black circle in the diagram.
-- A process typically has only one initial state unless nested activities are used.
+- แสดงด้วยวงกลมสีดำทึบในแผนภาพ
+- โดยทั่วไปหนึ่งกระบวนการจะมีสถานะเริ่มต้นเพียงหนึ่งจุด เว้นแต่จะมีการใช้กิจกรรมที่ซ้อนกัน
 
 <img src="https://media.geeksforgeeks.org/wp-content/uploads/20240112152513/initial-state-660.jpg" />
 
-> **Example:** Here the initial state of the system before the application is opened.
+> **ตัวอย่าง:** ในที่นี้คือสถานะเริ่มต้นของระบบก่อนเปิดแอปพลิเคชัน
 
 <img src="https://media.geeksforgeeks.org/wp-content/uploads/20240112152912/Initial-State-symbol-being-used-(1)-660.jpg" />
 
-### **2. Action or Activity State**
+### **2. สถานะการกระทำหรือกิจกรรม**
 
-Represents the execution of an action or task within a process.
+แสดงการดำเนินการของการกระทำหรืองานภายในกระบวนการ
 
-- Shown as a rectangle with rounded corners.
-- Represents any action, operation, or event that occurs in the workflow.
+- แสดงด้วยสี่เหลี่ยมมุมมน
+- ใช้แทนการกระทำ การดำเนินงาน หรือเหตุการณ์ใดๆ ที่เกิดขึ้นในเวิร์กโฟลว์
 
 <img src="https://media.geeksforgeeks.org/wp-content/uploads/20240112152950/activity-state-660.jpg" />
 
-> **Example**: Consider the previous example of opening an application, opening the application is an activity state in the activity diagram.
+> **ตัวอย่าง**: จากตัวอย่างก่อนหน้าของการเปิดแอปพลิเคชัน การเปิดแอปพลิเคชันถือเป็นสถานะกิจกรรมในแผนภาพกิจกรรม
 
 <img src="https://media.geeksforgeeks.org/wp-content/uploads/20240112153109/Activity-State-symbol-being-used-660.jpg" alt="Activity-State-symbol-being-used" />
 
-### **3. Action Flow or Control flows**
+### **3. การไหลของการกระทำหรือการไหลของการควบคุม**
 
-Represents the transition and sequence of activities within a process.
+แสดงการเปลี่ยนผ่านและลำดับของกิจกรรมภายในกระบวนการ
 
-- Shown as a line with an arrowhead indicating the direction of flow.
-- An activity can have multiple incoming and outgoing control flows, with conditions specified on the arrows if required.
+- แสดงด้วยเส้นที่มีหัวลูกศรเพื่อระบุทิศทางการไหล
+- กิจกรรมหนึ่งสามารถมีการไหลของการควบคุมทั้งขาเข้าและขาออกได้หลายเส้น โดยสามารถระบุเงื่อนไขบนลูกศรได้หากจำเป็น
 
 <img src="https://media.geeksforgeeks.org/wp-content/uploads/20240112153209/control-flow-660.jpg" alt="control-flow" />
 
-> **Example**: Here both the states transit into one final state using action flow symbols i.e. arrows.
+> **ตัวอย่าง**: ในที่นี้สถานะทั้งสองเปลี่ยนผ่านไปยังสถานะสุดท้ายเดียวกันโดยใช้สัญลักษณ์การไหลของการกระทำ ซึ่งก็คือลูกศร
 
 <img src="https://media.geeksforgeeks.org/wp-content/uploads/20240112153322/Using-Action-Flows-for-Transitions-660.jpg" alt="Using-Action-Flows-for-Transitions" />
 
-### **4. Decision node and Branching**
+### **4. โหนดการตัดสินใจและการแตกแขนง**
 
-Represents a point where a decision is made to determine the next flow of control.
+แสดงจุดที่มีการตัดสินใจเพื่อกำหนดเส้นทางการไหลของการควบคุมถัดไป
 
-- Shown with multiple outgoing paths based on conditions or guard expressions.
-- Always has two or more outgoing control flow arrows.
+- แสดงด้วยเส้นทางขาออกหลายเส้นตามเงื่อนไขหรือนิพจน์เงื่อนไขกำกับ
+- จะมีลูกศรการไหลของการควบคุมขาออกตั้งแต่สองเส้นขึ้นไปเสมอ
 
 <img src="https://media.geeksforgeeks.org/wp-content/uploads/20240112153442/decision-node-660.jpg" alt="Using-Action-Flows-for-Transitions" />
 
-> **Example**: We apply the conditions on input number to display the result :
-> - If number is odd then display the number.
-> - If number if even then display the error.
+> **ตัวอย่าง**: เรากำหนดเงื่อนไขให้กับตัวเลขที่รับเข้ามาเพื่อแสดงผลลัพธ์:
+> - หากตัวเลขเป็นเลขคี่ ให้แสดงตัวเลขนั้น
+> - หากตัวเลขเป็นเลขคู่ ให้แสดงข้อผิดพลาด
 
 <img src="https://media.geeksforgeeks.org/wp-content/uploads/20240112153518/An-Activity-Diagram-using-Decision-Node-660.jpg" alt="An-Activity-Diagram-using-Decision-Node" />
 
-### **5. Guard**
+### **5. เงื่อนไขกำกับ**
 
 
-Represents a condition that must be satisfied for a particular flow to be followed.
+แสดงเงื่อนไขที่ต้องเป็นจริงเพื่อให้ระบบดำเนินไปตามเส้นทางที่กำหนด
 
-- Written next to a decision path, often within square brackets.
-- Helps control the direction of flow based on specific conditions.
+- เขียนไว้ข้างเส้นทางการตัดสินใจ โดยมักอยู่ภายในวงเล็บเหลี่ยม
+- ช่วยควบคุมทิศทางการไหลตามเงื่อนไขที่กำหนด
 
 <img src="https://media.geeksforgeeks.org/wp-content/uploads/20240112153635/guard-660.jpg" />
 
-### **6. Fork**
+### **6. การแยกการทำงาน**
 
-Represents a point where a workflow is split into multiple parallel activities.
+แสดงจุดที่เวิร์กโฟลว์ถูกแยกออกเป็นกิจกรรมหลายรายการที่ทำงานแบบขนาน
 
-- Shown as a solid rectangular bar with one incoming arrow and multiple outgoing arrows.
-- Allows several activities to execute simultaneously.
+- แสดงด้วยแถบสี่เหลี่ยมทึบที่มีลูกศรขาเข้าหนึ่งเส้นและลูกศรขาออกหลายเส้น
+- ทำให้กิจกรรมหลายรายการสามารถทำงานพร้อมกันได้
 
 <img src="https://media.geeksforgeeks.org/wp-content/uploads/20240112153718/fork-660.jpg" />
 
-> ***Example:** In the example below, the activity of making coffee can be split into two concurrent activities and hence we use the fork notation.*
+> ***ตัวอย่าง:** ในตัวอย่างด้านล่าง กิจกรรมการชงกาแฟสามารถแยกออกเป็นกิจกรรมสองรายการที่ทำงานพร้อมกันได้ ดังนั้นเราจึงใช้สัญลักษณ์การแยกการทำงาน*
 
-### **7. Join**
+### **7. การรวมการทำงาน**
 
 <img src="https://media.geeksforgeeks.org/wp-content/uploads/20240112153750/A-Diagram-using-Fork-Notation-660.jpg" />
 
-Represents a point where multiple parallel activities merge into a single flow.
+แสดงจุดที่กิจกรรมแบบขนานหลายรายการถูกรวมกลับเป็นการไหลเส้นทางเดียว
 
-- Shown with two or more incoming edges and one outgoing edge.
-- Synchronizes concurrent activities before proceeding to the next step.
+- แสดงด้วยเส้นขาเข้าสองเส้นขึ้นไปและเส้นขาออกหนึ่งเส้น
+- ซิงโครไนซ์กิจกรรมที่ทำงานพร้อมกันก่อนดำเนินไปยังขั้นตอนถัดไป
 
 <img src="https://media.geeksforgeeks.org/wp-content/uploads/20240112153918/join-660.jpg" />
 
-> ***Example:** When both activities i.e. steaming the milk and adding coffee get completed, we converge them into one final activity.*
+> ***ตัวอย่าง:** เมื่อกิจกรรมทั้งสอง ได้แก่ การสตีมนมและการเติมกาแฟเสร็จสิ้น เราจะรวมทั้งสองกิจกรรมเข้าสู่กิจกรรมสุดท้ายเพียงหนึ่งกิจกรรม*
 
 <img src="https://media.geeksforgeeks.org/wp-content/uploads/20240112154002/A-Diagram-using-Join-Notation-660.jpg" />
 
-### **8. Merge or Merge Event**
+### **8. การรวมเส้นทางหรือเหตุการณ์รวมเส้นทาง**
 
-Represents a point where multiple alternative paths combine into a single flow.
+แสดงจุดที่เส้นทางทางเลือกหลายเส้นถูกรวมเป็นการไหลเส้นทางเดียว
 
-- Merges two or more workflow paths into one outgoing path.
-- The process continues regardless of which incoming path was followed.
+- รวมเส้นทางเวิร์กโฟลว์ตั้งแต่สองเส้นขึ้นไปให้เป็นเส้นทางขาออกหนึ่งเส้น
+- กระบวนการจะดำเนินต่อไปไม่ว่าจะเข้ามาจากเส้นทางใดก็ตาม
 
 <img src="https://media.geeksforgeeks.org/wp-content/uploads/20240112154039/merge-660.jpg" />
 
-> **Example:** In the diagram below: we can't have both sides executing concurrently, but they finally merge into one. A number can't be both odd and even at the same time.
+> **ตัวอย่าง:** ในแผนภาพด้านล่าง เราไม่สามารถให้ทั้งสองฝั่งทำงานพร้อมกันได้ แต่สุดท้ายทั้งสองเส้นทางจะถูกรวมเป็นเส้นทางเดียว ตัวเลขหนึ่งค่าไม่สามารถเป็นทั้งเลขคี่และเลขคู่พร้อมกันได้
 
 <img src="https://media.geeksforgeeks.org/wp-content/uploads/20240112154111/An-Activity-Diagram-using-Merge-Notation-(1)-660.jpg" />
 
 ### **9. Swimlanes**
 
-Represents a grouping of activities based on roles, responsibilities, or processes.
+แสดงการจัดกลุ่มกิจกรรมตามบทบาท ความรับผิดชอบ หรือกระบวนการ
 
-- Shown as a rectangular row or column in the activity diagram.
-- Helps identify who is responsible for each activity and improves workflow clarity.
+- แสดงเป็นแถวหรือคอลัมน์รูปสี่เหลี่ยมในแผนภาพกิจกรรม
+- ช่วยระบุว่าใครเป็นผู้รับผิดชอบแต่ละกิจกรรม และทำให้เวิร์กโฟลว์ชัดเจนยิ่งขึ้น
 
 <img src="https://media.geeksforgeeks.org/wp-content/uploads/20240112154155/swimlane-660.jpg" />
 
-> **Example:** Here different set of activities are executed based on if the number is odd or even. These activities are grouped into a swimlane.
+> **ตัวอย่าง:** ในที่นี้ชุดกิจกรรมที่แตกต่างกันจะถูกดำเนินการตามว่าตัวเลขเป็นเลขคี่หรือเลขคู่ โดยกิจกรรมเหล่านี้ถูกจัดกลุ่มไว้ใน Swimlane
 
 <img src="https://media.geeksforgeeks.org/wp-content/uploads/20240112154228/An-Activity-Diagram-making-use-of-Swimlanes-660.jpg" />
 
-### **10. Time Event**
+### **10. เหตุการณ์ตามเวลา**
 
-Represents an event that pauses the workflow for a specific period of time.
+แสดงเหตุการณ์ที่หยุดเวิร์กโฟลว์ชั่วคราวตามระยะเวลาที่กำหนด
 
-- Shown using an hourglass symbol in the activity diagram.
-- Used when an activity or event requires a time delay before continuing.
+- แสดงด้วยสัญลักษณ์นาฬิกาทรายในแผนภาพกิจกรรม
+- ใช้เมื่อกิจกรรมหรือเหตุการณ์ต้องรอเป็นระยะเวลาหนึ่งก่อนดำเนินการต่อ
 
 <img src="https://media.geeksforgeeks.org/wp-content/uploads/20240112154305/time-event-660.jpg" />
 
-> ***Example:** Let us assume that the processing of an image takes a lot of time. Then it can be represented as shown below.*
+> ***ตัวอย่าง:** สมมติว่าการประมวลผลรูปภาพใช้เวลานานมาก สามารถแสดงได้ดังตัวอย่างด้านล่าง*
 
 <img src="https://media.geeksforgeeks.org/wp-content/uploads/20240112154337/An-Activity-Diagram-using-Time-Event-Notation-660.jpg" alt="An-Activity-Diagram-using-Time-Event-Notation" />
 
-### **11. Final State or End State**
+### **11. สถานะสุดท้ายหรือสถานะสิ้นสุด**
 
-Represents the point where a process or activity reaches completion.
+แสดงจุดที่กระบวนการหรือกิจกรรมดำเนินการเสร็จสมบูรณ์
 
-- Shown as a filled circle inside another circle.
-- A system or process can have multiple final states.
+- แสดงด้วยวงกลมทึบที่อยู่ภายในวงกลมอีกชั้นหนึ่ง
+- ระบบหรือกระบวนการหนึ่งสามารถมีสถานะสุดท้ายได้หลายสถานะ
 
 <img src="https://media.geeksforgeeks.org/wp-content/uploads/20240112154422/final-state-660.jpg" />
 
-## **Differences between an Activity diagram and a Flowchart**
+## **ความแตกต่างระหว่างแผนภาพกิจกรรมและผังงาน**
 
-An activity diagram is very similar to a flowchart. So let us understand if activity diagrams or flowcharts are any different.
+แผนภาพกิจกรรมมีความคล้ายคลึงกับผังงานอย่างมาก ดังนั้นเรามาทำความเข้าใจว่าแผนภาพกิจกรรมและผังงานแตกต่างกันอย่างไร
 
-### **Flow Chart**
+### **ผังงาน**
 
-An algorithm is like a set of clear instructions to solve a problem, and a flowchart is a picture that shows those instructions.
+อัลกอริทึมเปรียบเสมือนชุดคำสั่งที่ชัดเจนสำหรับแก้ปัญหา ส่วนผังงานคือภาพที่ใช้แสดงคำสั่งเหล่านั้น
 
-- Flowcharts help programmers visualize the steps of an algorithm and plan the logic required to solve a problem before coding.
-- They are also used to model business workflows and decision-making processes, making them a simple precursor to activity diagrams.
+- ผังงานช่วยให้โปรแกรมเมอร์มองเห็นขั้นตอนของอัลกอริทึมและวางแผนตรรกะที่จำเป็นในการแก้ปัญหาก่อนเขียนโค้ด
+- นอกจากนี้ยังใช้จำลองเวิร์กโฟลว์ทางธุรกิจและกระบวนการตัดสินใจ ทำให้เป็นรูปแบบพื้นฐานที่เรียบง่ายก่อนพัฒนาไปสู่แผนภาพกิจกรรม
 
-> ***Example:** A manufacturer uses a flow chart to explain and illustrate how a particular product is manufactured.*
+> ***ตัวอย่าง:** ผู้ผลิตใช้ผังงานเพื่ออธิบายและแสดงให้เห็นว่าผลิตภัณฑ์หนึ่งถูกผลิตขึ้นอย่างไร*
 > 
 
-| **Flowchart** | **Activity Diagram** |
+| **ผังงาน** | **แผนภาพกิจกรรม** |
 | --- | --- |
-| Represents the step-by-step flow of a process or algorithm | Represents the flow of activities and actions in a system |
-| Used mainly for procedural or algorithmic logic | Used to model workflows and business processes |
-| Focuses on control flow using symbols like start, process, decision | Focuses on activities, decisions, parallel flows, and transitions |
-| Simple and easy to understand | More expressive and detailed than flowcharts |
-| Commonly used in programming and problem-solving | Commonly used in UML for system and process modeling |
-| Does not support concurrency well | Supports parallel and concurrent activities |
+| แสดงลำดับขั้นตอนของกระบวนการหรืออัลกอริทึม | แสดงการไหลของกิจกรรมและการกระทำภายในระบบ |
+| ใช้เป็นหลักสำหรับตรรกะแบบเป็นขั้นตอนหรืออัลกอริทึม | ใช้เพื่อจำลองเวิร์กโฟลว์และกระบวนการทางธุรกิจ |
+| เน้นการไหลของการควบคุมโดยใช้สัญลักษณ์ เช่น เริ่มต้น กระบวนการ และการตัดสินใจ | เน้นกิจกรรม การตัดสินใจ การไหลแบบขนาน และการเปลี่ยนผ่าน |
+| เรียบง่ายและเข้าใจได้ง่าย | สื่อความหมายได้มากกว่าและมีรายละเอียดมากกว่าผังงาน |
+| นิยมใช้ในการเขียนโปรแกรมและการแก้ปัญหา | นิยมใช้ใน UML สำหรับการจำลองระบบและกระบวนการ |
+| รองรับการทำงานพร้อมกันได้ไม่ดี | รองรับกิจกรรมแบบขนานและทำงานพร้อมกันได้ |
