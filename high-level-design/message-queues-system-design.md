@@ -1,129 +1,129 @@
-# **Message Queues - System Design**
+# **Message Queues - การออกแบบระบบ**
 
-Message queues enable asynchronous communication between system components by acting as a buffer between producers and consumers. They decouple services, allowing each component to operate independently and reliably even during delays or failures.
+Message Queue ช่วยให้ส่วนประกอบต่างๆ ของระบบสามารถสื่อสารกันแบบอะซิงโครนัสได้ โดยทำหน้าที่เป็นบัฟเฟอร์ระหว่าง Producer และ Consumer ช่วยแยกการทำงานของบริการออกจากกัน ทำให้แต่ละส่วนสามารถทำงานได้อย่างอิสระและเชื่อถือได้ แม้จะเกิดความล่าช้าหรือความล้มเหลว
 
-- Improves scalability and load handling by distributing work across consumers.
-- Enhances fault tolerance by storing messages until they are processed.
+- ช่วยเพิ่มความสามารถในการขยายระบบและรองรับโหลด โดยกระจายงานไปยัง Consumer หลายตัว
+- เพิ่มความทนทานต่อความล้มเหลวด้วยการเก็บข้อความไว้จนกว่าจะถูกประมวลผล
 
-> **Example:** In an e-commerce system, when a user places an order, the order service sends a message to a queue, and separate services like payment and notification process it asynchronously without blocking the user request.
+> **ตัวอย่าง:** ในระบบอีคอมเมิร์ซ เมื่อผู้ใช้สั่งซื้อสินค้า Order Service จะส่งข้อความไปยัง Queue จากนั้นบริการอื่นๆ เช่น Payment Service และ Notification Service จะประมวลผลข้อความแบบอะซิงโครนัส โดยไม่ทำให้คำขอของผู้ใช้ต้องรอ
 
 <img src="https://media.geeksforgeeks.org/wp-content/uploads/20250930085200425394/message_queue_-660.webp" alt="message_queue_" />
 
-> Think about your favorite pizza place, where they make and deliver pizzas. Behind the scenes, there's a magical system that ensures everything runs smoothly. This magic is called a Message Queue. It's like a special to-do list that helps the chefs and delivery drivers know exactly what pizzas to make and where to deliver them.
+> ลองนึกถึงร้านพิซซ่าร้านโปรดของคุณ ที่มีทั้งการทำและจัดส่งพิซซ่า เบื้องหลังมีระบบหนึ่งที่ช่วยให้ทุกอย่างดำเนินไปอย่างราบรื่น ระบบนี้เรียกว่า Message Queue ซึ่งเปรียบเสมือนรายการสิ่งที่ต้องทำแบบพิเศษที่ช่วยให้พ่อครัวและพนักงานจัดส่งรู้ว่าต้องทำพิซซ่าอะไรและนำไปส่งที่ไหน
 
-A typical message structure consists of two main parts:
+โครงสร้างของข้อความโดยทั่วไปประกอบด้วยสองส่วนหลัก:
 
-- **Headers:** These contain metadata about the message, such as unique identifier, timestamp, message type, and routing information.
-- **Body:** The body contains the actual message payload or content. It can be in any format, including text, binary data, or structured data like JSON.
+- **Headers:** เก็บ Metadata ของข้อความ เช่น ตัวระบุที่ไม่ซ้ำกัน Timestamp ประเภทของข้อความ และข้อมูลสำหรับการกำหนดเส้นทาง
+- **Body:** เก็บ Payload หรือเนื้อหาจริงของข้อความ ซึ่งสามารถอยู่ในรูปแบบใดก็ได้ เช่น ข้อความ ข้อมูลไบนารี หรือข้อมูลที่มีโครงสร้างอย่าง JSON
 
-## **Components**
+## **ส่วนประกอบ**
 
-A message queue system consists of different components that work together to send, store, and process messages asynchronously.
+ระบบ Message Queue ประกอบด้วยส่วนประกอบต่างๆ ที่ทำงานร่วมกันเพื่อส่ง จัดเก็บ และประมวลผลข้อความแบบอะซิงโครนัส
 
-- **Message Producer:** Messages are created and sent to the message queue by the message producer. Any program or part of a system that produces data for sharing can be considered this.
-- **Message Queue:** Until the message consumers consume them, the messages are stored and managed by a data structure or service called the message queue. It serves as a mediator or buffer between consumers and producers.
-- **Message Consumer:** Messages in the message queue must be retrieved and processed by the message consumer. Messages from the queue can be read concurrently by several users.
-- **Message Broker (Optional):** In some message queue systems, a message broker acts as an intermediary between producers and consumers, providing additional functionality like message routing, filtering, and message transformation.
+- **Message Producer:** Message Producer ทำหน้าที่สร้างข้อความและส่งข้อความไปยัง Message Queue ซึ่งอาจเป็นโปรแกรมหรือส่วนใดส่วนหนึ่งของระบบที่สร้างข้อมูลเพื่อนำไปใช้งานร่วมกัน
+- **Message Queue:** ข้อความจะถูกจัดเก็บและจัดการโดยโครงสร้างข้อมูลหรือบริการที่เรียกว่า Message Queue จนกว่า Message Consumer จะนำข้อความไปใช้งาน โดยทำหน้าที่เป็นตัวกลางหรือบัฟเฟอร์ระหว่าง Producer และ Consumer
+- **Message Consumer:** Message Consumer ทำหน้าที่ดึงข้อความจาก Message Queue และนำไปประมวลผล โดย Consumer หลายตัวสามารถอ่านข้อความจาก Queue พร้อมกันได้
+- **Message Broker (ไม่บังคับ):** ในระบบ Message Queue บางประเภท Message Broker จะทำหน้าที่เป็นตัวกลางระหว่าง Producer และ Consumer พร้อมความสามารถเพิ่มเติม เช่น การกำหนดเส้นทางข้อความ การกรองข้อความ และการแปลงรูปแบบข้อความ
 
-## **Working**
+## **การทำงาน**
 
-Steps to understand how message queues work:
+ขั้นตอนในการทำความเข้าใจว่า Message Queue ทำงานอย่างไร:
 
-- **Step 1: Sending Messages:** The message producer creates a message and sends it to the message queue. The message typically contains data or instructions that need to be processed or communicated.
-- **Step 2: Queuing Messages:** The message queue stores the message temporarily, making available for one or more consumers. Messages are typically stored in a first-in, first out (FIFO) order.
-- **Step 3: Consuming Messages:** Message consumers retrieve messages from the queue when they are ready to process them. They can do this at their own pace, which enables asynchronous communication.
-- **Step 4: Acknowledgment (Optional):** In some message queue systems, consumers can send acknowledgments back to the queue, indicating that they have successfully processed a message. This is essential for ensuring message delivery and preventing message loss.
+- **ขั้นตอนที่ 1: การส่งข้อความ:** Message Producer สร้างข้อความและส่งไปยัง Message Queue โดยทั่วไปข้อความจะมีข้อมูลหรือคำสั่งที่ต้องนำไปประมวลผลหรือสื่อสารต่อ
+- **ขั้นตอนที่ 2: การนำข้อความเข้าคิว:** Message Queue จะจัดเก็บข้อความไว้ชั่วคราวเพื่อให้ Consumer หนึ่งตัวหรือหลายตัวสามารถนำไปใช้งานได้ โดยทั่วไปข้อความจะถูกจัดเก็บตามลำดับเข้าก่อนออกก่อน (FIFO)
+- **ขั้นตอนที่ 3: การรับข้อความไปประมวลผล:** Message Consumer จะดึงข้อความจาก Queue เมื่อพร้อมประมวลผล และสามารถทำงานตามจังหวะของตนเองได้ ซึ่งช่วยให้เกิดการสื่อสารแบบอะซิงโครนัส
+- **ขั้นตอนที่ 4: การตอบรับ (ไม่บังคับ):** ในระบบ Message Queue บางประเภท Consumer สามารถส่ง Acknowledgment กลับไปยัง Queue เพื่อระบุว่าข้อความถูกประมวลผลสำเร็จแล้ว ซึ่งมีความสำคัญต่อการรับประกันการส่งข้อความและป้องกันข้อความสูญหาย
 
-> **Example**: A simple example of a message queue is an email inbox. When you send an email, it is placed in the recipient's inbox. The recipient can then read the email at their convenience. This email inbox acts as a buffer between the sender and the recipient, decoupling them from each other.
+> **ตัวอย่าง**: ตัวอย่างง่ายๆ ของ Message Queue คือกล่องจดหมายอีเมล เมื่อคุณส่งอีเมล อีเมลจะถูกนำไปวางไว้ในกล่องจดหมายของผู้รับ จากนั้นผู้รับสามารถเปิดอ่านได้เมื่อสะดวก กล่องจดหมายนี้จึงทำหน้าที่เป็นบัฟเฟอร์ระหว่างผู้ส่งและผู้รับ และช่วยแยกการทำงานของทั้งสองออกจากกัน
 
-## **Importance**
+## **ความสำคัญ**
 
-Message Queues are needed to address a number of challenges in [distributed systems](https://www.geeksforgeeks.org/computer-networks/what-is-a-distributed-system/), including:
+Message Queue มีความจำเป็นสำหรับการจัดการความท้าทายหลายประการใน [ระบบแบบกระจาย](https://www.geeksforgeeks.org/computer-networks/what-is-a-distributed-system/) ได้แก่:
 
-- **Asynchronous Communication:** Applications can send and receive messages without waiting for a response due to message queues. Building scalable and dependable systems requires this.
-- **Decoupling:** Message queues decouple applications from each other, allowing them to be developed independently. This makes systems more flexible and easier to maintain.
-- **Scalability:** Message queues can be scaled to handle large volumes of messages by adding more servers. This makes them ideal for high-traffic applications.
-- **Reliability:** Message queues can be designed to be highly reliable, with features such as message persistence, retries, and dead letter queues. This ensures that messages are not lost even in the event of failures.
-- **Workflow Management:** Message queues can be used to implement complex workflows, such as order processing and payment processing. This can help improve the efficiency and accuracy of these processes.
+- **การสื่อสารแบบอะซิงโครนัส:** Message Queue ช่วยให้แอปพลิเคชันสามารถส่งและรับข้อความได้โดยไม่ต้องรอการตอบกลับ ซึ่งเป็นสิ่งสำคัญสำหรับการสร้างระบบที่รองรับการขยายและมีความน่าเชื่อถือ
+- **การแยกส่วนการทำงาน:** Message Queue ช่วยแยกแอปพลิเคชันออกจากกัน ทำให้สามารถพัฒนาแต่ละส่วนได้อย่างอิสระ ส่งผลให้ระบบมีความยืดหยุ่นและดูแลรักษาได้ง่ายขึ้น
+- **ความสามารถในการขยายระบบ:** Message Queue สามารถขยายเพื่อรองรับข้อความจำนวนมากได้ด้วยการเพิ่มเซิร์ฟเวอร์ จึงเหมาะสำหรับแอปพลิเคชันที่มีปริมาณทราฟฟิกสูง
+- **ความน่าเชื่อถือ:** Message Queue สามารถออกแบบให้มีความน่าเชื่อถือสูงได้ด้วยความสามารถอย่างการจัดเก็บข้อความแบบถาวร การลองใหม่ และ Dead Letter Queue ซึ่งช่วยให้มั่นใจว่าข้อความจะไม่สูญหายแม้เกิดความล้มเหลว
+- **การจัดการ Workflow:** Message Queue สามารถใช้สร้าง Workflow ที่ซับซ้อน เช่น การประมวลผลคำสั่งซื้อและการชำระเงิน ซึ่งช่วยเพิ่มประสิทธิภาพและความถูกต้องของกระบวนการเหล่านี้
 
-## **Types**
+## **ประเภท**
 
-There are two main types of message queues in system design:
+Message Queue ในการออกแบบระบบมีสองประเภทหลัก:
 
 ### **1. Point-to-Point Message Queues**
 
-Point-to-point message queues store messages sent by a producer until a consumer retrieves them. Once consumed, the message is removed from the queue and cannot be processed by others.
+Point-to-Point Message Queue จะจัดเก็บข้อความที่ Producer ส่งเข้ามาไว้จนกว่า Consumer จะดึงไปใช้งาน เมื่อข้อความถูก Consumer รับไปแล้ว ข้อความจะถูกลบออกจาก Queue และ Consumer อื่นจะไม่สามารถประมวลผลข้อความนั้นได้อีก
 
 <img src="https://media.geeksforgeeks.org/wp-content/uploads/20260330182849095324/queue-660.webp" alt="Point-to-point Message Queues" />
 
-Point-to-point message queues can be used to implement a variety of patterns such as:
+Point-to-Point Message Queue สามารถนำไปใช้สร้างรูปแบบการทำงานต่างๆ เช่น:
 
-- **Request-Response:** A producer sends a request message to a queue, and a consumer retrieves the message and sends back a response message.
-- **Work Queue:** Producers send work items to a queue, and consumers retrieve the work items and process them.
-- **Guaranteed Delivery:** Producers send messages to a queue, and consumers can be configured retry retrieving messages until they are successfully processed.
+- **Request-Response:** Producer ส่งข้อความ Request ไปยัง Queue จากนั้น Consumer ดึงข้อความไปประมวลผลและส่งข้อความ Response กลับมา
+- **Work Queue:** Producer ส่งงานไปยัง Queue และ Consumer ดึงงานเหล่านั้นไปประมวลผล
+- **Guaranteed Delivery:** Producer ส่งข้อความไปยัง Queue และสามารถกำหนดให้ Consumer พยายามดึงข้อความซ้ำจนกว่าจะประมวลผลสำเร็จ
 
 ### **2. Publish-Subscribe Message Queues**
 
-Publish-subscribe message queues deliver messages from a producer to all subscribed consumers. Consumers can subscribe to multiple queues and unsubscribe anytime, allowing flexible message handling.
+Publish-Subscribe Message Queue จะส่งข้อความจาก Producer ไปยัง Consumer ทุกตัวที่ Subscribe อยู่ Consumer สามารถ Subscribe หลาย Queue และ Unsubscribe ได้ทุกเมื่อ ทำให้การจัดการข้อความมีความยืดหยุ่น
 
-- Publish-Subscribe Message Queues are often used to implement real-time streaming applications, such as social media and stock market tickers.
-- They can also be used to implement event-driven architecture, where components of a system communicate with each other by publishing and subscribing to events.
+- Publish-Subscribe Message Queue มักใช้สร้างแอปพลิเคชัน Streaming แบบ Real-Time เช่น โซเชียลมีเดียและตัวแสดงราคาหุ้นแบบเรียลไทม์
+- นอกจากนี้ยังสามารถใช้สร้าง Event-Driven Architecture ซึ่งส่วนประกอบต่างๆ ของระบบสื่อสารกันด้วยการ Publish และ Subscribe Event
 
-## **Message Routing**
+## **การกำหนดเส้นทางข้อความ**
 
-Message Routing involves determining how messages are directed to their intended recipients. The following methods can be employed:
+Message Routing คือการกำหนดว่าข้อความจะถูกส่งไปยังผู้รับที่ต้องการอย่างไร โดยสามารถใช้วิธีต่อไปนี้:
 
-- **Topic-Based Routing:** Messages are sent to topics or channels, and subscribers express interest in specific topics. Messages are delivered to all subscribers of a particular topic.
-- **Direct Routing:** Messages are sent directly to specific queues or consumers based on their addresses or routing keys.
-- **Content-Based Routing:** The routing decision is based on the content of the message. Filters or rules are defined to route messages that meet specific criteria.
+- **Topic-Based Routing:** ข้อความจะถูกส่งไปยัง Topic หรือ Channel และ Subscriber จะระบุ Topic ที่สนใจ จากนั้นข้อความจะถูกส่งไปยัง Subscriber ทุกตัวของ Topic นั้น
+- **Direct Routing:** ข้อความจะถูกส่งโดยตรงไปยัง Queue หรือ Consumer ที่กำหนดตาม Address หรือ Routing Key
+- **Content-Based Routing:** การตัดสินใจกำหนดเส้นทางจะอ้างอิงจากเนื้อหาของข้อความ โดยกำหนด Filter หรือ Rule เพื่อส่งข้อความที่ตรงตามเงื่อนไขที่ระบุ
 
-## **Scalability**
+## **ความสามารถในการขยายระบบ**
 
-[Scalability](https://www.geeksforgeeks.org/system-design/what-is-scalability/) is essential to ensure that a message queue system can handle increased loads efficiently. To achieve scalability:
+[ความสามารถในการขยายระบบ](https://www.geeksforgeeks.org/system-design/what-is-scalability/) มีความสำคัญเพื่อให้ระบบ Message Queue สามารถรองรับโหลดที่เพิ่มขึ้นได้อย่างมีประสิทธิภาพ โดยสามารถทำได้ดังนี้:
 
-- **Distributed Queues:** Implement the message queue as a distributed system with multiple nodes, enabling horizontal scaling.
-- **Partitioning:** Split queues into partitions to distribute message processing across different nodes or clusters.
-- **Load Balancing:** Use [load balancers](https://www.geeksforgeeks.org/system-design/what-is-load-balancer-system-design/) to evenly distribute incoming messages to queue consumers.
+- **Distributed Queues:** สร้าง Message Queue เป็นระบบแบบกระจายที่มีหลาย Node เพื่อรองรับการขยายระบบในแนวนอน
+- **Partitioning:** แบ่ง Queue ออกเป็น Partition เพื่อกระจายการประมวลผลข้อความไปยัง Node หรือ Cluster ต่างๆ
+- **Load Balancing:** ใช้ [Load Balancer](https://www.geeksforgeeks.org/system-design/what-is-load-balancer-system-design/) เพื่อกระจายข้อความขาเข้าไปยัง Queue Consumer อย่างสม่ำเสมอ
 
-## **Dead Letter Queues and Message Prioritization**
+## **Dead Letter Queues และการจัดลำดับความสำคัญของข้อความ**
 
-These concepts help manage failed messages and control the order in which messages are processed in a system.
+แนวคิดเหล่านี้ช่วยจัดการข้อความที่ประมวลผลไม่สำเร็จ และควบคุมลำดับการประมวลผลข้อความภายในระบบ
 
 ### **1. Dead Letter Queues**
 
-Dead Letter Queues (DLQs) are a mechanism for handling messages that cannot be processed successfully. This includes:
+Dead Letter Queue (DLQ) เป็นกลไกสำหรับจัดการข้อความที่ไม่สามารถประมวลผลได้สำเร็จ ซึ่งรวมถึง:
 
-- Messages with errors in their content or format.
-- Messages that exceed their time-to-live (TTL) or delivery attempts.
-- Messages that cannot be delivered to any consumer.
+- ข้อความที่มีข้อผิดพลาดในเนื้อหาหรือรูปแบบ
+- ข้อความที่เกิน Time-to-Live (TTL) หรือจำนวนครั้งในการพยายามส่ง
+- ข้อความที่ไม่สามารถส่งไปยัง Consumer ใดได้
 
-DLQs provide way to investigate and potentially reprocess failed messages while preventing them from blocking the system.
+DLQ ช่วยให้สามารถตรวจสอบและอาจนำข้อความที่ล้มเหลวกลับมาประมวลผลใหม่ได้ โดยไม่ปล่อยให้ข้อความเหล่านั้นไปขัดขวางการทำงานของระบบ
 
-### **2. Message Prioritization**
+### **2. การจัดลำดับความสำคัญของข้อความ**
 
-Message Prioritization is the process of assigning priority levels to messages to control their processing order. Prioritization criteria can include:
+Message Prioritization คือกระบวนการกำหนดระดับความสำคัญให้กับข้อความเพื่อควบคุมลำดับการประมวลผล โดยเกณฑ์ในการจัดลำดับความสำคัญอาจประกอบด้วย:
 
-- **Urgency:** Messages with higher priority may need to processed before lower-priority messages.
-- **Message Content:** Messages containing critical information or commands may receive higher priority.
-- **Business Rules:** Custom business rules or algorithms may be used to determine message priority.
+- **ความเร่งด่วน:** ข้อความที่มีความสำคัญสูงกว่าอาจต้องถูกประมวลผลก่อนข้อความที่มีความสำคัญต่ำกว่า
+- **เนื้อหาของข้อความ:** ข้อความที่มีข้อมูลหรือคำสั่งสำคัญอาจได้รับลำดับความสำคัญสูงกว่า
+- **กฎทางธุรกิจ:** สามารถใช้กฎทางธุรกิจหรืออัลกอริทึมที่กำหนดเองเพื่อตัดสินลำดับความสำคัญของข้อความ
 
-## **Message Queue Implementation**
+## **การนำ Message Queue ไปใช้งาน**
 
-Message Queues can be implemented in a variety of ways, but they typically follow a simple pattern:
+Message Queue สามารถนำไปใช้งานได้หลายรูปแบบ แต่โดยทั่วไปจะเป็นไปตามรูปแบบง่ายๆ ดังนี้:
 
-- **Producer:** An application that sends messages to a queue.
-- **Message Broker:** A server that stores and forwards messages between producers and consumers.
-- **Consumer:** An application that receives messages from a queue.
+- **Producer:** แอปพลิเคชันที่ส่งข้อความไปยัง Queue
+- **Message Broker:** เซิร์ฟเวอร์ที่จัดเก็บและส่งต่อข้อความระหว่าง Producer และ Consumer
+- **Consumer:** แอปพลิเคชันที่รับข้อความจาก Queue
 
-**Problem Statement:**
+**โจทย์:**
 
-> In a real-world scenario, you might want to consider using a dedicated message queue service like RabbitMQ or Apace Kafka for distributed systems.
+> ในสถานการณ์จริง คุณอาจพิจารณาใช้บริการ Message Queue โดยเฉพาะ เช่น RabbitMQ หรือ Apace Kafka สำหรับระบบแบบกระจาย
 
-Here's a step-by-step guide to implement a basic message queue in C++:
+ต่อไปนี้คือคำแนะนำทีละขั้นตอนสำหรับการสร้าง Message Queue พื้นฐานด้วย C++:
 
-### **Step 1: Define the Message Structure:**
+### **ขั้นตอนที่ 1: กำหนดโครงสร้างข้อความ:**
 
-Start by defining a structure for your messages. This structure should contain the necessary information for communication between different parts of your system.
+เริ่มต้นด้วยการกำหนดโครงสร้างของข้อความ โครงสร้างนี้ควรประกอบด้วยข้อมูลที่จำเป็นสำหรับการสื่อสารระหว่างส่วนต่างๆ ของระบบ
 
 ```jsx
 class Message {
@@ -135,9 +135,9 @@ class Message {
 }
 ```
 
-### **Step 2: Implement the Message Queue:**
+### **ขั้นตอนที่ 2: สร้าง Message Queue:**
 
-Create a class for your message queue. This class should handle the operations like enqueue and dequeue.
+สร้าง Class สำหรับ Message Queue โดย Class นี้ควรรองรับการทำงาน เช่น Enqueue และ Dequeue
 
 ```jsx
 class MessageQueue {
@@ -171,9 +171,9 @@ class MessageQueue {
 }
 ```
 
-### **Step 3: Create Producers and Consumers**
+### **ขั้นตอนที่ 3: สร้าง Producer และ Consumer**
 
-Implement functions or classes that act as producers and consumers. Producers enqueue messages, and consumers dequeue messages.
+สร้าง Function หรือ Class ที่ทำหน้าที่เป็น Producer และ Consumer โดย Producer จะ Enqueue ข้อความ และ Consumer จะ Dequeue ข้อความ
 
 ```jsx
 // Producer function
@@ -193,9 +193,9 @@ function consumer(messageQueue) {
 }
 ```
 
-### **Step 4: Use the Message Queue**
+### **ขั้นตอนที่ 4: ใช้งาน Message Queue**
 
-Create instances of the message queue, producers, and consumers, and use them in your program.
+สร้าง Instance ของ Message Queue, Producer และ Consumer แล้วนำไปใช้ในโปรแกรม
 
 ```jsx
 class MessageQueue {
@@ -256,7 +256,7 @@ async function consumer(mq) {
 })();
 ```
 
-**Output**
+**ผลลัพธ์**
 
 ```
 Producer 1 sending: Hello, World!
