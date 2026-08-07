@@ -1,79 +1,79 @@
 # **Creational Design Patterns**
 
-Creational Design Patterns **focus on the process of object creation or problems related to object creation. They help in making a system independent of how its objects are created, composed, and represented. Creational patterns give a lot of flexibility in what gets created, who creates it, and how it gets created.
+Creational Design Patterns **มุ่งเน้นไปที่กระบวนการสร้างอ็อบเจ็กต์หรือปัญหาที่เกี่ยวข้องกับการสร้างอ็อบเจ็กต์ ช่วยให้ระบบไม่ขึ้นอยู่กับวิธีที่อ็อบเจ็กต์ถูกสร้าง ประกอบ และนำเสนอ Creational Pattern ช่วยเพิ่มความยืดหยุ่นอย่างมากว่าอะไรจะถูกสร้าง ใครเป็นผู้สร้าง และสร้างขึ้นอย่างไร
 
-There are two main themes in these patterns:
+Pattern เหล่านี้มีแนวคิดหลักอยู่ 2 ประการ:
 
-- They keep information about the specific classes used in the system hidden.
-- They hide the details of how instances of these classes are created and assembled.
+- ซ่อนข้อมูลเกี่ยวกับคลาสเฉพาะที่ใช้ภายในระบบ
+- ซ่อนรายละเอียดเกี่ยวกับวิธีสร้างและประกอบอินสแตนซ์ของคลาสเหล่านี้
 
-> ***Example:** Imagine a toy factory
-• We want to make different types of toys like Car, Doll, or Robot.
-• Instead of creating each toy yourself, you ask the factory to make it for you.
-• Your main program doesn’t care how the toy is made — it just gets the toy ready to use.*
+> ***ตัวอย่าง:** ลองนึกภาพโรงงานของเล่น
+• เราต้องการสร้างของเล่นหลายประเภท เช่น รถ ตุ๊กตา หรือหุ่นยนต์
+• แทนที่จะสร้างของเล่นแต่ละชิ้นด้วยตัวเอง คุณขอให้โรงงานสร้างให้
+• โปรแกรมหลักของคุณไม่จำเป็นต้องสนใจว่าของเล่นถูกสร้างขึ้นอย่างไร — เพียงแค่ได้รับของเล่นที่พร้อมใช้งาน*
 > 
 
-# **Types**
+# **ประเภท**
 
-There are mainly 5 types of creational design patterns:
+Creational Design Pattern มีอยู่หลักๆ 5 ประเภท:
 
-<img src="https://media.geeksforgeeks.org/wp-content/uploads/20251209143811497209/type-creation-design-pattern-660.webp" alt="Types of Creational Design Pattern" alt="Types of Creational Design Pattern" />
+<img src="https://media.geeksforgeeks.org/wp-content/uploads/20251209143811497209/type-creation-design-pattern-660.webp" alt="ประเภทของ Creational Design Pattern" alt="ประเภทของ Creational Design Pattern" />
 
-> *Sometimes creational patterns are competitors. For Example: there are cases when either Prototype or Abstract Factory could be used profitably. At other times they are complimentary: Builder can use one of the other patterns to implement which components get built. The Prototype can use Singleton in its implementation.*
+> *บางครั้ง Creational Pattern สามารถใช้แทนกันได้ ตัวอย่างเช่น มีบางกรณีที่สามารถเลือกใช้ Prototype หรือ Abstract Factory ได้อย่างเหมาะสม แต่ในบางครั้ง Pattern เหล่านี้ก็สามารถใช้ร่วมกันได้ เช่น Builder สามารถใช้ Pattern อื่นเพื่อกำหนดว่าคอมโพเนนต์ใดจะถูกสร้างขึ้น และ Prototype สามารถใช้ Singleton ในการทำงานภายในได้*
 > 
 
 ### **1. Singleton Method Design Pattern**
 
-The [Singleton method or Singleton Design pattern](https://www.geeksforgeeks.org/system-design/singleton-design-pattern-introduction/) is one of the simplest design patterns. It ensures a class only has one instance, and provides a global point of access to it. Below is when to use Singleton Method:
+[Singleton method หรือ Singleton Design pattern](https://www.geeksforgeeks.org/system-design/singleton-design-pattern-introduction/) เป็นหนึ่งใน Design Pattern ที่เรียบง่ายที่สุด โดยรับประกันว่าคลาสหนึ่งจะมีอินสแตนซ์เพียงหนึ่งเดียว และมีจุดเข้าถึงอินสแตนซ์นั้นจากส่วนต่างๆ ของระบบ ด้านล่างคือกรณีที่ควรใช้ Singleton Method:
 
-- There must be exactly one instance of a class, and it must be accessible to clients from a well-known access point.
-- When the sole instance should be extensible by subclassing, and clients should be able to use an extended instance without modifying their code.
+- ต้องมีอินสแตนซ์ของคลาสเพียงหนึ่งเดียวเท่านั้น และไคลเอนต์ต้องสามารถเข้าถึงอินสแตนซ์นั้นผ่านจุดเข้าถึงที่กำหนดไว้อย่างชัดเจน
+- เมื่ออินสแตนซ์เดียวควรสามารถขยายความสามารถผ่านการสืบทอดคลาสได้ และไคลเอนต์ควรสามารถใช้อินสแตนซ์ที่ขยายแล้วได้โดยไม่ต้องแก้ไขโค้ดของตนเอง
 
 ### **2. Abstract Factory Method Design Pattern**
 
-[Abstract Factory pattern](https://www.geeksforgeeks.org/system-design/abstract-factory-pattern/) is almost similar to Factory Pattern and is considered as another layer of abstraction over factory pattern. Abstract Factory patterns work around a super-factory which creates other factories. Below is when to use Abstract Factory Method Design Pattern:
+[Abstract Factory pattern](https://www.geeksforgeeks.org/system-design/abstract-factory-pattern/) มีความคล้ายกับ Factory Pattern และถือเป็นอีกชั้นหนึ่งของ abstraction ที่อยู่เหนือ Factory Pattern โดย Abstract Factory Pattern ทำงานผ่าน super-factory ซึ่งมีหน้าที่สร้าง factory อื่นๆ ด้านล่างคือกรณีที่ควรใช้ Abstract Factory Method Design Pattern:
 
-- A system should be independent of how its products are created, composed, and represented.
-- A system should be configured with one of multiple families of products.
-- A family of related product objects is designed to be used together, and you need to enforce this constraint.
-- You want to provide a class library of products, and you want to reveal just their interfaces, not their implementations.
+- ระบบควรเป็นอิสระจากวิธีที่ผลิตภัณฑ์ถูกสร้าง ประกอบ และนำเสนอ
+- ระบบควรสามารถกำหนดค่าให้ใช้หนึ่งในหลายตระกูลของผลิตภัณฑ์ได้
+- กลุ่มอ็อบเจ็กต์ผลิตภัณฑ์ที่เกี่ยวข้องกันถูกออกแบบมาให้ใช้งานร่วมกัน และคุณต้องการบังคับใช้ข้อกำหนดนี้
+- คุณต้องการจัดเตรียมไลบรารีของคลาสผลิตภัณฑ์ โดยเปิดเผยเฉพาะ interface ของคลาสเหล่านั้น ไม่ใช่ implementation
 
 ### **3. Factory Method Design Pattern**
 
-[Factory Method Design pattern](https://www.geeksforgeeks.org/system-design/factory-method-for-designing-pattern/) is typically helpful when it’s necessary to separate the construction of an object from its implementation. With the use of this design pattern, objects can be produced without having to define the exact class of object to be created. Below is when to use Factory Method Design Pattern:
+[Factory Method Design pattern](https://www.geeksforgeeks.org/system-design/factory-method-for-designing-pattern/) มักมีประโยชน์เมื่อจำเป็นต้องแยกกระบวนการสร้างอ็อบเจ็กต์ออกจาก implementation ของอ็อบเจ็กต์นั้น การใช้ Design Pattern นี้ทำให้สามารถสร้างอ็อบเจ็กต์ได้โดยไม่ต้องระบุคลาสที่แน่นอนของอ็อบเจ็กต์ที่จะถูกสร้าง ด้านล่างคือกรณีที่ควรใช้ Factory Method Design Pattern:
 
-- A class can't anticipate the class of objects it must create.
-- A class wants its subclass to specify the objects it creates.
-- Classes delegate responsibility to one of several helper subclasses, and you want to localize the knowledge of which helper subclass is the delegate.
+- คลาสไม่สามารถคาดการณ์ล่วงหน้าได้ว่าจะต้องสร้างอ็อบเจ็กต์จากคลาสใด
+- คลาสต้องการให้ subclass เป็นผู้ระบุว่าจะสร้างอ็อบเจ็กต์ใด
+- คลาสมอบหมายความรับผิดชอบให้หนึ่งใน helper subclass หลายคลาส และคุณต้องการจำกัดความรู้ว่าควรใช้ helper subclass ใดเป็นตัวรับผิดชอบไว้ในจุดเดียว
 
 ### **4. Prototype Method Design Pattern**
 
-[Prototype](https://www.geeksforgeeks.org/system-design/prototype-design-pattern/) allows us to hide the complexity of making new instances from the client. The concept is to copy an existing object rather than creating a new instance from scratch, something that may include costly operations. Below is when to use Prototype Method:
+[Prototype](https://www.geeksforgeeks.org/system-design/prototype-design-pattern/) ช่วยให้เราซ่อนความซับซ้อนของการสร้างอินสแตนซ์ใหม่จากไคลเอนต์ แนวคิดคือการคัดลอกอ็อบเจ็กต์ที่มีอยู่แล้วแทนการสร้างอินสแตนซ์ใหม่ทั้งหมดตั้งแต่ต้น ซึ่งอาจเกี่ยวข้องกับกระบวนการที่มีต้นทุนสูง ด้านล่างคือกรณีที่ควรใช้ Prototype Method:
 
-- Use the Prototype pattern when a system should be independent of how its products are created, composed, and represented; and
-- When the classes to instantiate are specified at run-time, for example, by dynamic loading.
-- To avoid building a class hierarchy of factories that parallels the class hierarchy of products.
+- ใช้ Prototype Pattern เมื่อระบบควรเป็นอิสระจากวิธีที่ผลิตภัณฑ์ถูกสร้าง ประกอบ และนำเสนอ และ
+- เมื่อคลาสที่จะนำมาสร้างอินสแตนซ์ถูกกำหนดในช่วง runtime เช่น ผ่าน dynamic loading
+- เพื่อหลีกเลี่ยงการสร้างลำดับชั้นของ factory class ที่สอดคล้องขนานไปกับลำดับชั้นของ product class
 
 ### **5. Builder Method Design Pattern**
 
-[Builder Design Pattern](https://www.geeksforgeeks.org/system-design/builder-design-pattern/) is used to Separate the construction of a complex object from its representation so that the same construction process can create different representations. It helps in constructing a complex object step by step and the final step will return the object. Use It when:
+[Builder Design Pattern](https://www.geeksforgeeks.org/system-design/builder-design-pattern/) ใช้เพื่อแยกกระบวนการสร้างอ็อบเจ็กต์ที่ซับซ้อนออกจากรูปแบบการนำเสนอ เพื่อให้กระบวนการสร้างเดียวกันสามารถสร้างรูปแบบการนำเสนอที่แตกต่างกันได้ Pattern นี้ช่วยสร้างอ็อบเจ็กต์ที่ซับซ้อนทีละขั้นตอน และขั้นตอนสุดท้ายจะคืนค่าอ็อบเจ็กต์ออกมา ควรใช้เมื่อ:
 
-- The algorithm for creating a complex object should be independent of the parts that make up the object and how they're assembled.
-- The construction process must allow different representations for the object that's constructed.
+- อัลกอริทึมสำหรับสร้างอ็อบเจ็กต์ที่ซับซ้อนควรเป็นอิสระจากส่วนประกอบที่ประกอบกันเป็นอ็อบเจ็กต์และวิธีที่ส่วนเหล่านั้นถูกประกอบเข้าด้วยกัน
+- กระบวนการสร้างต้องรองรับรูปแบบการนำเสนอที่แตกต่างกันสำหรับอ็อบเจ็กต์ที่ถูกสร้าง
 
-## **Benefits**
+## **ประโยชน์**
 
-Creational design patterns offer several key benefits:
+Creational Design Pattern มีประโยชน์สำคัญหลายประการ:
 
-- They allow for greater flexibility in object creation. By decoupling the process of instantiation from the rest of the system, you can easily change the class being instantiated without affecting other components.
-- These patterns encapsulate the logic of object creation, which simplifies code management and promotes cleaner, more organized code.
-- By centralizing the creation logic, these patterns promote reusability. You can use the same creation methods across different parts of the application.
-- They help manage complex object creation processes, making it easier to handle configurations and dependencies, especially when dealing with many related classes.
+- ช่วยเพิ่มความยืดหยุ่นในการสร้างอ็อบเจ็กต์ ด้วยการแยกกระบวนการสร้างอินสแตนซ์ออกจากส่วนอื่นของระบบ ทำให้สามารถเปลี่ยนคลาสที่จะนำมาสร้างอินสแตนซ์ได้ง่ายโดยไม่กระทบคอมโพเนนต์อื่น
+- Pattern เหล่านี้ห่อหุ้ม logic ของการสร้างอ็อบเจ็กต์ไว้ในจุดเดียว ซึ่งช่วยให้จัดการโค้ดได้ง่ายขึ้น และส่งเสริมให้โค้ดสะอาดและเป็นระเบียบมากขึ้น
+- การรวม logic สำหรับการสร้างไว้ในจุดกลางช่วยเพิ่มความสามารถในการนำกลับมาใช้ซ้ำ คุณสามารถใช้วิธีการสร้างแบบเดียวกันในส่วนต่างๆ ของแอปพลิเคชันได้
+- ช่วยจัดการกระบวนการสร้างอ็อบเจ็กต์ที่ซับซ้อน ทำให้จัดการ configuration และ dependency ได้ง่ายขึ้น โดยเฉพาะเมื่อต้องทำงานกับคลาสที่เกี่ยวข้องกันจำนวนมาก
 
-## **Use Cases**
+## **กรณีการใช้งาน**
 
-Creational design patterns should be used when the process of object creation becomes complex or needs better flexibility and control.
+ควรใช้ Creational Design Pattern เมื่อกระบวนการสร้างอ็อบเจ็กต์มีความซับซ้อน หรือต้องการความยืดหยุ่นและการควบคุมที่ดีขึ้น
 
-- When object creation logic is complex, repeated, or involves multiple steps
-- When you want to reduce tight coupling between classes and improve code flexibility
-- When the system needs to be independent of how objects are created and configured
+- เมื่อ logic สำหรับสร้างอ็อบเจ็กต์มีความซับซ้อน ถูกใช้งานซ้ำ หรือประกอบด้วยหลายขั้นตอน
+- เมื่อคุณต้องการลด tight coupling ระหว่างคลาสและเพิ่มความยืดหยุ่นของโค้ด
+- เมื่อระบบต้องเป็นอิสระจากวิธีที่อ็อบเจ็กต์ถูกสร้างและกำหนดค่า
