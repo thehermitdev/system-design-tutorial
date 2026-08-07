@@ -1,81 +1,81 @@
-# **Availability in System Design**
+# **ความพร้อมใช้งานในการออกแบบระบบ**
 
-Availability refers to how often a system or service is operational and accessible to users when they need it. It measures the percentage of time a system remains functional without failures or downtime.
+ความพร้อมใช้งาน (Availability) หมายถึงความถี่ที่ระบบหรือบริการสามารถทำงานและให้ผู้ใช้เข้าถึงได้เมื่อจำเป็น โดยวัดเป็นเปอร์เซ็นต์ของเวลาที่ระบบยังคงทำงานได้โดยไม่มีความล้มเหลวหรือช่วงเวลาที่ระบบหยุดให้บริการ
 
-- Ensures users can access the system whenever required and keeps services running using backup systems or replicas even if one component fails.
-- Recovery mechanisms help restore services quickly after failures, maintaining availability and minimizing downtime.
+- ช่วยให้ผู้ใช้สามารถเข้าถึงระบบได้ทุกเมื่อที่ต้องการ และทำให้บริการยังคงทำงานต่อไปได้ด้วยระบบสำรองหรือระบบจำลอง แม้ว่าส่วนประกอบหนึ่งจะล้มเหลว
+- กลไกการกู้คืนช่วยให้สามารถฟื้นฟูบริการได้อย่างรวดเร็วหลังเกิดความล้มเหลว ทำให้ระบบยังคงพร้อมใช้งานและลดระยะเวลาที่ระบบหยุดให้บริการ
 
-> ***Example:** Cloud platforms often use multiple servers and data centers so that if one server fails, another can continue serving users without interruption.*
+> ***ตัวอย่าง:** แพลตฟอร์มคลาวด์มักใช้เซิร์ฟเวอร์และศูนย์ข้อมูลหลายแห่ง เพื่อให้เมื่อเซิร์ฟเวอร์หนึ่งล้มเหลว เซิร์ฟเวอร์อื่นสามารถให้บริการผู้ใช้ต่อได้โดยไม่หยุดชะงัก*
 > 
 
-## **Availability Measurement in System Design**
+## **การวัดความพร้อมใช้งานในการออกแบบระบบ**
 
-Availability is usually measured as the percentage of time a system remains operational and accessible to users during a given period. It is calculated by comparing the system’s uptime to the total time it is expected to run.
+โดยทั่วไป ความพร้อมใช้งานจะวัดเป็นเปอร์เซ็นต์ของเวลาที่ระบบยังคงทำงานและผู้ใช้สามารถเข้าถึงได้ในช่วงเวลาที่กำหนด โดยคำนวณจากการเปรียบเทียบระยะเวลาที่ระบบทำงานกับระยะเวลาทั้งหมดที่คาดว่าระบบควรทำงาน
 
 > *Availability (%) = (Uptime / (Uptime + Downtime)) x 100*
 
-- **Uptime**: The total time a system is operational and functioning as expected.
-- **Downtime**: The total time the system is unavailable due to failures, maintenance, or other issues.
-- **Higher Percentage = Better Availability:** Systems aim for high availability such as 99%, 99.9%, or 99.99% uptime.
-- **Measured Over Time:** It is typically measured over a month or year to evaluate system reliability.
+- **Uptime**: ระยะเวลารวมที่ระบบทำงานและทำงานได้ตามที่คาดหวัง
+- **Downtime**: ระยะเวลารวมที่ระบบไม่พร้อมใช้งานเนื่องจากความล้มเหลว การบำรุงรักษา หรือปัญหาอื่นๆ
+- **เปอร์เซ็นต์ยิ่งสูง = ความพร้อมใช้งานยิ่งดี:** ระบบมักตั้งเป้าความพร้อมใช้งานสูง เช่น uptime 99%, 99.9% หรือ 99.99%
+- **วัดตามช่วงเวลา:** โดยทั่วไปจะวัดเป็นรายเดือนหรือรายปีเพื่อประเมินความน่าเชื่อถือของระบบ
 
-**Example:** If a system has 99.9% availability in a year:
+**ตัวอย่าง:** หากระบบมีความพร้อมใช้งาน 99.9% ต่อปี:
 
-- Total time in a year: 365 × 24 × 60 = 525,600 minutes
-- Downtime allowed: 0.1% × 525,600 = 525.6 minutes (~8.76 hours).
+- เวลารวมในหนึ่งปี: 365 × 24 × 60 = 525,600 นาที
+- Downtime ที่ยอมรับได้: 0.1% × 525,600 = 525.6 นาที (~8.76 ชั่วโมง)
 
-## **Importance**
+## **ความสำคัญ**
 
-Availability is important because it ensures that systems and services remain accessible and reliable for users and businesses.
+ความพร้อมใช้งานมีความสำคัญ เพราะช่วยให้ระบบและบริการยังคงสามารถเข้าถึงได้และมีความน่าเชื่อถือสำหรับทั้งผู้ใช้และธุรกิจ
 
-- **User Experience:** Availability ensures users can access the system and its services whenever needed. Frequent downtime can frustrate users and reduce overall satisfaction.
-- **Business Continuity:** High availability helps maintain continuous operations and prevents financial loss, reputational damage, and legal issues caused by system outages.
-- **Service Level Agreements (SLAs):** Organizations commit to specific uptime targets through SLAs, and failure to meet them can lead to penalties or contractual consequences.
-- **Competitive Advantage:** Systems with higher availability are more reliable and can attract and retain more users, especially in industries where uptime is critical.
-- **Disaster Recovery:** Availability supports recovery from failures like hardware issues, network outages, or cyberattacks using redundancy and failover mechanisms.
-- **Regulatory Compliance:** Many industries require a minimum level of system availability, and failing to meet these standards can result in fines or legal actions.
+- **ประสบการณ์ของผู้ใช้:** ความพร้อมใช้งานช่วยให้ผู้ใช้สามารถเข้าถึงระบบและบริการได้ทุกเมื่อที่ต้องการ การหยุดให้บริการบ่อยครั้งอาจสร้างความไม่พอใจให้ผู้ใช้และลดความพึงพอใจโดยรวม
+- **ความต่อเนื่องทางธุรกิจ:** ความพร้อมใช้งานสูงช่วยให้ธุรกิจดำเนินงานได้อย่างต่อเนื่อง และป้องกันการสูญเสียทางการเงิน ความเสียหายต่อชื่อเสียง และปัญหาทางกฎหมายที่เกิดจากระบบหยุดให้บริการ
+- **ข้อตกลงระดับการให้บริการ (SLAs):** องค์กรกำหนดเป้าหมาย uptime ที่ชัดเจนผ่าน SLA และหากไม่สามารถทำได้ตามเป้าหมาย อาจนำไปสู่ค่าปรับหรือผลกระทบตามสัญญา
+- **ความได้เปรียบในการแข่งขัน:** ระบบที่มีความพร้อมใช้งานสูงกว่าจะมีความน่าเชื่อถือมากกว่า และสามารถดึงดูดและรักษาผู้ใช้ไว้ได้มากขึ้น โดยเฉพาะในอุตสาหกรรมที่ uptime มีความสำคัญอย่างยิ่ง
+- **การกู้คืนจากภัยพิบัติ:** ความพร้อมใช้งานช่วยสนับสนุนการกู้คืนจากความล้มเหลว เช่น ปัญหาฮาร์ดแวร์ เครือข่ายหยุดให้บริการ หรือการโจมตีทางไซเบอร์ โดยใช้กลไก redundancy และ failover
+- **การปฏิบัติตามกฎระเบียบ:** หลายอุตสาหกรรมกำหนดระดับความพร้อมใช้งานขั้นต่ำของระบบ และการไม่ปฏิบัติตามมาตรฐานเหล่านี้อาจนำไปสู่ค่าปรับหรือการดำเนินการทางกฎหมาย
 
-## **Ways to Achieve High Availability**
+## **แนวทางในการทำให้ระบบมีความพร้อมใช้งานสูง**
 
-High availability is essential for systems that must run continuously, as downtime can lead to financial loss, reputational damage, or safety risks, especially in critical domains like cloud, healthcare, banking, and e-commerce.
+ความพร้อมใช้งานสูงมีความสำคัญต่อระบบที่ต้องทำงานอย่างต่อเนื่อง เพราะการหยุดให้บริการอาจนำไปสู่การสูญเสียทางการเงิน ความเสียหายต่อชื่อเสียง หรือความเสี่ยงด้านความปลอดภัย โดยเฉพาะในระบบสำคัญ เช่น คลาวด์ การดูแลสุขภาพ ธนาคาร และอีคอมเมิร์ซ
 
-- **Redundancy:** Use redundant servers or components so that, in the event of a failure, another can take over without any problems. Data centers, networking, and hardware redundancy are a few examples of this.
-- **Load balancing:** Incoming requests are divided among several servers or resources to enhance system performance and fault tolerance while avoiding overload on any one part.
-- **Failover mechanisms:** Implementing automated processes to detect failures and switch to redundant systems without manual intervention.
-- **Disaster Recovery (DR):** Having a comprehensive plan in place to recover the system in case of a catastrophic event that affects the primary infrastructure.
-- **Monitoring and Alerting:** Putting in place reliable monitoring systems that can identify problems instantly and alert administrators so they can act quickly.
-- **Performance optimization:** lowering the possibility of bottlenecks and breakdowns by making sure the system is built and adjusted to efficiently manage the expected load.
-- **Scalability:** Designing the system to scale easily by adding more resources when needed to accommodate increased demand.
+- **Redundancy:** ใช้เซิร์ฟเวอร์หรือส่วนประกอบสำรอง เพื่อให้เมื่อเกิดความล้มเหลว ส่วนอื่นสามารถเข้ามาทำงานแทนได้โดยไม่มีปัญหา ตัวอย่างเช่น การทำ redundancy สำหรับศูนย์ข้อมูล เครือข่าย และฮาร์ดแวร์
+- **Load balancing:** กระจายคำขอที่เข้ามาไปยังเซิร์ฟเวอร์หรือทรัพยากรหลายส่วน เพื่อเพิ่มประสิทธิภาพและความทนทานต่อความล้มเหลวของระบบ พร้อมทั้งหลีกเลี่ยงไม่ให้ส่วนใดส่วนหนึ่งรับภาระมากเกินไป
+- **กลไก Failover:** ใช้กระบวนการอัตโนมัติเพื่อตรวจจับความล้มเหลวและสลับไปยังระบบสำรองโดยไม่ต้องดำเนินการด้วยตนเอง
+- **การกู้คืนจากภัยพิบัติ (DR):** มีแผนที่ครอบคลุมสำหรับกู้คืนระบบในกรณีที่เกิดเหตุการณ์ร้ายแรงซึ่งส่งผลกระทบต่อโครงสร้างพื้นฐานหลัก
+- **การติดตามและการแจ้งเตือน:** จัดให้มีระบบติดตามที่เชื่อถือได้ ซึ่งสามารถตรวจพบปัญหาได้ทันทีและแจ้งเตือนผู้ดูแลระบบเพื่อให้สามารถดำเนินการได้อย่างรวดเร็ว
+- **การเพิ่มประสิทธิภาพ:** ลดโอกาสเกิดคอขวดและความล้มเหลว โดยทำให้มั่นใจว่าระบบได้รับการออกแบบและปรับแต่งให้สามารถรองรับปริมาณงานที่คาดการณ์ไว้ได้อย่างมีประสิทธิภาพ
+- **Scalability:** ออกแบบระบบให้สามารถขยายได้ง่ายด้วยการเพิ่มทรัพยากรเมื่อจำเป็น เพื่อรองรับความต้องการที่เพิ่มขึ้น
 
-## **System Availability Vs Asset Reliability**
+## **ความพร้อมใช้งานของระบบ Vs ความน่าเชื่อถือขององค์ประกอบ**
 
-System availability and asset reliability are related concepts in system design, but they focus on different aspects of system performance and stability.
+ความพร้อมใช้งานของระบบและความน่าเชื่อถือขององค์ประกอบเป็นแนวคิดที่เกี่ยวข้องกันในการออกแบบระบบ แต่ให้ความสำคัญกับคนละด้านของประสิทธิภาพและความเสถียรของระบบ
 
-### **System Availability**
+### **ความพร้อมใช้งานของระบบ**
 
-Refers to the percentage of time the entire system is operational and accessible to users. It considers factors such as network issues, dependencies, failover mechanisms, and recovery time, not just component reliability.
+หมายถึงเปอร์เซ็นต์ของเวลาที่ระบบทั้งหมดสามารถทำงานและผู้ใช้เข้าถึงได้ โดยพิจารณาปัจจัยต่างๆ เช่น ปัญหาเครือข่าย ระบบที่ต้องพึ่งพา กลไก failover และระยะเวลาในการกู้คืน ไม่ได้พิจารณาเพียงความน่าเชื่อถือของส่วนประกอบเท่านั้น
 
-### **Asset Reliability**
+### **ความน่าเชื่อถือขององค์ประกอบ**
 
-Refers to the ability of individual components (such as servers, databases, or hardware) to perform their tasks without failure. Higher reliability of individual assets reduces the chances of system failures.
+หมายถึงความสามารถของส่วนประกอบแต่ละส่วน เช่น เซิร์ฟเวอร์ ฐานข้อมูล หรือฮาร์ดแวร์ ในการทำงานตามหน้าที่โดยไม่เกิดความล้มเหลว ความน่าเชื่อถือที่สูงขึ้นของแต่ละองค์ประกอบจะช่วยลดโอกาสที่ระบบจะเกิดความล้มเหลว
 
-### **Difference**
+### **ความแตกต่าง**
 
-- System Availability focuses on the overall system uptime and user accessibility.
-- Asset Reliability focuses on the performance and failure rate of individual components within the system.
+- ความพร้อมใช้งานของระบบให้ความสำคัญกับ uptime โดยรวมของระบบและความสามารถของผู้ใช้ในการเข้าถึงระบบ
+- ความน่าเชื่อถือขององค์ประกอบให้ความสำคัญกับประสิทธิภาพและอัตราความล้มเหลวของแต่ละส่วนประกอบภายในระบบ
 
-> ***Example:** Even if a single server fails (asset failure), the system can still remain available if there are backup servers or redundancy mechanisms in place.*
+> ***ตัวอย่าง:** แม้ว่าเซิร์ฟเวอร์หนึ่งเครื่องจะล้มเหลว (ความล้มเหลวขององค์ประกอบ) ระบบก็ยังคงพร้อมใช้งานได้ หากมีเซิร์ฟเวอร์สำรองหรือมีกลไก redundancy รองรับอยู่*
 
-## Difference between Availability and Fault Tolerance
+## ความแตกต่างระหว่าง Availability และ Fault Tolerance
 
-Below are the differences between the availability and fault tolerance:
+ด้านล่างคือความแตกต่างระหว่าง Availability และ Fault Tolerance:
 
 | **Availability** | **Fault Tolerance** |
 | --- | --- |
-| Measures how often a system is operational and accessible to users. | Measures the system’s ability to continue working even when failures occur. |
-| Focuses on maximizing uptime and minimizing downtime. | Focuses on handling failures without stopping the system. |
-| Usually measured as uptime percentage (e.g., 99.9%). | Measured using MTBF and MTTR metrics. |
-| Uses strategies like load balancing, failover, and redundancy. | Uses redundant components, replication, and graceful degradation. |
-| Ensures consistent access and better user experience. | Ensures the system keeps functioning during failures. |
-| Common in web services, banking, and e-commerce systems. | Common in safety-critical systems like healthcare or aerospace. |
-| May include redundancy but some failure impact can still occur. | Requires higher redundancy to avoid system-wide failure. |
+| วัดว่าระบบสามารถทำงานและให้ผู้ใช้เข้าถึงได้บ่อยเพียงใด | วัดความสามารถของระบบในการทำงานต่อไปแม้เกิดความล้มเหลว |
+| เน้นการเพิ่ม uptime ให้มากที่สุดและลด downtime ให้น้อยที่สุด | เน้นการรับมือกับความล้มเหลวโดยไม่ทำให้ระบบหยุดทำงาน |
+| โดยทั่วไปวัดเป็นเปอร์เซ็นต์ uptime เช่น 99.9% | วัดโดยใช้ตัวชี้วัด MTBF และ MTTR |
+| ใช้แนวทาง เช่น load balancing, failover และ redundancy | ใช้ส่วนประกอบสำรอง replication และ graceful degradation |
+| ช่วยให้ผู้ใช้เข้าถึงระบบได้อย่างสม่ำเสมอและได้รับประสบการณ์ที่ดีขึ้น | ช่วยให้ระบบยังคงทำงานต่อไปได้ระหว่างเกิดความล้มเหลว |
+| พบได้ทั่วไปในบริการเว็บ ระบบธนาคาร และระบบอีคอมเมิร์ซ | พบได้ทั่วไปในระบบที่มีความสำคัญต่อความปลอดภัย เช่น ระบบสุขภาพหรืออากาศยาน |
+| อาจมี redundancy แต่ความล้มเหลวยังคงสามารถส่งผลกระทบบางส่วนได้ | ต้องใช้ redundancy ในระดับสูงกว่าเพื่อหลีกเลี่ยงความล้มเหลวทั้งระบบ |
