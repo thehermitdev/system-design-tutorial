@@ -1,59 +1,59 @@
-# **Authentication vs Authorization in LLD - System Design**
+# **Authentication vs Authorization ใน LLD - System Design**
 
-Two fundamental ideas in system design, particularly in low-level design (LLD), are authentication and authorization.
+แนวคิดพื้นฐานสำคัญสองอย่างในการออกแบบระบบ โดยเฉพาะในการออกแบบระดับล่าง (Low-Level Design: LLD) คือ Authentication และ Authorization
 
-- **Authentication** confirms a person's identity.
-- **Authorization** establishes what resources or actions a user is permitted to access.
+- **Authentication** เป็นการยืนยันตัวตนของบุคคล
+- **Authorization** เป็นการกำหนดว่าผู้ใช้ได้รับอนุญาตให้เข้าถึงทรัพยากรหรือดำเนินการใดได้บ้าง
 
 <img src="https://media.geeksforgeeks.org/wp-content/uploads/20240724160257/Working-of-Authentication-and-Authorisation-660.webp" alt="Working-of-Authentication-and-Authorisation" />
 
-## **Authentication Methods**
+## **วิธีการ Authentication**
 
 - **Password-based Authentication**
-    - **Description:** The most common form of authentication, in this users provide a unique password to verify their identity.
-    - **Considerations:** Passwords should be complex, stored securely, and users should be encouraged to use unique passwords.
+    - **คำอธิบาย:** เป็นรูปแบบ Authentication ที่พบได้บ่อยที่สุด โดยผู้ใช้จะระบุรหัสผ่านเฉพาะของตนเพื่อยืนยันตัวตน
+    - **ข้อควรพิจารณา:** รหัสผ่านควรมีความซับซ้อน จัดเก็บอย่างปลอดภัย และควรส่งเสริมให้ผู้ใช้ใช้รหัสผ่านที่ไม่ซ้ำกัน
 - [**Multi-Factor Authentication (MFA)**](https://www.geeksforgeeks.org/computer-networks/multifactor-authentication/)
-    - **Description:** Requires users to provide multiple forms of identification, such as a password and a temporary code is sent to their mobile device.
-    - **Advantages:** Enhances security by adding an extra layer of verification, even if one factor is compromised.
+    - **คำอธิบาย:** กำหนดให้ผู้ใช้ระบุข้อมูลยืนยันตัวตนหลายรูปแบบ เช่น รหัสผ่านและรหัสชั่วคราวที่ส่งไปยังอุปกรณ์มือถือ
+    - **ข้อดี:** เพิ่มความปลอดภัยด้วยการเพิ่มขั้นตอนการยืนยันอีกชั้นหนึ่ง แม้ว่าปัจจัยยืนยันตัวตนอย่างใดอย่างหนึ่งจะถูกเจาะระบบ
 - [**Biometric Authentication**](https://www.geeksforgeeks.org/computer-science-fundamentals/what-is-biometric-verification/)
-    - **Description:** Involves using unique physical or behavioral characteristics for identification, like fingerprints, facial recognition, or voice recognition.
-    - **Considerations:** Biometric data should be securely stored and processed to prevent unauthorized access.
+    - **คำอธิบาย:** ใช้ลักษณะเฉพาะทางกายภาพหรือพฤติกรรมเพื่อระบุตัวตน เช่น ลายนิ้วมือ การจดจำใบหน้า หรือการจดจำเสียง
+    - **ข้อควรพิจารณา:** ข้อมูลชีวมิติ (Biometric Data) ควรถูกจัดเก็บและประมวลผลอย่างปลอดภัยเพื่อป้องกันการเข้าถึงโดยไม่ได้รับอนุญาต
 - [**Token-based Authentication**](https://www.geeksforgeeks.org/ethical-hacking/how-does-the-token-based-authentication-work/)
-    - **Description:** Users are given a physical or digital token (like a security key or smart card) for authentication.
-    - **Advantages:** Provides an additional physical element that needs to be present for authentication.
+    - **คำอธิบาย:** ผู้ใช้จะได้รับ Token แบบกายภาพหรือดิจิทัล เช่น Security Key หรือ Smart Card เพื่อใช้ในการ Authentication
+    - **ข้อดี:** เพิ่มองค์ประกอบทางกายภาพที่ต้องมีอยู่จริงเพื่อใช้ในการ Authentication
 - [**OAuth Connect**](https://www.geeksforgeeks.org/software-engineering/workflow-of-oauth-2-0/)
-    - **Description:** Protocols used for authentication and authorization in the context of web applications and APIs.
-    - **Use Cases:** Commonly used for delegated authorization, allowing third-party applications to access user data.
+    - **คำอธิบาย:** เป็น Protocol ที่ใช้สำหรับ Authentication และ Authorization ในบริบทของ Web Application และ API
+    - **กรณีการใช้งาน:** มักใช้สำหรับ Delegated Authorization เพื่ออนุญาตให้ Application ของบุคคลที่สามเข้าถึงข้อมูลของผู้ใช้
 
-## **Authorization Models**
+## **โมเดล Authorization**
 
-Ensuring that only authorized individuals or entities have access to particular resources, functionality, or information is an essential component of security.
+การทำให้มั่นใจว่าเฉพาะบุคคลหรือ Entity ที่ได้รับอนุญาตเท่านั้นที่สามารถเข้าถึงทรัพยากร ฟังก์ชันการทำงาน หรือข้อมูลบางอย่างได้ เป็นองค์ประกอบสำคัญของระบบความปลอดภัย
 
 - **Role-Based Access Control (RBAC):**
-    - Assigning roles to users or groups, letting them access only what their role requires.
-    - **Example:** HR personnel can access HR data but not finance information.
+    - กำหนด Role ให้กับผู้ใช้หรือกลุ่ม เพื่อให้เข้าถึงได้เฉพาะสิ่งที่ Role นั้นจำเป็นต้องใช้
+    - **ตัวอย่าง:** บุคลากรฝ่าย HR สามารถเข้าถึงข้อมูล HR ได้ แต่ไม่สามารถเข้าถึงข้อมูลด้านการเงิน
 - **Security Assertion Markup Language (SAML):**
-    - Using an XML-based protocol for Single Sign-On, allowing admins to control resource access.
-    - **Example:** Access permissions are communicated through digitally signed documents.
+    - ใช้ Protocol ที่อิง XML สำหรับ Single Sign-On เพื่อให้ผู้ดูแลระบบสามารถควบคุมการเข้าถึงทรัพยากรได้
+    - **ตัวอย่าง:** สิทธิ์การเข้าถึงถูกส่งผ่านเอกสารที่มีลายเซ็นดิจิทัล
 - **OpenID Authorization:**
-    - Checking a user's identity through OpenID standards, ensuring consistency across systems.
-    - **Example:** Standardised authorization based on authentication from an authorization server.
+    - ตรวจสอบตัวตนของผู้ใช้ผ่านมาตรฐาน OpenID เพื่อให้การทำงานมีความสอดคล้องกันในหลายระบบ
+    - **ตัวอย่าง:** การกำหนดสิทธิ์ตามมาตรฐานโดยอ้างอิงการ Authentication จาก Authorization Server
 - **OAuth Authorization:**
-    - It allows secure access within applications using permission tokens.
-    - **Example:** Users grant access to their information to certain apps without sharing their password.
+    - ช่วยให้สามารถเข้าถึงภายใน Application ได้อย่างปลอดภัยโดยใช้ Permission Token
+    - **ตัวอย่าง:** ผู้ใช้อนุญาตให้ Application บางตัวเข้าถึงข้อมูลของตนได้โดยไม่ต้องเปิดเผยรหัสผ่าน
 - **Device Permissions:**
-    - Granting access based on the device trying to connect to a resource.
-    - **Example:** Only approved devices can establish a connection.
+    - กำหนดสิทธิ์การเข้าถึงตามอุปกรณ์ที่พยายามเชื่อมต่อกับทรัพยากร
+    - **ตัวอย่าง:** เฉพาะอุปกรณ์ที่ได้รับอนุมัติเท่านั้นที่สามารถสร้างการเชื่อมต่อได้
 
-## **Differences between Authentication and Authorization**
+## **ความแตกต่างระหว่าง Authentication และ Authorization**
 
-| **Aspect** | **Authentication** | **Authorization** |
+| **หัวข้อ** | **Authentication** | **Authorization** |
 | --- | --- | --- |
-| **Definition** | Verifies the user's identity. | Determines the user's access to resources or actions. |
-| **Focus** | "Who are you?" | "What are you allowed to do?" |
-| **Process** | Typically involves usernames, passwords, or biometrics. | Involves checking permissions or roles assigned to the user. |
-| **Order** | Happens before Authorization. | Happens after Authentication. |
-| **Scope** | Ensures the user is genuine. | Ensures the user has access rights. |
-| **Implementation** | Login pages, OTP, fingerprint scans. | Role-based access control (RBAC), policy checks. |
-| **Example** | Entering a password to log into an account. | Checking if the logged-in user can view or edit a file. |
-| **Security Purpose** | Protects against unauthorized user access. | Protects against unauthorized actions by authenticated users. |
+| **ความหมาย** | ตรวจสอบตัวตนของผู้ใช้ | กำหนดสิทธิ์ของผู้ใช้ในการเข้าถึงทรัพยากรหรือดำเนินการต่างๆ |
+| **จุดเน้น** | "คุณคือใคร?" | "คุณได้รับอนุญาตให้ทำอะไรได้บ้าง?" |
+| **กระบวนการ** | โดยทั่วไปเกี่ยวข้องกับ Username, Password หรือข้อมูลชีวมิติ | เกี่ยวข้องกับการตรวจสอบ Permission หรือ Role ที่กำหนดให้กับผู้ใช้ |
+| **ลำดับ** | เกิดขึ้นก่อน Authorization | เกิดขึ้นหลัง Authentication |
+| **ขอบเขต** | ตรวจสอบให้แน่ใจว่าผู้ใช้เป็นตัวจริง | ตรวจสอบให้แน่ใจว่าผู้ใช้มีสิทธิ์เข้าถึง |
+| **การนำไปใช้งาน** | หน้า Login, OTP, การสแกนลายนิ้วมือ | Role-based Access Control (RBAC), การตรวจสอบ Policy |
+| **ตัวอย่าง** | ป้อนรหัสผ่านเพื่อเข้าสู่ระบบบัญชี | ตรวจสอบว่าผู้ใช้ที่ Login แล้วสามารถดูหรือแก้ไขไฟล์ได้หรือไม่ |
+| **วัตถุประสงค์ด้านความปลอดภัย** | ป้องกันการเข้าถึงจากผู้ใช้ที่ไม่ได้รับอนุญาต | ป้องกันการกระทำที่ไม่ได้รับอนุญาตจากผู้ใช้ที่ผ่านการ Authentication แล้ว |
