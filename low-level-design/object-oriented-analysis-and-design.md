@@ -1,70 +1,70 @@
-# **Object-Oriented Analysis and Design(OOAD)**
+# **การวิเคราะห์และออกแบบเชิงวัตถุ (OOAD)**
 
-Object-Oriented Analysis and Design (OOAD) is a software design approach that models a system using real-world objects. It first focuses on understanding system requirements, then identifying objects and defining how they interact. OOAD is based on object-oriented programming principles and combines **Object-Oriented Analysis (OOA)** and **Object-Oriented Design (OOD)**.
+Object-Oriented Analysis and Design (OOAD) คือแนวทางการออกแบบซอฟต์แวร์ที่จำลองระบบโดยใช้วัตถุจากโลกจริง โดยเริ่มจากการทำความเข้าใจความต้องการของระบบ จากนั้นระบุวัตถุและกำหนดว่าวัตถุเหล่านั้นโต้ตอบกันอย่างไร OOAD มีพื้นฐานมาจากหลักการเขียนโปรแกรมเชิงวัตถุ และผสานรวม **Object-Oriented Analysis (OOA)** และ **Object-Oriented Design (OOD)** เข้าด้วยกัน
 
-**Example:** In a library management system, objects like *Book*, *Member*, and *Librarian* are identified, each with its own data and behavior, and they interact to manage book borrowing and returns.
+**ตัวอย่าง:** ในระบบจัดการห้องสมุด จะมีการระบุวัตถุ เช่น *Book*, *Member* และ *Librarian* โดยแต่ละวัตถุมีข้อมูลและพฤติกรรมของตนเอง และโต้ตอบกันเพื่อจัดการการยืมและคืนหนังสือ
 
-## **Important Aspects of OOAD**
+## **องค์ประกอบสำคัญของ OOAD**
 
-Below are some important aspects of OOAD:
+ด้านล่างนี้คือองค์ประกอบสำคัญบางประการของ OOAD:
 
-- **Object-Oriented Programming:** In this the real-world items are represented/mapped as software objects with attributes and methods that relate to their actions.
-- **Design Patterns:** Design patterns are used by OOAD to help developers in building software systems that are more efficient and maintainable.
-- **UML Diagrams:** UML diagrams are used in OOAD to represent the different components and interactions of a software system.
-- **Use Cases:** OOAD uses use cases to help developers understand the requirements of a system and to design software systems that meet those requirements.
+- **Object-Oriented Programming:** เป็นการแทนหรือจับคู่องค์ประกอบจากโลกจริงให้เป็นวัตถุในซอฟต์แวร์ ซึ่งมีแอตทริบิวต์และเมธอดที่เกี่ยวข้องกับการทำงานของวัตถุนั้น
+- **Design Patterns:** OOAD ใช้ Design Patterns เพื่อช่วยให้นักพัฒนาสร้างระบบซอฟต์แวร์ที่มีประสิทธิภาพและดูแลรักษาได้ง่ายขึ้น
+- **UML Diagrams:** OOAD ใช้ UML Diagrams เพื่อแสดงองค์ประกอบต่างๆ และการโต้ตอบกันภายในระบบซอฟต์แวร์
+- **Use Cases:** OOAD ใช้ Use Cases เพื่อช่วยให้นักพัฒนาเข้าใจความต้องการของระบบ และออกแบบระบบซอฟต์แวร์ให้ตรงตามความต้องการเหล่านั้น
 
-## **Object-Oriented Analysis**
+## **การวิเคราะห์เชิงวัตถุ (Object-Oriented Analysis)**
 
-Object-Oriented Analysis (OOA) is the process of understanding system requirements by identifying relevant real-world objects, their attributes, behaviors, and relationships, without considering how the system will be implemented.
+Object-Oriented Analysis (OOA) คือกระบวนการทำความเข้าใจความต้องการของระบบ โดยระบุวัตถุจากโลกจริงที่เกี่ยวข้อง รวมถึงแอตทริบิวต์ พฤติกรรม และความสัมพันธ์ของวัตถุเหล่านั้น โดยยังไม่พิจารณาว่าระบบจะถูกนำไปพัฒนาอย่างไร
 
-**For example:** Lets say you're building a game:
+**ตัวอย่าง:** สมมติว่าคุณกำลังสร้างเกม:
 
-- OOA helps you figure out all the things you need to know about the game world - the characters, their features, and how they interact.
-- It's like making a map of everything important.
-- OOA also helps you understand what your game characters will do. It's like writing down a script for each character.
-- Every program has specific tasks or jobs it needs to do. OOA helps you list and describe these jobs.
-- In our game, it could be tasks like moving characters or keeping score. It's like making a to-do list for your software.
-- OOA is smart about breaking things into different parts. It splits the job into three categories: things your game knows, things your game does, and how things in your game behave.
+- OOA ช่วยให้คุณระบุสิ่งต่างๆ ที่จำเป็นต้องรู้เกี่ยวกับโลกภายในเกม เช่น ตัวละคร คุณสมบัติของตัวละคร และวิธีที่ตัวละครโต้ตอบกัน
+- เปรียบได้กับการสร้างแผนที่ของทุกสิ่งที่สำคัญ
+- OOA ยังช่วยให้คุณเข้าใจว่าตัวละครในเกมจะทำอะไร เปรียบได้กับการเขียนบทให้ตัวละครแต่ละตัว
+- ทุกโปรแกรมมีงานหรือหน้าที่เฉพาะที่ต้องทำ OOA ช่วยให้คุณรวบรวมและอธิบายงานเหล่านี้
+- ในเกมของเรา งานเหล่านี้อาจเป็นการเคลื่อนที่ของตัวละครหรือการเก็บคะแนน ซึ่งเปรียบได้กับการสร้างรายการสิ่งที่ซอฟต์แวร์ต้องทำ
+- OOA ช่วยแบ่งปัญหาออกเป็นส่วนต่างๆ โดยแยกงานออกเป็นสามประเภท ได้แก่ สิ่งที่เกมรู้ สิ่งที่เกมทำ และสิ่งต่างๆ ภายในเกมมีพฤติกรรมอย่างไร
 
-## **Object-Oriented Design**
+## **การออกแบบเชิงวัตถุ (Object-Oriented Design)**
 
-In object-oriented development, the analysis model created during Object-Oriented Analysis (OOA) is refined during Object-Oriented Design (OOD). OOD converts the conceptual ideas into a detailed design that can be implemented in code. This step bridges the gap between understanding the problem and building the solution.
+ในการพัฒนาเชิงวัตถุ แบบจำลองการวิเคราะห์ที่สร้างขึ้นในขั้นตอน Object-Oriented Analysis (OOA) จะถูกปรับให้ละเอียดขึ้นในขั้นตอน Object-Oriented Design (OOD) โดย OOD จะเปลี่ยนแนวคิดในระดับนามธรรมให้เป็นการออกแบบอย่างละเอียดที่สามารถนำไปพัฒนาเป็นโค้ดได้ ขั้นตอนนี้ทำหน้าที่เชื่อมระหว่างการทำความเข้าใจปัญหาและการสร้างโซลูชัน
 
-During Object-Oriented Design (OOD), specific details of the system are clearly defined:
+ในระหว่าง Object-Oriented Design (OOD) รายละเอียดเฉพาะของระบบจะถูกกำหนดไว้อย่างชัดเจน:
 
-- **Data Organization of Attributes:** OOD specifies what data each object will store, the data types, and how these attributes are related.
-- **Procedural Description of Operations:** OOD defines how each object’s operations work by detailing the steps involved in performing specific tasks.
+- **การจัดโครงสร้างข้อมูลของแอตทริบิวต์:** OOD ระบุว่าแต่ละวัตถุจะจัดเก็บข้อมูลอะไร ใช้ชนิดข้อมูลแบบใด และแอตทริบิวต์เหล่านี้มีความสัมพันธ์กันอย่างไร
+- **คำอธิบายขั้นตอนการทำงานของ Operation:** OOD กำหนดว่า Operation ของแต่ละวัตถุทำงานอย่างไร โดยอธิบายขั้นตอนที่เกี่ยวข้องกับการทำงานเฉพาะอย่างละเอียด
 
-Below diagram shows a design pyramid for object-oriented systems. It is having the following four layers.
+ไดอะแกรมด้านล่างแสดง Design Pyramid สำหรับระบบเชิงวัตถุ ซึ่งประกอบด้วยสี่เลเยอร์ดังต่อไปนี้
 
 <img src="https://media.geeksforgeeks.org/wp-content/uploads/20240125113256/The-Object-Oriented-Design-Pyramid-(1)-660.webp" />
 
-1. **The Subsystem Layer:** It represents the subsystem that enables software to achieve user requirements and implement technical frameworks that meet user needs.
-2. **The Class and Object Layer:** It represents the class hierarchies that enable the system to develop using generalization and specialization. This layer also represents each object.
-3. **The Message Layer:** This layer deals with how objects interact with each other. It includes messages sent between objects, method calls, and the flow of control within the system.
-4. **The Responsibilities Layer:** It focuses on the responsibilities of individual objects. This includes defining the behavior of each class, specifying what each object is responsible for, and how it responds to messages.
+1. **Subsystem Layer:** แสดงระบบย่อยที่ช่วยให้ซอฟต์แวร์สามารถตอบสนองความต้องการของผู้ใช้ และนำเฟรมเวิร์กทางเทคนิคที่รองรับความต้องการของผู้ใช้มาใช้งาน
+2. **Class and Object Layer:** แสดงลำดับชั้นของคลาสที่ช่วยให้ระบบสามารถพัฒนาโดยใช้แนวคิด Generalization และ Specialization เลเยอร์นี้ยังแสดงวัตถุแต่ละตัวด้วย
+3. **Message Layer:** เลเยอร์นี้เกี่ยวข้องกับวิธีที่วัตถุโต้ตอบกัน ซึ่งรวมถึงข้อความที่ส่งระหว่างวัตถุ การเรียกเมธอด และลำดับการควบคุมภายในระบบ
+4. **Responsibilities Layer:** มุ่งเน้นไปที่ความรับผิดชอบของวัตถุแต่ละตัว ซึ่งรวมถึงการกำหนดพฤติกรรมของแต่ละคลาส การระบุว่าวัตถุแต่ละตัวมีหน้าที่รับผิดชอบอะไร และตอบสนองต่อข้อความอย่างไร
 
-## **Benefits of Object-Oriented Analysis and Design(OOAD)**
+## **ประโยชน์ของการวิเคราะห์และออกแบบเชิงวัตถุ (OOAD)**
 
-- **Modularity and Maintainability:** Encourages creating small, reusable parts that can be combined into complex systems.
-- **High-Level Abstraction:** Provides a clear, abstract view of the system, making it easier to understand and maintain.
-- **Code Reuse and Quality:** Promotes reuse of objects, reducing code duplication and improving software quality.
-- **Better Collaboration:** Offers a common language and approach, helping teams communicate and work together effectively.
-- **Scalability and Adaptability:** Supports building software that can grow and adapt to changing user needs and business demands.
+- **ความเป็นโมดูลและการดูแลรักษา:** ส่งเสริมการสร้างส่วนประกอบขนาดเล็กที่สามารถนำกลับมาใช้ซ้ำและนำมาประกอบกันเป็นระบบที่ซับซ้อนได้
+- **การนามธรรมระดับสูง:** ช่วยให้มองเห็นระบบในระดับนามธรรมได้อย่างชัดเจน ทำให้เข้าใจและดูแลรักษาได้ง่ายขึ้น
+- **การนำโค้ดกลับมาใช้ซ้ำและคุณภาพของโค้ด:** ส่งเสริมการนำวัตถุกลับมาใช้ซ้ำ ลดการเขียนโค้ดซ้ำ และช่วยปรับปรุงคุณภาพของซอฟต์แวร์
+- **การทำงานร่วมกันที่ดีขึ้น:** มีภาษาและแนวทางร่วมกัน ช่วยให้ทีมสื่อสารและทำงานร่วมกันได้อย่างมีประสิทธิภาพ
+- **ความสามารถในการขยายและปรับตัว:** รองรับการสร้างซอฟต์แวร์ที่สามารถเติบโตและปรับเปลี่ยนตามความต้องการของผู้ใช้และธุรกิจที่เปลี่ยนแปลงไป
 
-## **Challenges of Object-Oriented Analysis and Design**
+## **ความท้าทายของการวิเคราะห์และออกแบบเชิงวัตถุ**
 
-- **System Complexity:** Objects and their interactions can make the system complicated.
-- **Performance Overhead:** Instantiating and managing objects may reduce software speed.
-- **Steep Learning Curve:** Beginners may find OOAD challenging due to required OOP knowledge.
-- **Time-Consuming:** Requires significant upfront planning and documentation, leading to longer development times.
-- **Higher Cost:** Extensive planning and documentation make OOAD more expensive than other methodologies.
+- **ความซับซ้อนของระบบ:** วัตถุและการโต้ตอบระหว่างวัตถุอาจทำให้ระบบมีความซับซ้อน
+- **ภาระด้านประสิทธิภาพ:** การสร้างและจัดการวัตถุอาจทำให้ความเร็วของซอฟต์แวร์ลดลง
+- **เส้นทางการเรียนรู้ที่ค่อนข้างยาก:** ผู้เริ่มต้นอาจรู้สึกว่า OOAD เข้าใจได้ยาก เนื่องจากจำเป็นต้องมีความรู้ด้าน OOP
+- **ใช้เวลามาก:** ต้องใช้เวลาอย่างมากในการวางแผนและจัดทำเอกสารตั้งแต่ช่วงต้น จึงอาจทำให้ระยะเวลาในการพัฒนายาวนานขึ้น
+- **ต้นทุนสูงขึ้น:** การวางแผนและจัดทำเอกสารอย่างละเอียดทำให้ OOAD มีค่าใช้จ่ายสูงกว่าแนวทางอื่น
 
-## **Real world applications of Object-Oriented Analysis and Design**
+## **การประยุกต์ใช้การวิเคราะห์และออกแบบเชิงวัตถุในโลกจริง**
 
-Some examples of OOAD's practical uses are listed below:
+ตัวอย่างการนำ OOAD ไปใช้งานจริงมีดังนี้:
 
-- **Banking Software:** In banking systems, OOAD is frequently used to simulate complex financial transactions, structures, and customer interactions. Designing adaptable and reliable financial apps is made easier by OOAD's modular and scalable architecture.
-- **Electronic Health Record (EHR) Systems:** Patient data, medical records, and healthcare workflows are all modeled using OOAD. Modular and flexible healthcare apps that may change to meet emerging requirements can be made through object-oriented principles.
-- **Flight Control Systems:** OOAD is crucial in designing flight control systems for aircraft. It helps model the interactions between different components such as navigation systems, sensors, and control surfaces, ensuring safety and reliability.
-- **Online Shopping Platforms:** E-commerce system development frequently makes use of OOAD. Product catalogs, user profiles, shopping carts, and payment procedures are all modeled, which facilitates platform maintenance and functionality expansion.
+- **ซอฟต์แวร์ธนาคาร:** ระบบธนาคารมักใช้ OOAD เพื่อจำลองธุรกรรมทางการเงิน โครงสร้าง และการโต้ตอบกับลูกค้าที่มีความซับซ้อน สถาปัตยกรรมแบบโมดูลและรองรับการขยายของ OOAD ช่วยให้ออกแบบแอปพลิเคชันทางการเงินที่ยืดหยุ่นและเชื่อถือได้ง่ายขึ้น
+- **ระบบเวชระเบียนอิเล็กทรอนิกส์ (EHR):** OOAD ถูกนำมาใช้ในการจำลองข้อมูลผู้ป่วย เวชระเบียน และกระบวนการทำงานด้านการดูแลสุขภาพ หลักการเชิงวัตถุช่วยให้สามารถสร้างแอปพลิเคชันด้านสุขภาพที่เป็นโมดูล ยืดหยุ่น และปรับเปลี่ยนตามความต้องการใหม่ๆ ได้
+- **ระบบควบคุมการบิน:** OOAD มีความสำคัญต่อการออกแบบระบบควบคุมการบินของอากาศยาน โดยช่วยจำลองการโต้ตอบระหว่างองค์ประกอบต่างๆ เช่น ระบบนำทาง เซ็นเซอร์ และพื้นผิวควบคุม เพื่อให้ระบบมีความปลอดภัยและเชื่อถือได้
+- **แพลตฟอร์มช้อปปิ้งออนไลน์:** การพัฒนาระบบ E-commerce มักใช้ OOAD เพื่อจำลอง Product Catalogs, User Profiles, Shopping Carts และกระบวนการชำระเงิน ซึ่งช่วยให้ดูแลรักษาแพลตฟอร์มและขยายความสามารถของระบบได้ง่ายขึ้น
