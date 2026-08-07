@@ -1,138 +1,138 @@
-# **Content Delivery Network(CDN) in System Design**
+# **Content Delivery Network (CDN) ในการออกแบบระบบ**
 
-A CDN (Content Delivery Network) is a distributed network of servers designed to improve the speed, availability, scalability, and reliability of content delivery. It achieves this by caching and serving content from strategically located edge servers closer to users.
+CDN (Content Delivery Network) คือเครือข่ายเซิร์ฟเวอร์แบบกระจายที่ออกแบบมาเพื่อเพิ่มความเร็ว ความพร้อมใช้งาน ความสามารถในการรองรับการขยายตัว และความน่าเชื่อถือในการส่งมอบเนื้อหา โดยทำได้ด้วยการแคชและให้บริการเนื้อหาจาก Edge Server ที่วางอยู่ในตำแหน่งเชิงกลยุทธ์และอยู่ใกล้ผู้ใช้มากกว่า
 
-- A distributed network of servers that work together to deliver content (like images, videos, and static files) to users faster and more efficiently.
-- These servers, called edge servers, are strategically positioned across various geographical locations.
-- Helps improve the performance, reliability, and scalability of websites and applications by caching content closer to users, reducing latency, and offloading traffic from origin servers.
+- เป็นเครือข่ายเซิร์ฟเวอร์แบบกระจายที่ทำงานร่วมกันเพื่อส่งมอบเนื้อหา เช่น รูปภาพ วิดีโอ และไฟล์แบบคงที่ ให้แก่ผู้ใช้ได้รวดเร็วและมีประสิทธิภาพมากขึ้น
+- เซิร์ฟเวอร์เหล่านี้เรียกว่า Edge Server และถูกวางไว้ตามตำแหน่งทางภูมิศาสตร์ต่างๆ อย่างเหมาะสม
+- ช่วยเพิ่มประสิทธิภาพ ความน่าเชื่อถือ และความสามารถในการรองรับการขยายตัวของเว็บไซต์และแอปพลิเคชัน ด้วยการแคชเนื้อหาไว้ใกล้ผู้ใช้มากขึ้น ลด Latency และลดภาระทราฟฟิกของ Origin Server
 
-> ***Example:** When a user in India visits a website hosted in the US, a CDN serves the content from a nearby server in India, making the website load much faster.*
+> ***ตัวอย่าง:** เมื่อผู้ใช้ในอินเดียเข้าเว็บไซต์ที่โฮสต์อยู่ในสหรัฐอเมริกา CDN จะส่งเนื้อหาจากเซิร์ฟเวอร์ใกล้เคียงในอินเดีย ทำให้เว็บไซต์โหลดได้เร็วขึ้นมาก*
 > 
 
-### **1. Without CDN**
+### **1. ไม่มี CDN**
 
-When a user requests content from a website without a CDN**,** the request is sent directly to the origin server where the website is hosted. The origin server processes the request and sends back the requested content to the user's device.
+เมื่อผู้ใช้ร้องขอเนื้อหาจากเว็บไซต์ที่ไม่มี CDN คำขอจะถูกส่งตรงไปยัง Origin Server ที่ใช้โฮสต์เว็บไซต์ จากนั้น Origin Server จะประมวลผลคำขอและส่งเนื้อหาที่ร้องขอกลับไปยังอุปกรณ์ของผู้ใช้
 
 <img src="https://media.geeksforgeeks.org/wp-content/uploads/20260414150113907288/ser-660.webp" alt="Without CDN" />
 
-- If the origin server is located far away from the user, it may result in longer loading times due to increased latency.
-- High traffic volumes or server overload can lead to slower response times and even server downtime, negatively impacting user experience.
+- หาก Origin Server อยู่ห่างจากผู้ใช้มาก อาจทำให้ใช้เวลาโหลดนานขึ้นเนื่องจาก Latency ที่เพิ่มขึ้น
+- ปริมาณทราฟฟิกที่สูงหรือเซิร์ฟเวอร์ทำงานเกินกำลังอาจทำให้เวลาตอบสนองช้าลง และอาจทำให้เซิร์ฟเวอร์หยุดให้บริการ ซึ่งส่งผลเสียต่อประสบการณ์ของผู้ใช้
 
-### **2. With CDN**
+### **2. มี CDN**
 
-When a user requests content from a website with a CDN, the CDN identifies the user's location and routes the request to the nearest edge server. Edge servers are distributed across different regions and store cached content closer to users, enabling faster delivery.
+เมื่อผู้ใช้ร้องขอเนื้อหาจากเว็บไซต์ที่มี CDN ระบบ CDN จะระบุตำแหน่งของผู้ใช้และส่งคำขอไปยัง Edge Server ที่อยู่ใกล้ที่สุด Edge Server จะถูกกระจายอยู่ตามภูมิภาคต่างๆ และจัดเก็บเนื้อหาที่แคชไว้ใกล้ผู้ใช้มากขึ้น ทำให้สามารถส่งมอบเนื้อหาได้รวดเร็วขึ้น
 
 <img src="https://media.geeksforgeeks.org/wp-content/uploads/20260414150114068539/origin_server-660.webp" alt="With CDN" />
 
-- Since edge servers are distributed globally, content delivery is faster, resulting in reduced latency and faster load times.
-- The CDN also helps to offload traffic from the origin server, reducing the risk of server overload and ensuring consistent performance even during traffic spikes.
+- เนื่องจาก Edge Server ถูกกระจายอยู่ทั่วโลก การส่งมอบเนื้อหาจึงรวดเร็วขึ้น ส่งผลให้ Latency ลดลงและใช้เวลาโหลดน้อยลง
+- CDN ยังช่วยลดภาระทราฟฟิกของ Origin Server ลดความเสี่ยงที่เซิร์ฟเวอร์จะทำงานเกินกำลัง และช่วยให้ประสิทธิภาพมีความสม่ำเสมอแม้ในช่วงที่ทราฟฟิกเพิ่มสูงขึ้นอย่างรวดเร็ว
 
-## **Real-World Applications**
+## **การใช้งานจริง**
 
-Content Delivery Networks (CDNs) are widely used by large-scale platforms to deliver content quickly and efficiently to users across the globe.
+Content Delivery Network (CDN) ถูกใช้อย่างแพร่หลายในแพลตฟอร์มขนาดใหญ่เพื่อส่งมอบเนื้อหาให้แก่ผู้ใช้ทั่วโลกได้อย่างรวดเร็วและมีประสิทธิภาพ
 
-- **Streaming Media Delivery (e.g., Netflix, YouTube):** CDNs help stream video and audio content smoothly by delivering it from nearby servers. This reduces buffering and ensures high-quality playback even during heavy traffic.
-- **E-commerce (e.g., Amazon):** CDNs enable fast loading of product images, pages, and other content. This improves user experience and handles high traffic efficiently, especially during sales.
-- **Software Distribution:** CDNs are used to distribute software updates, patches, and applications quickly across different regions. This ensures faster and more reliable downloads for users worldwide.
-- **Gaming:** CDNs reduce latency by delivering game data from servers closer to users. This results in smoother gameplay and better real-time interaction in online gaming platforms.
-- **API Delivery:** CDNs enhance the performance of APIs used in mobile and web applications. They reduce response time and efficiently handle large volumes of requests.
+- **การส่งมอบสื่อสตรีมมิง (เช่น Netflix, YouTube):** CDN ช่วยสตรีมเนื้อหาวิดีโอและเสียงได้อย่างราบรื่นด้วยการส่งมอบจากเซิร์ฟเวอร์ที่อยู่ใกล้ผู้ใช้ ซึ่งช่วยลดการ Buffer และทำให้เล่นสื่อด้วยคุณภาพสูงได้แม้ในช่วงที่มีทราฟฟิกจำนวนมาก
+- **E-commerce (เช่น Amazon):** CDN ช่วยให้รูปภาพสินค้า หน้าเว็บ และเนื้อหาอื่นๆ โหลดได้อย่างรวดเร็ว ซึ่งช่วยปรับปรุงประสบการณ์ผู้ใช้และรองรับทราฟฟิกจำนวนมากได้อย่างมีประสิทธิภาพ โดยเฉพาะในช่วงลดราคา
+- **การเผยแพร่ซอฟต์แวร์:** CDN ถูกใช้เพื่อเผยแพร่การอัปเดตซอฟต์แวร์ แพตช์ และแอปพลิเคชันไปยังภูมิภาคต่างๆ ได้อย่างรวดเร็ว ทำให้ผู้ใช้ทั่วโลกสามารถดาวน์โหลดได้เร็วและน่าเชื่อถือมากขึ้น
+- **เกม:** CDN ช่วยลด Latency ด้วยการส่งข้อมูลเกมจากเซิร์ฟเวอร์ที่อยู่ใกล้ผู้ใช้ ส่งผลให้การเล่นเกมลื่นไหลขึ้นและการโต้ตอบแบบ Real-time บนแพลตฟอร์มเกมออนไลน์ทำได้ดีขึ้น
+- **การส่งมอบ API:** CDN ช่วยเพิ่มประสิทธิภาพของ API ที่ใช้ในแอปพลิเคชันมือถือและเว็บ โดยช่วยลดเวลาตอบสนองและรองรับคำขอจำนวนมากได้อย่างมีประสิทธิภาพ
 
-## **Types of CDN**
+## **ประเภทของ CDN**
 
-CDNs can be classified into several types based on their architecture and functionality:
+CDN สามารถแบ่งออกเป็นหลายประเภทตามสถาปัตยกรรมและรูปแบบการทำงาน:
 
-### **1. Public CDNs**
+### **1. Public CDN**
 
-Any CDN that is accessible to everybody online is referred to as a public CDN. These CDNs are used to swiftly and effectively provide content, including pictures, movies, and other static files, to users. They usually consist of a vast global network of servers.
+CDN ที่ทุกคนสามารถเข้าถึงได้ผ่านอินเทอร์เน็ตเรียกว่า Public CDN โดย CDN ประเภทนี้ใช้สำหรับส่งมอบเนื้อหา เช่น รูปภาพ วิดีโอ และไฟล์แบบคงที่อื่นๆ ให้แก่ผู้ใช้อย่างรวดเร็วและมีประสิทธิภาพ โดยทั่วไปจะประกอบด้วยเครือข่ายเซิร์ฟเวอร์ขนาดใหญ่ที่กระจายอยู่ทั่วโลก
 
-> **Example**: Cloudflare, Akamai, and Amazon CloudFront.
+> **ตัวอย่าง**: Cloudflare, Akamai และ Amazon CloudFront
 
-### **2. Private CDNs**
+### **2. Private CDN**
 
-A CDN that is only utilized by one firm or organization is known as a private CDN. These CDNs are used to distribute content to internal users or clients, and they are frequently set up on a private cloud or within an organization's own infrastructure. More control over content distribution is possible with private CDNs, which may be customized to satisfy particular performance and security needs.
+CDN ที่ใช้งานโดยบริษัทหรือองค์กรเพียงแห่งเดียวเรียกว่า Private CDN โดยใช้สำหรับเผยแพร่เนื้อหาให้แก่ผู้ใช้ภายในหรือลูกค้า และมักถูกติดตั้งบน Private Cloud หรือภายในโครงสร้างพื้นฐานขององค์กรเอง Private CDN ช่วยให้ควบคุมการกระจายเนื้อหาได้มากขึ้น และสามารถปรับแต่งให้ตรงกับความต้องการเฉพาะด้านประสิทธิภาพและความปลอดภัยได้
 
-> **Example**: Google Cloud CDN, Netflix Open Connect. 
+> **ตัวอย่าง**: Google Cloud CDN, Netflix Open Connect 
 
-### **3. Peer-to-Peer (P2P) CDNs**
+### **3. Peer-to-Peer (P2P) CDN**
 
-These CDNs **u**tilize peer-to-peer networking technology to distribute content directly between users, reducing reliance on centralized servers.
+CDN ประเภทนี้ใช้เทคโนโลยีเครือข่าย Peer-to-Peer เพื่อกระจายเนื้อหาโดยตรงระหว่างผู้ใช้ ซึ่งช่วยลดการพึ่งพาเซิร์ฟเวอร์แบบรวมศูนย์
 
-> **Example**: BitTorrent, webTorrent. 
+> **ตัวอย่าง**: BitTorrent, webTorrent 
 
-### **4. Hybrid CDNs**
+### **4. Hybrid CDN**
 
-A hybrid CDN combines elements of both public and private CDNs. In a hybrid CDN, some content is delivered using a public CDN, while other content is delivered using a private CDN. This approach allows organizations to optimize content delivery based on factors such as cost, performance, and security requirements.
+Hybrid CDN ผสมผสานองค์ประกอบของทั้ง Public CDN และ Private CDN โดยเนื้อหาบางส่วนจะถูกส่งมอบผ่าน Public CDN ขณะที่เนื้อหาส่วนอื่นจะถูกส่งมอบผ่าน Private CDN แนวทางนี้ช่วยให้องค์กรสามารถปรับการส่งมอบเนื้อหาให้เหมาะสมตามปัจจัยต่างๆ เช่น ต้นทุน ประสิทธิภาพ และข้อกำหนดด้านความปลอดภัย
 
-> **Example:** Microsoft Azure CDN
+> **ตัวอย่าง:** Microsoft Azure CDN
 
-### **5. Push CDNs**
+### **5. Push CDN**
 
-In a push CDN, content is uploaded or "pushed" to the CDN's servers in advance of when it is needed. This can help improve performance by ensuring that content is available closer to end users when they request it. Push CDNs are often used for caching large files or content that is not frequently updated.
+ใน Push CDN เนื้อหาจะถูกอัปโหลดหรือ "Push" ไปยังเซิร์ฟเวอร์ของ CDN ล่วงหน้าก่อนที่จะมีการใช้งาน วิธีนี้ช่วยเพิ่มประสิทธิภาพด้วยการทำให้เนื้อหาพร้อมใช้งานในตำแหน่งที่ใกล้กับผู้ใช้ปลายทางมากขึ้นเมื่อมีการร้องขอ Push CDN มักใช้สำหรับแคชไฟล์ขนาดใหญ่หรือเนื้อหาที่ไม่ได้อัปเดตบ่อย
 
-> **Example:** KeyCDN, CDN77
+> **ตัวอย่าง:** KeyCDN, CDN77
 
-### **6. Pull CDNs**
+### **6. Pull CDN**
 
-Pull CDNs fetch content from the origin server when requested and are mainly used for caching static or frequently accessed content. Dynamic content may be delivered but is usually cached selectively or for shorter durations.
+Pull CDN จะดึงเนื้อหาจาก Origin Server เมื่อมีการร้องขอ และส่วนใหญ่ใช้สำหรับแคชเนื้อหาแบบคงที่หรือเนื้อหาที่ถูกเข้าถึงบ่อย เนื้อหาแบบ Dynamic อาจถูกส่งมอบผ่าน CDN ได้เช่นกัน แต่มักถูกแคชแบบเลือกเฉพาะหรือเก็บไว้เป็นระยะเวลาสั้นกว่า
 
-> **Example:** Amazon CloudFront, Cloudflare
+> **ตัวอย่าง:** Amazon CloudFront, Cloudflare
 
-## **Components**
+## **ส่วนประกอบ**
 
-A typical CDN consists of the following key elements
+CDN โดยทั่วไปประกอบด้วยองค์ประกอบหลักดังต่อไปนี้
 
-- **Edge Servers:** Distributed servers that are close to end users are in control of rapidly delivering and caching content.
-- **Origin Server:** It serves as the primary source for content distribution and the main location for managing and storing original content.
-- **Content Distribution Nodes:** Network nodes responsible for routing and optimizing content delivery within the CDN, ensuring efficient traffic management.
-- **Control Plane:** Content caching, routing, **load balancing**, and other CDN functions are managed and coordinated by these software or services.
+- **Edge Server:** เซิร์ฟเวอร์แบบกระจายที่อยู่ใกล้ผู้ใช้ปลายทาง มีหน้าที่ส่งมอบและแคชเนื้อหาอย่างรวดเร็ว
+- **Origin Server:** ทำหน้าที่เป็นแหล่งข้อมูลหลักสำหรับการกระจายเนื้อหา และเป็นตำแหน่งหลักสำหรับจัดการและจัดเก็บเนื้อหาต้นฉบับ
+- **Content Distribution Node:** โหนดเครือข่ายที่รับผิดชอบการกำหนดเส้นทางและปรับประสิทธิภาพการส่งมอบเนื้อหาภายใน CDN เพื่อให้สามารถจัดการทราฟฟิกได้อย่างมีประสิทธิภาพ
+- **Control Plane:** ซอฟต์แวร์หรือบริการที่ใช้จัดการและประสานงานการแคชเนื้อหา การกำหนดเส้นทาง **Load Balancing** และการทำงานอื่นๆ ของ CDN
 
-## **Working**
+## **การทำงาน**
 
-Step-by-step working of a CDN:
+ขั้นตอนการทำงานของ CDN:
 
 <img src="https://media.geeksforgeeks.org/wp-content/uploads/20260414150255965749/ds-660.webp" alt="Working" />
 
-- User sends a request for content (e.g., an image) from a website.
-- CDN identifies the user's location and routes the request to the nearest edge server.
-- If the content is cached at the edge server, it is delivered directly to the user.
-- If the content is not cached, the edge server retrieves it from the origin server, caches it locally, and delivers it to the user.
-- Cached content is stored at the edge server for future requests, optimizing performance and reducing latency.
+- ผู้ใช้ส่งคำขอสำหรับเนื้อหา เช่น รูปภาพ จากเว็บไซต์
+- CDN ระบุตำแหน่งของผู้ใช้และกำหนดเส้นทางคำขอไปยัง Edge Server ที่อยู่ใกล้ที่สุด
+- หากเนื้อหาถูกแคชไว้ที่ Edge Server เนื้อหาจะถูกส่งให้ผู้ใช้โดยตรง
+- หากเนื้อหาไม่ได้ถูกแคช Edge Server จะดึงเนื้อหาจาก Origin Server แคชไว้ภายในเซิร์ฟเวอร์ และส่งเนื้อหาให้แก่ผู้ใช้
+- เนื้อหาที่แคชไว้จะถูกจัดเก็บที่ Edge Server สำหรับคำขอในอนาคต เพื่อเพิ่มประสิทธิภาพและลด Latency
 
-## **Types of Content Delivered by CDN**
+## **ประเภทของเนื้อหาที่ส่งมอบผ่าน CDN**
 
-A CDN can deliver different types of content based on how frequently the data changes and how it is generated.
+CDN สามารถส่งมอบเนื้อหาได้หลายประเภท โดยขึ้นอยู่กับความถี่ที่ข้อมูลมีการเปลี่ยนแปลงและวิธีที่ข้อมูลถูกสร้างขึ้น
 
-### **1. Static Content**
+### **1. เนื้อหาแบบคงที่ (Static Content)**
 
-Content that remains the same for all users and does not change frequently.
+เนื้อหาที่เหมือนกันสำหรับผู้ใช้ทุกคนและไม่ได้เปลี่ยนแปลงบ่อย
 
-- Examples: images, logos, CSS, JavaScript files
-- Easy to cache and deliver quickly from edge servers
-- Improves performance as no processing is required
+- ตัวอย่าง: รูปภาพ โลโก้ CSS และไฟล์ JavaScript
+- สามารถแคชและส่งมอบจาก Edge Server ได้อย่างรวดเร็ว
+- ช่วยเพิ่มประสิทธิภาพเนื่องจากไม่จำเป็นต้องมีการประมวลผล
 
-### **2. Dynamic Content**
+### **2. เนื้อหาแบบไดนามิก (Dynamic Content)**
 
-Content that changes based on user interaction, location, or preferences.
+เนื้อหาที่เปลี่ยนแปลงตามการโต้ตอบของผู้ใช้ ตำแหน่ง หรือความต้องการของผู้ใช้
 
-- Examples: social media feeds, login data, weather updates
-- Generated in real-time by the server
-- Cached selectively or for shorter duration
+- ตัวอย่าง: ฟีดโซเชียลมีเดีย ข้อมูลการเข้าสู่ระบบ และข้อมูลอัปเดตสภาพอากาศ
+- ถูกสร้างแบบ Real-time โดยเซิร์ฟเวอร์
+- ถูกแคชแบบเลือกเฉพาะหรือเป็นระยะเวลาสั้นกว่า
 
-## **Importance**
+## **ความสำคัญ**
 
-CDNs offer several key benefits that make them important for delivering content over the internet:
+CDN มีประโยชน์สำคัญหลายประการที่ทำให้มีบทบาทสำคัญในการส่งมอบเนื้อหาผ่านอินเทอร์เน็ต:
 
-- **Faster Content Delivery**: CDNs improve load times and lower latency by reducing the physical distance that data must travel by caching content on servers that are closer to end users.
-- **Improved Website Performance**: Improved website performance, including longer visit durations, higher user engagement, and higher conversion rates, is an immediate result of faster load times.
-- **Scalability**: CDNs help websites handle traffic spikes and high loads by distributing the load across multiple servers. This scalability is especially crucial for websites with global audiences or those experiencing sudden surges in traffic.
-- **Redundancy and Reliability**: CDNs offer redundancy by storing copies of content across multiple servers. If one server fails, another server can seamlessly take over, ensuring continuous availability of the content.
-- **Cost Savings**: By reducing the load on origin servers and optimizing content delivery, CDNs can help lower bandwidth costs and infrastructure expenses for website owners.
-- **Security**: CDNs provide additional security features, such as DDoS protection, SSL/TLS encryption, and web application firewalls, helping to protect websites from various online threats.
+- **ส่งมอบเนื้อหาได้รวดเร็วขึ้น**: CDN ช่วยเพิ่มความเร็วในการโหลดและลด Latency ด้วยการลดระยะทางทางกายภาพที่ข้อมูลต้องเดินทาง โดยแคชเนื้อหาไว้บนเซิร์ฟเวอร์ที่อยู่ใกล้ผู้ใช้ปลายทางมากขึ้น
+- **ปรับปรุงประสิทธิภาพของเว็บไซต์**: เวลาโหลดที่เร็วขึ้นส่งผลโดยตรงต่อประสิทธิภาพของเว็บไซต์ เช่น ผู้ใช้อยู่บนเว็บไซต์นานขึ้น มีส่วนร่วมมากขึ้น และมีอัตรา Conversion สูงขึ้น
+- **ความสามารถในการรองรับการขยายตัว**: CDN ช่วยให้เว็บไซต์รองรับทราฟฟิกที่เพิ่มสูงขึ้นอย่างรวดเร็วและภาระงานจำนวนมาก ด้วยการกระจายโหลดไปยังเซิร์ฟเวอร์หลายเครื่อง ความสามารถนี้มีความสำคัญอย่างยิ่งสำหรับเว็บไซต์ที่มีผู้ใช้ทั่วโลกหรือเว็บไซต์ที่มีทราฟฟิกเพิ่มขึ้นอย่างฉับพลัน
+- **ความซ้ำซ้อนและความน่าเชื่อถือ**: CDN สร้างความซ้ำซ้อนด้วยการจัดเก็บสำเนาเนื้อหาไว้บนเซิร์ฟเวอร์หลายเครื่อง หากเซิร์ฟเวอร์หนึ่งล้มเหลว เซิร์ฟเวอร์อีกเครื่องสามารถรับช่วงต่อได้อย่างราบรื่น ทำให้เนื้อหายังคงพร้อมใช้งานอย่างต่อเนื่อง
+- **ประหยัดต้นทุน**: ด้วยการลดภาระของ Origin Server และเพิ่มประสิทธิภาพการส่งมอบเนื้อหา CDN สามารถช่วยลดค่าใช้จ่ายด้าน Bandwidth และโครงสร้างพื้นฐานสำหรับเจ้าของเว็บไซต์
+- **ความปลอดภัย**: CDN มีฟีเจอร์ด้านความปลอดภัยเพิ่มเติม เช่น การป้องกัน DDoS, การเข้ารหัส SSL/TLS และ Web Application Firewall ซึ่งช่วยปกป้องเว็บไซต์จากภัยคุกคามออนไลน์หลายรูปแบบ
 
-## **Challenges**
+## **ความท้าทาย**
 
-The challenges of using CDN are:
+ความท้าทายของการใช้ CDN ได้แก่:
 
-- **Cost**: Implementing and maintaining a CDN can incur additional costs compared to relying solely on the origin server.
-- **Complexity**: Managing and optimizing a CDN requires technical expertise and ongoing maintenance.
-- **Security considerations**: Ensuring data security while using a CDN requires careful configuration and adherence to security best practices.
+- **ต้นทุน**: การติดตั้งและดูแล CDN อาจมีค่าใช้จ่ายเพิ่มเติมเมื่อเทียบกับการพึ่งพา Origin Server เพียงอย่างเดียว
+- **ความซับซ้อน**: การจัดการและเพิ่มประสิทธิภาพ CDN ต้องอาศัยความเชี่ยวชาญทางเทคนิคและการบำรุงรักษาอย่างต่อเนื่อง
+- **ข้อพิจารณาด้านความปลอดภัย**: การรักษาความปลอดภัยของข้อมูลขณะใช้ CDN จำเป็นต้องมีการกำหนดค่าอย่างรอบคอบและปฏิบัติตามแนวทางด้านความปลอดภัยที่เหมาะสม
