@@ -1,220 +1,220 @@
 # **Behavioral Design Patterns**
 
-Behavioral design patterns focus on how objects communicate and collaborate to manage responsibilities effectively. They improve flexibility and simplify complex control flows within a system.
+Behavioral Design Patterns มุ่งเน้นที่วิธีการสื่อสารและการทำงานร่วมกันระหว่างออบเจ็กต์ เพื่อจัดการความรับผิดชอบได้อย่างมีประสิทธิภาพ ช่วยเพิ่มความยืดหยุ่นและทำให้ลำดับการควบคุมที่ซับซ้อนภายในระบบเข้าใจและจัดการได้ง่ายขึ้น
 
-- Facilitate clear communication and responsibility sharing between objects, helping manage complex workflows and control structures.
-- Promote loose coupling between components, improving system flexibility and maintainability.
+- ช่วยให้การสื่อสารและการแบ่งปันความรับผิดชอบระหว่างออบเจ็กต์มีความชัดเจน ทำให้สามารถจัดการ Workflow และโครงสร้างการควบคุมที่ซับซ้อนได้ดีขึ้น
+- ส่งเสริมการเชื่อมโยงแบบหลวม (Loose Coupling) ระหว่างคอมโพเนนต์ ช่วยเพิ่มความยืดหยุ่นและความง่ายในการบำรุงรักษาระบบ
 
-## **Types of Behavioral Design Patterns**
+## **ประเภทของ Behavioral Design Patterns**
 
-There are mainly 10 types of Behavioral design patterns:
+Behavioral Design Patterns แบ่งออกเป็น 10 ประเภทหลัก:
 
-<img src="https://media.geeksforgeeks.org/wp-content/uploads/20251209150239732370/types_of_behavioral-660.webp" alt="Types" />
+<img src="https://media.geeksforgeeks.org/wp-content/uploads/20251209150239732370/types_of_behavioral-660.webp" alt="ประเภท" />
 
 ### **1. Observer Method Design Pattern**
 
-[Observer method or Observer design pattern](https://www.geeksforgeeks.org/system-design/observer-pattern-set-1-introduction/) also known as dependents and publish-subscribe. It defines a one-to-many dependency between objects, where a change in one object automatically notifies and updates all its dependents.
+[Observer Method หรือ Observer Design Pattern](https://www.geeksforgeeks.org/system-design/observer-pattern-set-1-introduction/) หรือที่เรียกว่า Dependents และ Publish-Subscribe เป็น Pattern ที่กำหนดความสัมพันธ์แบบ One-to-Many ระหว่างออบเจ็กต์ โดยเมื่อออบเจ็กต์หนึ่งมีการเปลี่ยนแปลง จะทำการแจ้งเตือนและอัปเดตออบเจ็กต์ที่ขึ้นอยู่กับมันทั้งหมดโดยอัตโนมัติ
 
-### **When to use**
+### **ควรใช้เมื่อใด**
 
-Use this pattern when multiple objects need to stay updated with changes in another object without tight coupling.
+ใช้ Pattern นี้เมื่อมีออบเจ็กต์หลายตัวที่ต้องได้รับการอัปเดตตามการเปลี่ยนแปลงของออบเจ็กต์อื่น โดยไม่ต้องเชื่อมโยงกันอย่างแน่นหนา
 
-- When a change in one object requires updates in multiple other objects, and the number of dependents is unknown.
-- When an object needs to notify others without knowing their concrete implementations.
+- เมื่อการเปลี่ยนแปลงในออบเจ็กต์หนึ่งจำเป็นต้องอัปเดตออบเจ็กต์อื่นหลายตัว และไม่ทราบจำนวนออบเจ็กต์ที่ขึ้นอยู่กับมันล่วงหน้า
+- เมื่อออบเจ็กต์หนึ่งต้องแจ้งเตือนออบเจ็กต์อื่นโดยไม่จำเป็นต้องรู้รายละเอียดของ Implementation ที่แท้จริง
 
-### **Uses of Observer Design Pattern**
+### **การใช้งาน Observer Design Pattern**
 
-It is mainly used to handle automatic updates and maintain consistency across related objects.
+Pattern นี้ใช้เป็นหลักสำหรับจัดการการอัปเดตโดยอัตโนมัติและรักษาความสอดคล้องของออบเจ็กต์ที่เกี่ยวข้องกัน
 
-- Automatically updates multiple objects when the state of a subject changes.
-- Commonly used in publish-subscribe systems like GUI event handling.
-- Helps achieve loose coupling between subjects and observers
+- อัปเดตออบเจ็กต์หลายตัวโดยอัตโนมัติเมื่อสถานะของ Subject เปลี่ยนแปลง
+- นิยมใช้ในระบบ Publish-Subscribe เช่น การจัดการ Event ใน GUI
+- ช่วยให้เกิด Loose Coupling ระหว่าง Subject และ Observer
 
 ### **2. Strategy Method Design Pattern**
 
-**Strategy method or Strategy Design Pattern** also known as Policy, it define a family of algorithm, encapsulate each one, and make them interchangeable. Strategy lets the algorithm vary independently from clients that use it.
+**Strategy Method หรือ Strategy Design Pattern** หรือที่เรียกว่า Policy เป็น Pattern ที่กำหนดกลุ่มของ Algorithm โดยห่อหุ้มแต่ละ Algorithm แยกจากกันและทำให้สามารถสลับใช้งานแทนกันได้ Strategy ช่วยให้ Algorithm สามารถเปลี่ยนแปลงได้อย่างอิสระจาก Client ที่ใช้งานมัน
 
-### **When to use**
+### **ควรใช้เมื่อใด**
 
-Use this pattern when multiple algorithms can be selected or switched dynamically based on different conditions.
+ใช้ Pattern นี้เมื่อมี Algorithm หลายแบบที่สามารถเลือกหรือสลับใช้งานแบบ Dynamic ตามเงื่อนไขที่แตกต่างกัน
 
-- When you have multiple algorithms (e.g., sorting, searching, compression) that can be used interchangeably.
-- When you need to choose or switch algorithms at runtime based on user input, configuration, or system state.
+- เมื่อมี Algorithm หลายแบบ เช่น การเรียงลำดับ การค้นหา หรือการบีบอัด ที่สามารถใช้แทนกันได้
+- เมื่อต้องเลือกหรือสลับ Algorithm ขณะ Runtime ตาม Input ของผู้ใช้ Configuration หรือสถานะของระบบ
 
-### **Uses of Strategy Design Pattern**
+### **การใช้งาน Strategy Design Pattern**
 
-It helps in organizing and managing different behaviors in a flexible and reusable way.
+Pattern นี้ช่วยจัดระเบียบและจัดการพฤติกรรมที่แตกต่างกันในรูปแบบที่ยืดหยุ่นและสามารถนำกลับมาใช้ซ้ำได้
 
-- Allows switching between algorithms without modifying client code.
-- Supports implementing interchangeable behaviors like sorting, searching, or payment methods.
-- Reduces the need for complex conditional statements for selecting algorithms.
+- สามารถสลับ Algorithm ได้โดยไม่ต้องแก้ไขโค้ดฝั่ง Client
+- รองรับพฤติกรรมที่สามารถใช้แทนกันได้ เช่น การเรียงลำดับ การค้นหา หรือวิธีการชำระเงิน
+- ลดความจำเป็นในการใช้ Conditional Statement ที่ซับซ้อนเพื่อเลือก Algorithm
 
 ### **3. State Method Design Pattern**
 
-[State method or State Design Pattern](https://www.geeksforgeeks.org/system-design/strategy-pattern-set-1/) also known as objects for states, it allow an object to alter its behaviour when its internal state changes.
+[State Method หรือ State Design Pattern](https://www.geeksforgeeks.org/system-design/strategy-pattern-set-1/) หรือที่เรียกว่า Objects for States ช่วยให้ออบเจ็กต์สามารถเปลี่ยนพฤติกรรมของตัวเองได้เมื่อสถานะภายในเปลี่ยนแปลง
 
-### **When to use**
+### **ควรใช้เมื่อใด**
 
-Use this pattern when an object’s behavior depends on its state and changes frequently.
+ใช้ Pattern นี้เมื่อพฤติกรรมของออบเจ็กต์ขึ้นอยู่กับสถานะ และสถานะมีการเปลี่ยนแปลงบ่อย
 
-- When conditional logic (if-else or switch-case) becomes complex and hard to manage.
-- When an object frequently transitions between different states with different behaviors.
+- เมื่อ Conditional Logic เช่น if-else หรือ switch-case มีความซับซ้อนและจัดการได้ยาก
+- เมื่อออบเจ็กต์เปลี่ยนผ่านระหว่างสถานะต่างๆ บ่อยครั้ง และแต่ละสถานะมีพฤติกรรมที่แตกต่างกัน
 
-### **Uses of State Design Pattern:**
+### **การใช้งาน State Design Pattern:**
 
-It helps in organizing state-specific behavior in a structured and maintainable way.
+Pattern นี้ช่วยจัดระเบียบพฤติกรรมที่เฉพาะเจาะจงตามสถานะให้อยู่ในโครงสร้างที่ชัดเจนและบำรุงรักษาได้ง่าย
 
-- Enables changing behavior dynamically based on internal state.
-- Simplifies complex conditional logic by replacing it with state classes.
-- Encapsulates state-specific behavior into separate classes for better maintainability.
+- เปลี่ยนพฤติกรรมแบบ Dynamic ตามสถานะภายใน
+- ลดความซับซ้อนของ Conditional Logic โดยแทนที่ด้วย State Class
+- ห่อหุ้มพฤติกรรมของแต่ละสถานะไว้ใน Class แยกกันเพื่อให้ง่ายต่อการบำรุงรักษา
 
 ### **4. Command Method Design Pattern**
 
-[Command Design Pattern](https://www.geeksforgeeks.org/system-design/command-pattern/) converts a request into a standalone object that contains the method, its parameters, and the receiver, enabling flexible request handling.
+[Command Design Pattern](https://www.geeksforgeeks.org/system-design/command-pattern/) แปลง Request ให้เป็นออบเจ็กต์แบบ Standalone ที่เก็บ Method, Parameter และ Receiver เอาไว้ ทำให้สามารถจัดการ Request ได้อย่างยืดหยุ่น
 
-### **When to use**
+### **ควรใช้เมื่อใด**
 
-Use this pattern when you need to decouple the sender of a request from the object that executes it.
+ใช้ Pattern นี้เมื่อต้องการแยกผู้ส่ง Request ออกจากออบเจ็กต์ที่ทำหน้าที่ประมวลผล Request นั้น
 
-- When you want to separate the requester (sender) from the executor (receiver).
-- When your application requires support for undo and redo operations.
+- เมื่อต้องการแยก Requester (Sender) ออกจาก Executor (Receiver)
+- เมื่อแอปพลิเคชันต้องรองรับการทำงานแบบ Undo และ Redo
 
-### **Uses of Command Design Pattern**
+### **การใช้งาน Command Design Pattern**
 
-It helps in encapsulating requests and managing them efficiently.
+Pattern นี้ช่วยห่อหุ้ม Request และจัดการ Request ได้อย่างมีประสิทธิภาพ
 
-- Decouples the sender and receiver of a request.
-- Supports undo/redo functionality.
-- Allows queuing, logging, or scheduling requests for later execution.
+- แยก Sender และ Receiver ของ Request ออกจากกัน
+- รองรับฟังก์ชัน Undo/Redo
+- สามารถนำ Request เข้า Queue บันทึก Log หรือกำหนดเวลาเพื่อประมวลผลในภายหลังได้
 
 ### **5. Chain Of Responsibility Method Design Pattern**
 
-[Chain of Responsibility design pattern](https://www.geeksforgeeks.org/system-design/chain-responsibility-design-pattern/) allows a request to pass through a chain of handlers, where each handler decides whether to process it or pass it to the next handler.
+[Chain of Responsibility Design Pattern](https://www.geeksforgeeks.org/system-design/chain-responsibility-design-pattern/) ช่วยให้ Request ถูกส่งผ่าน Handler หลายตัวตามลำดับ โดยแต่ละ Handler จะตัดสินใจว่าจะประมวลผล Request นั้นเองหรือส่งต่อไปยัง Handler ตัวถัดไป
 
-### **When to use**
+### **ควรใช้เมื่อใด**
 
-Use this pattern when multiple objects can handle a request, and the handler is not known in advance.
+ใช้ Pattern นี้เมื่อมีออบเจ็กต์หลายตัวที่สามารถจัดการ Request ได้ และไม่ทราบล่วงหน้าว่า Handler ตัวใดจะเป็นผู้จัดการ
 
-- When you want to pass requests dynamically without specifying the exact receiver.
-- When you need flexible and extensible processing of requests.
+- เมื่อต้องการส่งต่อ Request แบบ Dynamic โดยไม่ระบุ Receiver ที่แน่นอน
+- เมื่อต้องการกระบวนการประมวลผล Request ที่ยืดหยุ่นและสามารถขยายได้
 
-### **Uses of Chain of Responsibility Design Pattern**
+### **การใช้งาน Chain of Responsibility Design Pattern**
 
-It helps in building flexible and decoupled request-processing systems.
+Pattern นี้ช่วยสร้างระบบประมวลผล Request ที่ยืดหยุ่นและมีการเชื่อมโยงแบบหลวม
 
-- Allows multiple objects to handle a request sequentially.
-- Creates processing pipelines for handling operations.
-- Reduces coupling between sender and receiver of a request.
+- ช่วยให้ออบเจ็กต์หลายตัวสามารถจัดการ Request ตามลำดับได้
+- สร้าง Processing Pipeline สำหรับจัดการ Operation ต่างๆ
+- ลดการเชื่อมโยงระหว่าง Sender และ Receiver ของ Request
 
 ### **6. Template Method Design Pattern**
 
-[Template method or Template Design Pattern](https://www.geeksforgeeks.org/system-design/template-method-design-pattern/), define the skeleton of an algorithm in a method, allowing subclasses to redefine certain steps without changing the overall structure.
+[Template Method หรือ Template Design Pattern](https://www.geeksforgeeks.org/system-design/template-method-design-pattern/) กำหนดโครงร่างของ Algorithm ไว้ใน Method โดยเปิดให้ Subclass สามารถกำหนดขั้นตอนบางส่วนใหม่ได้โดยไม่เปลี่ยนโครงสร้างโดยรวม
 
-### **When to use**
+### **ควรใช้เมื่อใด**
 
-Use this pattern when you want to maintain a fixed algorithm structure but allow flexibility in specific steps.
+ใช้ Pattern นี้เมื่อต้องการรักษาโครงสร้างของ Algorithm ให้คงที่ แต่ยังต้องการความยืดหยุ่นในบางขั้นตอน
 
-- When similar processes need to be performed in different contexts.
-- When you want to enforce a sequence of steps while allowing customization in parts of the algorithm.
+- เมื่อกระบวนการที่คล้ายกันต้องทำงานภายใต้บริบทที่แตกต่างกัน
+- เมื่อต้องการบังคับลำดับขั้นตอนให้คงที่ แต่อนุญาตให้ปรับแต่งบางส่วนของ Algorithm ได้
 
-### **Uses of Template Method Design Pattern**
+### **การใช้งาน Template Method Design Pattern**
 
-It helps in reusing common logic while allowing controlled customization.
+Pattern นี้ช่วยนำ Logic ที่ใช้ร่วมกันกลับมาใช้ซ้ำ พร้อมเปิดให้ปรับแต่งเฉพาะส่วนได้อย่างควบคุม
 
-- Enforces a consistent sequence of steps in an algorithm.
-- Reduces code duplication by sharing common structure.
-- Provides a base class with extensible steps for subclasses.
+- บังคับให้ Algorithm มีลำดับขั้นตอนที่สอดคล้องกัน
+- ลดการเขียนโค้ดซ้ำด้วยการใช้โครงสร้างร่วมกัน
+- มี Base Class ที่กำหนดขั้นตอนซึ่ง Subclass สามารถขยายได้
 
 ### **7. Interpreter Method Design Pattern**
 
-[Interpreter design pattern](https://www.geeksforgeeks.org/system-design/interpreter-design-pattern/) defines a way to represent and evaluate language grammar or expressions by modeling them as a set of classes.
+[Interpreter Design Pattern](https://www.geeksforgeeks.org/system-design/interpreter-design-pattern/) กำหนดวิธีการแทนและประเมินผล Grammar หรือ Expression ของภาษา โดยจำลององค์ประกอบเหล่านั้นให้อยู่ในรูปของกลุ่ม Class
 
-### **When to use**
+### **ควรใช้เมื่อใด**
 
-Use this pattern when your application needs to interpret structured expressions or commands.
+ใช้ Pattern นี้เมื่อแอปพลิเคชันต้องตีความ Expression หรือ Command ที่มีโครงสร้าง
 
-- When working with domain-specific languages (DSLs).
-- When new operations or grammar rules need to be added frequently.
+- เมื่อทำงานกับ Domain-Specific Language (DSL)
+- เมื่อต้องเพิ่ม Operation หรือกฎ Grammar ใหม่บ่อยครั้ง
 
-### **Uses of Interpreter Design Pattern**
+### **การใช้งาน Interpreter Design Pattern**
 
-It helps in building systems that can process and evaluate custom languages or expressions.
+Pattern นี้ช่วยสร้างระบบที่สามารถประมวลผลและประเมินผลภาษาหรือ Expression ที่กำหนดขึ้นเอง
 
-- Enables interpretation and evaluation of expressions at runtime.
-- Useful for implementing DSLs.
-- Allows easy extension by adding new grammar rules.
+- รองรับการตีความและประเมินผล Expression ขณะ Runtime
+- เหมาะสำหรับการสร้าง DSL
+- สามารถขยายได้ง่ายด้วยการเพิ่มกฎ Grammar ใหม่
 
 ### **8. Visitor Method Design Pattern**
 
-[Visitor design pattern](https://www.geeksforgeeks.org/system-design/visitor-design-pattern/) allows adding new operations to related classes without modifying their structure. It is useful when classes are stable but operations need to be extended easily.
+[Visitor Design Pattern](https://www.geeksforgeeks.org/system-design/visitor-design-pattern/) ช่วยให้สามารถเพิ่ม Operation ใหม่ให้กับ Class ที่เกี่ยวข้องกันได้โดยไม่ต้องแก้ไขโครงสร้างของ Class เหล่านั้น เหมาะเมื่อโครงสร้าง Class มีความคงที่ แต่ต้องเพิ่ม Operation ใหม่ได้อย่างง่ายดาย
 
-### **When to use**
+### **ควรใช้เมื่อใด**
 
-Use this pattern when the object structure is stable but new operations need to be added frequently.
+ใช้ Pattern นี้เมื่อโครงสร้างของออบเจ็กต์มีความคงที่ แต่จำเป็นต้องเพิ่ม Operation ใหม่บ่อยครั้ง
 
-- When you have related classes and need to perform different operations on them.
-- When you want to extend functionality without modifying existing classes.
+- เมื่อมี Class ที่เกี่ยวข้องกันและต้องดำเนิน Operation ที่แตกต่างกันกับ Class เหล่านั้น
+- เมื่อต้องการขยายความสามารถโดยไม่แก้ไข Class ที่มีอยู่
 
-### **Uses of Visitor Design Pattern**
+### **การใช้งาน Visitor Design Pattern**
 
-It helps in separating operations from object structures for better maintainability.
+Pattern นี้ช่วยแยก Operation ออกจากโครงสร้างของออบเจ็กต์ ทำให้บำรุงรักษาได้ง่ายขึ้น
 
-- Performs operations across a set of objects without changing their classes.
-- Keeps algorithms separate from the object structure.
-- Allows adding new functionality without altering existing code.
+- ดำเนิน Operation กับกลุ่มออบเจ็กต์โดยไม่ต้องแก้ไข Class ของออบเจ็กต์เหล่านั้น
+- แยก Algorithm ออกจากโครงสร้างของออบเจ็กต์
+- เพิ่มความสามารถใหม่ได้โดยไม่ต้องเปลี่ยนแปลงโค้ดเดิม
 
 ### **9. Mediator Method Design Pattern**
 
-[Mediator Design Pattern](https://www.geeksforgeeks.org/system-design/mediator-design-pattern/) defines an object that controls and manages interactions between multiple objects, promoting loose coupling.
+[Mediator Design Pattern](https://www.geeksforgeeks.org/system-design/mediator-design-pattern/) กำหนดออบเจ็กต์ที่ทำหน้าที่ควบคุมและจัดการการโต้ตอบระหว่างออบเจ็กต์หลายตัว เพื่อส่งเสริม Loose Coupling
 
-### **When to use**
+### **ควรใช้เมื่อใด**
 
-Use this pattern when multiple objects interact in complex ways and need centralized coordination.
+ใช้ Pattern นี้เมื่อออบเจ็กต์หลายตัวมีการโต้ตอบกันอย่างซับซ้อนและต้องการจุดศูนย์กลางในการประสานงาน
 
-- When objects need to communicate in a complex manner.
-- When you want a single point to manage and organize interactions.
+- เมื่อออบเจ็กต์จำเป็นต้องสื่อสารกันในรูปแบบที่ซับซ้อน
+- เมื่อต้องการจุดศูนย์กลางเพียงจุดเดียวสำหรับจัดการและจัดระเบียบการโต้ตอบ
 
-### **Uses of Mediator Design Pattern**
+### **การใช้งาน Mediator Design Pattern**
 
-It helps in simplifying communication and reducing dependencies between objects.
+Pattern นี้ช่วยลดความซับซ้อนในการสื่อสารและลด Dependency ระหว่างออบเจ็กต์
 
-- Centralizes complex interactions between objects.
-- Reduces direct dependencies, promoting loose coupling.
-- Improves maintainability by handling interaction logic in one place.
+- รวมการโต้ตอบที่ซับซ้อนระหว่างออบเจ็กต์ไว้ที่ศูนย์กลาง
+- ลด Dependency โดยตรงระหว่างออบเจ็กต์ ส่งเสริม Loose Coupling
+- เพิ่มความง่ายในการบำรุงรักษาด้วยการรวม Logic สำหรับการโต้ตอบไว้ในที่เดียว
 
 ### **10. Memento Method Design Patterns**
 
-[Memento design pattern](https://www.geeksforgeeks.org/system-design/memento-design-pattern/) captures and restores an object’s internal state without breaking encapsulation. It enables undo or rollback by saving and restoring previous states of an object.
+[Memento Design Pattern](https://www.geeksforgeeks.org/system-design/memento-design-pattern/) เก็บและกู้คืนสถานะภายในของออบเจ็กต์โดยไม่ทำลาย Encapsulation รองรับการ Undo หรือ Rollback ด้วยการบันทึกและกู้คืนสถานะก่อนหน้าของออบเจ็กต์
 
-### **When to use**
+### **ควรใช้เมื่อใด**
 
-Use this pattern when you need to save and restore an object’s state at different points in time.
+ใช้ Pattern นี้เมื่อต้องการบันทึกและกู้คืนสถานะของออบเจ็กต์ ณ ช่วงเวลาต่างๆ
 
-- When implementing features like versioning or checkpoints.
-- When rollback is required in case of errors or exceptions.
+- เมื่อต้องสร้างความสามารถ เช่น Versioning หรือ Checkpoint
+- เมื่อต้อง Rollback ในกรณีที่เกิด Error หรือ Exception
 
-### **Uses of Memento Design Pattern**
+### **การใช้งาน Memento Design Pattern**
 
-It helps in managing object state safely and efficiently.
+Pattern นี้ช่วยจัดการสถานะของออบเจ็กต์ได้อย่างปลอดภัยและมีประสิทธิภาพ
 
-- Supports undo or rollback functionality.
-- Maintains history through versioning or checkpoints.
-- Restores previous states without exposing internal details.
+- รองรับความสามารถในการ Undo หรือ Rollback
+- เก็บประวัติผ่าน Versioning หรือ Checkpoint
+- กู้คืนสถานะก่อนหน้าโดยไม่เปิดเผยรายละเอียดภายใน
 
-## **Importance of Behavioral Design Patterns**
+## **ความสำคัญของ Behavioral Design Patterns**
 
-Behavioral design patterns help manage object interactions and responsibilities in a system, making it easier to maintain and extend.
+Behavioral Design Patterns ช่วยจัดการการโต้ตอบและความรับผิดชอบระหว่างออบเจ็กต์ภายในระบบ ทำให้ระบบบำรุงรักษาและขยายได้ง่ายขึ้น
 
-- Defines clear communication between objects, improving maintainability.
-- Promotes code reusability by encapsulating behavior in separate classes.
-- Helps manage complex control flows and interactions efficiently.
-- Improves flexibility by allowing dynamic changes to object behavior.
+- กำหนดการสื่อสารระหว่างออบเจ็กต์ให้ชัดเจน ช่วยให้บำรุงรักษาได้ง่ายขึ้น
+- ส่งเสริมการนำโค้ดกลับมาใช้ซ้ำด้วยการห่อหุ้มพฤติกรรมไว้ใน Class แยกกัน
+- ช่วยจัดการ Control Flow และการโต้ตอบที่ซับซ้อนได้อย่างมีประสิทธิภาพ
+- เพิ่มความยืดหยุ่นด้วยการเปิดให้พฤติกรรมของออบเจ็กต์เปลี่ยนแปลงแบบ Dynamic ได้
 
-## **Challenges of Behavioral Design Patterns**
+## **ความท้าทายของ Behavioral Design Patterns**
 
-While useful, behavioral patterns can also introduce complexity that developers must manage carefully.
+แม้ Behavioral Patterns จะมีประโยชน์ แต่ก็อาจเพิ่มความซับซ้อนที่นักพัฒนาต้องจัดการอย่างระมัดระวัง
 
-- Can increase system complexity, making code harder to understand.
-- Overuse may lead to a high number of small classes and objects.
-- Debugging can be difficult due to multiple layers of indirection.
-- Misuse may reduce performance or make behavior tracking harder
+- อาจเพิ่มความซับซ้อนของระบบ ทำให้โค้ดเข้าใจได้ยากขึ้น
+- การใช้งานมากเกินไปอาจทำให้มี Class และออบเจ็กต์ขนาดเล็กจำนวนมาก
+- การ Debug อาจทำได้ยากเนื่องจากมีการอ้างอิงผ่านหลายชั้น
+- การใช้งานไม่เหมาะสมอาจลดประสิทธิภาพหรือทำให้ติดตามพฤติกรรมของระบบได้ยากขึ้น
