@@ -1,123 +1,123 @@
-# **Structural Design Patterns**
+# **รูปแบบการออกแบบเชิงโครงสร้าง**
 
-Structural Design Patterns focus on organizing classes and objects to build larger, efficient, and maintainable software structures. They simplify relationships, support code reuse, and help create scalable architectures.
+รูปแบบการออกแบบเชิงโครงสร้างมุ่งเน้นการจัดระเบียบคลาสและอ็อบเจ็กต์เพื่อสร้างโครงสร้างซอฟต์แวร์ที่ใหญ่ขึ้น มีประสิทธิภาพ และบำรุงรักษาได้ง่าย ช่วยลดความซับซ้อนของความสัมพันธ์ สนับสนุนการนำโค้ดกลับมาใช้ซ้ำ และช่วยสร้างสถาปัตยกรรมที่รองรับการขยายตัว
 
-- This pattern is particularly useful for making independently developed class libraries work together.
-- Structural Design Patterns describe ways to compose objects to realize new functionality.
-- The added flexibility of object composition comes from the ability to change the composition at run-time, which is impossible with static class composition.
+- รูปแบบนี้มีประโยชน์อย่างยิ่งในการทำให้ไลบรารีคลาสที่พัฒนาแยกจากกันสามารถทำงานร่วมกันได้
+- รูปแบบการออกแบบเชิงโครงสร้างอธิบายวิธีการประกอบอ็อบเจ็กต์เข้าด้วยกันเพื่อให้เกิดความสามารถใหม่
+- ความยืดหยุ่นที่เพิ่มขึ้นจากการประกอบอ็อบเจ็กต์เกิดจากความสามารถในการเปลี่ยนองค์ประกอบของอ็อบเจ็กต์ขณะรันไทม์ ซึ่งไม่สามารถทำได้ด้วยการประกอบคลาสแบบคงที่
 
-> ***Example:** A drawing editor that lets users draw and arrange graphical elements (lines, polygons, text, etc.) into pictures and diagrams. The drawing editor's key abstraction is the graphical object, which has an editable shape and can draw itself.*
+> ***ตัวอย่าง:** โปรแกรมแก้ไขภาพวาดที่ให้ผู้ใช้วาดและจัดเรียงองค์ประกอบกราฟิก (เส้น รูปหลายเหลี่ยม ข้อความ เป็นต้น) ให้เป็นรูปภาพและไดอะแกรม แนวคิดนามธรรมหลักของโปรแกรมแก้ไขภาพวาดคืออ็อบเจ็กต์กราฟิก ซึ่งมีรูปร่างที่แก้ไขได้และสามารถวาดตัวเองได้*
 > 
 
-## **Types of Structural Design Patterns**
+## **ประเภทของรูปแบบการออกแบบเชิงโครงสร้าง**
 
-There are mainly 7 types of Structural design patterns
+รูปแบบการออกแบบเชิงโครงสร้างมีอยู่หลักๆ 7 ประเภท
 
 <img src="https://media.geeksforgeeks.org/wp-content/uploads/20251209145600169417/types_of_STRUCTURAL-660.webp" alt="Structural Design Patterns" />
 
-### **1. Adapter Design Pattern**
+### **1. รูปแบบการออกแบบ Adapter**
 
-[Adapter or Adapter Design Pattern](https://www.geeksforgeeks.org/system-design/adapter-pattern/) also knows as wrapper. It converts the interface of a class into another interface which clients expect. Adapter lets classes work together that couldn't otherwise because of incompatible interfaces.
+[Adapter หรือ Adapter Design Pattern](https://www.geeksforgeeks.org/system-design/adapter-pattern/) หรือที่รู้จักกันในชื่อ Wrapper ทำหน้าที่แปลงอินเทอร์เฟซของคลาสให้เป็นอีกอินเทอร์เฟซหนึ่งที่ไคลเอนต์ต้องการ Adapter ช่วยให้คลาสที่ไม่สามารถทำงานร่วมกันได้เนื่องจากอินเทอร์เฟซไม่เข้ากัน สามารถทำงานร่วมกันได้
 
-**Uses**
+**การใช้งาน**
 
-Adapter pattern is used to make an existing class compatible with a new interface without changing its source code.
+Adapter Pattern ใช้เพื่อทำให้คลาสที่มีอยู่สามารถทำงานร่วมกับอินเทอร์เฟซใหม่ได้โดยไม่ต้องแก้ไขซอร์สโค้ดของคลาสนั้น
 
-- You want to use an existing class, and its interface does not match the one you need.
-- You want to create a reusable class that cooperates with unrelated or unforeseen classes, that is, classes that don't necessarily have compatible interfaces.
-- (object adapter only) you need to use several existing subclasses, but it's unpractical to adapt their interface by subclassing every one. An object adapter can adapt the interface of its parent class.
+- คุณต้องการใช้คลาสที่มีอยู่ แต่รูปแบบอินเทอร์เฟซของคลาสนั้นไม่ตรงกับที่คุณต้องการ
+- คุณต้องการสร้างคลาสที่นำกลับมาใช้ซ้ำได้และสามารถทำงานร่วมกับคลาสที่ไม่เกี่ยวข้องกันหรือไม่สามารถคาดการณ์ล่วงหน้าได้ กล่าวคือ คลาสที่ไม่ได้มีอินเทอร์เฟซที่เข้ากันได้เสมอไป
+- (เฉพาะ Object Adapter) คุณจำเป็นต้องใช้ซับคลาสที่มีอยู่หลายคลาส แต่การปรับอินเทอร์เฟซด้วยการสร้างซับคลาสให้แต่ละคลาสนั้นไม่เหมาะสม Object Adapter สามารถปรับอินเทอร์เฟซของคลาสแม่ได้
 
-### **2. Bridge Design Pattern**
+### **2. รูปแบบการออกแบบ Bridge**
 
-By separating an object's implementation (how it does something) from its abstraction (what it does), the [Bridge Design Pattern](https://www.geeksforgeeks.org/system-design/bridge-design-pattern/) enables the two to develop separately.
+ด้วยการแยกส่วนการทำงานของอ็อบเจ็กต์ (ทำอย่างไร) ออกจากส่วนที่เป็นนามธรรม (ทำอะไร) [Bridge Design Pattern](https://www.geeksforgeeks.org/system-design/bridge-design-pattern/) ช่วยให้ทั้งสองส่วนสามารถพัฒนาแยกจากกันได้
 
-> *Imagine you have different types of devices (like TVs and Radios) and different ways to control them (like Remote and Voice Control). Instead of tightly coupling each device with each control type, the Bridge pattern lets you connect them loosely.*
+> *ลองนึกภาพว่าคุณมีอุปกรณ์หลายประเภท (เช่น ทีวีและวิทยุ) และมีวิธีควบคุมหลายแบบ (เช่น รีโมตและการควบคุมด้วยเสียง) แทนที่จะผูกอุปกรณ์แต่ละชนิดเข้ากับวิธีควบคุมแต่ละแบบอย่างแน่นหนา Bridge Pattern ช่วยให้คุณเชื่อมต่อทั้งสองส่วนเข้าด้วยกันแบบหลวมๆ*
 > 
 
-**Uses**
+**การใช้งาน**
 
-Bridge pattern is used to separate an abstraction from its implementation so that both can vary independently.
+Bridge Pattern ใช้เพื่อแยกส่วนที่เป็นนามธรรมออกจากส่วนการทำงาน เพื่อให้ทั้งสองส่วนสามารถเปลี่ยนแปลงได้อย่างอิสระจากกัน
 
-- You want to avoid a permanent binding between an abstraction and its implementation. This might be the case, for example, when the implementation must be selected or switched at run-time.
-- Changes in the implementation of an abstraction should have no impact on clients; that is, their code should not have to be recompiled.
-- You want to hide the implementation of an abstraction completely from clients.
+- คุณต้องการหลีกเลี่ยงการผูกส่วนที่เป็นนามธรรมเข้ากับส่วนการทำงานอย่างถาวร ตัวอย่างเช่น ในกรณีที่ต้องเลือกหรือสลับส่วนการทำงานขณะรันไทม์
+- การเปลี่ยนแปลงส่วนการทำงานของส่วนที่เป็นนามธรรมไม่ควรส่งผลกระทบต่อไคลเอนต์ กล่าวคือ โค้ดของไคลเอนต์ไม่ควรต้องคอมไพล์ใหม่
+- คุณต้องการซ่อนรายละเอียดการทำงานของส่วนที่เป็นนามธรรมจากไคลเอนต์อย่างสมบูรณ์
 
-### **3. Composite Design Pattern**
+### **3. รูปแบบการออกแบบ Composite**
 
-[Composite Design Pattern](https://www.geeksforgeeks.org/java/composite-design-pattern-in-java/) composes objects into tree structures to represent part-whole hierarchies. Composite lets clients treat individual objects and compositions of objects uniformly.
+[Composite Design Pattern](https://www.geeksforgeeks.org/java/composite-design-pattern-in-java/) ประกอบอ็อบเจ็กต์ให้อยู่ในโครงสร้างแบบต้นไม้เพื่อแสดงความสัมพันธ์แบบส่วนย่อย-ส่วนรวม Composite ช่วยให้ไคลเอนต์สามารถจัดการอ็อบเจ็กต์เดี่ยวและกลุ่มของอ็อบเจ็กต์ได้ในรูปแบบเดียวกัน
 
-**Uses**
+**การใช้งาน**
 
-Composite pattern is used to treat individual objects and compositions of objects uniformly in a part-whole hierarchy.
+Composite Pattern ใช้เพื่อให้อ็อบเจ็กต์เดี่ยวและกลุ่มของอ็อบเจ็กต์ในลำดับชั้นแบบส่วนย่อย-ส่วนรวมสามารถถูกจัดการในรูปแบบเดียวกัน
 
-- We want to represent part-whole hierarchies of objects.
-- Wewant clients to be able to ignore the difference between compositions of objects and individual objects. Clients will treat all objects in the composite structure uniformly.
+- เราต้องการแสดงลำดับชั้นของอ็อบเจ็กต์แบบส่วนย่อย-ส่วนรวม
+- เราต้องการให้ไคลเอนต์สามารถมองข้ามความแตกต่างระหว่างกลุ่มของอ็อบเจ็กต์กับอ็อบเจ็กต์เดี่ยวได้ ไคลเอนต์จะจัดการอ็อบเจ็กต์ทั้งหมดในโครงสร้าง Composite ในรูปแบบเดียวกัน
 
-### **4. Decorator Design Pattern**
+### **4. รูปแบบการออกแบบ Decorator**
 
-The [Decorator Design Pattern](https://www.geeksforgeeks.org/system-design/decorator-pattern/) allows adding new features to an object dynamically without changing its structure. Instead of creating multiple variations, you wrap the original object with additional functionalities.
+[Decorator Design Pattern](https://www.geeksforgeeks.org/system-design/decorator-pattern/) ช่วยให้สามารถเพิ่มความสามารถใหม่ให้กับอ็อบเจ็กต์ได้แบบไดนามิกโดยไม่ต้องเปลี่ยนโครงสร้างของอ็อบเจ็กต์ แทนที่จะสร้างอ็อบเจ็กต์หลายรูปแบบ คุณสามารถห่อหุ้มอ็อบเจ็กต์เดิมด้วยความสามารถเพิ่มเติมได้
 
-**Uses**
+**การใช้งาน**
 
-To add responsibilities to individual objects dynamically and transparently, that is, without affecting other objects.
+ใช้เพื่อเพิ่มความรับผิดชอบให้กับอ็อบเจ็กต์แต่ละตัวแบบไดนามิกและโปร่งใส กล่าวคือ โดยไม่ส่งผลกระทบต่ออ็อบเจ็กต์อื่น
 
-- For responsibilities that can be withdrawn.
-- When extension by subclassing is impractical. Sometimes a large number of independent extensions are possible and would produce an explosion of subclasses to support every combination.
+- สำหรับความรับผิดชอบที่สามารถนำออกได้
+- เมื่อการขยายความสามารถด้วยการสร้างซับคลาสไม่เหมาะสม บางครั้งอาจมีการขยายความสามารถที่เป็นอิสระต่อกันจำนวนมาก ซึ่งจะทำให้จำนวนซับคลาสเพิ่มขึ้นอย่างมหาศาลเพื่อรองรับทุกชุดการผสมผสาน
 
-### **5. Facade Design Pattern**
+### **5. รูปแบบการออกแบบ Facade**
 
-[Facade Design Pattern](https://www.geeksforgeeks.org/system-design/facade-design-pattern-introduction/) provides a unified interface to a set of interfaces in a subsystem. Facade defines a higher-level interface that makes the subsystem easier to use.
+[Facade Design Pattern](https://www.geeksforgeeks.org/system-design/facade-design-pattern-introduction/) มอบอินเทอร์เฟซแบบรวมให้กับชุดอินเทอร์เฟซภายในระบบย่อย Facade กำหนดอินเทอร์เฟซระดับสูงขึ้นที่ช่วยให้ใช้งานระบบย่อยได้ง่ายขึ้น
 
-**Uses**
+**การใช้งาน**
 
-Facade pattern is used to provide a unified and simplified interface to a set of interfaces in a subsystem.
+Facade Pattern ใช้เพื่อมอบอินเทอร์เฟซที่เป็นหนึ่งเดียวและเรียบง่ายให้กับชุดอินเทอร์เฟซภายในระบบย่อย
 
-- We want to provide a simple interface to a complex subsystem. Subsystems often get more complex as they evolve. This makes the subsystem more reusable and easier to customize, but it also becomes harder to use for clients that don't need to customize it.
-- There are many dependencies between clients and the implementation classes of an abstraction. Introduce a facade to decouple the subsystem from clients and other subsystems.
-- We want to layer your subsystems. Use a facade to define an entry point to each subsystem level. If subsystems are dependent, then you can simplify the dependencies between them by making them communicate with each other through their facades.
+- เราต้องการมอบอินเทอร์เฟซที่เรียบง่ายให้กับระบบย่อยที่ซับซ้อน ระบบย่อยมักมีความซับซ้อนมากขึ้นเมื่อมีการพัฒนา ซึ่งทำให้ระบบย่อยสามารถนำกลับมาใช้ซ้ำและปรับแต่งได้ง่ายขึ้น แต่ขณะเดียวกันก็ทำให้ไคลเอนต์ที่ไม่ต้องการปรับแต่งใช้งานได้ยากขึ้น
+- มีการพึ่งพากันจำนวนมากระหว่างไคลเอนต์กับคลาสที่ทำหน้าที่เป็นส่วนการทำงานของส่วนที่เป็นนามธรรม การนำ Facade มาใช้จะช่วยลดการเชื่อมโยงระหว่างระบบย่อยกับไคลเอนต์และระบบย่อยอื่นๆ
+- เราต้องการแบ่งระบบย่อยออกเป็นลำดับชั้น ใช้ Facade เพื่อกำหนดจุดเข้าสู่แต่ละระดับของระบบย่อย หากระบบย่อยพึ่งพากัน คุณสามารถลดความซับซ้อนของการพึ่งพาเหล่านั้นได้ด้วยการให้ระบบย่อยสื่อสารกันผ่าน Facade
 
-### **6. Flyweight Design Pattern**
+### **6. รูปแบบการออกแบบ Flyweight**
 
-The [Flyweight Design Pattern](https://www.geeksforgeeks.org/system-design/flyweight-design-pattern/) reduces memory usage by sharing common data across multiple objects instead of creating duplicates. It separates shared properties from unique ones to optimize resource usage.
+[Flyweight Design Pattern](https://www.geeksforgeeks.org/system-design/flyweight-design-pattern/) ลดการใช้หน่วยความจำด้วยการแชร์ข้อมูลร่วมกันระหว่างอ็อบเจ็กต์หลายตัวแทนที่จะสร้างข้อมูลซ้ำ โดยแยกคุณสมบัติที่ใช้ร่วมกันออกจากคุณสมบัติเฉพาะ เพื่อเพิ่มประสิทธิภาพในการใช้ทรัพยากร
 
-**Uses**
+**การใช้งาน**
 
-The Flyweight pattern's effectiveness depends heavily on how and where it's used. Apply the Flyweight pattern when all of the following are applicable:
+ประสิทธิผลของ Flyweight Pattern ขึ้นอยู่กับวิธีและบริบทที่นำไปใช้เป็นอย่างมาก ควรใช้ Flyweight Pattern เมื่อเงื่อนไขต่อไปนี้ทั้งหมดเป็นจริง:
 
-- An application uses a large number of objects.
-- Storage costs are high because of the sheer quantity of objects.
-- Many groups of objects may be replaced by relatively few shared objects once extrinsic state is removed.
-- The application doesn't depend on object identity.
+- แอปพลิเคชันใช้อ็อบเจ็กต์จำนวนมาก
+- ต้นทุนด้านพื้นที่จัดเก็บสูงเนื่องจากมีอ็อบเจ็กต์จำนวนมหาศาล
+- อ็อบเจ็กต์หลายกลุ่มสามารถถูกแทนที่ด้วยอ็อบเจ็กต์ที่แชร์ร่วมกันจำนวนเพียงเล็กน้อยได้ เมื่อแยกสถานะภายนอกออกแล้ว
+- แอปพลิเคชันไม่ได้พึ่งพาเอกลักษณ์ของอ็อบเจ็กต์
 
-### **7. Proxy Design Pattern**
+### **7. รูปแบบการออกแบบ Proxy**
 
-The [Proxy Design Pattern](https://www.geeksforgeeks.org/system-design/proxy-design-pattern/) provides a surrogate or placeholder object that controls access to another object, allowing additional operations like access control, lazy loading, or logging without modifying the original object.
+[Proxy Design Pattern](https://www.geeksforgeeks.org/system-design/proxy-design-pattern/) มอบอ็อบเจ็กต์ตัวแทนหรือตัวแทนชั่วคราวที่ควบคุมการเข้าถึงอ็อบเจ็กต์อีกตัวหนึ่ง ทำให้สามารถเพิ่มการทำงาน เช่น การควบคุมสิทธิ์การเข้าถึง การโหลดแบบ Lazy หรือการบันทึก Log ได้โดยไม่ต้องแก้ไขอ็อบเจ็กต์ต้นฉบับ
 
-**Uses**
+**การใช้งาน**
 
-Proxy method is applicable whenever there is a need for a more versatile or sophisticated reference to an object than a simple pointer. Here are several common situations in which the Proxy pattern is applicable:
+Proxy Method สามารถนำมาใช้ได้เมื่อจำเป็นต้องมีการอ้างอิงไปยังอ็อบเจ็กต์ที่ยืดหยุ่นหรือซับซ้อนกว่าพอยน์เตอร์แบบธรรมดา ต่อไปนี้คือสถานการณ์ทั่วไปที่สามารถใช้ Proxy Pattern ได้:
 
-- A remote proxy provides a local representative for an object in a different address space.
-- A virtual proxy creates expensive objects on demand.
-- A protection proxy controls access to the original object. Protection proxies are useful when objects should have different access rights
-- A smart reference is a replacement for a bare pointer that performs additional actions when an object is accessed.
+- Remote Proxy ทำหน้าที่เป็นตัวแทนภายในเครื่องสำหรับอ็อบเจ็กต์ที่อยู่ใน Address Space อื่น
+- Virtual Proxy สร้างอ็อบเจ็กต์ที่มีต้นทุนสูงเมื่อมีการร้องขอใช้งาน
+- Protection Proxy ควบคุมการเข้าถึงอ็อบเจ็กต์ต้นฉบับ Protection Proxy มีประโยชน์เมื่ออ็อบเจ็กต์ควรมีสิทธิ์การเข้าถึงที่แตกต่างกัน
+- Smart Reference ใช้แทนพอยน์เตอร์แบบธรรมดา โดยทำงานเพิ่มเติมเมื่อมีการเข้าถึงอ็อบเจ็กต์
 
-## **Importance**
+## **ความสำคัญ**
 
-Structural patterns provide several key benefits:
+รูปแบบการออกแบบเชิงโครงสร้างมีประโยชน์สำคัญหลายประการ:
 
-- **Simplify Code**: Structural patterns help organize and simplify code by connecting objects and classes in a clear way, making complex relationships easier to understand and manage.
-- **Reduce Duplicate Code**: By reusing existing structures, structural patterns avoid duplicate code, which makes your program more efficient and less prone to errors.
-- **Enhance Flexibility**: These patterns allow you to add or change features without altering existing code too much, making the program easier to extend or modify.
-- **Improve Readability**: They provide a clear structure that organizes classes and objects, making it easier for others to understand and maintain the code.
-- **Optimize Resource Use**: Structural patterns like Flyweight help reduce memory usage and improve performance by sharing common data among objects instead of duplicating it.
+- **ลดความซับซ้อนของโค้ด**: รูปแบบการออกแบบเชิงโครงสร้างช่วยจัดระเบียบและลดความซับซ้อนของโค้ดด้วยการเชื่อมต่ออ็อบเจ็กต์และคลาสอย่างชัดเจน ทำให้ความสัมพันธ์ที่ซับซ้อนเข้าใจและจัดการได้ง่ายขึ้น
+- **ลดโค้ดซ้ำ**: ด้วยการนำโครงสร้างที่มีอยู่กลับมาใช้ซ้ำ รูปแบบการออกแบบเชิงโครงสร้างช่วยหลีกเลี่ยงโค้ดซ้ำ ทำให้โปรแกรมมีประสิทธิภาพมากขึ้นและมีโอกาสเกิดข้อผิดพลาดน้อยลง
+- **เพิ่มความยืดหยุ่น**: รูปแบบเหล่านี้ช่วยให้คุณเพิ่มหรือเปลี่ยนความสามารถได้โดยไม่ต้องแก้ไขโค้ดเดิมมากนัก ทำให้โปรแกรมขยายหรือปรับเปลี่ยนได้ง่ายขึ้น
+- **เพิ่มความสามารถในการอ่าน**: รูปแบบเหล่านี้มอบโครงสร้างที่ชัดเจนสำหรับการจัดระเบียบคลาสและอ็อบเจ็กต์ ทำให้ผู้อื่นเข้าใจและบำรุงรักษาโค้ดได้ง่ายขึ้น
+- **เพิ่มประสิทธิภาพการใช้ทรัพยากร**: รูปแบบการออกแบบเชิงโครงสร้าง เช่น Flyweight ช่วยลดการใช้หน่วยความจำและเพิ่มประสิทธิภาพด้วยการแชร์ข้อมูลร่วมกันระหว่างอ็อบเจ็กต์แทนการสร้างข้อมูลซ้ำ
 
-## **Challenges**
+## **ความท้าทาย**
 
-Using structural patterns also comes with some challenges:
+การใช้รูปแบบการออกแบบเชิงโครงสร้างก็มีความท้าทายบางประการเช่นกัน:
 
-- **Increased Complexity**: Structural patterns like Decorator or Proxy can add layers to the code, making it harder to read and follow. If too many patterns are used, the code can become overly complex.
-- **Performance Issues**: Some patterns, such as Flyweight, may need extra processing to manage shared objects. This can lead to slower performance if not used carefully.
-- **Overhead in Maintenance**: As structural patterns add more classes and interfaces, it can be harder to maintain or update the code. New developers may need more time to understand how everything fits together.
-- **Risk of Overengineering**: It’s easy to overuse patterns, which leads to unnecessary abstraction. Sometimes, simpler code without patterns is more effective and easier to work with.
-- **Difficulty in Debugging**: With extra layers, tracing bugs can become challenging since the problem might be hidden deep within the pattern structure.
+- **ความซับซ้อนเพิ่มขึ้น**: รูปแบบการออกแบบเชิงโครงสร้างอย่าง Decorator หรือ Proxy อาจเพิ่มชั้นให้กับโค้ด ทำให้อ่านและติดตามการทำงานได้ยากขึ้น หากใช้รูปแบบมากเกินไป โค้ดอาจซับซ้อนเกินความจำเป็น
+- **ปัญหาด้านประสิทธิภาพ**: รูปแบบบางชนิด เช่น Flyweight อาจต้องใช้การประมวลผลเพิ่มเติมเพื่อจัดการอ็อบเจ็กต์ที่แชร์ร่วมกัน ซึ่งอาจทำให้ประสิทธิภาพลดลงหากใช้งานโดยไม่ระมัดระวัง
+- **ภาระในการบำรุงรักษา**: เนื่องจากรูปแบบการออกแบบเชิงโครงสร้างเพิ่มคลาสและอินเทอร์เฟซมากขึ้น การบำรุงรักษาหรืออัปเดตโค้ดจึงอาจทำได้ยากขึ้น นักพัฒนาคนใหม่อาจต้องใช้เวลามากขึ้นในการทำความเข้าใจว่าส่วนต่างๆ ทำงานร่วมกันอย่างไร
+- **ความเสี่ยงจากการออกแบบเกินความจำเป็น**: การใช้รูปแบบมากเกินไปเกิดขึ้นได้ง่าย ซึ่งนำไปสู่การสร้างนามธรรมที่ไม่จำเป็น บางครั้งโค้ดที่เรียบง่ายกว่าและไม่ใช้รูปแบบอาจมีประสิทธิผลมากกว่าและทำงานด้วยได้ง่ายกว่า
+- **ความยากในการดีบัก**: เมื่อมีชั้นเพิ่มขึ้น การติดตามข้อผิดพลาดอาจทำได้ยาก เนื่องจากปัญหาอาจซ่อนอยู่ลึกภายในโครงสร้างของรูปแบบ
