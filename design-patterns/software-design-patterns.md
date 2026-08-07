@@ -1,10 +1,10 @@
-# **Design Patterns Tutorial**
+# **บทเรียน Design Patterns**
 
-Design patterns are reusable solutions to common software design problems that help developers build cleaner and more maintainable systems. They act as templates for solving issues related to object creation, structure, and behavior. Instead of complete code, they provide blueprints that can be adapted to different scenarios.
+Design Patterns คือแนวทางแก้ปัญหาการออกแบบซอฟต์แวร์ที่พบบ่อยและสามารถนำกลับมาใช้ซ้ำได้ ช่วยให้นักพัฒนาสร้างระบบที่สะอาดและดูแลรักษาได้ง่ายขึ้น โดยทำหน้าที่เป็นแม่แบบสำหรับแก้ปัญหาที่เกี่ยวข้องกับการสร้างออบเจ็กต์ โครงสร้าง และพฤติกรรม แทนที่จะให้โค้ดที่สมบูรณ์ Design Patterns จะให้แนวทางที่สามารถปรับใช้กับสถานการณ์ต่างๆ ได้
 
-- Provide standard terminology and best practices, making communication easier among developers.
-- Help create structured, scalable, and maintainable code by promoting proven design approaches.
-- Reduce development time by offering ready-made solutions to recurring problems.
+- กำหนดคำศัพท์มาตรฐานและแนวทางปฏิบัติที่ดี ทำให้นักพัฒนาสื่อสารกันได้ง่ายขึ้น
+- ช่วยสร้างโค้ดที่มีโครงสร้าง รองรับการขยาย และดูแลรักษาได้ง่าย ด้วยแนวทางการออกแบบที่ได้รับการพิสูจน์แล้ว
+- ลดเวลาในการพัฒนา โดยมีแนวทางสำเร็จรูปสำหรับแก้ปัญหาที่เกิดขึ้นซ้ำๆ
 
 <img src="https://media.geeksforgeeks.org/wp-content/uploads/20260506102549292333/what_is_design_pattern_.webp" />
 <img src="https://media.geeksforgeeks.org/wp-content/uploads/20260506102548975726/typesofdesign.webp" />
@@ -13,26 +13,26 @@ Design patterns are reusable solutions to common software design problems that h
 <img src="https://media.geeksforgeeks.org/wp-content/uploads/20260506102548413135/types_of_behavioral.webp" />
 <img src="https://media.geeksforgeeks.org/wp-content/uploads/20260506102548146908/application-dp.webp" />
 
-## **Characteristics**
+## **คุณลักษณะสำคัญ**
 
-These characteristics highlight how design patterns help in building efficient, scalable, and maintainable software systems.
+คุณลักษณะเหล่านี้แสดงให้เห็นว่า Design Patterns ช่วยสร้างระบบซอฟต์แวร์ที่มีประสิทธิภาพ รองรับการขยาย และดูแลรักษาได้อย่างไร
 
-- **Reusability**: Patterns can be applied to different projects and problems, saving time and effort in solving similar issues.
-- **Standardization**: They provide a shared language and understanding among developers, helping in communication and collaboration.
-- **Efficiency**: By using these popular patterns, developers can avoid finding the solution to same recurring problems, which leads to faster development.
-- **Flexibility**: Patterns are abstract solutions/templates that can be adapted to fit various scenarios and requirements.
+- **การนำกลับมาใช้ซ้ำได้ (Reusability)**: สามารถนำ Pattern ไปใช้กับโปรเจกต์และปัญหาที่แตกต่างกันได้ ช่วยประหยัดเวลาและแรงในการแก้ปัญหาที่คล้ายกัน
+- **การกำหนดมาตรฐาน (Standardization)**: ช่วยสร้างภาษาและความเข้าใจร่วมกันระหว่างนักพัฒนา ทำให้การสื่อสารและการทำงานร่วมกันง่ายขึ้น
+- **ประสิทธิภาพ (Efficiency)**: การใช้ Pattern ที่เป็นที่นิยมช่วยให้นักพัฒนาไม่ต้องคิดค้นวิธีแก้ปัญหาเดิมซ้ำๆ ส่งผลให้พัฒนาได้รวดเร็วขึ้น
+- **ความยืดหยุ่น (Flexibility)**: Pattern เป็นแนวทางหรือแม่แบบเชิงนามธรรมที่สามารถปรับให้เหมาะกับสถานการณ์และความต้องการที่หลากหลายได้
 
-## **Design Pattern Basics**
+## **พื้นฐานของ Design Patterns**
 
-Design patterns provide reusable solutions to common software design problems. They help developers write cleaner, maintainable, and scalable applications.
+Design Patterns เป็นแนวทางแก้ปัญหาการออกแบบซอฟต์แวร์ที่พบบ่อยและสามารถนำกลับมาใช้ซ้ำได้ ช่วยให้นักพัฒนาเขียนแอปพลิเคชันที่สะอาด ดูแลรักษาได้ง่าย และรองรับการขยาย
 
-- [**Introduction**](https://www.geeksforgeeks.org/system-design/complete-guide-to-design-patterns-in-programming/)
-- [**Types of Design Patterns**](https://www.geeksforgeeks.org/system-design/types-of-design-patterns/)
-- [**Gang of Four (GoF) Overview**](https://www.geeksforgeeks.org/system-design/gang-of-four-gof-design-patterns/)
+- [**บทนำ**](https://www.geeksforgeeks.org/system-design/complete-guide-to-design-patterns-in-programming/)
+- [**ประเภทของ Design Patterns**](https://www.geeksforgeeks.org/system-design/types-of-design-patterns/)
+- [**ภาพรวม Gang of Four (GoF)**](https://www.geeksforgeeks.org/system-design/gang-of-four-gof-design-patterns/)
 
 ## **Creational Design Patterns**
 
-[Creational Design Patterns](https://www.geeksforgeeks.org/system-design/creational-design-pattern/) deal with object creation in a flexible and efficient manner. They help you control how and when objects are instantiated.
+[Creational Design Patterns](https://www.geeksforgeeks.org/system-design/creational-design-pattern/) เกี่ยวข้องกับการสร้างออบเจ็กต์อย่างยืดหยุ่นและมีประสิทธิภาพ ช่วยให้คุณควบคุมวิธีการและช่วงเวลาในการสร้างออบเจ็กต์ได้
 
 - [**Singleton Pattern**](https://www.geeksforgeeks.org/system-design/singleton-design-pattern/)
 - [**Factory Method Pattern**](https://www.geeksforgeeks.org/system-design/factory-method-for-designing-pattern/)
@@ -44,7 +44,7 @@ Design patterns provide reusable solutions to common software design problems. T
 
 ## **Structural Design Patterns**
 
-[Structural patterns](https://www.geeksforgeeks.org/system-design/structural-design-patterns/) explain how classes and objects are combined to form larger structures. They improve code flexibility by simplifying relationships between components.
+[Structural Patterns](https://www.geeksforgeeks.org/system-design/structural-design-patterns/) อธิบายวิธีการนำคลาสและออบเจ็กต์มาประกอบกันเพื่อสร้างโครงสร้างที่ใหญ่ขึ้น โดยช่วยเพิ่มความยืดหยุ่นของโค้ดผ่านการทำให้ความสัมพันธ์ระหว่างคอมโพเนนต์ง่ายขึ้น
 
 - [**Adapter Pattern**](https://www.geeksforgeeks.org/system-design/adapter-pattern/)
 - [**Decorator Pattern**](https://www.geeksforgeeks.org/system-design/decorator-pattern/)
@@ -56,7 +56,7 @@ Design patterns provide reusable solutions to common software design problems. T
 
 ## **Behavioral Design Patterns**
 
-[Behavioral patterns](https://www.geeksforgeeks.org/system-design/behavioral-design-patterns/) define how objects communicate and distribute responsibilities. They help manage workflows, interactions, and decision-making within a system
+[Behavioral Patterns](https://www.geeksforgeeks.org/system-design/behavioral-design-patterns/) กำหนดวิธีที่ออบเจ็กต์สื่อสารกันและแบ่งหน้าที่ความรับผิดชอบ ช่วยจัดการ Workflow การทำงานร่วมกัน และการตัดสินใจภายในระบบ
 
 - [**Observer Pattern**](https://www.geeksforgeeks.org/system-design/observer-pattern-set-1-introduction/)
 - [**Strategy Pattern**](https://www.geeksforgeeks.org/system-design/strategy-pattern-set-1/)
@@ -69,41 +69,41 @@ Design patterns provide reusable solutions to common software design problems. T
 - [**Memento Pattern**](https://www.geeksforgeeks.org/system-design/memento-design-pattern/)
 - [**Visitor Pattern**](https://www.geeksforgeeks.org/system-design/visitor-design-pattern/)
 
-## **Advanced Design Pattern**
+## **Design Pattern ขั้นสูง**
 
-Advanced topics cover architectural principles and deeper system-design concepts. They help you build enterprise-level, scalable, and robust software systems
+หัวข้อขั้นสูงครอบคลุมหลักการด้านสถาปัตยกรรมและแนวคิด System Design ที่ลึกยิ่งขึ้น ซึ่งช่วยให้คุณสร้างระบบซอฟต์แวร์ระดับองค์กรที่รองรับการขยายและมีความแข็งแกร่ง
 
-- [**SOLID Principles**](https://www.geeksforgeeks.org/system-design/solid-principle-in-programming-understand-with-real-life-examples/)
-- [**DRY Principle**](https://www.geeksforgeeks.org/software-engineering/dont-repeat-yourselfdry-in-software-development/)
-- [**KISS Principle**](https://www.geeksforgeeks.org/software-engineering/kiss-principle-in-software-development/)
-- [**YAGNI Principle**](https://www.geeksforgeeks.org/software-engineering/what-is-yagni-principle-you-arent-gonna-need-it/)
+- [**หลักการ SOLID**](https://www.geeksforgeeks.org/system-design/solid-principle-in-programming-understand-with-real-life-examples/)
+- [**หลักการ DRY**](https://www.geeksforgeeks.org/software-engineering/dont-repeat-yourselfdry-in-software-development/)
+- [**หลักการ KISS**](https://www.geeksforgeeks.org/software-engineering/kiss-principle-in-software-development/)
+- [**หลักการ YAGNI**](https://www.geeksforgeeks.org/software-engineering/what-is-yagni-principle-you-arent-gonna-need-it/)
 - [**Dependency Injection Pattern**](https://www.geeksforgeeks.org/system-design/dependency-injectiondi-design-pattern/)
-- [**Composition Vs Inheritance**](https://www.geeksforgeeks.org/java/difference-between-inheritance-and-composition-in-java/)
+- [**Composition เทียบกับ Inheritance**](https://www.geeksforgeeks.org/java/difference-between-inheritance-and-composition-in-java/)
 - [**Event-Driven Architecture**](https://www.geeksforgeeks.org/system-design/event-driven-architecture-system-design/)
 - [**CQRS Design Pattern**](https://www.geeksforgeeks.org/system-design/cqrs-command-query-responsibility-segregation/)
 - [**Event Sourcing Patterns**](https://www.geeksforgeeks.org/system-design/event-driven-architecture-system-design/)
-- [**CQRS Vs Event Sourcing Patterns**](https://www.geeksforgeeks.org/system-design/difference-between-cqrs-and-event-sourcing/)
+- [**CQRS เทียบกับ Event Sourcing Patterns**](https://www.geeksforgeeks.org/system-design/difference-between-cqrs-and-event-sourcing/)
 - [**Repository Pattern**](https://www.geeksforgeeks.org/system-design/repository-design-pattern/)
 - [**MVC Design Pattern**](https://www.geeksforgeeks.org/system-design/mvc-design-pattern/)
 
-## **Design Pattern Interview Questions**
+## **คำถามสัมภาษณ์เกี่ยวกับ Design Patterns**
 
-This section prepares you for common interview questions on design patterns. It strengthens conceptual clarity and helps you explain patterns confidently.
+ส่วนนี้ช่วยเตรียมคุณสำหรับคำถามสัมภาษณ์เกี่ยวกับ Design Patterns ที่พบบ่อย ช่วยเสริมความเข้าใจในแนวคิดและทำให้คุณอธิบาย Pattern ต่างๆ ได้อย่างมั่นใจ
 
-- [**Interview Questions on Software Design Patterns**](https://www.geeksforgeeks.org/system-design/top-design-patterns-interview-questions/)
+- [**คำถามสัมภาษณ์เกี่ยวกับ Software Design Patterns**](https://www.geeksforgeeks.org/system-design/top-design-patterns-interview-questions/)
 
-## **Approach to Learn Design Patterns**
+## **แนวทางการเรียนรู้ Design Patterns**
 
-- **Week 1:** You'll learn the foundations needed for design patterns, including classes, objects, abstraction, inheritance, polymorphism, and encapsulation. You will also study SOLID principles, which help you write clean, maintainable, and loosely coupled code - essential before learning design patterns.
-- **Week 2:** Focuses on Creational Patterns such as Singleton, Factory Method, Abstract Factory, Builder, and Prototype. You'll understand how these patterns manage object creation, reduce code complexity, and improve flexibility.
-- **Week 3:** You’ll explore Adapter, Decorator, Facade, Composite, Proxy, Bridge, and Flyweight patterns. These patterns teach you how to structure classes and objects efficiently, simplifying complex systems.
-- **Week 4:** Dives into Strategy, Observer, Command, Chain of Responsibility, Iterator, Mediator, State, Template Method, and more. You’ll learn how objects communicate, coordinate actions, and share responsibilities in real systems.
-- **Week 5:** You'll study system-level patterns like MVC, MVVM, Dependency Injection, Repository Pattern, and Service Layer Pattern. These patterns are widely used in backend systems, frameworks, and enterprise applications.
-- **Week 6:** Helps you apply patterns to real situations: Logger (Singleton), Notification System (Observer), Payment Gateway (Strategy), Undo/Redo (Command), and API Facade (Facade Pattern). This week focuses fully on hands-on implementation.
-- **Week 7:** Covers low-level design problems where design patterns are essential. You’ll practice Parking Lot System, In-Memory File System, BookMyShow LLD, and securing Singleton from Reflection, Cloning, and Serialization.
-- **Week 8:** You'll build real-world projects using multiple design patterns combined. You’ll also revise interview questions, pattern comparisons, and architecture-based solutions to strengthen your problem-solving skills.
+- **สัปดาห์ที่ 1:** คุณจะได้เรียนรู้พื้นฐานที่จำเป็นสำหรับ Design Patterns ได้แก่ คลาส ออบเจ็กต์ Abstraction, Inheritance, Polymorphism และ Encapsulation นอกจากนี้คุณจะได้ศึกษาแนวคิด SOLID ซึ่งช่วยให้เขียนโค้ดที่สะอาด ดูแลรักษาได้ง่าย และมีการเชื่อมโยงระหว่างส่วนต่างๆ อย่างหลวมๆ ซึ่งเป็นพื้นฐานสำคัญก่อนเรียน Design Patterns
+- **สัปดาห์ที่ 2:** มุ่งเน้น Creational Patterns เช่น Singleton, Factory Method, Abstract Factory, Builder และ Prototype คุณจะเข้าใจว่า Pattern เหล่านี้จัดการการสร้างออบเจ็กต์ ลดความซับซ้อนของโค้ด และเพิ่มความยืดหยุ่นได้อย่างไร
+- **สัปดาห์ที่ 3:** คุณจะได้ศึกษา Adapter, Decorator, Facade, Composite, Proxy, Bridge และ Flyweight Patterns ซึ่งสอนวิธีจัดโครงสร้างคลาสและออบเจ็กต์อย่างมีประสิทธิภาพ ทำให้ระบบที่ซับซ้อนเข้าใจและจัดการได้ง่ายขึ้น
+- **สัปดาห์ที่ 4:** เจาะลึก Strategy, Observer, Command, Chain of Responsibility, Iterator, Mediator, State, Template Method และ Pattern อื่นๆ คุณจะได้เรียนรู้วิธีที่ออบเจ็กต์สื่อสาร ประสานการทำงาน และแบ่งหน้าที่ความรับผิดชอบกันในระบบจริง
+- **สัปดาห์ที่ 5:** คุณจะได้ศึกษา Pattern ระดับระบบ เช่น MVC, MVVM, Dependency Injection, Repository Pattern และ Service Layer Pattern ซึ่งถูกใช้อย่างแพร่หลายในระบบ Backend, Framework และแอปพลิเคชันระดับองค์กร
+- **สัปดาห์ที่ 6:** ช่วยให้คุณนำ Pattern ไปประยุกต์ใช้กับสถานการณ์จริง เช่น Logger (Singleton), Notification System (Observer), Payment Gateway (Strategy), Undo/Redo (Command) และ API Facade (Facade Pattern) โดยสัปดาห์นี้จะเน้นการลงมือ Implement อย่างเต็มรูปแบบ
+- **สัปดาห์ที่ 7:** ครอบคลุมโจทย์ Low-Level Design ที่จำเป็นต้องใช้ Design Patterns คุณจะได้ฝึกออกแบบ Parking Lot System, In-Memory File System, BookMyShow LLD และการป้องกัน Singleton จาก Reflection, Cloning และ Serialization
+- **สัปดาห์ที่ 8:** คุณจะได้สร้างโปรเจกต์จากสถานการณ์จริงโดยใช้ Design Patterns หลายรูปแบบร่วมกัน รวมถึงทบทวนคำถามสัมภาษณ์ การเปรียบเทียบ Pattern และแนวทางแก้ปัญหาด้านสถาปัตยกรรม เพื่อเสริมทักษะการแก้ปัญหาของคุณ
 
-## **Important Links**
+## **ลิงก์สำคัญ**
 
-- [**Design a Parking lot using Object Oriented Principles**](https://www.geeksforgeeks.org/system-design/design-parking-lot-using-object-oriented-principles/)
-- [**Design data structures and algorithms for in-memory file system**](https://www.geeksforgeeks.org/system-design/design-data-structures-algorithms-memory-file-system/)
+- [**ออกแบบ Parking Lot ด้วยหลักการ Object-Oriented**](https://www.geeksforgeeks.org/system-design/design-parking-lot-using-object-oriented-principles/)
+- [**ออกแบบโครงสร้างข้อมูลและอัลกอริทึมสำหรับ In-Memory File System**](https://www.geeksforgeeks.org/system-design/design-data-structures-algorithms-memory-file-system/)
