@@ -1,122 +1,122 @@
-# **Database Replication in System Design**
+# **Database Replication ในการออกแบบระบบ**
 
-Making and keeping duplicate copies of a database on other servers is known as database replication. It is essential for improving modern systems' [**scalability**](https://www.geeksforgeeks.org/system-design/what-is-scalability/), [**reliability**](https://www.geeksforgeeks.org/system-design/reliability-in-system-design/), and data [**availability.**](https://www.geeksforgeeks.org/system-design/availability-in-system-design/)
+การทำ Database Replication คือการสร้างและเก็บสำเนาของฐานข้อมูลไว้บนเซิร์ฟเวอร์อื่น ซึ่งเป็นสิ่งสำคัญต่อการเพิ่ม [**ความสามารถในการรองรับการขยายตัว**](https://www.geeksforgeeks.org/system-design/what-is-scalability/), [**ความน่าเชื่อถือ**](https://www.geeksforgeeks.org/system-design/reliability-in-system-design/) และ [**ความพร้อมใช้งานของข้อมูล**](https://www.geeksforgeeks.org/system-design/availability-in-system-design/) ในระบบสมัยใหม่
 
-- By distributing their data across multiple servers, organizations can guarantee that it will remain accessible even in the case of a server failure.
-- This redundancy also improves data reliability because many copies are available to recover data in the case of corruption or loss.
-- Database replication can help in workload distribution among servers, boosting scalability and performance.
+- การกระจายข้อมูลไปยังหลายเซิร์ฟเวอร์ช่วยให้องค์กรมั่นใจได้ว่าข้อมูลจะยังคงเข้าถึงได้ แม้เซิร์ฟเวอร์เครื่องหนึ่งจะล้มเหลว
+- การมีข้อมูลสำรองหลายชุดยังช่วยเพิ่มความน่าเชื่อถือของข้อมูล เพราะสามารถใช้สำเนาเหล่านั้นเพื่อกู้คืนข้อมูลได้ในกรณีที่ข้อมูลเสียหายหรือสูญหาย
+- Database Replication ยังช่วยกระจายภาระงานระหว่างเซิร์ฟเวอร์ ทำให้ระบบรองรับการขยายตัวและมีประสิทธิภาพดีขึ้น
 
-> ***Example:** An e-commerce website may use a primary database for write operations and multiple replica databases to handle read requests from users.*
+> ***ตัวอย่าง:** เว็บไซต์ E-commerce อาจใช้ฐานข้อมูลหลักสำหรับการเขียนข้อมูล และใช้ฐานข้อมูล Replica หลายชุดเพื่อรองรับคำขออ่านข้อมูลจากผู้ใช้*
 
-## **Working**
+## **การทำงาน**
 
-These steps explaining how database replication works:
+ขั้นตอนต่อไปนี้อธิบายการทำงานของ Database Replication:
 
-<img src="https://media.geeksforgeeks.org/wp-content/uploads/20260113174041816289/server.webp" alt="Working of Database Replication" />
+<img src="https://media.geeksforgeeks.org/wp-content/uploads/20260113174041816289/server.webp" alt="การทำงานของ Database Replication" />
 
-1. **Identify the Primary Database (Source)**: A primary (master) database is selected as the main source where all data changes originate.
-2. **Set Up Replica Databases (Targets)**: One or more replica databases are configured to receive data from the primary database.
-3. **Capture Data Changes**: All inserts, updates, and deletes are recorded using logs or change data capture mechanisms.
-4. **Transmit Changes to Replicas**: Captured changes are sent to replica databases either in real-time or at scheduled intervals.
-5. **Apply Changes on Replicas**: Replica databases apply the received updates to stay synchronized with the primary database.
-6. **Monitor Synchronization**: The system continuously checks replication status and resolves delays or synchronization issues.
-7. **Handle Read/Write Operations**: Read operations are distributed across replicas, while write operations typically go to the primary database (depending on the model).
+1. **กำหนดฐานข้อมูลหลัก (Source)**: เลือกฐานข้อมูลหลัก (Master) ให้เป็นแหล่งข้อมูลหลักที่การเปลี่ยนแปลงข้อมูลทั้งหมดเริ่มต้นขึ้น
+2. **ตั้งค่าฐานข้อมูล Replica (Targets)**: กำหนดค่าฐานข้อมูล Replica หนึ่งชุดหรือหลายชุดเพื่อรับข้อมูลจากฐานข้อมูลหลัก
+3. **บันทึกการเปลี่ยนแปลงของข้อมูล**: การ Insert, Update และ Delete ทั้งหมดจะถูกบันทึกผ่าน Log หรือกลไก Change Data Capture
+4. **ส่งการเปลี่ยนแปลงไปยัง Replica**: การเปลี่ยนแปลงที่บันทึกไว้จะถูกส่งไปยังฐานข้อมูล Replica แบบ Real-time หรือตามช่วงเวลาที่กำหนด
+5. **นำการเปลี่ยนแปลงไปใช้กับ Replica**: ฐานข้อมูล Replica จะนำข้อมูลอัปเดตที่ได้รับไปใช้เพื่อให้ข้อมูลสอดคล้องกับฐานข้อมูลหลัก
+6. **ตรวจสอบการ Synchronization**: ระบบจะตรวจสอบสถานะของ Replication อย่างต่อเนื่อง และจัดการกับความล่าช้าหรือปัญหาในการ Synchronization
+7. **จัดการการอ่าน/เขียนข้อมูล**: การอ่านข้อมูลจะถูกกระจายไปยัง Replica ขณะที่การเขียนข้อมูลโดยทั่วไปจะส่งไปยังฐานข้อมูลหลัก ทั้งนี้ขึ้นอยู่กับรูปแบบที่ใช้งาน
 
-## **Types of Database Replication**
+## **ประเภทของ Database Replication**
 
-Understand the different [types of database replication](https://www.geeksforgeeks.org/system-design/types-of-database-replication-system-design/):
+ทำความเข้าใจ [ประเภทต่างๆ ของ Database Replication](https://www.geeksforgeeks.org/system-design/types-of-database-replication-system-design/):
 
 <img src="https://media.geeksforgeeks.org/wp-content/uploads/20260113170807014546/types_of_database_replication-660.webp" />
 
 ### **1. Master-Slave Replication**
 
-In this replication model, one database acts as the primary server while others maintain copies of its data.
+ในรูปแบบ Replication นี้ ฐานข้อมูลหนึ่งชุดทำหน้าที่เป็นเซิร์ฟเวอร์หลัก ขณะที่ฐานข้อมูลชุดอื่นเก็บสำเนาข้อมูลจากฐานข้อมูลหลัก
 
-- The master database handles all write operations such as insert, update, and delete.
-- Slave databases replicate data from the master and usually handle read operations.
+- ฐานข้อมูล Master จะจัดการการเขียนข้อมูลทั้งหมด เช่น Insert, Update และ Delete
+- ฐานข้อมูล Slave จะทำ Replication ข้อมูลจาก Master และโดยทั่วไปจะใช้สำหรับการอ่านข้อมูล
 
 ### **2. Master-Master Replication / Multi-Master Replication**
 
-In this setup, multiple databases act as masters and can accept both read and write operations.
+ในรูปแบบนี้ ฐานข้อมูลหลายชุดทำหน้าที่เป็น Master และสามารถรองรับได้ทั้งการอ่านและการเขียนข้อมูล
 
-- Changes made in one master database are replicated to the other master databases.
-- Improves availability and allows distributed write operations across multiple servers.
+- การเปลี่ยนแปลงที่เกิดขึ้นในฐานข้อมูล Master ชุดหนึ่งจะถูกทำ Replication ไปยังฐานข้อมูล Master ชุดอื่น
+- ช่วยเพิ่มความพร้อมใช้งานและรองรับการเขียนข้อมูลแบบกระจายไปยังหลายเซิร์ฟเวอร์
 
 ### **3. Snapshot Replication**
 
-This method replicates the entire database by taking a snapshot at a specific point in time.
+วิธีนี้ทำ Replication ฐานข้อมูลทั้งหมดด้วยการสร้าง Snapshot ณ ช่วงเวลาหนึ่ง
 
-- A complete copy of the database is created and transferred to other servers.
-- Suitable for systems where data changes are not very frequent.
+- ระบบจะสร้างสำเนาฐานข้อมูลทั้งหมดและส่งไปยังเซิร์ฟเวอร์อื่น
+- เหมาะสำหรับระบบที่ข้อมูลไม่ได้เปลี่ยนแปลงบ่อยมาก
 
 ### **4. Transactional Replication**
 
-Transactional replication synchronizes databases by replicating changes as they occur.
+Transactional Replication ทำให้ฐานข้อมูลสอดคล้องกันด้วยการทำ Replication การเปลี่ยนแปลงทันทีที่เกิดขึ้น
 
-- Changes made in the publisher database are quickly sent to subscriber databases.
-- Ensures near real-time data consistency between multiple databases.
+- การเปลี่ยนแปลงที่เกิดขึ้นในฐานข้อมูล Publisher จะถูกส่งไปยังฐานข้อมูล Subscriber อย่างรวดเร็ว
+- ช่วยให้ข้อมูลระหว่างฐานข้อมูลหลายชุดมีความสอดคล้องกันในระดับใกล้เคียง Real-time
 
 ### **5. Merge Replication**
 
-Merge replication allows multiple databases to update data independently and later synchronize the changes.
+Merge Replication ช่วยให้ฐานข้อมูลหลายชุดสามารถอัปเดตข้อมูลแยกจากกันได้ แล้วจึง Synchronize การเปลี่ยนแปลงเข้าด้วยกันในภายหลัง
 
-- Both publisher and subscriber databases can make modifications to the data.
-- Conflicts are detected and resolved during the synchronization process.
+- ทั้งฐานข้อมูล Publisher และ Subscriber สามารถแก้ไขข้อมูลได้
+- ระบบจะตรวจจับและแก้ไข Conflict ระหว่างกระบวนการ Synchronization
 
-## **Strategies**
+## **กลยุทธ์**
 
-[Database replication strategies](https://www.geeksforgeeks.org/system-design/strategies-of-database-replication-system-design/) determine how to select data, copy and distribute it between databases to gain specific goals such as scalability, availability, and efficiency.
+[กลยุทธ์ของ Database Replication](https://www.geeksforgeeks.org/system-design/strategies-of-database-replication-system-design/) กำหนดวิธีเลือก คัดลอก และกระจายข้อมูลระหว่างฐานข้อมูล เพื่อให้บรรลุเป้าหมายที่ต้องการ เช่น ความสามารถในการรองรับการขยายตัว ความพร้อมใช้งาน และประสิทธิภาพ
 
-Some common database replication strategies include the following:
+กลยุทธ์ Database Replication ที่ใช้กันทั่วไปมีดังต่อไปนี้:
 
-- **Full Replication:** Also referred to as full database replication, this is a technique in which the whole database is replicated to one or more destination servers. All the tables, rows, and columns in the database are copied to the destination servers. The replicas thus obtain an exact copy of the original database.
-- **Partial Replication:** This method involves not replicating the entire database, but merely a subset of it, such as particular tables, rows, or columns. This method can be useful when only specific data has to be reproduced for reporting, analysis, or other reasons, and it enables a more effective use of resources.
-- **Selective Replication:** It is a database replication strategy that involves replicating data based on predefined criteria or conditions. Unlike full replication, which replicates the entire database, or partial replication, which replicates a subset of the database, selective replication allows for more granular control over which data is replicated.
-- **Sharding:** It is a database scaling technique that involves partitioning data across multiple database instances (shards) based on a key. This approach allows for distributing the workload and data storage across multiple servers, improving scalability and performance.
-- **Hybrid Replication:** It is a database replication strategy that combines multiple replication techniques to achieve specific goals. This approach allows for the customization of replication methods based on the requirements of different parts of the database or application.
+- **Full Replication:** เรียกอีกอย่างว่า Full Database Replication เป็นเทคนิคที่ทำ Replication ฐานข้อมูลทั้งหมดไปยังเซิร์ฟเวอร์ปลายทางหนึ่งเครื่องหรือหลายเครื่อง โดยตาราง แถว และคอลัมน์ทั้งหมดในฐานข้อมูลจะถูกคัดลอกไปยังเซิร์ฟเวอร์ปลายทาง ทำให้ Replica มีสำเนาที่ตรงกับฐานข้อมูลต้นฉบับ
+- **Partial Replication:** วิธีนี้ไม่ได้ทำ Replication ฐานข้อมูลทั้งหมด แต่ทำเฉพาะบางส่วน เช่น ตาราง แถว หรือคอลัมน์ที่กำหนด วิธีนี้มีประโยชน์เมื่อจำเป็นต้องทำสำเนาเฉพาะข้อมูลบางส่วนสำหรับการทำรายงาน การวิเคราะห์ หรือวัตถุประสงค์อื่น และช่วยให้ใช้ทรัพยากรได้อย่างมีประสิทธิภาพมากขึ้น
+- **Selective Replication:** เป็นกลยุทธ์ Database Replication ที่ทำ Replication ข้อมูลตามเกณฑ์หรือเงื่อนไขที่กำหนดไว้ล่วงหน้า ต่างจาก Full Replication ที่ทำ Replication ทั้งฐานข้อมูล หรือ Partial Replication ที่ทำเฉพาะบางส่วน Selective Replication ช่วยให้ควบคุมได้ละเอียดมากขึ้นว่าข้อมูลใดจะถูกทำ Replication
+- **Sharding:** เป็นเทคนิคสำหรับขยายฐานข้อมูลโดยแบ่งข้อมูลไปยังฐานข้อมูลหลาย Instance (Shard) ตาม Key วิธีนี้ช่วยกระจายภาระงานและพื้นที่จัดเก็บข้อมูลไปยังหลายเซิร์ฟเวอร์ ทำให้ระบบรองรับการขยายตัวและมีประสิทธิภาพดีขึ้น
+- **Hybrid Replication:** เป็นกลยุทธ์ Database Replication ที่ผสมผสานเทคนิค Replication หลายรูปแบบเพื่อให้บรรลุเป้าหมายที่ต้องการ วิธีนี้ช่วยให้สามารถปรับแต่งวิธีการ Replication ให้เหมาะกับความต้องการของส่วนต่างๆ ของฐานข้อมูลหรือแอปพลิเคชันได้
 
-## **Configurations**
+## **รูปแบบการกำหนดค่า**
 
-To accomplish particular objectives related to data consistency, availability, and performance, database replication can be set up and run in a variety of ways:
+Database Replication สามารถตั้งค่าและทำงานได้หลายรูปแบบ เพื่อให้บรรลุเป้าหมายที่เกี่ยวข้องกับความสอดคล้องของข้อมูล ความพร้อมใช้งาน และประสิทธิภาพ:
 
 ### **1. Synchronous Replication Configuration**
 
-In synchronous replication, data changes are replicated to replicas immediately before the transaction is completed.
+ในการทำ Synchronous Replication การเปลี่ยนแปลงข้อมูลจะถูกทำ Replication ไปยัง Replica ทันทีก่อนที่ Transaction จะเสร็จสมบูรณ์
 
-- The transaction is committed only after at least one replica confirms that it has received the update.
-- Ensures strong data consistency because the primary and replicas remain fully synchronized.
+- Transaction จะถูก Commit หลังจากมี Replica อย่างน้อยหนึ่งชุดยืนยันว่าได้รับข้อมูลอัปเดตแล้วเท่านั้น
+- ช่วยให้ข้อมูลมีความสอดคล้องกันสูง เพราะฐานข้อมูลหลักและ Replica ยังคง Synchronize กันอย่างสมบูรณ์
 
 ### **2. Asynchronous Replication Configuration**
 
-In asynchronous replication, the primary database sends updates to replicas without waiting for confirmation.
+ในการทำ Asynchronous Replication ฐานข้อมูลหลักจะส่งข้อมูลอัปเดตไปยัง Replica โดยไม่รอการยืนยัน
 
-- The primary database completes the transaction immediately, improving performance and speed.
-- Replicas may receive updates with a slight delay, which can lead to temporary data inconsistency.
+- ฐานข้อมูลหลักสามารถทำ Transaction ให้เสร็จได้ทันที ช่วยเพิ่มประสิทธิภาพและความเร็ว
+- Replica อาจได้รับข้อมูลอัปเดตล่าช้าเล็กน้อย ซึ่งอาจทำให้ข้อมูลไม่สอดคล้องกันชั่วคราว
 
 ### **3. Semi-synchronous Replication Configuration**
 
-Semi-synchronous replication is a hybrid approach that combines features of synchronous and asynchronous replication.
+Semi-synchronous Replication เป็นแนวทางแบบผสมที่รวมคุณสมบัติของ Synchronous และ Asynchronous Replication เข้าด้วยกัน
 
-- The primary database waits for confirmation from at least one replica before committing the transaction.
-- Other replicas receive updates asynchronously, improving performance while maintaining reasonable consistency.
+- ฐานข้อมูลหลักจะรอการยืนยันจาก Replica อย่างน้อยหนึ่งชุดก่อน Commit Transaction
+- Replica ชุดอื่นจะได้รับข้อมูลอัปเดตแบบ Asynchronous ช่วยเพิ่มประสิทธิภาพในขณะที่ยังรักษาความสอดคล้องของข้อมูลให้อยู่ในระดับที่เหมาะสม
 
-## **Importance**
+## **ความสำคัญ**
 
-Database replication is important for several reasons:
+Database Replication มีความสำคัญด้วยเหตุผลหลายประการ:
 
-- **High Availability:** Database replication ensures [High Availability](https://www.geeksforgeeks.org/system-design/what-is-high-availability-in-system-design/) by keeping data available even if one server fails, so the application runs without downtime.
-- **Disaster Recovery:** Replication supports Disaster Recovery by storing backup copies on multiple servers, helping restore data quickly after failure.
-- **Load Balancer / Load Balancing:** Replication improves Load Balancing by allowing a [Load Balancer](https://www.geeksforgeeks.org/system-design/what-is-load-balancer-system-design/) to send read requests to replica servers, reducing load on the primary DB.
-- **Fault Tolerance:** Replication provides [Fault Tolerance](https://www.geeksforgeeks.org/system-design/fault-tolerance-in-system-design/) by shifting traffic to another replica server when one server goes down.
-- **Scalability:** Replication helps [Scalability](https://www.geeksforgeeks.org/system-design/what-is-scalability/) by distributing database traffic across servers and handling more users smoothly.
-- **Data Locality:** Replication improves Data Locality by placing replicas near users, reducing [latency](https://www.geeksforgeeks.org/system-design/latency-in-system-design/) and improving performance.
+- **High Availability:** Database Replication ช่วยให้ระบบมี [High Availability](https://www.geeksforgeeks.org/system-design/what-is-high-availability-in-system-design/) โดยทำให้ข้อมูลยังคงพร้อมใช้งานแม้เซิร์ฟเวอร์หนึ่งเครื่องจะล้มเหลว ทำให้แอปพลิเคชันทำงานต่อได้โดยไม่หยุดให้บริการ
+- **Disaster Recovery:** Replication ช่วยรองรับ Disaster Recovery ด้วยการเก็บสำเนาสำรองไว้บนหลายเซิร์ฟเวอร์ ทำให้สามารถกู้คืนข้อมูลได้อย่างรวดเร็วหลังเกิดความล้มเหลว
+- **Load Balancer / Load Balancing:** Replication ช่วยปรับปรุง Load Balancing โดยเปิดให้ [Load Balancer](https://www.geeksforgeeks.org/system-design/what-is-load-balancer-system-design/) ส่งคำขออ่านข้อมูลไปยังเซิร์ฟเวอร์ Replica ซึ่งช่วยลดภาระของฐานข้อมูลหลัก
+- **Fault Tolerance:** Replication ช่วยให้ระบบมี [Fault Tolerance](https://www.geeksforgeeks.org/system-design/fault-tolerance-in-system-design/) โดยย้าย Traffic ไปยังเซิร์ฟเวอร์ Replica เครื่องอื่นเมื่อเซิร์ฟเวอร์เครื่องหนึ่งหยุดทำงาน
+- **Scalability:** Replication ช่วยเพิ่ม [Scalability](https://www.geeksforgeeks.org/system-design/what-is-scalability/) ด้วยการกระจาย Traffic ของฐานข้อมูลไปยังหลายเซิร์ฟเวอร์ ทำให้รองรับผู้ใช้จำนวนมากขึ้นได้อย่างราบรื่น
+- **Data Locality:** Replication ช่วยปรับปรุง Data Locality ด้วยการวาง Replica ไว้ใกล้กับผู้ใช้ เพื่อลด [Latency](https://www.geeksforgeeks.org/system-design/latency-in-system-design/) และเพิ่มประสิทธิภาพ
 
-## **Challenges**
+## **ความท้าทาย**
 
-Some of the challenges with Database Replication are:
+ความท้าทายบางประการของ Database Replication ได้แก่:
 
-- **Data Consistency:** It can be difficult to maintain consistency among replicas, particularly in asynchronous replication situations where data replication may be delayed.
-- **Complexity:** System complexity is increased by database replication, which requires thorough setup and administration to guarantee accurate and effective data replication.
-- **Cost:** Setting up and maintaining a replicated database environment can be costly, especially for large-scale deployments with multiple replicas.
-- **Conflict Resolution:** When the same data is changed on multiple replicas at once in multi-master replication environments, conflicts might arise that require conflict resolution techniques.
-- **Latency:** Synchronous replication, which requires acknowledgment from replicas before committing transactions, can introduce latency and impact the performance of the primary database.
+- **Data Consistency:** การรักษาความสอดคล้องของข้อมูลระหว่าง Replica อาจทำได้ยาก โดยเฉพาะในกรณีของ Asynchronous Replication ที่การทำ Replication ข้อมูลอาจเกิดความล่าช้า
+- **Complexity:** Database Replication เพิ่มความซับซ้อนให้กับระบบ และต้องมีการตั้งค่าและดูแลอย่างรอบคอบ เพื่อให้การทำ Replication ข้อมูลถูกต้องและมีประสิทธิภาพ
+- **Cost:** การติดตั้งและดูแลสภาพแวดล้อมฐานข้อมูลแบบ Replicated อาจมีค่าใช้จ่ายสูง โดยเฉพาะระบบขนาดใหญ่ที่มี Replica หลายชุด
+- **Conflict Resolution:** ในระบบ Multi-Master Replication อาจเกิด Conflict เมื่อข้อมูลเดียวกันถูกแก้ไขพร้อมกันบน Replica หลายชุด จึงต้องใช้เทคนิคสำหรับจัดการ Conflict
+- **Latency:** Synchronous Replication ซึ่งต้องรอการยืนยันจาก Replica ก่อน Commit Transaction อาจเพิ่ม Latency และส่งผลต่อประสิทธิภาพของฐานข้อมูลหลัก
