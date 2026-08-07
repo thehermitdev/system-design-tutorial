@@ -1,121 +1,121 @@
 # **API Gateway**
 
-An API Gateway is a centralized entry point that manages client requests and directs them to the appropriate backend services. It simplifies communication between clients and multiple microservices while enforcing security and performance policies.
+API Gateway คือจุดเข้าใช้งานแบบรวมศูนย์ที่ทำหน้าที่จัดการคำขอจากไคลเอนต์และส่งต่อไปยังบริการ Backend ที่เหมาะสม ช่วยให้การสื่อสารระหว่างไคลเอนต์กับ Microservices หลายบริการง่ายขึ้น พร้อมทั้งบังคับใช้นโยบายด้านความปลอดภัยและประสิทธิภาพ
 
-- Routes client requests, handles authentication and rate limiting, while acting as a reverse proxy to hide internal service complexity.
-- Provides a single, unified API interface that simplifies communication between clients and multiple backend services.
+- กำหนดเส้นทางคำขอจากไคลเอนต์ จัดการการยืนยันตัวตนและการจำกัดอัตราคำขอ พร้อมทำหน้าที่เป็น Reverse Proxy เพื่อซ่อนความซับซ้อนของบริการภายใน
+- มี API Interface แบบรวมศูนย์เพียงจุดเดียว ช่วยให้การสื่อสารระหว่างไคลเอนต์กับบริการ Backend หลายบริการง่ายขึ้น
 
 <img src="https://media.geeksforgeeks.org/wp-content/uploads/20260330181428163280/api_gateway_pattern-660.webp" alt="API Gateway Patterns" />
 
-> **Example:** In an e-commerce system, a single API Gateway can route requests for product details, user orders, and payment processing to separate microservices, while also checking user authentication and limiting request rates.
+> **ตัวอย่าง:** ในระบบ E-commerce สามารถใช้ API Gateway เพียงตัวเดียวเพื่อกำหนดเส้นทางคำขอเกี่ยวกับรายละเอียดสินค้า คำสั่งซื้อของผู้ใช้ และการประมวลผลการชำระเงิน ไปยัง Microservices ที่แยกจากกัน พร้อมทั้งตรวจสอบการยืนยันตัวตนของผู้ใช้และจำกัดอัตราคำขอ
 
 <img src="https://media.geeksforgeeks.org/wp-content/uploads/20260330181506286742/aa-660.webp" />
 
-In the above diagram:
+จากไดอะแกรมด้านบน:
 
-- User will send the request from mobile or web application.
-- API Gateway will determine which request is coming.
-- Authentication means the user need to proof their identity to the server or client, by providing there User_Id and Password. For example: Login or Signup page.
-- SSL full form Secure Socket Layer, it is used to establish an encrypted link between a server and a client.
-- It provides the ability to perform protocol translation, where incoming requests are translated from one channel to another.
-- When a request is aggregated, the API Gateway sends requests to multiple backend services and combines their responses into a single result for the client. This reduces client requests but may increase latency as it waits for all services to respond.
+- ผู้ใช้จะส่งคำขอจากแอปพลิเคชันบนมือถือหรือเว็บ
+- API Gateway จะตรวจสอบว่าคำขอที่เข้ามาเป็นคำขอประเภทใด
+- Authentication หมายถึงผู้ใช้ต้องพิสูจน์ตัวตนต่อเซิร์ฟเวอร์หรือไคลเอนต์ โดยระบุ User_Id และ Password เช่น หน้า Login หรือ Signup
+- SSL ย่อมาจาก Secure Socket Layer ใช้สำหรับสร้างการเชื่อมต่อแบบเข้ารหัสระหว่างเซิร์ฟเวอร์กับไคลเอนต์
+- สามารถทำ Protocol Translation ได้ โดยแปลงคำขอที่เข้ามาจากโปรโตคอลหนึ่งไปเป็นอีกโปรโตคอลหนึ่ง
+- เมื่อมีการรวมคำขอ API Gateway จะส่งคำขอไปยังบริการ Backend หลายบริการ และรวมผลลัพธ์จากบริการเหล่านั้นเป็นผลลัพธ์เดียวให้กับไคลเอนต์ วิธีนี้ช่วยลดจำนวนคำขอจากไคลเอนต์ แต่อาจเพิ่ม Latency เนื่องจากต้องรอให้ทุกบริการตอบกลับ
 
-## **Working**
+## **การทำงาน**
 
-Let us see how API Gateway works:
+มาดูกันว่า API Gateway ทำงานอย่างไร:
 
-- **Routing:** Directs client requests to the appropriate service based on URL, method, or headers.
-- **Protocol Translation:** Converts requests between protocols (e.g., HTTP to gRPC/WebSocket).
-- **Request Aggregation:** Combines multiple backend service calls into a single response, reducing client-side requests. However, it may increase latency as the gateway waits for responses from multiple services before returning the final result.
-- **Authentication & Authorization:** Validates user identity and access permissions.
-- **Rate Limiting & Throttling:** Controls request traffic to prevent abuse and ensure system stability.
-- **Load Balancing:** Distributes requests across multiple service instances for better scalability.
-- **Caching:** Stores frequently accessed responses to improve performance.
-- **Monitoring & Logging:** Captures metrics and logs for observability and debugging.
+- **Routing:** ส่งคำขอจากไคลเอนต์ไปยังบริการที่เหมาะสม โดยพิจารณาจาก URL, Method หรือ Headers
+- **Protocol Translation:** แปลงคำขอระหว่างโปรโตคอล เช่น HTTP ไปเป็น gRPC/WebSocket
+- **Request Aggregation:** รวมการเรียกบริการ Backend หลายรายการให้เป็นคำตอบเดียว ช่วยลดจำนวนคำขอจากฝั่งไคลเอนต์ อย่างไรก็ตาม อาจเพิ่ม Latency เนื่องจาก Gateway ต้องรอคำตอบจากหลายบริการก่อนส่งผลลัพธ์สุดท้ายกลับ
+- **Authentication & Authorization:** ตรวจสอบตัวตนของผู้ใช้และสิทธิ์ในการเข้าถึง
+- **Rate Limiting & Throttling:** ควบคุมปริมาณคำขอเพื่อป้องกันการใช้งานในทางที่ผิดและรักษาเสถียรภาพของระบบ
+- **Load Balancing:** กระจายคำขอไปยัง Instance ของบริการหลายตัวเพื่อรองรับการขยายระบบได้ดีขึ้น
+- **Caching:** จัดเก็บคำตอบที่ถูกเรียกใช้งานบ่อยเพื่อเพิ่มประสิทธิภาพ
+- **Monitoring & Logging:** เก็บ Metrics และ Logs เพื่อใช้ในการสังเกตการณ์ระบบและ Debug
 
-## **Working of API Gateway with Microservices and Monolith Architecture**
+## **การทำงานของ API Gateway ร่วมกับ Microservices และสถาปัตยกรรม Monolith**
 
-The way an API Gateway works with microservices differs from how it works with a monolithic architecture in several key aspects:
+วิธีการทำงานของ API Gateway ร่วมกับ Microservices แตกต่างจากการทำงานร่วมกับสถาปัตยกรรม Monolith ในหลายประเด็นสำคัญ:
 
-| **Monolithic Architecture** | **Microservices Architecture** |
+| **สถาปัตยกรรม Monolith** | **สถาปัตยกรรม Microservices** |
 | --- | --- |
-| Routes requests to different modules within a single application based on URL or logic | Routes requests to multiple independent microservices, acting as a “front door” |
-| Service discovery is not required since all components exist in one codebase | Uses service discovery to dynamically locate and route to services |
-| Handles authentication and authorization centrally with simpler access control | Handles authentication centrally, but authorization can be more complex across services |
-| Load balancing is simpler, usually across identical application instances | Load balancing is more complex across multiple services and their instances |
-| Fault tolerance is less complex as failures are within a single system | Fault tolerance is critical; failures must be isolated to avoid system-wide impact |
+| ส่งคำขอไปยังโมดูลต่างๆ ภายในแอปพลิเคชันเดียว โดยพิจารณาจาก URL หรือตรรกะ | ส่งคำขอไปยัง Microservices อิสระหลายบริการ โดยทำหน้าที่เป็น “ประตูหน้า” |
+| ไม่จำเป็นต้องใช้ Service Discovery เนื่องจากส่วนประกอบทั้งหมดอยู่ใน Codebase เดียว | ใช้ Service Discovery เพื่อค้นหาและกำหนดเส้นทางไปยังบริการแบบไดนามิก |
+| จัดการ Authentication และ Authorization แบบรวมศูนย์ โดยมีการควบคุมการเข้าถึงที่ง่ายกว่า | จัดการ Authentication แบบรวมศูนย์ แต่ Authorization อาจซับซ้อนมากขึ้นเมื่อทำงานข้ามหลายบริการ |
+| Load Balancing ทำได้ง่ายกว่า โดยทั่วไปเป็นการกระจายไปยัง Instance ของแอปพลิเคชันที่เหมือนกัน | Load Balancing มีความซับซ้อนมากขึ้น เนื่องจากต้องกระจายไปยังหลายบริการและ Instance ของแต่ละบริการ |
+| Fault Tolerance มีความซับซ้อนน้อยกว่า เพราะความล้มเหลวเกิดขึ้นภายในระบบเดียว | Fault Tolerance มีความสำคัญอย่างมาก โดยต้องแยกความล้มเหลวออกจากกันเพื่อหลีกเลี่ยงผลกระทบต่อทั้งระบบ |
 
-## **API Gateway with Microservices Example**
+## **ตัวอย่าง API Gateway กับ Microservices**
 
-A real-world pattern where the API Gateway acts as a single entry point to efficiently manage and coordinate multiple microservices behind the scenes.
+รูปแบบที่พบได้ในระบบจริง ซึ่ง API Gateway ทำหน้าที่เป็นจุดเข้าใช้งานเพียงจุดเดียวเพื่อจัดการและประสานงาน Microservices หลายบริการที่ทำงานอยู่เบื้องหลังอย่างมีประสิทธิภาพ
 
-> **Example:** Consider an e-commerce system built using microservices, where separate services handle user management, product catalog, shopping cart, and order processing. Clients interact with the system through a web or mobile application via a single API Gateway.
+> **ตัวอย่าง:** ลองพิจารณาระบบ E-commerce ที่สร้างด้วย Microservices โดยแยกบริการสำหรับจัดการผู้ใช้ แคตตาล็อกสินค้า ตะกร้าสินค้า และการประมวลผลคำสั่งซื้อ ไคลเอนต์จะโต้ตอบกับระบบผ่านเว็บหรือแอปพลิเคชันบนมือถือโดยใช้ API Gateway เพียงจุดเดียว
 
 <img src="https://media.geeksforgeeks.org/wp-content/uploads/20260330181428289464/b-660.webp" />
 
-### **Explanation of the diagram**
+### **คำอธิบายไดอะแกรม**
 
-- Client sends request (e.g., view product or place order) to the API Gateway
-- API Gateway authenticates the user and routes the request to the relevant microservice(s)
-- It may aggregate responses (e.g., product + reviews + price) before sending back
-- Final response is returned to the client through the API Gateway
+- ไคลเอนต์ส่งคำขอ เช่น ดูสินค้าหรือสั่งซื้อ ไปยัง API Gateway
+- API Gateway ยืนยันตัวตนของผู้ใช้และส่งคำขอไปยัง Microservice ที่เกี่ยวข้อง
+- อาจรวมคำตอบ เช่น สินค้า + รีวิว + ราคา ก่อนส่งกลับ
+- คำตอบสุดท้ายจะถูกส่งกลับไปยังไคลเอนต์ผ่าน API Gateway
 
-## **API Gateway with Monolith Example**
+## **ตัวอย่าง API Gateway กับ Monolith**
 
-A simplified approach where the API Gateway enhances a single unified application by managing external requests and applying common functionalities.
+แนวทางที่เรียบง่ายกว่า โดย API Gateway ช่วยเพิ่มความสามารถให้กับแอปพลิเคชันแบบรวมศูนย์เพียงตัวเดียว ด้วยการจัดการคำขอจากภายนอกและประยุกต์ใช้ความสามารถส่วนกลางร่วมกัน
 
-> **Example:** Consider a traditional e-commerce monolithic application where all functionalities (user, product, order, payment) exist within a single codebase. The API Gateway still acts as a central entry point to manage requests and apply cross-cutting concerns.
+> **ตัวอย่าง:** ลองพิจารณาแอปพลิเคชัน E-commerce แบบ Monolith ดั้งเดิม ซึ่งฟังก์ชันทั้งหมด เช่น ผู้ใช้ สินค้า คำสั่งซื้อ และการชำระเงิน อยู่ภายใน Codebase เดียว API Gateway ยังคงทำหน้าที่เป็นจุดเข้าใช้งานส่วนกลางเพื่อจัดการคำขอและจัดการ Cross-cutting Concerns
 
 <img src="https://media.geeksforgeeks.org/wp-content/uploads/20260330181428457210/c.webp" alt="API Gateway with Monolith" />
 
-### **Explanation of the diagram**
+### **คำอธิบายไดอะแกรม**
 
-- Client sends request (e.g., login, view product, place order) to the API Gateway
-- API Gateway handles authentication, caching, and request transformation
-- It routes the request to the appropriate module within the monolith
-- The monolithic application processes the request and returns a response via the API Gateway
+- ไคลเอนต์ส่งคำขอ เช่น Login ดูสินค้า หรือสั่งซื้อ ไปยัง API Gateway
+- API Gateway จัดการ Authentication, Caching และการแปลงคำขอ
+- ส่งคำขอไปยังโมดูลที่เหมาะสมภายใน Monolith
+- แอปพลิเคชัน Monolith ประมวลผลคำขอและส่งคำตอบกลับผ่าน API Gateway
 
-## **Best practices for implementation**
+## **แนวทางปฏิบัติที่ดีสำหรับการนำไปใช้งาน**
 
-Below are the best practices for API Gateway:
+ด้านล่างคือแนวทางปฏิบัติที่ดีสำหรับ API Gateway:
 
-- **Security:** Use SSL/TLS for encryption, implement strong authentication and authorization, and apply IP whitelisting and rate limiting to prevent abuse.
-- **Performance Optimization:** Improve response time using caching, request/response compression, and efficient routing.
-- **Scalability:** Design for horizontal scaling, use load balancing, and monitor system metrics to scale resources as needed.
-- **Monitoring & Logging:** Track performance metrics, integrate with centralized logging systems, and maintain detailed logs for debugging.
-- **Error Handling:** Implement robust error handling and use standardized error codes and messages for consistency.
-- **Versioning & Documentation:** Maintain backward compatibility with versioning and keep API documentation up to date for developers.
+- **Security:** ใช้ SSL/TLS สำหรับการเข้ารหัส ใช้ Authentication และ Authorization ที่มีความรัดกุม รวมถึงใช้ IP Whitelisting และ Rate Limiting เพื่อป้องกันการใช้งานในทางที่ผิด
+- **Performance Optimization:** ปรับปรุงเวลาในการตอบสนองด้วย Caching, การบีบอัด Request/Response และการกำหนดเส้นทางอย่างมีประสิทธิภาพ
+- **Scalability:** ออกแบบให้รองรับ Horizontal Scaling ใช้ Load Balancing และตรวจสอบ Metrics ของระบบเพื่อเพิ่มทรัพยากรตามความจำเป็น
+- **Monitoring & Logging:** ติดตาม Metrics ด้านประสิทธิภาพ เชื่อมต่อกับระบบ Logging แบบรวมศูนย์ และเก็บ Logs อย่างละเอียดเพื่อใช้ในการ Debug
+- **Error Handling:** ใช้การจัดการข้อผิดพลาดที่มีประสิทธิภาพ และใช้รหัสข้อผิดพลาดกับข้อความที่เป็นมาตรฐานเพื่อให้มีความสอดคล้องกัน
+- **Versioning & Documentation:** รักษา Backward Compatibility ด้วยการทำ Versioning และอัปเดตเอกสาร API ให้เป็นปัจจุบันสำหรับนักพัฒนา
 
-## **Challenges**
+## **ความท้าทาย**
 
-API Gateways can introduce several challenges, especially in complex environments or when not properly configured. Some common challenges include:
+API Gateway อาจก่อให้เกิดความท้าทายหลายประการ โดยเฉพาะในสภาพแวดล้อมที่ซับซ้อนหรือเมื่อมีการกำหนดค่าไม่เหมาะสม ความท้าทายทั่วไปมีดังนี้:
 
-- **Performance Bottlenecks:** Can become a bottleneck or single point of failure under high traffic if not properly designed.
-- **Increased Latency:** Additional processing like routing, authentication, and transformations can slow down requests.
-- **Complexity:** Managing and configuring the gateway becomes difficult with many services and endpoints.
-- **Security Risks:** Misconfiguration can lead to vulnerabilities like improper authentication or data exposure.
-- **Scalability Challenges:** Scaling the gateway efficiently in dynamic, high-demand environments can be challenging.
+- **Performance Bottlenecks:** อาจกลายเป็นคอขวดหรือ Single Point of Failure เมื่อมี Traffic สูง หากไม่ได้รับการออกแบบอย่างเหมาะสม
+- **Increased Latency:** การประมวลผลเพิ่มเติม เช่น Routing, Authentication และการแปลงข้อมูล อาจทำให้คำขอช้าลง
+- **Complexity:** การจัดการและกำหนดค่า Gateway จะยากขึ้นเมื่อมีบริการและ Endpoint จำนวนมาก
+- **Security Risks:** การกำหนดค่าที่ผิดพลาดอาจทำให้เกิดช่องโหว่ เช่น Authentication ที่ไม่เหมาะสมหรือการเปิดเผยข้อมูล
+- **Scalability Challenges:** การขยาย Gateway อย่างมีประสิทธิภาพในสภาพแวดล้อมที่เปลี่ยนแปลงตลอดเวลาและมีความต้องการสูงอาจเป็นเรื่องท้าทาย
 
-## **Popular API Gateway Solution**
+## **โซลูชัน API Gateway ที่ได้รับความนิยม**
 
-Some API Gateway Solution:
+โซลูชัน API Gateway บางส่วนมีดังนี้:
 
 ### **1. Amazon API Gateway**
 
-It is a fully managed service that makes it easy for developers to create, publish, maintain, monitor, and secure APIs at any scale. It supports RESTful APIs as well as WebSocket APIs for real-time communication.
+เป็นบริการแบบ Fully Managed ที่ช่วยให้นักพัฒนาสามารถสร้าง เผยแพร่ ดูแล ตรวจสอบ และรักษาความปลอดภัยของ API ได้อย่างง่ายดายในทุกระดับการใช้งาน รองรับทั้ง RESTful APIs และ WebSocket APIs สำหรับการสื่อสารแบบ Real-time
 
 ### **2. Apigee**
 
-It now part of Google Cloud, is a platform that enables organizations to design, secure, deploy, monitor, and scale APIs. It offers features like API analytics, API monetization, and developer portal management.
+ปัจจุบันเป็นส่วนหนึ่งของ Google Cloud เป็นแพลตฟอร์มที่ช่วยให้องค์กรสามารถออกแบบ รักษาความปลอดภัย Deploy ตรวจสอบ และขยาย API ได้ โดยมีความสามารถ เช่น API Analytics, API Monetization และการจัดการ Developer Portal
 
 ### **3. Kong**
 
-It is an open-source API Gateway and microservices management layer. It is built on top of Nginx and provides features like request routing, authentication, rate limiting, and logging.
+เป็น API Gateway แบบ Open Source และ Management Layer สำหรับ Microservices สร้างอยู่บน Nginx และมีความสามารถ เช่น Request Routing, Authentication, Rate Limiting และ Logging
 
 ### **4. Microsoft Azure API Management**
 
-It is a fully managed service that helps organizations publish, secure, and manage APIs. It offers features like API gateway functionality, developer portal management, and API versioning.
+เป็นบริการแบบ Fully Managed ที่ช่วยให้องค์กรสามารถเผยแพร่ รักษาความปลอดภัย และจัดการ API ได้ โดยมีความสามารถ เช่น API Gateway, การจัดการ Developer Portal และ API Versioning
 
 ### **5. Apache APISIX**
 
-Apache APISIX is a top-level project of the Apache Software Foundation, with 15K+ stars on GitHub and over 460 contributors. Known for its high performance, cloud-native architecture, and rich plugin ecosystem, APISIX has become one of the leading API gateways.
+Apache APISIX เป็นโครงการระดับ Top-level ของ Apache Software Foundation มีดาวบน GitHub มากกว่า 15K ดวง และมีผู้ร่วมพัฒนามากกว่า 460 คน เป็นที่รู้จักในด้านประสิทธิภาพสูง สถาปัตยกรรมแบบ Cloud-native และระบบนิเวศ Plugin ที่หลากหลาย ทำให้ APISIX กลายเป็นหนึ่งใน API Gateway ชั้นนำ
