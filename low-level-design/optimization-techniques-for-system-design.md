@@ -1,94 +1,94 @@
-# **Performance Optimization Techniques for System Design**
+# **เทคนิคการเพิ่มประสิทธิภาพสำหรับการออกแบบระบบ**
 
-Designing systems that are efficient, scalable, and high-performing is crucial in modern applications. As systems handle more users and data, optimization becomes important to maintain speed, reliability, and smooth user experience.
+การออกแบบระบบให้มีประสิทธิภาพ รองรับการขยายตัว และมีสมรรถนะสูงเป็นสิ่งสำคัญสำหรับแอปพลิเคชันสมัยใหม่ เมื่อระบบต้องรองรับผู้ใช้และข้อมูลมากขึ้น การเพิ่มประสิทธิภาพจึงมีความสำคัญเพื่อรักษาความเร็ว ความน่าเชื่อถือ และประสบการณ์การใช้งานที่ราบรื่น
 
-- Improves system performance and reduces response time by distributing workloads efficiently.
-- Ensures scalability and better resource utilization while handling increasing users and data.
+- ช่วยเพิ่มประสิทธิภาพของระบบและลดเวลาตอบสนองด้วยการกระจายภาระงานอย่างมีประสิทธิภาพ
+- ช่วยให้ระบบรองรับการขยายตัวและใช้ทรัพยากรได้ดีขึ้นเมื่อจำนวนผู้ใช้และข้อมูลเพิ่มขึ้น
 
-> **Example:** In an e-commerce website, optimizing database queries and using caching helps load product pages faster, even during high traffic like a sale.
+> **ตัวอย่าง:** ในเว็บไซต์อีคอมเมิร์ซ การเพิ่มประสิทธิภาพ Query ของฐานข้อมูลและการใช้ Caching ช่วยให้หน้าแสดงสินค้าทำงานได้เร็วขึ้น แม้ในช่วงที่มี Traffic สูง เช่น ช่วงลดราคา
 > 
 
-### **1. Data Structures & Algorithms**
+### **1. โครงสร้างข้อมูลและอัลกอริทึม**
 
-Choosing the right data structures helps improve performance, memory usage, and scalability.
+การเลือกโครงสร้างข้อมูลที่เหมาะสมช่วยเพิ่มประสิทธิภาพ การใช้หน่วยความจำ และความสามารถในการรองรับการขยายตัว
 
-- Choose data structures (hash tables, trees, arrays) wisely for efficiency, memory usage, and scalability.
-- Google Search does a mapping from keywords to document lists, a form of hash table optimized for search queries.
+- เลือกใช้โครงสร้างข้อมูล (Hash Table, Tree, Array) อย่างเหมาะสมเพื่อประสิทธิภาพ การใช้หน่วยความจำ และความสามารถในการรองรับการขยายตัว
+- Google Search ทำการ Mapping จาก Keyword ไปยังรายการเอกสาร ซึ่งเป็นรูปแบบหนึ่งของ Hash Table ที่ได้รับการปรับให้เหมาะกับ Search Query
 
 ### **2. Caching**
 
-Caching stores frequently used data to reduce response time and backend load.
+Caching คือการจัดเก็บข้อมูลที่ถูกใช้งานบ่อยเพื่อลดเวลาตอบสนองและลดภาระของ Backend
 
-- Use caching (in-memory, CDN, multilevel) to reduce latency and backend load. We can always distribute our items in categories, like static, moderate and dynamic and add high caching expiration time for static content like images, CSS and JS files, moderate caching for items like list of items and low on things like messages.
-- Caching needs to be done at every level like Browser Caching, Database Caching, CDN Caching and in-memory caching.
+- ใช้ Caching (In-Memory, CDN, Multi-Level) เพื่อลด Latency และภาระของ Backend เราสามารถแบ่งสิ่งต่างๆ ออกเป็นหมวดหมู่ เช่น Static, Moderate และ Dynamic แล้วกำหนดเวลา Cache Expiration ที่สูงสำหรับ Static Content เช่น รูปภาพ ไฟล์ CSS และ JS ใช้ระยะเวลาระดับปานกลางสำหรับข้อมูลอย่างรายการต่างๆ และใช้ระยะเวลาต่ำสำหรับข้อมูลอย่างข้อความ
+- ควรทำ Caching ในทุกระดับ เช่น Browser Caching, Database Caching, CDN Caching และ In-Memory Caching
 
-### **3. Database Optimizations**
+### **3. การเพิ่มประสิทธิภาพฐานข้อมูล**
 
-Optimizing database operations helps in faster data retrieval and better system performance.
+การเพิ่มประสิทธิภาพการทำงานของฐานข้อมูลช่วยให้ดึงข้อมูลได้เร็วขึ้นและเพิ่มประสิทธิภาพโดยรวมของระบบ
 
-- Use Indexing in databases for frequently accessed items.
-- Use [Query Optimizations](https://www.geeksforgeeks.org/sql/best-practices-for-sql-query-optimizations/) to reduce response times.
-- Netflix employs CDNs to cache video locally and cache personalized recommendations. Twitter uses Redis to cache timelines and sessions, enabling real-time updates and handling millions of queries per second. Facebook leverages Memcached and to cache frequently accessed social graph data (like friendships), reducing database stress.
+- ใช้ Indexing ในฐานข้อมูลสำหรับข้อมูลที่ถูกเข้าถึงบ่อย
+- ใช้ [Query Optimization](https://www.geeksforgeeks.org/sql/best-practices-for-sql-query-optimizations/) เพื่อลดเวลาตอบสนอง
+- Netflix ใช้ CDN เพื่อ Cache วิดีโอไว้ใกล้ผู้ใช้และ Cache คำแนะนำที่ปรับให้เหมาะกับแต่ละบุคคล Twitter ใช้ Redis เพื่อ Cache Timeline และ Session ทำให้รองรับการอัปเดตแบบ Real-Time และ Query หลายล้านครั้งต่อวินาที Facebook ใช้ Memcached เพื่อ Cache ข้อมูล Social Graph ที่ถูกเข้าถึงบ่อย เช่น ความสัมพันธ์ระหว่างเพื่อน ซึ่งช่วยลดภาระของฐานข้อมูล
 
-### **4. Scalability & Load Balancing**
+### **4. Scalability และ Load Balancing**
 
-Scaling systems and distributing traffic ensures high availability and performance under load.
+การขยายระบบและการกระจาย Traffic ช่วยให้ระบบมี Availability และประสิทธิภาพสูงภายใต้ภาระงานที่เพิ่มขึ้น
 
-- Use [horizontal scaling](https://www.geeksforgeeks.org/dbms/horizontal-and-vertical-scaling-in-databases/) (adding more nodes) for cost-effective growth; vertical scaling (upgrading resources) has limits
-- Implement load balancing strategies—such as round-robin, least-connections, or IP-hash—to distribute traffic evenly.
-- For example, Netflix dynamically adjusts service clusters based on real-time CPU, network, and queue. They do anticipatory scaling—spinning up thousands of VMs within minutes during traffic spikes—and decommissioning them as demand falls.
+- ใช้ [Horizontal Scaling](https://www.geeksforgeeks.org/dbms/horizontal-and-vertical-scaling-in-databases/) (เพิ่มจำนวน Node) เพื่อรองรับการเติบโตอย่างคุ้มค่า ส่วน Vertical Scaling (เพิ่มทรัพยากรของเครื่อง) มีข้อจำกัด
+- ใช้กลยุทธ์ Load Balancing เช่น Round-Robin, Least-Connections หรือ IP-Hash เพื่อกระจาย Traffic อย่างสม่ำเสมอ
+- ตัวอย่างเช่น Netflix ปรับ Service Cluster แบบ Dynamic ตามข้อมูล CPU, Network และ Queue แบบ Real-Time โดยใช้ Anticipatory Scaling ซึ่งสามารถเพิ่ม VM หลายพันเครื่องภายในไม่กี่นาทีเมื่อ Traffic พุ่งสูง และลดจำนวนลงเมื่อความต้องการลดลง
 
-### **5. Microservices & Architectural Patterns**
+### **5. Microservices และรูปแบบสถาปัตยกรรม**
 
-Breaking systems into smaller services improves flexibility, scalability, and fault isolation.
+การแบ่งระบบออกเป็น Service ขนาดเล็กช่วยเพิ่มความยืดหยุ่น ความสามารถในการรองรับการขยายตัว และการแยกผลกระทบจากความผิดพลาด
 
-- Break systems into independent components to improve scaling, fault isolation, and developer agility.
-- Netflix runs over 700 microservices, enabling thousands of daily deployments with robust scalability Uber transitioned from monolithic to microservices to handle global scale dynamically.
+- แบ่งระบบออกเป็น Component ที่เป็นอิสระต่อกันเพื่อเพิ่มความสามารถในการรองรับการขยายตัว แยกผลกระทบจากความผิดพลาด และเพิ่มความคล่องตัวให้กับนักพัฒนา
+- Netflix ใช้งาน Microservices มากกว่า 700 Service ทำให้สามารถ Deploy ได้หลายพันครั้งต่อวันพร้อมรองรับการขยายตัวได้อย่างมีประสิทธิภาพ ส่วน Uber เปลี่ยนจากสถาปัตยกรรมแบบ Monolithic ไปเป็น Microservices เพื่อรองรับการขยายตัวในระดับโลกแบบ Dynamic
 
-### **6. Network Optimization**
+### **6. การเพิ่มประสิทธิภาพเครือข่าย**
 
-Optimizing network usage reduces latency and improves user experience.
+การเพิ่มประสิทธิภาพการใช้งานเครือข่ายช่วยลด Latency และปรับปรุงประสบการณ์ของผู้ใช้
 
-- Reduce the number of HTTP requests by bundling assets, using CSS sprites, and leveraging browser caching.
-- Compress images and use appropriate file formats to reduce their size and improve page load times.
-- Use CDNs to distribute static assets geographically, reducing latency and improving content delivery speed
+- ลดจำนวน HTTP Request ด้วยการรวม Asset ใช้ CSS Sprite และใช้ประโยชน์จาก Browser Caching
+- บีบอัดรูปภาพและใช้รูปแบบไฟล์ที่เหมาะสมเพื่อลดขนาดและเพิ่มความเร็วในการโหลดหน้าเว็บ
+- ใช้ CDN เพื่อกระจาย Static Asset ตามพื้นที่ทางภูมิศาสตร์ ช่วยลด Latency และเพิ่มความเร็วในการส่งมอบ Content
 
-### **7. Other Techniques**
+### **7. เทคนิคอื่นๆ**
 
-Additional techniques help improve performance and reduce unnecessary resource usage.
+เทคนิคเพิ่มเติมช่วยเพิ่มประสิทธิภาพและลดการใช้ทรัพยากรที่ไม่จำเป็น
 
-- Lazy Loading : Load resources only when they are needed, reducing initial page load times.
-- Divide code into smaller chunks and load them on demand
+- Lazy Loading : โหลด Resource เฉพาะเมื่อจำเป็น เพื่อลดเวลาในการโหลดหน้าเว็บครั้งแรก
+- แบ่ง Code ออกเป็นส่วนเล็กๆ และโหลดเมื่อจำเป็น
 
-## **Monitoring & Observability**
+## **Monitoring และ Observability**
 
-Monitoring and observability provide visibility into system performance and help detect issues early. Monitoring tracks key metrics like response time, CPU, memory, and request rates, while observability explains why issues occur using logs, metrics, and traces.
+Monitoring และ Observability ช่วยให้มองเห็นประสิทธิภาพของระบบและตรวจพบปัญหาได้ตั้งแต่เนิ่นๆ Monitoring ใช้ติดตาม Metric สำคัญ เช่น เวลาตอบสนอง CPU หน่วยความจำ และอัตราการ Request ขณะที่ Observability ช่วยอธิบายว่าทำไมปัญหาจึงเกิดขึ้นผ่าน Log, Metric และ Trace
 
-- **Logs:** Record system events, errors, and important activities for debugging.
-- **Metrics:** Track performance indicators like latency, throughput, and resource usage.
-- **Distributed Tracing:** Helps follow a request across multiple services to identify delays and failures.
+- **Logs:** บันทึก Event ของระบบ Error และกิจกรรมสำคัญสำหรับการ Debug
+- **Metrics:** ติดตามตัวชี้วัดด้านประสิทธิภาพ เช่น Latency, Throughput และการใช้ทรัพยากร
+- **Distributed Tracing:** ช่วยติดตาม Request ที่เดินทางผ่านหลาย Service เพื่อระบุจุดที่เกิดความล่าช้าและความผิดพลาด
 
-By combining these techniques, teams can proactively monitor system health, quickly detect anomalies, and take corrective actions to maintain performance and reliability.
+เมื่อใช้เทคนิคเหล่านี้ร่วมกัน ทีมสามารถติดตามสถานะของระบบเชิงรุก ตรวจพบความผิดปกติได้อย่างรวดเร็ว และดำเนินการแก้ไขเพื่อรักษาประสิทธิภาพและความน่าเชื่อถือของระบบ
 
-> ***Example:** In a microservices-based application, monitoring tools can detect a sudden increase in response time. Using distributed tracing, developers can identify that a specific service (like the database service) is causing delays and optimize it to restore performance.*
+> ***ตัวอย่าง:** ในแอปพลิเคชันที่ใช้ Microservices เครื่องมือ Monitoring สามารถตรวจพบเวลาตอบสนองที่เพิ่มขึ้นอย่างกะทันหันได้ จากนั้นนักพัฒนาสามารถใช้ Distributed Tracing เพื่อระบุว่า Service ใด Service หนึ่ง เช่น Database Service เป็นสาเหตุของความล่าช้า และปรับปรุง Service นั้นเพื่อให้ประสิทธิภาพกลับมาเป็นปกติ*
 > 
 
-## **Rate Limiting & Throttling**
+## **Rate Limiting และ Throttling**
 
-Rate limiting and throttling control how many requests a system handles to prevent overload and ensure fair usage. Rate limiting sets a fixed number of allowed requests in a given time, while throttling slows down or blocks requests when limits are exceeded. These techniques help maintain system stability during high traffic or attacks.
+Rate Limiting และ Throttling ใช้ควบคุมจำนวน Request ที่ระบบต้องรองรับเพื่อป้องกันระบบทำงานเกินขีดจำกัดและทำให้การใช้งานเป็นธรรม Rate Limiting กำหนดจำนวน Request สูงสุดที่อนุญาตในช่วงเวลาหนึ่ง ขณะที่ Throttling จะชะลอหรือบล็อก Request เมื่อเกินขีดจำกัด เทคนิคเหล่านี้ช่วยรักษาเสถียรภาพของระบบในช่วงที่มี Traffic สูงหรือเกิดการโจมตี
 
-- **Prevents System Overload:** Protects servers from excessive traffic or sudden spikes.
-- **Ensures Fair Usage:** Prevents a single user or service from consuming all resources.
-- **Improves Security:** Helps defend against attacks like DDoS or brute-force attempts.
+- **ป้องกันระบบทำงานเกินขีดจำกัด:** ปกป้อง Server จาก Traffic ที่มากเกินไปหรือเพิ่มขึ้นอย่างกะทันหัน
+- **ทำให้การใช้งานเป็นธรรม:** ป้องกันไม่ให้ผู้ใช้หรือ Service รายเดียวใช้ทรัพยากรทั้งหมด
+- **เพิ่มความปลอดภัย:** ช่วยป้องกันการโจมตี เช่น DDoS หรือการพยายาม Brute Force
 
-Common strategies include fixed window, sliding window, and token bucket algorithms to manage request limits efficiently.
+กลยุทธ์ที่ใช้กันทั่วไป ได้แก่ Fixed Window, Sliding Window และ Token Bucket Algorithm เพื่อจัดการขีดจำกัดของ Request อย่างมีประสิทธิภาพ
 
-> ***Example:** In an API service, a user may be allowed to make only 100 requests per minute. If the limit is exceeded, additional requests are delayed or rejected, ensuring the system remains stable for all users.*
+> ***ตัวอย่าง:** ใน API Service ผู้ใช้อาจได้รับอนุญาตให้ส่ง Request ได้เพียง 100 ครั้งต่อนาที หากเกินขีดจำกัด Request เพิ่มเติมจะถูกชะลอหรือปฏิเสธ เพื่อให้ระบบยังคงมีเสถียรภาพสำหรับผู้ใช้ทุกคน*
 > 
 
-## **Future Trends in System Design Optimization**
+## **แนวโน้มในอนาคตของการเพิ่มประสิทธิภาพการออกแบบระบบ**
 
-Modern system design is evolving with advanced technologies that improve performance, automation, and real-time processing capabilities.
+การออกแบบระบบสมัยใหม่กำลังพัฒนาไปพร้อมกับเทคโนโลยีขั้นสูงที่ช่วยเพิ่มประสิทธิภาพ ระบบอัตโนมัติ และความสามารถในการประมวลผลแบบ Real-Time
 
-- **Artificial Intelligence and Machine Learning**: These technologies enhance system efficiency, automate decision-making, and allow systems to adapt and learn continuously, leading to more intelligent and robust solutions.
-- **Autonomous Systems and Edge Computing**: Autonomous systems leverage optimization algorithms for efficient operation. [Edge computing](https://www.geeksforgeeks.org/computer-networks/edge-computing/) complements this by processing data locally, reducing latency.
+- **Artificial Intelligence และ Machine Learning**: เทคโนโลยีเหล่านี้ช่วยเพิ่มประสิทธิภาพของระบบ ทำให้การตัดสินใจเป็นอัตโนมัติ และทำให้ระบบสามารถปรับตัวและเรียนรู้ได้อย่างต่อเนื่อง ส่งผลให้ได้โซลูชันที่ชาญฉลาดและแข็งแกร่งมากขึ้น
+- **Autonomous Systems และ Edge Computing**: Autonomous System ใช้ Optimization Algorithm เพื่อให้ทำงานได้อย่างมีประสิทธิภาพ ส่วน [Edge Computing](https://www.geeksforgeeks.org/computer-networks/edge-computing/) ช่วยเสริมด้วยการประมวลผลข้อมูลภายในพื้นที่ใกล้แหล่งกำเนิดข้อมูล ซึ่งช่วยลด Latency
