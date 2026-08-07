@@ -1,120 +1,120 @@
-# **Horizontal and Vertical Scaling | System Design**
+# **การขยายระบบแบบ Horizontal และ Vertical | การออกแบบระบบ**
 
-In system design, scaling is important for managing increased loads. Horizontal scaling and vertical scaling are two different approaches to scaling a system, both of which can be used to improve the performance and capacity of the system.
+ในการออกแบบระบบ การขยายระบบเป็นสิ่งสำคัญสำหรับการรองรับภาระงานที่เพิ่มขึ้น Horizontal Scaling และ Vertical Scaling เป็นสองแนวทางที่แตกต่างกันในการขยายระบบ ซึ่งทั้งสองวิธีสามารถใช้เพื่อเพิ่มประสิทธิภาพและความสามารถในการรองรับงานของระบบได้
 
-- Adding more servers or instances to distribute load and handle high traffic efficiently.
-- Upgrading a single server’s CPU, RAM, or storage to increase its capacity.
+- เพิ่มเซิร์ฟเวอร์หรือ Instance เพื่อกระจายภาระงานและรองรับ Traffic ปริมาณมากได้อย่างมีประสิทธิภาพ
+- อัปเกรด CPU, RAM หรือ Storage ของเซิร์ฟเวอร์เครื่องเดียวเพื่อเพิ่มความสามารถในการรองรับงาน
 
-> ***Example:** A large e-commerce platform may use horizontal scaling by adding more servers during high traffic events like sales, while a small application may use vertical scaling by upgrading the server’s RAM or CPU.*
+> ***ตัวอย่าง:** แพลตฟอร์ม E-commerce ขนาดใหญ่อาจใช้ Horizontal Scaling โดยเพิ่มเซิร์ฟเวอร์ในช่วงที่มี Traffic สูง เช่น ช่วงลดราคา ขณะที่แอปพลิเคชันขนาดเล็กอาจใช้ Vertical Scaling โดยอัปเกรด RAM หรือ CPU ของเซิร์ฟเวอร์*
 > 
 
 https://media.geeksforgeeks.org/wp-content/uploads/20260416101913435205/vertical_and_horizontal_scaling-660.webp
 
-## **Need of Scaling**
+## **ความจำเป็นของการขยายระบบ**
 
-We need scaling to handle increasing load and improve performance, while resilience is achieved through fault tolerance, redundancy, and recovery mechanisms.
+เราจำเป็นต้องขยายระบบเพื่อรองรับภาระงานที่เพิ่มขึ้นและปรับปรุงประสิทธิภาพ ขณะที่ความสามารถในการรับมือกับความล้มเหลวของระบบเกิดจาก Fault Tolerance, Redundancy และกลไกการกู้คืนระบบ
 
-- We need scaling to handle increasing system load efficiently and provide a smooth and reliable user experience.
-- Handle increased user load and traffic without slowing down or crashing the system during peak usage.
-- Ensure high availability and reliability so the system remains accessible even during failures or heavy demand.
-- Maintain performance and response time by distributing workload and avoiding bottlenecks.
-- Support growing data and storage needs as the application expands over time.
+- เราจำเป็นต้องขยายระบบเพื่อรองรับภาระงานที่เพิ่มขึ้นอย่างมีประสิทธิภาพ และมอบประสบการณ์ใช้งานที่ราบรื่นและเชื่อถือได้ให้กับผู้ใช้
+- รองรับจำนวนผู้ใช้และ Traffic ที่เพิ่มขึ้นโดยไม่ทำให้ระบบช้าลงหรือหยุดทำงานในช่วงที่มีการใช้งานสูงสุด
+- ทำให้ระบบมี Availability และ Reliability สูง เพื่อให้ระบบยังคงสามารถใช้งานได้แม้เกิดความล้มเหลวหรือมีความต้องการใช้งานสูง
+- รักษาประสิทธิภาพและ Response Time ด้วยการกระจายภาระงานและหลีกเลี่ยง Bottleneck
+- รองรับปริมาณข้อมูลและความต้องการพื้นที่จัดเก็บที่เพิ่มขึ้นเมื่อแอปพลิเคชันเติบโตขึ้นตามเวลา
 
-The following are two ways to do scaling.
+ต่อไปนี้คือสองวิธีในการขยายระบบ
 
 ## **Vertical Scaling**
 
-Vertical scaling, also known as scaling up, refers to the process of increasing the capacity or capabilities of an individual hardware or software component within a system.
+Vertical Scaling หรือที่เรียกว่า Scaling Up คือกระบวนการเพิ่มความสามารถหรือประสิทธิภาพของ Hardware หรือ Software Component แต่ละส่วนภายในระบบ
 
-- We upgrade the same system rather than adding more systems. Add more power to your machine by adding better processors, increasing RAM, or other power-increasing adjustments.
-- Simple to implement and useful for monolithic and small scale applications.
+- เราอัปเกรดระบบเดิมแทนที่จะเพิ่มระบบใหม่ โดยเพิ่มพลังให้กับเครื่องด้วยการใช้ Processor ที่ดีขึ้น เพิ่ม RAM หรือปรับปรุงส่วนอื่นๆ เพื่อเพิ่มประสิทธิภาพ
+- นำไปใช้งานได้ง่ายและเหมาะสำหรับแอปพลิเคชันแบบ Monolithic และแอปพลิเคชันขนาดเล็ก
 
 https://media.geeksforgeeks.org/wp-content/uploads/20260416101913555886/vertical_scaling-660.webp
 
-### **Examples**
+### **ตัวอย่าง**
 
-The following examples illustrate how vertical scaling improves system capacity by upgrading the resources of a single server.
+ตัวอย่างต่อไปนี้แสดงให้เห็นว่า Vertical Scaling ช่วยเพิ่มความสามารถของระบบได้อย่างไรด้วยการอัปเกรดทรัพยากรของเซิร์ฟเวอร์เครื่องเดียว
 
-- Upgrading a MySQL server from 16 GB RAM to 64 GB to handle more queries.
-- Moving a website hosted on a 2-core VM to an 8-core, higher-RAM VM to improve performance.
-- E-commerce platform running on a single large AWS EC2 instance with increased resources (CPU, RAM, disk).
+- อัปเกรด MySQL Server จาก RAM 16 GB เป็น 64 GB เพื่อรองรับ Query ได้มากขึ้น
+- ย้ายเว็บไซต์ที่ทำงานอยู่บน VM แบบ 2 Core ไปยัง VM แบบ 8 Core ที่มี RAM มากขึ้นเพื่อปรับปรุงประสิทธิภาพ
+- แพลตฟอร์ม E-commerce ทำงานบน AWS EC2 Instance ขนาดใหญ่เพียงเครื่องเดียว โดยเพิ่มทรัพยากร เช่น CPU, RAM และ Disk
 
-### **Advantages**
+### **ข้อดี**
 
-Vertical scaling offers several benefits, especially for applications that need quick performance improvements with minimal architectural changes.
+Vertical Scaling มีข้อดีหลายประการ โดยเฉพาะสำหรับแอปพลิเคชันที่ต้องการเพิ่มประสิทธิภาพอย่างรวดเร็วโดยเปลี่ยนแปลงสถาปัตยกรรมให้น้อยที่สุด
 
-- **Increased capacity:** A server's performance and ability to manage incoming requests can both be enhanced by upgrading its hardware.
-- **Easier management:** Upgrading a single node is usually the focus of vertical scaling, which might be simpler than maintaining several nodes.
+- **เพิ่มความสามารถในการรองรับงาน:** สามารถเพิ่มประสิทธิภาพของเซิร์ฟเวอร์และความสามารถในการจัดการ Request ที่เข้ามาได้ด้วยการอัปเกรด Hardware
+- **จัดการได้ง่ายกว่า:** Vertical Scaling มักมุ่งเน้นไปที่การอัปเกรด Node เพียงเครื่องเดียว ซึ่งอาจง่ายกว่าการดูแลหลาย Node
 
-### **Disadvantages**
+### **ข้อเสีย**
 
-Despite its benefits, vertical scaling has certain limitations that can affect system growth and reliability.
+แม้จะมีข้อดี แต่ Vertical Scaling ก็มีข้อจำกัดบางประการที่อาจส่งผลต่อการเติบโตและความน่าเชื่อถือของระบบ
 
-- Vertical scaling is constrained by the hardware's physical limitations. Horizontal scaling also has practical limits such as network overhead, coordination complexity, and consistency constraints.
-- One server still receives all incoming requests thus increasing the possibility of downtime in the event of a server failure.
-- Scaling up often requires restarting or replacing the machine, causing downtime.
+- Vertical Scaling ถูกจำกัดด้วยข้อจำกัดทางกายภาพของ Hardware ส่วน Horizontal Scaling ก็มีข้อจำกัดในทางปฏิบัติเช่นกัน เช่น Network Overhead, ความซับซ้อนในการประสานงาน และข้อจำกัดด้าน Consistency
+- เซิร์ฟเวอร์เพียงเครื่องเดียวยังคงรับ Request ที่เข้ามาทั้งหมด จึงเพิ่มความเป็นไปได้ที่ระบบจะหยุดให้บริการหากเซิร์ฟเวอร์เกิดความล้มเหลว
+- การ Scaling Up มักต้อง Restart หรือเปลี่ยนเครื่อง ซึ่งทำให้เกิด Downtime
 
 ## **Horizontal Scaling**
 
-Horizontal scaling, also known as scaling out, refers to the process of increasing the capacity or performance of a system by adding more machines or servers to distribute the workload across a larger number of individual units.
+Horizontal Scaling หรือที่เรียกว่า Scaling Out คือกระบวนการเพิ่มความสามารถหรือประสิทธิภาพของระบบด้วยการเพิ่มเครื่องหรือเซิร์ฟเวอร์ เพื่อกระจายภาระงานไปยังหลายหน่วยมากขึ้น
 
-- There is no need to change the capacity of the server or replace the server.
-- Adding more servers usually avoids full downtime, but may involve delays due to deployment, warm-up time, or traffic rebalancing.
+- ไม่จำเป็นต้องเปลี่ยนความสามารถของเซิร์ฟเวอร์หรือเปลี่ยนเซิร์ฟเวอร์เดิม
+- การเพิ่มเซิร์ฟเวอร์มักช่วยหลีกเลี่ยง Downtime ทั้งระบบได้ แต่อาจมีความล่าช้าจากการ Deploy, ระยะเวลา Warm-up หรือการกระจาย Traffic ใหม่
 
 https://media.geeksforgeeks.org/wp-content/uploads/20260416102019816617/xyz-660.webp
 
-### **Examples**
+### **ตัวอย่าง**
 
-Horizontal scaling is widely used in real-world systems to handle high traffic and ensure availability.
+Horizontal Scaling ถูกใช้อย่างแพร่หลายในระบบจริงเพื่อรองรับ Traffic ปริมาณมากและทำให้ระบบพร้อมใช้งาน
 
-- A website like GeeksforGeeks adds more web servers behind a load balancer to handle traffic spikes.
-- Netflix scales different microservices independently — e.g., multiple instances of the streaming service across regions.
-- Amazon Auto Scaling spins up more EC2 instances during peak shopping hours (e.g., Black Friday).
-- Akamai or Cloudflare uses servers distributed globally to serve content closer to users.
+- เว็บไซต์อย่าง GeeksforGeeks เพิ่ม Web Server ไว้หลัง Load Balancer เพื่อรองรับ Traffic ที่เพิ่มขึ้นอย่างรวดเร็ว
+- Netflix ขยาย Microservice แต่ละตัวได้อย่างอิสระ เช่น มี Streaming Service หลาย Instance กระจายอยู่ในหลาย Region
+- Amazon Auto Scaling สร้าง EC2 Instance เพิ่มขึ้นในช่วงเวลาที่มีการซื้อสินค้าสูงสุด เช่น Black Friday
+- Akamai หรือ Cloudflare ใช้เซิร์ฟเวอร์ที่กระจายอยู่ทั่วโลกเพื่อให้บริการ Content ใกล้กับผู้ใช้มากขึ้น
 
-### **Advantages**
+### **ข้อดี**
 
-Horizontal scaling improves system capacity and reliability by distributing workload across multiple machines.
+Horizontal Scaling ช่วยเพิ่มความสามารถและความน่าเชื่อถือของระบบด้วยการกระจายภาระงานไปยังหลายเครื่อง
 
-- **Increased capacity:** More nodes or instances can handle a larger number of incoming requests.
-- **Improved performance:** By distributing the load over several nodes or instances, it is less likely that any one server will get overloaded.
-- **Increased fault tolerance:** Incoming requests can be sent to another node in the event of a node failure, lowering the possibility of downtime.
+- **เพิ่มความสามารถในการรองรับงาน:** Node หรือ Instance ที่เพิ่มขึ้นสามารถรองรับ Request ที่เข้ามาได้มากขึ้น
+- **เพิ่มประสิทธิภาพ:** เมื่อกระจายภาระงานไปยังหลาย Node หรือ Instance โอกาสที่เซิร์ฟเวอร์เครื่องใดเครื่องหนึ่งจะรับภาระมากเกินไปก็ลดลง
+- **เพิ่ม Fault Tolerance:** หาก Node หนึ่งเกิดความล้มเหลว Request ที่เข้ามาสามารถถูกส่งไปยัง Node อื่นได้ ทำให้โอกาสเกิด Downtime ลดลง
 
-### **Disadvantages**
+### **ข้อเสีย**
 
-Despite its benefits, horizontal scaling introduces complexity in system design and management.
+แม้จะมีข้อดี แต่ Horizontal Scaling ทำให้การออกแบบและการจัดการระบบมีความซับซ้อนมากขึ้น
 
-- Requires complex architecture (load balancers, distributed databases, etc.).
-- Difficult to maintain strong consistency across distributed nodes. Requires synchronization, messaging, or replication between nodes.
-- More machines = more networking, power, and maintenance.
-- Needs orchestration tools (e.g., Kubernetes, Ansible) to manage many servers.
+- ต้องใช้สถาปัตยกรรมที่ซับซ้อน เช่น Load Balancer, Distributed Database เป็นต้น
+- รักษา Strong Consistency ระหว่าง Distributed Node ได้ยาก และต้องอาศัย Synchronization, Messaging หรือ Replication ระหว่าง Node
+- จำนวนเครื่องที่มากขึ้นหมายถึงการใช้ Network, พลังงาน และการบำรุงรักษาที่มากขึ้น
+- ต้องใช้เครื่องมือ Orchestration เช่น Kubernetes หรือ Ansible เพื่อจัดการเซิร์ฟเวอร์จำนวนมาก
 
-## **Differences between Horizontal and Vertical Scaling**
+## **ความแตกต่างระหว่าง Horizontal Scaling และ Vertical Scaling**
 
-This section highlights the key differences between scaling by adding more machines versus upgrading a single machine.
+ส่วนนี้แสดงความแตกต่างสำคัญระหว่างการขยายระบบด้วยการเพิ่มจำนวนเครื่อง กับการอัปเกรดเครื่องเพียงเครื่องเดียว
 
 https://media.geeksforgeeks.org/wp-content/uploads/20260416101913318503/21-660.webp
 
-We have understood the meaning of both the major categories of scaling an application. We also have discussed some pros and cons of each one of them. do a quick comparison of these two approaches based on these pros and cons.
+เราได้เข้าใจความหมายของการขยายแอปพลิเคชันทั้งสองประเภทหลักแล้ว และยังได้กล่าวถึงข้อดีและข้อเสียของแต่ละวิธีด้วย ต่อไปเป็นการเปรียบเทียบทั้งสองแนวทางอย่างรวดเร็วจากข้อดีและข้อเสียเหล่านี้
 
 | **Horizontal Scaling** | **Vertical Scaling** |
 | --- | --- |
-| Adds more machines or servers to distribute the workload. | Increases CPU, RAM, or storage of a single machine. |
-| More cost-effective for large-scale systems. | Simpler initially but can become expensive over time. |
-| Highly flexible because new servers can be added easily. | Limited flexibility due to hardware limits. |
-| Better fault tolerance since workload is spread across multiple machines. | Lower fault tolerance because it depends on one machine. |
-| Improves performance by distributing traffic across servers. | Performance improves only up to hardware capacity. |
-| Less risk of single point of failure. | Higher risk of single point of failure. |
-| More complex to manage because it involves distributed systems. | Easier to manage since it uses a single machine. |
-| Suitable for applications requiring massive scalability. | Suitable for applications with moderate scalability needs. |
-| Requires load balancing to distribute traffic across servers. | Load balancing is usually not required. |
-| Relies on network communication between multiple machines. | Mostly uses communication within a single machine. |
+| เพิ่มจำนวนเครื่องหรือเซิร์ฟเวอร์เพื่อกระจายภาระงาน | เพิ่ม CPU, RAM หรือ Storage ของเครื่องเพียงเครื่องเดียว |
+| คุ้มค่ากว่าสำหรับระบบขนาดใหญ่ | เริ่มต้นได้ง่ายกว่า แต่อาจมีค่าใช้จ่ายสูงขึ้นเมื่อเวลาผ่านไป |
+| มีความยืดหยุ่นสูง เพราะสามารถเพิ่มเซิร์ฟเวอร์ใหม่ได้ง่าย | มีความยืดหยุ่นจำกัดเนื่องจากข้อจำกัดของ Hardware |
+| มี Fault Tolerance ที่ดีกว่า เพราะภาระงานถูกกระจายไปยังหลายเครื่อง | มี Fault Tolerance ต่ำกว่า เพราะพึ่งพาเครื่องเพียงเครื่องเดียว |
+| เพิ่มประสิทธิภาพด้วยการกระจาย Traffic ไปยังหลายเซิร์ฟเวอร์ | ประสิทธิภาพเพิ่มขึ้นได้จนถึงขีดจำกัดของ Hardware เท่านั้น |
+| มีความเสี่ยงต่อ Single Point of Failure น้อยกว่า | มีความเสี่ยงต่อ Single Point of Failure สูงกว่า |
+| จัดการได้ซับซ้อนกว่า เพราะเกี่ยวข้องกับ Distributed System | จัดการได้ง่ายกว่า เพราะใช้เครื่องเพียงเครื่องเดียว |
+| เหมาะสำหรับแอปพลิเคชันที่ต้องการรองรับการขยายตัวในระดับสูงมาก | เหมาะสำหรับแอปพลิเคชันที่ต้องการรองรับการขยายตัวในระดับปานกลาง |
+| ต้องใช้ Load Balancing เพื่อกระจาย Traffic ไปยังหลายเซิร์ฟเวอร์ | โดยทั่วไปไม่จำเป็นต้องใช้ Load Balancing |
+| พึ่งพาการสื่อสารผ่าน Network ระหว่างหลายเครื่อง | ส่วนใหญ่ใช้การสื่อสารภายในเครื่องเดียว |
 
-## **Choosing Between Horizontal and Vertical Scaling**
+## **การเลือกระหว่าง Horizontal Scaling และ Vertical Scaling**
 
-There will be always some trade-offs so it may be a little bit trickier for developers to decide which one is better for an application.
+แต่ละแนวทางย่อมมี Trade-off อยู่เสมอ ดังนั้นการตัดสินใจว่าแนวทางใดเหมาะกับแอปพลิเคชันมากกว่าจึงอาจเป็นเรื่องที่ซับซ้อนสำหรับนักพัฒนา
 
-- Firstly, you should identify your requirements, business goals, and areas where we would like to add value.
-- Then make important design decisions by questioning ourselves, developing prototypes, and refining the design.
-- Most of the time in big organizations engineers take some good qualities of vertical scaling and some good qualities of horizontal scaling.
-- They follow a hybrid approach of combining the speed and consistency of vertical scaling, with the resilience and infinite scalability of horizontal scaling.
+- ขั้นแรก ควรระบุ Requirements, เป้าหมายทางธุรกิจ และส่วนที่เราต้องการสร้างคุณค่าเพิ่ม
+- จากนั้นตัดสินใจด้านการออกแบบที่สำคัญด้วยการตั้งคำถามกับตัวเอง พัฒนา Prototype และปรับปรุงการออกแบบ
+- โดยส่วนใหญ่ ในองค์กรขนาดใหญ่ วิศวกรมักเลือกใช้ข้อดีบางส่วนของ Vertical Scaling และข้อดีบางส่วนของ Horizontal Scaling ร่วมกัน
+- พวกเขาใช้แนวทางแบบ Hybrid โดยผสานความเร็วและ Consistency ของ Vertical Scaling เข้ากับ Resilience และความสามารถในการขยายระบบอย่างไม่จำกัดของ Horizontal Scaling
