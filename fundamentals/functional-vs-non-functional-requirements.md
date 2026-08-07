@@ -1,150 +1,150 @@
-# **Functional and Non Functional Requirements**
+# **Functional Requirements และ Non-Functional Requirements**
 
-Requirements analysis is a crucial phase in software development where the needs and expectations of users and stakeholders are identified and documented. It ensures the system is built correctly and meets its intended goals.
+การวิเคราะห์ Requirements เป็นขั้นตอนสำคัญในการพัฒนาซอฟต์แวร์ ซึ่งใช้สำหรับระบุและบันทึกความต้องการและความคาดหวังของผู้ใช้และ Stakeholder เพื่อให้มั่นใจว่าระบบถูกสร้างขึ้นอย่างถูกต้องและตอบโจทย์เป้าหมายที่กำหนดไว้
 
-- Functional Requirements: Define what the system should do (features and operations).
-- Non-Functional Requirements: Define how the system should perform (quality, performance, and constraints).
+- Functional Requirements: กำหนดว่าระบบควรทำอะไรได้บ้าง (ฟีเจอร์และการทำงาน)
+- Non-Functional Requirements: กำหนดว่าระบบควรทำงานอย่างไร (คุณภาพ ประสิทธิภาพ และข้อจำกัด)
 
-> **Example:** In an online shopping system, functional requirements include features like user login and order placement, while non-functional requirements include system performance, security, and scalability.
+> **ตัวอย่าง:** ในระบบซื้อสินค้าออนไลน์ Functional Requirements จะประกอบด้วยฟีเจอร์ต่างๆ เช่น การเข้าสู่ระบบของผู้ใช้และการสั่งซื้อสินค้า ส่วน Non-Functional Requirements จะประกอบด้วยประสิทธิภาพของระบบ ความปลอดภัย และความสามารถในการรองรับการขยายตัว
 
 <img src="https://media.geeksforgeeks.org/wp-content/uploads/20250822132836297050/requirements-660.webp" alt="requirements" />
 
 ## **Functional Requirements**
 
-Functional requirements define the specific features and operations a system must perform to meet business and user needs. They describe what the system should do and how it interacts with users or other systems.
+Functional Requirements กำหนดฟีเจอร์และการทำงานเฉพาะที่ระบบต้องรองรับเพื่อให้ตอบโจทย์ความต้องการทางธุรกิจและผู้ใช้ โดยอธิบายว่าระบบควรทำอะไร และระบบมีปฏิสัมพันธ์กับผู้ใช้หรือระบบอื่นอย่างไร
 
-- Focus on the behavior and functionality of the system.
-- Represent features that can be directly observed and tested in the final product.
-- Examples include user authentication, data processing, search functionality, payment processing, and report generation.
+- มุ่งเน้นพฤติกรรมและฟังก์ชันการทำงานของระบบ
+- แสดงถึงฟีเจอร์ที่สามารถสังเกตและทดสอบได้โดยตรงในผลิตภัณฑ์ขั้นสุดท้าย
+- ตัวอย่าง ได้แก่ การยืนยันตัวตนของผู้ใช้ การประมวลผลข้อมูล ฟังก์ชันการค้นหา การประมวลผลการชำระเงิน และการสร้างรายงาน
 
-**Sample Questions**
+**ตัวอย่างคำถาม**
 
-- What features should the system include?
-- What edge cases or special scenarios should the system handle?
+- ระบบควรมีฟีเจอร์อะไรบ้าง?
+- ระบบควรรองรับ Edge Case หรือสถานการณ์พิเศษใดบ้าง?
 
 ## **Non-Functional Requirements**
 
-Non-functional requirements (NFRs) define how a system should operate, focusing on performance, reliability, and user experience rather than specific features. They ensure the system is efficient, secure, and maintainable over time.
+Non-Functional Requirements (NFRs) กำหนดว่าระบบควรทำงานอย่างไร โดยมุ่งเน้นด้านประสิทธิภาพ ความน่าเชื่อถือ และประสบการณ์ของผู้ใช้ มากกว่าฟีเจอร์เฉพาะเจาะจง ข้อกำหนดเหล่านี้ช่วยให้ระบบมีประสิทธิภาพ ปลอดภัย และดูแลรักษาได้ในระยะยาว
 
-- **Performance:** speed and responsiveness
-- **Security:** protection against unauthorized access
-- **Usability:** ease of use
-- **Reliability:** system stability and availability
-- **Scalability:** ability to handle growth
-- **Maintainability:** ease of updates and fixes
-- **Portability:** ability to run in different environments
+- **Performance:** ความเร็วและการตอบสนอง
+- **Security:** การป้องกันการเข้าถึงโดยไม่ได้รับอนุญาต
+- **Usability:** ความง่ายในการใช้งาน
+- **Reliability:** ความเสถียรและความพร้อมใช้งานของระบบ
+- **Scalability:** ความสามารถในการรองรับการเติบโต
+- **Maintainability:** ความง่ายในการอัปเดตและแก้ไขระบบ
+- **Portability:** ความสามารถในการทำงานในสภาพแวดล้อมที่แตกต่างกัน
 
-**Sample Questions**
+**ตัวอย่างคำถาม**
 
-- How fast should the system respond to user actions?
-- How secure should it be against unauthorized access?
-- How available and reliable should the system be?
+- ระบบควรตอบสนองต่อการกระทำของผู้ใช้ได้เร็วเพียงใด?
+- ระบบควรมีความปลอดภัยจากการเข้าถึงโดยไม่ได้รับอนุญาตมากเพียงใด?
+- ระบบควรมีความพร้อมใช้งานและความน่าเชื่อถือในระดับใด?
 
 ## **Extended Requirements**
 
-Extended requirements define additional capabilities or considerations that enhance the system but are not part of the core functional features. These requirements help improve monitoring, reliability, and future expansion of the system.
+Extended Requirements กำหนดความสามารถหรือข้อพิจารณาเพิ่มเติมที่ช่วยเสริมระบบ แต่ไม่ได้เป็นส่วนหนึ่งของฟีเจอร์หลัก ข้อกำหนดเหล่านี้ช่วยปรับปรุงการ Monitoring ความน่าเชื่อถือ และการขยายระบบในอนาคต
 
-- **Logging:** recording system activities and errors for debugging and analysis
-- **Monitoring & Alerting:** tracking system health, performance, and failures
-- **Analytics:** collecting usage data to understand user behavior and system performance
-- **Backup & Disaster Recovery:** ensuring data can be restored in case of failures
-- **Rate Limiting:** controlling the number of requests to prevent system overload or abuse
-- **Feature Flags / A-B Testing:** enabling controlled feature releases and experiments
+- **Logging:** บันทึกกิจกรรมและข้อผิดพลาดของระบบเพื่อใช้ในการ Debug และวิเคราะห์
+- **Monitoring & Alerting:** ติดตามสถานะ ประสิทธิภาพ และความล้มเหลวของระบบ
+- **Analytics:** เก็บข้อมูลการใช้งานเพื่อทำความเข้าใจพฤติกรรมของผู้ใช้และประสิทธิภาพของระบบ
+- **Backup & Disaster Recovery:** ทำให้มั่นใจว่าสามารถกู้คืนข้อมูลได้เมื่อเกิดความล้มเหลว
+- **Rate Limiting:** ควบคุมจำนวน Request เพื่อป้องกันระบบทำงานเกินกำลังหรือถูกใช้งานในทางที่ผิด
+- **Feature Flags / A-B Testing:** เปิดใช้งานการปล่อยฟีเจอร์และการทดลองแบบควบคุม
 
-**Sample Questions**
+**ตัวอย่างคำถาม**
 
-- How will the system be monitored and alerted if failures occur?
-- How will logs and analytics be collected for debugging and insights?
-- How will the system recover from failures or data loss?
+- ระบบจะถูก Monitor และแจ้งเตือนอย่างไรเมื่อเกิดความล้มเหลว?
+- จะเก็บ Log และ Analytics อย่างไรเพื่อใช้ในการ Debug และวิเคราะห์ข้อมูลเชิงลึก?
+- ระบบจะกู้คืนจากความล้มเหลวหรือการสูญหายของข้อมูลอย่างไร?
 
-## **Examples of Functional and Non-functional Requirements**
+## **ตัวอย่าง Functional Requirements และ Non-Functional Requirements**
 
-A couple of examples to illustrate both types of requirements:
+ต่อไปคือตัวอย่างบางส่วนเพื่ออธิบาย Requirements ทั้งสองประเภท:
 
-### **1. Online Banking System**
-
-**Functional Requirements:**
-
-- Users should be able to log in with their username and password.
-- Users should be able to check their account balance.
-- Users should receive notifications after making a transaction.
-
-**Non-functional Requirements:**
-
-- The system should respond to user actions in less than 2 seconds.
-- All transactions must be encrypted and comply with industry security standards.
-- The system should be able to handle 100 million users with minimal downtime.
-
-**Extended Requirements:**
-
-- The system should log all transactions for auditing and fraud detection.
-- The system should have automatic backups and disaster recovery mechanisms.
-- The system should include monitoring and alerts to detect unusual activities.
-
-### **2. Food Delivery App**
+### **1. ระบบธนาคารออนไลน์**
 
 **Functional Requirements:**
 
-- Users can browse the menu and place an order.
-- Users can make payments and track their orders in real time.
+- ผู้ใช้ควรสามารถเข้าสู่ระบบด้วย Username และ Password ได้
+- ผู้ใช้ควรสามารถตรวจสอบยอดเงินในบัญชีได้
+- ผู้ใช้ควรได้รับการแจ้งเตือนหลังจากทำธุรกรรม
 
 **Non-functional Requirements:**
 
-- The app should load the restaurant menu in under 1 second.
-- The system should support up to 50,000 concurrent orders during peak hours.
-- The app should be easy to use for first-time users, with an intuitive interface.
+- ระบบควรตอบสนองต่อการกระทำของผู้ใช้ภายในเวลาไม่เกิน 2 วินาที
+- ธุรกรรมทั้งหมดต้องถูกเข้ารหัสและเป็นไปตามมาตรฐานความปลอดภัยของอุตสาหกรรม
+- ระบบควรรองรับผู้ใช้ 100 ล้านคนโดยมี Downtime น้อยที่สุด
 
 **Extended Requirements:**
 
-- The system should collect analytics on popular dishes and order trends.
-- The system should include monitoring and logging to track errors and performance.
-- The system should support A/B testing for new features like promotions or UI changes.
+- ระบบควรบันทึกธุรกรรมทั้งหมดเพื่อใช้ในการ Audit และตรวจจับการฉ้อโกง
+- ระบบควรมีระบบ Backup อัตโนมัติและกลไก Disaster Recovery
+- ระบบควรมี Monitoring และ Alert เพื่อใช้ตรวจจับกิจกรรมที่ผิดปกติ
 
-## **Differences between Functional Requirements and Non-Functional Requirements**
+### **2. แอปส่งอาหาร**
+
+**Functional Requirements:**
+
+- ผู้ใช้สามารถดูเมนูและสั่งอาหารได้
+- ผู้ใช้สามารถชำระเงินและติดตามคำสั่งซื้อแบบ Real-time ได้
+
+**Non-functional Requirements:**
+
+- แอปควรโหลดเมนูของร้านอาหารภายในเวลาไม่เกิน 1 วินาที
+- ระบบควรรองรับคำสั่งซื้อพร้อมกันได้สูงสุด 50,000 รายการในช่วงเวลาที่มีการใช้งานสูงสุด
+- แอปควรใช้งานง่ายสำหรับผู้ใช้ครั้งแรก โดยมี Interface ที่เข้าใจได้ง่าย
+
+**Extended Requirements:**
+
+- ระบบควรเก็บ Analytics เกี่ยวกับเมนูยอดนิยมและแนวโน้มการสั่งซื้อ
+- ระบบควรมี Monitoring และ Logging เพื่อติดตามข้อผิดพลาดและประสิทธิภาพ
+- ระบบควรรองรับ A/B Testing สำหรับฟีเจอร์ใหม่ เช่น โปรโมชันหรือการเปลี่ยนแปลง UI
+
+## **ความแตกต่างระหว่าง Functional Requirements และ Non-Functional Requirements**
 
 | **Functional Requirements** | **Non-Functional Requirements** |
 | --- | --- |
-| Define what the system should do (features & functionality) | Define how the system should perform (quality attributes) |
-| Focus on system behavior and operations | Focus on performance, usability, security, reliability |
-| Describe specific actions like login, data processing, transactions | Describe constraints like response time, scalability, availability |
-| Directly visible to users and business needs | Indirectly visible, improve overall user experience |
-| Easier to measure (output-based validation) | Harder to measure, uses metrics like SLAs, benchmarks |
-| Drive the core functionality of the system | Influence architecture and system design decisions |
-| Documented using use cases, user stories | Documented using technical specs, performance criteria |
-| **Examples:** login authentication, data input/output, transaction processing. | **Examples:** scalability, security, response time, reliability, maintainability. |
+| กำหนดว่าระบบควรทำอะไร (ฟีเจอร์และฟังก์ชันการทำงาน) | กำหนดว่าระบบควรทำงานอย่างไร (คุณลักษณะด้านคุณภาพ) |
+| มุ่งเน้นพฤติกรรมและการทำงานของระบบ | มุ่งเน้นประสิทธิภาพ การใช้งาน ความปลอดภัย และความน่าเชื่อถือ |
+| อธิบายการทำงานเฉพาะ เช่น การเข้าสู่ระบบ การประมวลผลข้อมูล และการทำธุรกรรม | อธิบายข้อจำกัด เช่น Response Time, Scalability และ Availability |
+| ผู้ใช้สามารถเห็นได้โดยตรงและเกี่ยวข้องกับความต้องการทางธุรกิจ | ผู้ใช้เห็นได้ทางอ้อม และช่วยปรับปรุงประสบการณ์การใช้งานโดยรวม |
+| วัดผลได้ง่ายกว่า โดยตรวจสอบจากผลลัพธ์ | วัดผลได้ยากกว่า โดยใช้ Metric เช่น SLA และ Benchmark |
+| เป็นตัวขับเคลื่อนฟังก์ชันหลักของระบบ | มีอิทธิพลต่อการตัดสินใจด้านสถาปัตยกรรมและการออกแบบระบบ |
+| บันทึกในรูปแบบ Use Case และ User Story | บันทึกในรูปแบบ Technical Specification และเกณฑ์ด้านประสิทธิภาพ |
+| **ตัวอย่าง:** การยืนยันตัวตนสำหรับเข้าสู่ระบบ การรับ/ส่งข้อมูล และการประมวลผลธุรกรรม | **ตัวอย่าง:** Scalability, Security, Response Time, Reliability และ Maintainability |
 
-## **Common Challenges in Defining these Requirements**
+## **ความท้าทายที่พบบ่อยในการกำหนด Requirements เหล่านี้**
 
-Defining system requirements can be challenging because they must balance functionality, performance, and long-term system goals. Poorly defined requirements can lead to design issues, delays, or systems that fail to meet user expectations.
+การกำหนด Requirements ของระบบอาจมีความท้าทาย เพราะต้องสร้างสมดุลระหว่างฟังก์ชันการทำงาน ประสิทธิภาพ และเป้าหมายระยะยาวของระบบ Requirements ที่กำหนดไว้ไม่ชัดเจนอาจนำไปสู่ปัญหาด้านการออกแบบ ความล่าช้า หรือระบบที่ไม่สามารถตอบสนองความคาดหวังของผู้ใช้ได้
 
-- **Ambiguity in Requirements:** Vague or incomplete requirements make it difficult to clearly define what the system should do and how it should perform.
-- **Changing Requirements:** Business goals, market conditions, or user expectations may change over time, requiring updates to the system design.
-- **Difficulty in Prioritization:** Functional requirements often receive more attention, while important aspects like scalability, security, or monitoring may be overlooked.
-- **Measuring Non-Functional Requirements:** Features are easier to test, but qualities like usability, scalability, and reliability are harder to measure and validate.
-- **Overlapping or Conflicting Requirements:** Some requirements may conflict with others, such as strong security measures potentially affecting system performance.
+- **Requirements ไม่ชัดเจน:** Requirements ที่คลุมเครือหรือไม่ครบถ้วนทำให้ยากต่อการระบุอย่างชัดเจนว่าระบบควรทำอะไรและควรทำงานอย่างไร
+- **Requirements เปลี่ยนแปลง:** เป้าหมายทางธุรกิจ สภาวะตลาด หรือความคาดหวังของผู้ใช้อาจเปลี่ยนแปลงไปตามเวลา ทำให้ต้องปรับปรุงการออกแบบระบบ
+- **ความยากในการจัดลำดับความสำคัญ:** Functional Requirements มักได้รับความสนใจมากกว่า ขณะที่ประเด็นสำคัญอย่าง Scalability, Security หรือ Monitoring อาจถูกมองข้าม
+- **การวัดผล Non-Functional Requirements:** ฟีเจอร์ต่างๆ ทดสอบได้ง่ายกว่า แต่คุณสมบัติอย่าง Usability, Scalability และ Reliability วัดผลและตรวจสอบได้ยากกว่า
+- **Requirements ที่ทับซ้อนหรือขัดแย้งกัน:** Requirements บางอย่างอาจขัดแย้งกัน เช่น มาตรการรักษาความปลอดภัยที่เข้มงวดอาจส่งผลกระทบต่อประสิทธิภาพของระบบ
 
-## **Gathering Functional, Non-functional and Extended Requirements**
+## **การรวบรวม Functional, Non-functional และ Extended Requirements**
 
-Gathering requirements involves multiple approaches and collaboration between the development team, stakeholders, and end-users.
+การรวบรวม Requirements ต้องอาศัยหลายแนวทาง รวมถึงความร่วมมือระหว่างทีมพัฒนา Stakeholder และผู้ใช้งานปลายทาง
 
 ### **1. Functional Requirements**
 
-- **Interviews:** Talk to stakeholders or users to understand their needs.
-- **Surveys:** Distribute questionnaires to gather input from a larger audience.
-- **Workshops:** Host sessions to brainstorm features and gather feedback.
+- **Interviews:** พูดคุยกับ Stakeholder หรือผู้ใช้เพื่อทำความเข้าใจความต้องการของพวกเขา
+- **Surveys:** แจกแบบสอบถามเพื่อรวบรวมความคิดเห็นจากกลุ่มผู้ใช้ที่ใหญ่ขึ้น
+- **Workshops:** จัด Session เพื่อระดมความคิดเกี่ยวกับฟีเจอร์และรวบรวม Feedback
 
 ### **2. Non-functional Requirements**
 
-- **Performance Benchmarks:** Consult with IT teams to set expectations for performance and load.
-- **Security Standards:** Consult with security experts to define the best practices for data protection.
-- **Usability Testing:** Test the system to find areas where users might struggle and refine the interface.
+- **Performance Benchmarks:** ปรึกษาทีม IT เพื่อกำหนดความคาดหวังด้านประสิทธิภาพและ Load
+- **Security Standards:** ปรึกษาผู้เชี่ยวชาญด้าน Security เพื่อกำหนดแนวทางปฏิบัติที่เหมาะสมที่สุดสำหรับการปกป้องข้อมูล
+- **Usability Testing:** ทดสอบระบบเพื่อค้นหาจุดที่ผู้ใช้อาจพบปัญหา และปรับปรุง Interface ให้เหมาะสม
 
 ### **3. Extended Requirements**
 
-Extended requirements are gathered to improve system monitoring, reliability, and future enhancements beyond the core functionality.
+Extended Requirements ถูกรวบรวมเพื่อปรับปรุงการ Monitoring ความน่าเชื่อถือ และการต่อยอดระบบในอนาคตนอกเหนือจากฟังก์ชันหลัก
 
-- **Monitoring & Logging:** Consult DevOps teams to determine how system logs, metrics, and alerts will be collected and analyzed.
-- **Analytics & Reporting:** Work with product teams to decide what user behavior or system data should be tracked for insights.
-- **Backup & Disaster Recovery:** Discuss with infrastructure teams to define backup strategies and recovery procedures.
-- **Rate Limiting & System Protection:** Identify limits on API requests and traffic control to prevent abuse or overload.
-- **Feature Flags & Experiments:** Coordinate with product teams to plan controlled feature releases and A/B testing.
+- **Monitoring & Logging:** ปรึกษาทีม DevOps เพื่อกำหนดว่าจะรวบรวมและวิเคราะห์ Log, Metric และ Alert ของระบบอย่างไร
+- **Analytics & Reporting:** ทำงานร่วมกับทีม Product เพื่อกำหนดว่าควรติดตามพฤติกรรมของผู้ใช้หรือข้อมูลใดของระบบเพื่อใช้วิเคราะห์ข้อมูลเชิงลึก
+- **Backup & Disaster Recovery:** หารือกับทีม Infrastructure เพื่อกำหนดกลยุทธ์ Backup และขั้นตอนการ Recovery
+- **Rate Limiting & System Protection:** กำหนดข้อจำกัดของ API Request และการควบคุม Traffic เพื่อป้องกันการใช้งานในทางที่ผิดหรือระบบทำงานเกินกำลัง
+- **Feature Flags & Experiments:** ประสานงานกับทีม Product เพื่อวางแผนการปล่อยฟีเจอร์แบบควบคุมและการทำ A/B Testing
