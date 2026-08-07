@@ -10,224 +10,68 @@
 - **ความเข้าใจด้านสถาปัตยกรรม:** การเรียนรู้สถาปัตยกรรมระบบรูปแบบต่างๆ เช่น Microservices และ Monolithic ช่วยให้สามารถสร้างแอปพลิเคชันที่เหมาะสมกับความต้องการแต่ละประเภทได้
 - **การเตรียมตัวสัมภาษณ์:** การเชี่ยวชาญด้านการออกแบบระบบเป็นสิ่งสำคัญต่อการทำผลงานให้ดีในการสัมภาษณ์ด้าน System Design ซึ่งมักใช้ในกระบวนการรับสมัครงานของบริษัทเทคโนโลยี
 
-# **พื้นฐาน**
-
-แนวคิดหลักสำหรับเริ่มต้นเรียนรู้การออกแบบระบบ
-
-- **บทนำเกี่ยวกับการออกแบบระบบ - HLD และ LLD**
-- **ความต้องการเชิงฟังก์ชันและความต้องการที่ไม่ใช่เชิงฟังก์ชัน**
-
-# **การออกแบบระดับสูง**
-
-มุ่งเน้นที่สถาปัตยกรรมระบบ ส่วนประกอบ และการทำงานร่วมกันระหว่างส่วนประกอบต่างๆ
-
-- **บทนำเกี่ยวกับการออกแบบระดับสูง**
-- **แผนภาพการออกแบบระดับสูง**
-
-### **รูปแบบสถาปัตยกรรมระบบ**
-
-รูปแบบสถาปัตยกรรมทั่วไปที่ใช้ในการออกแบบระบบ
-
-- **สถาปัตยกรรมแบบ Monolithic**
-- **Microservices**
-- **การเปรียบเทียบสถาปัตยกรรมแบบ Monolithic กับ Microservices**
-- **สถาปัตยกรรมแบบขับเคลื่อนด้วยเหตุการณ์**
-- **สถาปัตยกรรมแบบขับเคลื่อนด้วยเหตุการณ์ในระบบอีคอมเมิร์ซ**
-- **สถาปัตยกรรมแบบ Serverless**
-- **ระบบแบบ Stateless และ Stateful**
-- **การเปรียบเทียบสถาปัตยกรรมแบบ Stateful กับ Stateless**
-- **สถาปัตยกรรมแบบ Publish/Subscribe**
-
-### **ความสามารถในการขยายระบบ**
-
-แนวคิดและกลยุทธ์สำหรับการขยายแอปพลิเคชัน
-
-- **ความสามารถในการขยายระบบในการออกแบบระบบ**
-- **การขยายระบบในแนวนอนและแนวตั้ง**
-- **การเลือกแนวทางการขยายระบบที่เหมาะสม**
-- **การออกแบบระบบที่รองรับการขยายตัวในระดับสูง**
-- **คอขวดหลักด้านการขยายระบบในการออกแบบระบบ**
-
-### **ฐานข้อมูลในการออกแบบระบบ**
-
-ฐานข้อมูล ระบบจัดเก็บข้อมูล และวิธีการนำมาใช้ในการออกแบบระบบ
-
-- **การออกแบบฐานข้อมูล**
-- **ประเภทของฐานข้อมูล**
-- **การเลือกฐานข้อมูล - SQL หรือ NoSQL**
-- **ระบบจัดเก็บข้อมูลแบบไฟล์และฐานข้อมูล**
-- **การทำสำเนาฐานข้อมูลในการออกแบบระบบ**
-- **ประเภทของการทำสำเนาฐานข้อมูล**
-- **การแบ่งฐานข้อมูลแบบ Sharding**
-- **การแบ่งพาร์ทิชันข้อมูล**
-- **การจัดเก็บข้อมูลแบบ Block, Object และ File**
-- **กระบวนการปรับฐานข้อมูลให้อยู่ในรูปแบบมาตรฐานใน DBMS**
-- **การเพิ่มประสิทธิภาพคำสั่ง SQL**
-- **การลดระดับการทำ Normalization ในฐานข้อมูล**
-- **บทนำเกี่ยวกับ Redis**
-
-### **ความสอดคล้อง ความพร้อมใช้งาน ความน่าเชื่อถือ และความสามารถในการบำรุงรักษา**
-
-คุณสมบัติหลักของระบบที่ส่งผลต่อประสบการณ์ของผู้ใช้และสถานะโดยรวมของระบบ
-
-- **ความพร้อมใช้งานในการออกแบบระบบ**
-- **การทำให้ระบบมีความพร้อมใช้งานสูง**
-- **ความสอดคล้องของข้อมูลในการออกแบบระบบ**
-- **รูปแบบความสอดคล้องของข้อมูล**
-- **ทฤษฎีบท CAP**
-- **ความน่าเชื่อถือในการออกแบบระบบ**
-- **ความทนทานต่อความผิดพลาดในการออกแบบระบบ**
-- **ความสามารถในการบำรุงรักษา**
-
-### **การกระจายภาระงาน**
-
-เทคนิคการกระจายทราฟฟิกในการออกแบบระบบ
-
-- **ตัวกระจายภาระงาน**
-- **ประเภทของตัวกระจายภาระงาน**
-- **อัลกอริทึมการกระจายภาระงาน**
-- **การทำงานพร้อมกันและการประมวลผลแบบขนาน**
-- **การเปรียบเทียบการกระจายภาระงานแบบ Stateless กับ Stateful**
-- **การเปรียบเทียบการกระจายภาระงานกับการสลับไปใช้ระบบสำรอง**
-- **Consistent Hashing**
-
-### **เวลาแฝง ปริมาณงาน และการแคช**
-
-ตัวชี้วัดสำหรับการเพิ่มประสิทธิภาพและกลยุทธ์การแคช
-
-- **เวลาแฝงและปริมาณงาน**
-- **การแคชในการออกแบบระบบ**
-- **แคชแบบกระจาย**
-- **การออกแบบแคชแบบกระจาย**
-- **การแคชที่ Edge**
-- **การเปรียบเทียบ CDN กับ Edge Server**
-- **นโยบายการนำข้อมูลออกจากแคช**
-- **แคชแบบ Cold และ Warm ในการออกแบบระบบ**
-
-### **API Gateway, คิวข้อความ และการจำกัดอัตราการใช้งาน**
-
-มุ่งเน้นการควบคุมการสื่อสาร การจัดคิวข้อความ และการจำกัดทราฟฟิกในระบบที่รองรับการขยายตัว
-
-- **API Gateway**
-- **คิวข้อความ**
-- **การจำกัดอัตราการใช้งาน**
-- **อัลกอริทึมการจำกัดอัตราการใช้งาน**
-
-### **โปรโตคอล CDN พร็อกซี และ WebSocket**
-
-พื้นฐานด้านเครือข่าย การแคช และการสื่อสารแบบเรียลไทม์
-
-- **โปรโตคอลการสื่อสาร**
-- **ระบบชื่อโดเมน**
-- **การแคช DNS**
-- **การล้างหรือรีเซ็ตแคช DNS**
-- **ระยะเวลาที่ข้อมูลมีผลใช้งาน (TTL)**
-- **เครือข่ายนำส่งเนื้อหา (CDN)**
-- **พร็อกซีในการออกแบบระบบ**
-- **การเปรียบเทียบ Forward Proxy กับ Reverse Proxy**
-- **เว็บเซิร์ฟเวอร์และแอปพลิเคชันเซิร์ฟเวอร์**
-- **Long Polling และ Short Polling**
-- **WebSocket**
-
-### **สถาปัตยกรรมแบบขับเคลื่อนด้วยเหตุการณ์**
-
-อธิบายแนวคิด รูปแบบ และการเปรียบเทียบเกี่ยวกับสถาปัตยกรรมแบบขับเคลื่อนด้วยเหตุการณ์ ซึ่งมักถูกพูดถึงในการสัมภาษณ์ด้านการออกแบบระบบ
-
-- **บทนำ**
-- **รูปแบบ Event Sourcing**
-- **การเปรียบเทียบ Event Sourcing กับ Event Streaming**
-- **API แบบขับเคลื่อนด้วยเหตุการณ์ในสถาปัตยกรรม Microservices**
-- **การจัดการข้อผิดพลาดในสถาปัตยกรรมแบบขับเคลื่อนด้วยเหตุการณ์**
-- **การกู้คืนสถานะเมื่อเกิดความล้มเหลวในสถาปัตยกรรม Microservices แบบขับเคลื่อนด้วยเหตุการณ์และข้อความ**
-- **รูปแบบสถาปัตยกรรมแบบขับเคลื่อนด้วยเหตุการณ์ในแอปพลิเคชัน Cloud Native**
-- **การเปรียบเทียบ Microservices แบบขับเคลื่อนด้วยคำขอกับแบบขับเคลื่อนด้วยเหตุการณ์**
-- **การเปรียบเทียบสถาปัตยกรรมแบบขับเคลื่อนด้วยเหตุการณ์กับสถาปัตยกรรม Microservices**
-- **การเปรียบเทียบสถาปัตยกรรมแบบขับเคลื่อนด้วยข้อความกับแบบขับเคลื่อนด้วยเหตุการณ์**
-
-### **การทดสอบ**
-
-วิธีการทดสอบและกระบวนการนำระบบขึ้นใช้งานสำหรับสร้างระบบที่แข็งแกร่ง
-
-- **การทดสอบระดับหน่วย**
-- **การทดสอบการทำงานร่วมกัน**
-- **การทดสอบภาระงาน**
-- **การทดสอบความเครียดของระบบ**
-- **กระบวนการ CI/CD**
-
-### **มาตรการด้านความปลอดภัย**
-
-อธิบายการยืนยันตัวตน การกำหนดสิทธิ์ การเข้ารหัส และการกู้คืนจากภัยพิบัติในการออกแบบระบบ
-
-- **มาตรการด้านความปลอดภัยในการออกแบบระบบ**
-- **การยืนยันตัวตนและการกำหนดสิทธิ์**
-- **Secure Socket Layer (SSL) และ Transport Layer Security (TLS)**
-- **วงจรชีวิตการพัฒนาซอฟต์แวร์ที่ปลอดภัย (SSDLC)**
-- **การสำรองข้อมูลและการกู้คืนจากภัยพิบัติ**
-
-### **การออกแบบระบบแบบกระจาย**
-
-อธิบายอัลกอริทึมการหาข้อตกลงร่วมกัน การติดตามการทำงาน และข้อควรพิจารณาด้านความปลอดภัยในการออกแบบระบบแบบกระจาย
-
-- **บทนำ**
-- **อัลกอริทึมการหาข้อตกลงร่วมกันในระบบแบบกระจาย**
-- **การติดตามการทำงานแบบกระจาย**
-- **การสื่อสารอย่างปลอดภัยในระบบแบบกระจาย**
-- **ประเด็นปัญหาในการออกแบบระบบแบบกระจาย**
-
-### **การเพิ่มประสิทธิภาพด้านต้นทุนและประสิทธิภาพการทำงาน**
-
-อธิบายวิธีเพิ่มประสิทธิภาพการทำงานของระบบและประเมินต้นทุนซอฟต์แวร์อย่างมีประสิทธิผล
-
-- **การประเมินต้นทุนซอฟต์แวร์**
-- **เทคนิคการเพิ่มประสิทธิภาพการทำงาน**
-- **การเปรียบเทียบต้นทุนกับประสิทธิภาพการทำงาน**
-
-# **การออกแบบระดับล่าง (LLD)**
-
-การออกแบบรายละเอียดของส่วนประกอบระบบ โดยมุ่งเน้นโครงสร้างระดับการพัฒนาและการจัดระเบียบโค้ด
-
-### **แนวคิดหลัก**
-
-อธิบายวิธีออกแบบคลาส โมดูล และส่วนเชื่อมต่อในการสัมภาษณ์ด้านการออกแบบระบบ
-
-- **แนวคิดการเขียนโปรแกรมเชิงวัตถุ (OOP)**
-- **การแบ่งระบบเป็นโมดูลและส่วนเชื่อมต่อ**
-- **การออกแบบระดับล่าง หรือ LLD**
-- **ความแตกต่างระหว่างการออกแบบระดับสูง (HLD) และการออกแบบระดับล่าง (LLD)**
-
-### **หลักการออกแบบ**
-
-อธิบายหลักการ SOLID, DRY, KISS และ YAGNI สำหรับการออกแบบซอฟต์แวร์ที่แข็งแกร่ง
-
-- **หลักการ SOLID**
-- **หลักการ DRY**
-- **หลักการ KISS**
-- **หลักการ YAGNI**
-
-### **UML**
-
-การแสดงภาพการออกแบบระบบด้วยแผนภาพ UML
-
-- **ภาษาการสร้างแบบจำลองแบบรวมศูนย์ (UML)**
-
-### **รูปแบบการออกแบบ**
-
-อธิบายรูปแบบการออกแบบที่มักถูกถามในการสัมภาษณ์และการนำไปใช้ในการออกแบบซอฟต์แวร์ที่รองรับการขยายตัว
-
-- **รูปแบบการออกแบบ**
-
-# **คำถามและคำตอบสำหรับการสัมภาษณ์ด้านการออกแบบระบบ**
-
-ตัวอย่างการออกแบบระบบจากสถานการณ์จริงและคำถามสัมภาษณ์ที่พบบ่อย สำหรับฝึกออกแบบสถาปัตยกรรมที่รองรับการขยายตัวและทำงานได้อย่างมีประสิทธิภาพ
-
-- **คำถามสัมภาษณ์ด้านการออกแบบที่พบบ่อย**
-
-# **คู่มือเตรียมตัวสัมภาษณ์ด้านการออกแบบระบบ**
-
-คำแนะนำและกลยุทธ์เชิงปฏิบัติสำหรับรับมือกับคำถามด้านการออกแบบระบบในการสัมภาษณ์อย่างมีประสิทธิภาพ
-
-- **แนวทางผ่านการสัมภาษณ์รอบ System Design**
-- **เคล็ดลับสำหรับผ่านการสัมภาษณ์ด้านการออกแบบระบบระดับล่าง**
-- **แนวคิดด้านการออกแบบระบบที่พบบ่อยสำหรับเตรียมตัวสัมภาษณ์**
-- **ขั้นตอนการรับมือกับคำถามด้านการออกแบบเชิงวัตถุในการสัมภาษณ์**
-:::
+### Basic
+- [Introduction](./basic/getting-started-with-system-design.md)
+- [SDLC](./basic/system-design-life-cycle-phases-models-and-use-cases.md)
+- [Components](./basic/what-are-the-components-of-system-design.md)
+- [Goals & Objectives](./basic/goals-and-objectives-of-system-design.md)
+- [Importance of System Design](./basic/why-is-it-important-to-learn-system-design.md)
+- [Key Concepts and Terminologies](./basic/important-key-concepts-and-terminologies-learn-system-design.md)
+- [Advantages](./basic/advantages-of-system-design.md)
+
+### Fundamentals
+- [Monolithic vs Distributed Systems](./fundamentals/analysis-of-monolithic-and-distributed-systems-learn-system-design.md)
+- [Requirements Gathering](./fundamentals/what-is-requirements-gathering-process.md)
+- [System Analysis vs System Design](./fundamentals/system-analysis-vs-system-design.md)
+- [Scaling](./fundamentals/system-design-horizontal-and-vertical-scaling.md)
+- [Capacity Estimation](./fundamentals/capacity-estimation-in-systems-design.md)
+- [Answering System Design Problems](./fundamentals/how-to-answer-a-system-design-interview-problem.md)
+- [Functional vs Non Functional Requirements](./fundamentals/functional-vs-non-functional-requirements.md)
+- [Web Server and Proxies](./fundamentals/web-server-proxies-and-their-role-in-designing-systems.md)
+
+### Scalability
+- [Scalability](./scalability/what-is-scalability.md)
+- [Choosing Scalability Approach](./scalability/which-scalability-approach-is-right-for-our-application-system-design.md)
+- [Scalability Bottlenecks](./scalability/primary-bottlenecks-that-hurt-the-scalability-of-an-application-system-design.md)
+
+### Databases in Designing Systems
+- [Database Design](./databases-in-designing-systems/complete-reference-to-databases-in-designing-systems.md)
+- [SQL vs NoSQL](./databases-in-designing-systems/which-database-to-choose-while-designing-a-system-sql-or-nosql.md)
+- [File vs Database Storage Systems](./databases-in-designing-systems/file-and-database-storage-systems-in-system-design.md)
+- [Block, Object and File Storage](./databases-in-designing-systems/block-object-and-file-storage-in-cloud-with-difference.md)
+- [Database Sharding](./databases-in-designing-systems/database-sharding-a-system-design-concept.md)
+- [Database Replication](./databases-in-designing-systems/database-replication-and-their-types-in-system-design.md)
+
+### High Level Design(HLD)
+- [Introduction](./high-level-design/what-is-high-level-design-learn-system-design.md)
+- [Availability](./high-level-design/availability-in-system-design.md)
+- [Consistency](./high-level-design/consistency-in-system-design.md)
+- [Reliability](./high-level-design/reliability-in-system-design.md)
+- [CAP Theorem](./high-level-design/cap-theorem-in-system-design.md)
+- [API Gateway](./high-level-design/what-is-api-gateway-system-design.md)
+- [Content Delivery Network](./high-level-design/what-is-content-delivery-networkcdn-in-system-design.md)
+- [Load Balancer](./high-level-design/what-is-load-balancer-system-design.md)
+- [Caching](./high-level-design/caching-system-design-concept-for-beginners.md)
+- [Communication Protocols](./high-level-design/communication-protocols-in-system-design.md)
+- [Activity Diagrams](./high-level-design/unified-modeling-language-uml-activity-diagrams.md)
+- [Message Queues](./high-level-design/message-queues-system-design.md)
+
+### Low Level Design(LLD)
+- [LLD](./low-level-design/what-is-low-level-design-or-lld-learn-system-design.md)
+- [Authentication vs Authorization](./low-level-design/difference-between-authentication-and-authorization-in-lld-system-design.md)
+- [Optimization Techniques](./low-level-design/optimization-techniques-for-system-design.md)
+- [OOAD](./low-level-design/object-oriented-analysis-and-design.md)
+- [DSA for System Design](./low-level-design/data-structures-and-algorithms-for-system-design.md)
+- [Containerization Architecture](./low-level-design/containerization-architecture-in-system-design.md)
+- [Modularity and Interfaces](./low-level-design/inroduction-to-modularity-and-interfaces-in-system-design.md)
+- [UML Diagrams](./low-level-design/unified-modeling-language-uml-introduction.md)
+- [Data Partitioning Techniques](./low-level-design/data-partitioning-techniques.md)
+- [Prepare for LLD Interviews](./low-level-design/how-to-prepare-for-low-level-design-interviews.md)
+- [Security Measures](./low-level-design/essential-security-measures-in-system-design.md)
+
+### Design Patterns
+- [Design Patterns](./design-patterns/software-design-patterns.md)
+- [Creational Design Patterns](./design-patterns/creational-design-pattern.md)
+- [Structural Design Patterns](./design-patterns/structural-design-patterns.md)
+- [Behavioral Design Patterns](./design-patterns/behavioral-design-patterns.md)
+- [Cheat Sheet](./design-patterns/design-patterns-cheat-sheet-when-to-use-which-design-pattern.md)
