@@ -1,119 +1,119 @@
-# **Block, Object, and File Storage in System Design**
+# **Block Storage, Object Storage และ File Storage ในการออกแบบระบบ**
 
-Storage is an important component of system design because it determines how data is stored, accessed, and managed. Different storage types are used depending on application requirements and data structure.
+Storage เป็นองค์ประกอบสำคัญของการออกแบบระบบ เพราะเป็นตัวกำหนดว่าข้อมูลจะถูกจัดเก็บ เข้าถึง และจัดการอย่างไร โดยจะเลือกใช้ Storage แต่ละประเภทตามความต้องการของแอปพลิเคชันและโครงสร้างของข้อมูล
 
-- Block Storage stores data in fixed-size blocks and is commonly used in databases and virtual machines.
-- File Storage organizes data in files and directories, making it suitable for shared file systems and document storage.
-- Object Storage stores data as objects with metadata and unique identifiers, ideal for large-scale unstructured data.
+- Block Storage จัดเก็บข้อมูลเป็นบล็อกขนาดคงที่ และมักใช้กับฐานข้อมูลและ Virtual Machine
+- File Storage จัดระเบียบข้อมูลเป็นไฟล์และไดเรกทอรี จึงเหมาะสำหรับระบบไฟล์ที่ใช้งานร่วมกันและการจัดเก็บเอกสาร
+- Object Storage จัดเก็บข้อมูลในรูปแบบ Object พร้อม Metadata และตัวระบุที่ไม่ซ้ำกัน เหมาะสำหรับข้อมูลแบบไม่มีโครงสร้างขนาดใหญ่
 
-## **1. Block storage**
+## **1. Block Storage**
 
-Block storage is a method of storing data in fixed-size blocks, where each block has a unique address and works independently. Unlike file storage, it does not follow a hierarchical structure, making it more flexible and efficient. It is commonly used in high-performance systems like databases and virtual machines.
+Block Storage คือวิธีจัดเก็บข้อมูลเป็นบล็อกขนาดคงที่ โดยแต่ละบล็อกมี Address ที่ไม่ซ้ำกันและทำงานแยกจากกัน ต่างจาก File Storage ตรงที่ไม่ได้ใช้โครงสร้างแบบลำดับชั้น จึงมีความยืดหยุ่นและมีประสิทธิภาพมากกว่า โดยมักใช้ในระบบที่ต้องการประสิทธิภาพสูง เช่น ฐานข้อมูลและ Virtual Machine
 
-- Stores data in fixed-size blocks with unique addresses
-- No predefined structure, unlike file-based storage
-- Ideal for high performance and scalable systems like databases and VMs
+- จัดเก็บข้อมูลเป็นบล็อกขนาดคงที่ที่มี Address ไม่ซ้ำกัน
+- ไม่มีโครงสร้างที่กำหนดไว้ล่วงหน้า ต่างจากการจัดเก็บแบบไฟล์
+- เหมาะสำหรับระบบที่ต้องการประสิทธิภาพสูงและรองรับการขยายตัว เช่น ฐานข้อมูลและ VM
 
-<img src="https://media.geeksforgeeks.org/wp-content/uploads/20251013174415958382/direct_access-660.webp" alt="Block Storage Architecture" />
+<img src="https://media.geeksforgeeks.org/wp-content/uploads/20251013174415958382/direct_access-660.webp" alt="สถาปัตยกรรม Block Storage" />
 
-Block storage doesn’t inherently “understand” the data it stores - it only stores raw bytes. The file system on top of block storage interprets it into files. So block storage itself isn’t aware of formats or data types.
+Block Storage ไม่ได้ "เข้าใจ" ข้อมูลที่จัดเก็บอยู่โดยตรง แต่ทำหน้าที่เพียงจัดเก็บข้อมูลดิบในรูปแบบ Bytes เท่านั้น ส่วน File System ที่ทำงานอยู่เหนือ Block Storage จะเป็นตัวตีความข้อมูลเหล่านั้นให้กลายเป็นไฟล์ ดังนั้นตัว Block Storage เองจึงไม่ได้รับรู้รูปแบบหรือประเภทของข้อมูล
 
-### **Example**
+### **ตัวอย่าง**
 
-Consider a cloud-based database service where you need to store a large amount of structured data. The data is broken into smaller pieces (blocks) and distributed across a storage area network. When you access the database,
+ลองพิจารณาบริการฐานข้อมูลบน Cloud ที่ต้องจัดเก็บข้อมูลแบบมีโครงสร้างจำนวนมาก ข้อมูลจะถูกแบ่งออกเป็นส่วนย่อยๆ (Blocks) และกระจายไปยัง Storage Area Network เมื่อคุณเข้าถึงฐานข้อมูล
 
-- The system retrieves the required blocks and reassembles them into meaningful data for your application.
-- Amazon Elastic Block Store (EBS) is a real-world example of block storage.
+- ระบบจะดึงบล็อกที่ต้องการและนำมาประกอบกลับเป็นข้อมูลที่มีความหมายสำหรับแอปพลิเคชัน
+- Amazon Elastic Block Store (EBS) เป็นตัวอย่างของ Block Storage ที่ใช้งานจริง
 
-### **Working**
+### **การทำงาน**
 
-Imagine a warehouse where items aren't organized by category or aisle, but simply placed in numbered bins. Each bin (block) can hold anything, and you access items directly by their bin number. This direct-access model eliminates the overhead of navigating folder hierarchies, resulting in exceptional speed.
+ลองนึกถึงคลังสินค้าที่สิ่งของไม่ได้ถูกจัดตามหมวดหมู่หรือทางเดิน แต่ถูกวางไว้ในช่องที่มีหมายเลขกำกับ แต่ละช่อง (Block) สามารถเก็บอะไรก็ได้ และคุณสามารถเข้าถึงสิ่งของได้โดยตรงจากหมายเลขช่อง รูปแบบการเข้าถึงโดยตรงนี้ช่วยลดภาระจากการค้นหาผ่านโครงสร้างโฟลเดอร์แบบลำดับชั้น ทำให้เข้าถึงข้อมูลได้อย่างรวดเร็วมาก
 
-### **Features**
+### **คุณสมบัติ**
 
-Block storage stores data in fixed-sized blocks, making it suitable for high-performance and low-latency applications.
+Block Storage จัดเก็บข้อมูลเป็นบล็อกขนาดคงที่ จึงเหมาะสำหรับแอปพลิเคชันที่ต้องการประสิทธิภาพสูงและ Latency ต่ำ
 
-- **High Performance:** Block storage is perfect for high-performance applications since it is designed for quick read/write operations.
-- **Flexibility:** Since it does not impose a particular structure, it allows data to be stored in any format.
-- **Scalability:** Blocks can be added or removed easily to scale the storage up or down.
-- **Independence:** Each block operates independently, enabling precise control and management of data.
-- **Use in Distributed Systems:** Block storage can be distributed across multiple servers for redundancy and improved performance.
+- **ประสิทธิภาพสูง:** Block Storage เหมาะสำหรับแอปพลิเคชันที่ต้องการประสิทธิภาพสูง เพราะถูกออกแบบมาสำหรับการอ่าน/เขียนข้อมูลอย่างรวดเร็ว
+- **ความยืดหยุ่น:** เนื่องจากไม่ได้บังคับใช้โครงสร้างเฉพาะ จึงสามารถจัดเก็บข้อมูลในรูปแบบใดก็ได้
+- **รองรับการขยายตัว:** สามารถเพิ่มหรือลบบล็อกได้ง่ายเพื่อเพิ่มหรือลดขนาดพื้นที่จัดเก็บ
+- **ความเป็นอิสระ:** แต่ละบล็อกทำงานแยกจากกัน ทำให้สามารถควบคุมและจัดการข้อมูลได้อย่างแม่นยำ
+- **การใช้งานใน Distributed Systems:** Block Storage สามารถกระจายอยู่บนหลาย Server เพื่อเพิ่มความซ้ำซ้อนของข้อมูลและปรับปรุงประสิทธิภาพ
 
 ## **2. Object Storage**
 
-With object storage, data is kept as discrete units known as "objects." A unique identity, metadata (information about the data), and the actual data are all contained in each item. Object storage is hence very flexible, scalable, and appropriate for storing vast amounts of unstructured data, such as backups, videos, and pictures.
+Object Storage จัดเก็บข้อมูลเป็นหน่วยแยกที่เรียกว่า "Object" โดยแต่ละ Object จะประกอบด้วยตัวระบุที่ไม่ซ้ำกัน Metadata (ข้อมูลเกี่ยวกับข้อมูล) และตัวข้อมูลจริง ดังนั้น Object Storage จึงมีความยืดหยุ่นสูง รองรับการขยายตัว และเหมาะสำหรับจัดเก็บข้อมูลแบบไม่มีโครงสร้างจำนวนมาก เช่น ข้อมูลสำรอง วิดีโอ และรูปภาพ
 
-- Object storage doesn't use fixed-sized blocks or a hierarchical file system like file or block storage does.
-- Instead, it organizes data into a flat structure, which is easier to scale and manage in distributed environments.
+- Object Storage ไม่ได้ใช้บล็อกขนาดคงที่หรือ File System แบบลำดับชั้นเหมือน File Storage หรือ Block Storage
+- แต่จะจัดระเบียบข้อมูลด้วยโครงสร้างแบบ Flat ซึ่งรองรับการขยายตัวและจัดการได้ง่ายกว่าใน Distributed Environment
 
-> *Note: Object storage is ideal for write-once, read-many (WORM) workloads, not for frequently modified data.*
+> *หมายเหตุ: Object Storage เหมาะสำหรับ Workload แบบเขียนครั้งเดียวและอ่านหลายครั้ง (Write-Once, Read-Many หรือ WORM) ไม่เหมาะกับข้อมูลที่ถูกแก้ไขบ่อยๆ*
 
-### **Understanding the Object Model**
+### **ทำความเข้าใจ Object Model**
 
-Think of object storage as a vast library where every book has a unique ISBN, a detailed catalog card, and can be retrieved directly without knowing which shelf it's on. The flat structure eliminates hierarchical limitations, allowing the system to scale horizontally across unlimited storage nodes.
+ลองนึกถึง Object Storage ว่าเป็นห้องสมุดขนาดใหญ่ที่หนังสือทุกเล่มมี ISBN ที่ไม่ซ้ำกัน มีบัตรรายการที่ให้รายละเอียดครบถ้วน และสามารถค้นคืนได้โดยตรงโดยไม่จำเป็นต้องรู้ว่าหนังสืออยู่บนชั้นใด โครงสร้างแบบ Flat ช่วยขจัดข้อจำกัดของโครงสร้างแบบลำดับชั้น ทำให้ระบบสามารถ Scale แบบ Horizontal ไปยัง Storage Node จำนวนมากได้
 
-### **Example**
+### **ตัวอย่าง**
 
-Object storage is widely used for storing large amounts of unstructured data in cloud-based applications.
+Object Storage ถูกใช้อย่างแพร่หลายสำหรับจัดเก็บข้อมูลแบบไม่มีโครงสร้างจำนวนมากในแอปพลิเคชันบน Cloud
 
-- **Media Streaming**: Netflix and YouTube store billions of video files as objects, serving them to millions of concurrent viewers.
-- **Backup and Archival**: Companies use object storage for long-term data retention, leveraging its durability and low cost per gigabyte.
-- **Big Data Analytics**: Data lakes built on object storage allow analysts to store raw data in any format and process it at scale.
-- **Static Website Hosting**: Web assets like images, CSS, and JavaScript files are served directly from object storage.
+- **Media Streaming**: Netflix และ YouTube จัดเก็บไฟล์วิดีโอหลายพันล้านไฟล์ในรูปแบบ Object และให้บริการแก่ผู้ชมหลายล้านคนพร้อมกัน
+- **Backup และ Archival**: บริษัทต่างๆ ใช้ Object Storage สำหรับเก็บรักษาข้อมูลระยะยาว โดยอาศัยความทนทานและต้นทุนต่อ Gigabyte ที่ต่ำ
+- **Big Data Analytics**: Data Lake ที่สร้างบน Object Storage ช่วยให้นักวิเคราะห์สามารถจัดเก็บข้อมูลดิบได้ในทุกรูปแบบและประมวลผลในระดับขนาดใหญ่
+- **Static Website Hosting**: ทรัพยากรของเว็บไซต์ เช่น รูปภาพ CSS และไฟล์ JavaScript สามารถให้บริการโดยตรงจาก Object Storage
 
-### **Features**
+### **คุณสมบัติ**
 
-Object storage systems are designed to handle massive volumes of unstructured data efficiently.
+ระบบ Object Storage ถูกออกแบบมาเพื่อจัดการข้อมูลแบบไม่มีโครงสร้างปริมาณมหาศาลได้อย่างมีประสิทธิภาพ
 
-- **Scalability:** Object storage is perfect for cloud applications because it can manage massive volumes of data.
-- **Metadata Richness:** Metadata is stored in every object to help with data management, indexing, and searching.
-- **Global Accessibility:** Objects can be accessed via HTTP/HTTPS, making it suitable for web-based applications.
-- **Cost-Effective for Unstructured Data:** Large amounts of unstructured data, such as logs, media files, and backups, are ideal for this storage.
-- **Resilient and Durable:** To provide stability and fault tolerance, object storage systems frequently duplicate data across different locations.
+- **รองรับการขยายตัว:** Object Storage เหมาะสำหรับแอปพลิเคชันบน Cloud เพราะสามารถจัดการข้อมูลปริมาณมหาศาลได้
+- **Metadata ที่สมบูรณ์:** ทุก Object จะจัดเก็บ Metadata เพื่อช่วยในการจัดการ การทำ Index และการค้นหาข้อมูล
+- **เข้าถึงได้ทั่วโลก:** สามารถเข้าถึง Object ผ่าน HTTP/HTTPS จึงเหมาะสำหรับแอปพลิเคชันบนเว็บ
+- **คุ้มค่าสำหรับข้อมูลแบบไม่มีโครงสร้าง:** เหมาะสำหรับข้อมูลแบบไม่มีโครงสร้างจำนวนมาก เช่น Log ไฟล์ Media และข้อมูลสำรอง
+- **ยืดหยุ่นต่อความเสียหายและมีความทนทานสูง:** ระบบ Object Storage มักทำสำเนาข้อมูลไว้ในหลาย Location เพื่อเพิ่มความเสถียรและ Fault Tolerance
 
 ## **3. File Storage**
 
-Similar to how we arrange files on a computer, file storage is a conventional technique of storing data in a hierarchical system of files and folders. Every file has a name and directory path, which helps access and navigation. Applications that need regular updates and organized data management are best suited for it.
+File Storage เป็นวิธีการจัดเก็บข้อมูลแบบดั้งเดิมในโครงสร้างไฟล์และโฟลเดอร์แบบลำดับชั้น คล้ายกับการจัดระเบียบไฟล์บนคอมพิวเตอร์ แต่ละไฟล์มีชื่อและ Directory Path ซึ่งช่วยในการเข้าถึงและค้นหา จึงเหมาะกับแอปพลิเคชันที่ต้องมีการอัปเดตข้อมูลเป็นประจำและต้องการการจัดการข้อมูลอย่างเป็นระเบียบ
 
-<img src="https://media.geeksforgeeks.org/wp-content/uploads/20251014105645866867/network_attached_storage-660.webp" alt="File Storage in System Design" />
+<img src="https://media.geeksforgeeks.org/wp-content/uploads/20251014105645866867/network_attached_storage-660.webp" alt="File Storage ในการออกแบบระบบ" />
 
-### **The Hierarchical Model**
+### **โมเดลแบบลำดับชั้น**
 
-File storage organizes data in a tree structure with directories (folders) containing files and subdirectories. Each file has a path (like `/projects/2024/report.pdf`) that defines its location, making navigation logical and straightforward.
+File Storage จัดระเบียบข้อมูลในโครงสร้างแบบ Tree โดย Directory (Folder) จะบรรจุไฟล์และ Subdirectory แต่ละไฟล์มี Path (เช่น `/projects/2024/report.pdf`) ที่ระบุตำแหน่งของไฟล์ ทำให้การค้นหาและนำทางเป็นไปอย่างมีเหตุผลและตรงไปตรงมา
 
-### **Example**
+### **ตัวอย่าง**
 
-Amazon EFS, Google Filestore, or Azure Files for cloud file storage analogs
+Amazon EFS, Google Filestore หรือ Azure Files เป็นตัวอย่างบริการ Cloud File Storage
 
-- **Corporate File Shares**: Departments share documents, spreadsheets, and presentations through networked drives with folder hierarchies mirroring organisational structure.
-- **Content Management**: Web servers host files in organised directories, serving websites through familiar path-based URLs.
-- **Development Environments**: Developers work with codebases organised in folder structures, relying on file storage for source control integration.
-- **Home Directories**: User workspaces on servers maintain personal files in individual, permission-protected directories.
+- **Corporate File Shares**: แผนกต่างๆ แชร์เอกสาร Spreadsheet และ Presentation ผ่าน Network Drive ที่มีโครงสร้างโฟลเดอร์สอดคล้องกับโครงสร้างขององค์กร
+- **Content Management**: Web Server จัดเก็บไฟล์ไว้ใน Directory อย่างเป็นระเบียบ และให้บริการเว็บไซต์ผ่าน URL แบบ Path ที่คุ้นเคย
+- **Development Environments**: Developer ทำงานกับ Codebase ที่จัดระเบียบเป็นโครงสร้างโฟลเดอร์ โดยอาศัย File Storage สำหรับการทำงานร่วมกับ Source Control
+- **Home Directories**: Workspace ของผู้ใช้บน Server จะเก็บไฟล์ส่วนบุคคลไว้ใน Directory แยกกันและมีการป้องกันด้วย Permission
 
-### **Features**
+### **คุณสมบัติ**
 
-File storage systems organize and manage data in a traditional file-and-folder structure, making them easy to understand and use.
+ระบบ File Storage จัดระเบียบและจัดการข้อมูลด้วยโครงสร้างไฟล์และโฟลเดอร์แบบดั้งเดิม ทำให้เข้าใจและใช้งานได้ง่าย
 
-- **Hierarchical Organization:** Data is stored in a clear folder-and-file structure, making it easy to locate and manage.
-- **Simplicity:** File storage systems are easy to set up and use for small-scale applications.
-- **Compatibility:** Works well with legacy applications and systems that require traditional file access methods.
-- **Shared Access:** Supports multi-user environments with file permissions and version control.
-- **Data Integrity:** Ensures consistency and integrity through locking mechanisms during file updates but distributed file systems (like NFS) can experience locking issues and performance bottlenecks under concurrency.
+- **การจัดระเบียบแบบลำดับชั้น:** ข้อมูลถูกจัดเก็บในโครงสร้างโฟลเดอร์และไฟล์ที่ชัดเจน ทำให้ค้นหาและจัดการได้ง่าย
+- **ความเรียบง่าย:** ระบบ File Storage ตั้งค่าและใช้งานได้ง่ายสำหรับแอปพลิเคชันขนาดเล็ก
+- **ความเข้ากันได้:** ทำงานร่วมกับ Legacy Application และระบบที่ต้องใช้วิธีเข้าถึงไฟล์แบบดั้งเดิมได้ดี
+- **การเข้าถึงร่วมกัน:** รองรับสภาพแวดล้อมที่มีผู้ใช้หลายคนด้วย File Permission และ Version Control
+- **ความถูกต้องของข้อมูล:** รักษาความสอดคล้องและความถูกต้องของข้อมูลด้วยกลไก Lock ระหว่างการอัปเดตไฟล์ แต่ Distributed File System (เช่น NFS) อาจพบปัญหาการ Lock และคอขวดด้านประสิทธิภาพเมื่อมีการเข้าถึงพร้อมกันจำนวนมาก
 
 ## **Block Storage Vs Object Storage Vs File Storage**
 
-This section explains the key differences between block, object, and file storage systems in terms of structure, performance, and use cases.
+ส่วนนี้อธิบายความแตกต่างสำคัญระหว่าง Block Storage, Object Storage และ File Storage ในด้านโครงสร้าง ประสิทธิภาพ และกรณีการใช้งาน
 
 <img src="https://media.geeksforgeeks.org/wp-content/uploads/20260316155522424448/what_type_of_data_are_you_storing_-660.webp" src="what_type_of_data_are_you_storing_" />
 
-Differences between them are as follows:
+ความแตกต่างมีดังนี้:
 
 | **Block Storage** | **Object Storage** | **File Storage** |
 | --- | --- | --- |
-| Divides data into fixed-size blocks, each with a unique identifier. | Stores data as objects with metadata and a unique ID in a flat structure. | Organizes data in a hierarchical structure of files and folders. |
-| Ideal for databases, virtual machines, and transactional workloads requiring high performance. | Best for storing large amounts of unstructured data, like multimedia files or backups. | Suitable for structured file storage and shared file access, such as documents and spreadsheets. |
-| High performance and low latency, especially for read/write operations. | Optimised for scalability and durability, not real-time performance. | Moderate performance; dependent on file system and storage device. |
-| Scales well but may require manual configuration for capacity expansion. | Highly scalable; can handle massive amounts of data across distributed systems. | Limited scalability compared to object storage; suitable for smaller systems. |
-| Minimal metadata, often handled by the application layer. | Extensive metadata stored with each object, enabling advanced search and analytics. | Basic metadata, such as file name, type, and permissions. |
-| Requires manual backup or snapshot configurations for data durability. | Highly durable with built-in redundancy across multiple locations. | Data durability depends on the underlying file system and backup strategies. |
-| AWS EBS, Google Persistent Disks, SAN (Storage Area Network). | AWS S3, Azure Blob Storage, Google Cloud Storage. | Network Attached Storage (NAS), Shared Drives, Local File Systems. |
+| แบ่งข้อมูลเป็นบล็อกขนาดคงที่ โดยแต่ละบล็อกมีตัวระบุที่ไม่ซ้ำกัน | จัดเก็บข้อมูลเป็น Object พร้อม Metadata และ ID ที่ไม่ซ้ำกันในโครงสร้างแบบ Flat | จัดระเบียบข้อมูลในโครงสร้างไฟล์และโฟลเดอร์แบบลำดับชั้น |
+| เหมาะสำหรับฐานข้อมูล Virtual Machine และ Transactional Workload ที่ต้องการประสิทธิภาพสูง | เหมาะสำหรับจัดเก็บข้อมูลแบบไม่มีโครงสร้างจำนวนมาก เช่น ไฟล์ Multimedia หรือข้อมูลสำรอง | เหมาะสำหรับการจัดเก็บไฟล์แบบมีโครงสร้างและการเข้าถึงไฟล์ร่วมกัน เช่น เอกสารและ Spreadsheet |
+| มีประสิทธิภาพสูงและ Latency ต่ำ โดยเฉพาะการอ่าน/เขียนข้อมูล | ถูกปรับให้เหมาะกับการรองรับการขยายตัวและความทนทานของข้อมูล ไม่ได้เน้นประสิทธิภาพแบบ Real-Time | มีประสิทธิภาพระดับปานกลาง โดยขึ้นอยู่กับ File System และอุปกรณ์จัดเก็บข้อมูล |
+| รองรับการขยายตัวได้ดี แต่อาจต้องกำหนดค่าด้วยตนเองเมื่อเพิ่มความจุ | รองรับการขยายตัวได้สูงมาก และสามารถจัดการข้อมูลปริมาณมหาศาลบน Distributed System ได้ | รองรับการขยายตัวได้น้อยกว่า Object Storage และเหมาะสำหรับระบบขนาดเล็กกว่า |
+| มี Metadata เพียงเล็กน้อย และมักถูกจัดการโดย Application Layer | จัดเก็บ Metadata จำนวนมากไว้กับแต่ละ Object ทำให้รองรับการค้นหาและการวิเคราะห์ขั้นสูง | มี Metadata พื้นฐาน เช่น ชื่อไฟล์ ประเภทไฟล์ และ Permission |
+| ต้องกำหนดค่า Backup หรือ Snapshot ด้วยตนเองเพื่อรักษาความทนทานของข้อมูล | มีความทนทานสูงด้วยการทำ Redundancy ในหลาย Location ที่มีมาให้ในตัว | ความทนทานของข้อมูลขึ้นอยู่กับ File System ที่ใช้งานและกลยุทธ์การ Backup |
+| AWS EBS, Google Persistent Disks, SAN (Storage Area Network) | AWS S3, Azure Blob Storage, Google Cloud Storage | Network Attached Storage (NAS), Shared Drives, Local File Systems |
