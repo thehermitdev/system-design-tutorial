@@ -1,137 +1,137 @@
-# **Introduction to High level Design**
+# **บทนำสู่การออกแบบระดับสูง**
 
-High-level design or HLD is an initial step in the development of applications where the overall structure of a system is planned. Mainly focuses on how different components of the system work together without getting to know about internal coding and implementation.
+การออกแบบระดับสูง หรือ HLD เป็นขั้นตอนเริ่มต้นในการพัฒนาแอปพลิเคชัน ซึ่งเป็นการวางแผนโครงสร้างโดยรวมของระบบ โดยเน้นหลักไปที่การทำงานร่วมกันของส่วนประกอบต่างๆ ในระบบ โดยยังไม่ลงรายละเอียดเกี่ยวกับโค้ดภายในและการนำไปใช้งาน
 
-- Helps everyone involved in the project to understand the goals and ensures good communication during development.
-- Crucial for developers, architects, and product managers because it allows them to make sure that all stakeholders are aligned with the project objectives. That's why it is also known as macro-level design.
+- ช่วยให้ทุกคนที่เกี่ยวข้องกับโปรเจกต์เข้าใจเป้าหมาย และช่วยให้การสื่อสารระหว่างการพัฒนาเป็นไปอย่างมีประสิทธิภาพ
+- มีความสำคัญอย่างยิ่งสำหรับนักพัฒนา สถาปนิกระบบ และผู้จัดการผลิตภัณฑ์ เพราะช่วยให้มั่นใจได้ว่าผู้มีส่วนได้ส่วนเสียทุกฝ่ายมีความเข้าใจตรงกันกับวัตถุประสงค์ของโปรเจกต์ ด้วยเหตุนี้จึงเรียกอีกอย่างว่าการออกแบบระดับมหภาค
 
-The common request flow most applications follow from user to data and back.
+ลำดับการไหลของคำขอโดยทั่วไปที่แอปพลิเคชันส่วนใหญ่ใช้ ตั้งแต่ผู้ใช้ไปยังข้อมูลและส่งกลับมายังผู้ใช้
 
 <img src="https://media.geeksforgeeks.org/wp-content/uploads/20251104114032554756/1-660.webp" />
 
-- **Users - Edge/Gateway:** CDN/Edge handles cache, TLS, basic DDoS; LB/API Gateway routes.
-- **Gateway - Services:** App layer runs auth/logic and fans out to deps.
-- **Services - Data:** Read/write to SQL/NoSQL/object/storage/search; cache hot reads; persist writes.
-- **Services - Async:** Offload emails/webhooks/reindex/heavy jobs to queues; workers update later.
-- **Auth & Observability:** Auth at gateway/services; emit logs, metrics, traces for monitoring/alerts.
-- **Response - User:** Reply goes back via gateway/edge; update caches for faster next hits.
+- **ผู้ใช้ - Edge/Gateway:** CDN/Edge จัดการแคช, TLS และ DDoS ขั้นพื้นฐาน ส่วน LB/API Gateway ทำหน้าที่กำหนดเส้นทาง
+- **Gateway - Services:** ชั้นแอปพลิเคชันทำงานด้านการยืนยันตัวตน/ตรรกะ และกระจายคำขอไปยังส่วนที่พึ่งพา
+- **Services - Data:** อ่าน/เขียนข้อมูลไปยัง SQL/NoSQL/object/storage/search ใช้แคชสำหรับข้อมูลที่ถูกอ่านบ่อย และจัดเก็บข้อมูลที่เขียนอย่างถาวร
+- **Services - Async:** แยกงานอีเมล/webhook/reindex/งานหนักไปยังคิว แล้วให้ worker อัปเดตภายหลัง
+- **Auth & Observability:** ทำการยืนยันตัวตนที่ gateway/services และส่งออก logs, metrics และ traces สำหรับการติดตาม/แจ้งเตือน
+- **Response - User:** ส่งคำตอบกลับผ่าน gateway/edge และอัปเดตแคชเพื่อให้การเรียกครั้งถัดไปเร็วขึ้น
 
-## **Components of High-Level Design**
+## **ส่วนประกอบของการออกแบบระดับสูง**
 
-Understanding the components of high-level design is very important for creating effective systems that meet user needs and technical requirements. Below are the main components of high-level design:
+การทำความเข้าใจส่วนประกอบของการออกแบบระดับสูงมีความสำคัญอย่างมากต่อการสร้างระบบที่มีประสิทธิภาพและตอบโจทย์ทั้งความต้องการของผู้ใช้และข้อกำหนดทางเทคนิค ด้านล่างคือส่วนประกอบหลักของการออกแบบระดับสูง:
 
-1. **System Architecture:** System architecture is an overview of the entire system that represents the structure and the relationships between various components. It helps to visually represent how different parts interact and function.
-2. **Modules and Components**: High-level design breaks down the systems into modules or components, each with specific roles and responsibilities, and has a distinct function that contributes to the entire system, helping in developing an efficient system.
-3. **Data Flow Diagrams (DFDs)**: Data Flow Diagrams demonstrate the data movement within the system. They help to understand how information is processed and pass from one end to another.
-4. **Interface Design**: It includes the design of application programming interfaces (APIs) for system integration and user interfaces (UIs) for user interaction, ensuring seamless functionality and communication between components.
-5. **Technology Stack**: The technology stack is various technologies and tools that will be used in the development of the system. This includes programming languages, frameworks, and databases.
-6. **Deployment Architecture**: It includes how the system will be hosted and accessed. It includes server configurations, cloud infrastructure, and network considerations.
+1. **สถาปัตยกรรมระบบ:** สถาปัตยกรรมระบบคือภาพรวมของระบบทั้งหมดที่แสดงโครงสร้างและความสัมพันธ์ระหว่างส่วนประกอบต่างๆ ช่วยให้มองเห็นได้ว่าส่วนต่างๆ มีปฏิสัมพันธ์และทำงานร่วมกันอย่างไร
+2. **โมดูลและส่วนประกอบ**: การออกแบบระดับสูงจะแบ่งระบบออกเป็นโมดูลหรือส่วนประกอบ โดยแต่ละส่วนมีบทบาทและความรับผิดชอบเฉพาะ รวมถึงมีหน้าที่ที่ชัดเจนซึ่งมีส่วนต่อระบบโดยรวม ช่วยให้สามารถพัฒนาระบบได้อย่างมีประสิทธิภาพ
+3. **แผนภาพการไหลของข้อมูล (DFDs)**: แผนภาพการไหลของข้อมูลแสดงการเคลื่อนที่ของข้อมูลภายในระบบ ช่วยให้เข้าใจว่าข้อมูลถูกประมวลผลและส่งผ่านจากส่วนหนึ่งไปยังอีกส่วนหนึ่งอย่างไร
+4. **การออกแบบอินเทอร์เฟซ**: ครอบคลุมการออกแบบ application programming interfaces (APIs) สำหรับการเชื่อมต่อระบบ และ user interfaces (UIs) สำหรับการโต้ตอบกับผู้ใช้ เพื่อให้การทำงานและการสื่อสารระหว่างส่วนประกอบเป็นไปอย่างราบรื่น
+5. **ชุดเทคโนโลยี**: ชุดเทคโนโลยีคือเทคโนโลยีและเครื่องมือต่างๆ ที่จะใช้ในการพัฒนาระบบ ซึ่งรวมถึงภาษาโปรแกรม เฟรมเวิร์ก และฐานข้อมูล
+6. **สถาปัตยกรรมการปรับใช้**: ครอบคลุมวิธีที่ระบบจะถูกโฮสต์และเข้าถึง รวมถึงการกำหนดค่าเซิร์ฟเวอร์ โครงสร้างพื้นฐานบนคลาวด์ และข้อพิจารณาด้านเครือข่าย
 
-## **High-Level Design Document**
+## **เอกสารการออกแบบระดับสูง**
 
-The HLD document consists of data flows, flowcharts, and data structures to help developers understand and implement how the current system is being designed intentionally to function.
+เอกสาร HLD ประกอบด้วยการไหลของข้อมูล ผังงาน และโครงสร้างข้อมูล เพื่อช่วยให้นักพัฒนาเข้าใจและนำไปใช้งานตามแนวทางที่ระบบปัจจุบันถูกออกแบบไว้ให้ทำงาน
 
-- This document is responsible for explaining the connections between system components and operations, which depict the logic.
-- The architecture design needed (for the system's functionality and flow) for each and every module of the system as per the functional requirements.
+- เอกสารนี้มีหน้าที่อธิบายการเชื่อมต่อระหว่างส่วนประกอบและการทำงานของระบบ ซึ่งแสดงให้เห็นถึงตรรกะของระบบ
+- การออกแบบสถาปัตยกรรมที่จำเป็นสำหรับแต่ละโมดูลของระบบ เพื่อให้ระบบมีการทำงานและลำดับการไหลตามข้อกำหนดเชิงฟังก์ชัน
 
-## **Purpose and Characteristics of High-Level Design**
+## **วัตถุประสงค์และคุณลักษณะของการออกแบบระดับสูง**
 
-HLD provides a structured technical view by translating functional requirements into an overall system design model, helping visualize how components interact and how data flows.
+HLD ให้มุมมองทางเทคนิคที่มีโครงสร้าง โดยแปลงข้อกำหนดเชิงฟังก์ชันให้เป็นแบบจำลองการออกแบบระบบโดยรวม ช่วยให้มองเห็นว่าส่วนประกอบต่างๆ ทำงานร่วมกันอย่างไรและข้อมูลไหลผ่านระบบอย่างไร
 
-- A diagram representing each design aspect is included in the HLD (which is based on business requirements and anticipated results).
-- Description of hardware, software interfaces, and also user interfaces.
-- The workflow of the user's typical process is detailed, along with performance specifications.
+- HLD มีแผนภาพที่แสดงแต่ละส่วนของการออกแบบ ซึ่งอ้างอิงจากข้อกำหนดทางธุรกิจและผลลัพธ์ที่คาดหวัง
+- คำอธิบายเกี่ยวกับฮาร์ดแวร์ อินเทอร์เฟซซอฟต์แวร์ และอินเทอร์เฟซผู้ใช้
+- อธิบายลำดับการทำงานของกระบวนการทั่วไปของผู้ใช้อย่างละเอียด พร้อมข้อกำหนดด้านประสิทธิภาพ
 
-## **Difference of HLD from LLD**
+## **ความแตกต่างระหว่าง HLD และ LLD**
 
-High-level design, or HLD, is a general system design where we do tradeoffs between different frameworks, components, and different databases, and we choose the best considering what the business needs and how the system should work.
+การออกแบบระดับสูง หรือ HLD คือการออกแบบระบบในภาพรวม ซึ่งเราจะพิจารณาข้อแลกเปลี่ยนระหว่างเฟรมเวิร์ก ส่วนประกอบ และฐานข้อมูลต่างๆ จากนั้นเลือกสิ่งที่เหมาะสมที่สุดโดยคำนึงถึงความต้องการทางธุรกิจและวิธีที่ระบบควรทำงาน
 
-Whereas LLD (low-level design) translates the HLD into smaller and more specific details, it includes class diagrams, methods, data structures, and algorithms, focusing on how each part will be implemented.
+ส่วน LLD (การออกแบบระดับต่ำ) จะนำ HLD มาแปลงเป็นรายละเอียดที่เล็กและเฉพาะเจาะจงมากขึ้น โดยครอบคลุม class diagrams, methods, data structures และ algorithms และเน้นว่าส่วนต่างๆ จะถูกนำไปใช้งานอย่างไร
 
-> **Further Read: [Differences between High-Level Design (HLD) and Low-Level Design (LLD)](https://www.geeksforgeeks.org/system-design/difference-between-high-level-design-and-low-level-design/)**
+> **อ่านเพิ่มเติม: [ความแตกต่างระหว่างการออกแบบระดับสูง (HLD) และการออกแบบระดับต่ำ (LLD)](https://www.geeksforgeeks.org/system-design/difference-between-high-level-design-and-low-level-design/)**
 
-After having an adequate understanding of HLD and how it is different from LLD. Let us now discuss the HLD roadmap, which is shown below as an infographic:
+หลังจากทำความเข้าใจ HLD และความแตกต่างจาก LLD อย่างเพียงพอแล้ว ต่อไปเราจะพูดถึงเส้นทางการเรียนรู้ HLD ซึ่งแสดงไว้ด้านล่างในรูปแบบอินโฟกราฟิก:
 
-## **Designing Scalable High-Level Design (HLD) Systems**
+## **การออกแบบระบบ HLD ที่รองรับการขยายขนาด**
 
-Now, in order to design any high-level system, certain terms are listed in a sequential manner so as to connect the dots in order to understand. Roadmaps are very important for working professionals because these help us to get a complete, binding understanding of how services in real-time are getting scaled at a high level.
+ในการออกแบบระบบระดับสูงใดๆ จะมีคำศัพท์บางอย่างที่เรียงตามลำดับเพื่อช่วยเชื่อมโยงแนวคิดต่างๆ ให้เข้าใจได้ เส้นทางการเรียนรู้มีความสำคัญอย่างมากสำหรับผู้ทำงานสายอาชีพ เพราะช่วยให้เราเห็นภาพรวมที่เชื่อมโยงกันอย่างครบถ้วนว่าบริการในระบบจริงถูกขยายขนาดในระดับสูงอย่างไร
 
 <img src="https://media.geeksforgeeks.org/wp-content/uploads/20260119110855098973/devops_5-660.webp" />
 
-### **1. Capacity Estimation**
+### **1. การประมาณความจุ**
 
-Capacity estimation in system design involves predicting the resources (such as processing power, memory, and bandwidth) required to meet the expected workload. It ensures that a system can handle current and future demands efficiently, helping in the proper allocation of resources and preventing performance bottlenecks.
+การประมาณความจุในการออกแบบระบบคือการคาดการณ์ทรัพยากรที่จำเป็น เช่น พลังประมวลผล หน่วยความจำ และแบนด์วิดท์ เพื่อรองรับปริมาณงานที่คาดว่าจะเกิดขึ้น ช่วยให้มั่นใจว่าระบบสามารถรองรับความต้องการทั้งในปัจจุบันและอนาคตได้อย่างมีประสิทธิภาพ ช่วยให้จัดสรรทรัพยากรได้อย่างเหมาะสมและป้องกันคอขวดด้านประสิทธิภาพ
 
-> ***Example**: Twitter, which is recently in newsfeeds these days, here at high-level designing, we need to make sure tweets of popular influencers are reaching out to millions of people, so how do we need to scale our system so service should not be hampered?*
+> ***ตัวอย่าง**: Twitter ซึ่งช่วงนี้มักปรากฏในฟีดข่าว ในการออกแบบระดับสูง เราต้องทำให้มั่นใจว่าทวีตของอินฟลูเอนเซอร์ที่มีชื่อเสียงสามารถส่งไปถึงผู้คนนับล้านได้ ดังนั้นเราควรขยายระบบอย่างไรเพื่อไม่ให้การให้บริการได้รับผลกระทบ?*
 
-We have also shown below the characteristic behavior of a server, which is measured across throughput and latency within the system.
+ด้านล่างนี้ยังแสดงลักษณะพฤติกรรมของเซิร์ฟเวอร์ ซึ่งวัดจาก throughput และ latency ภายในระบบ
 
 <img src="https://media.geeksforgeeks.org/wp-content/uploads/20260119110854496839/devops_2-660.webp" />
 
-### **2. HTTP and HTTPS and Their Methods**
+### **2. HTTP และ HTTPS และเมธอดของโปรโตคอลเหล่านี้**
 
-HTTP (HyperText Transfer Protocol) is used to transfer the data over the web, which enables the communication between clients and servers that helps users to request resources like HTML pages, messages, videos, or images, while [HTTPS](https://www.geeksforgeeks.org/html/what-is-http/) (HyperText Transfer Protocol Secure) is an extension of HTTP that adds an extra layer of security through SSL/TLS encryption. Methods of HTTP include GET, PUT, and POST.
+HTTP (HyperText Transfer Protocol) ใช้สำหรับรับส่งข้อมูลผ่านเว็บ ทำให้เกิดการสื่อสารระหว่างไคลเอนต์และเซิร์ฟเวอร์ และช่วยให้ผู้ใช้สามารถร้องขอทรัพยากร เช่น หน้า HTML ข้อความ วิดีโอ หรือรูปภาพ ขณะที่ [HTTPS](https://www.geeksforgeeks.org/html/what-is-http/) (HyperText Transfer Protocol Secure) เป็นส่วนขยายของ HTTP ที่เพิ่มชั้นความปลอดภัยด้วยการเข้ารหัส SSL/TLS เมธอดของ HTTP ได้แก่ GET, PUT และ POST
 
-> **Tip:** These are also important as per interview perspective as constraint bounds in interviews in API over when to use what is very important.
+> **เคล็ดลับ:** เรื่องเหล่านี้สำคัญในมุมมองของการสัมภาษณ์ด้วย เพราะข้อจำกัดในการออกแบบ API และการเลือกว่าจะใช้อะไรเมื่อใดเป็นสิ่งสำคัญมาก
 
 <img src="https://media.geeksforgeeks.org/wp-content/uploads/20260119110855307199/http_connection-660.webp" />
 
-> **Tip:** There are many ways to send data from server to client some are:
-> • Using Websockets
-> • Using Polling*
+> **เคล็ดลับ:** มีหลายวิธีในการส่งข้อมูลจากเซิร์ฟเวอร์ไปยังไคลเอนต์ เช่น:
+> • ใช้ WebSockets
+> • ใช้ Polling*
 
 ### **3. Web Sockets**
 
-There are two ways to send data from server to clients, which are websockets and polling. In a [client-server architecture](https://www.geeksforgeeks.org/system-design/client-server-architecture-system-design/), we are sending a request to the server, and the server sends it back, and so in this way communication takes place. But in designing the system, the biggest problem we face is whether we can implement the client-server model or [peer-to-peer model](https://www.geeksforgeeks.org/system-design/peer-to-peer-p2p-architecture/).
+มีสองวิธีในการส่งข้อมูลจากเซิร์ฟเวอร์ไปยังไคลเอนต์ ได้แก่ websockets และ polling ใน [สถาปัตยกรรม client-server](https://www.geeksforgeeks.org/system-design/client-server-architecture-system-design/) เราจะส่งคำขอไปยังเซิร์ฟเวอร์ จากนั้นเซิร์ฟเวอร์จะส่งข้อมูลกลับมา และการสื่อสารก็เกิดขึ้นในลักษณะนี้ แต่ในการออกแบบระบบ ปัญหาใหญ่ที่สุดที่เราต้องพิจารณาคือควรใช้โมเดล client-server หรือ [โมเดล peer-to-peer](https://www.geeksforgeeks.org/system-design/peer-to-peer-p2p-architecture/)
 
 <img src="https://media.geeksforgeeks.org/wp-content/uploads/20260119110855634726/websocket_connection-660.webp" />
 
-- Here WebSockets play a crucial role in solving problems and enabling us to have real-time communication.
-- WebSocket is a full-duplex protocol as it allows the application to send and receive data at the same time.
-- They are more or less used in every system to be designed because we cannot let our system wait for a response.
-- They are very useful in real-time web applications, gaming applications, and chat applications.
+- WebSockets มีบทบาทสำคัญในการแก้ปัญหาและช่วยให้เราสามารถสื่อสารแบบเรียลไทม์ได้
+- WebSocket เป็นโปรโตคอลแบบ full-duplex เพราะอนุญาตให้แอปพลิเคชันส่งและรับข้อมูลได้ในเวลาเดียวกัน
+- WebSocket ถูกใช้งานในระบบที่ต้องออกแบบแทบทุกประเภท เพราะเราไม่สามารถปล่อยให้ระบบรอการตอบกลับได้
+- WebSocket มีประโยชน์อย่างมากในเว็บแอปพลิเคชันแบบเรียลไทม์ แอปพลิเคชันเกม และแอปพลิเคชันแชต
 
 ### **4. Polling**
 
-Another way of sending and receiving data from a server, just like we do with the above case of web sockets, is polling. There are mainly 2 types of polling:
+อีกวิธีหนึ่งในการส่งและรับข้อมูลจากเซิร์ฟเวอร์ คล้ายกับกรณีของ web sockets ด้านบน คือ polling โดย polling มีอยู่หลักๆ 2 ประเภท:
 
-- **In short polling**, the client sends a request to the server at fixed intervals, and the server immediately sends data, whether the data is updated or not.
-- **In long polling**, the server waits for the client's request to respond and responds only and only if some new data is available or if some data is being updated.
+- **ใน short polling** ไคลเอนต์จะส่งคำขอไปยังเซิร์ฟเวอร์ตามช่วงเวลาคงที่ และเซิร์ฟเวอร์จะส่งข้อมูลกลับทันที ไม่ว่าข้อมูลนั้นจะมีการอัปเดตหรือไม่
+- **ใน long polling** เซิร์ฟเวอร์จะรอคำขอจากไคลเอนต์ก่อนตอบกลับ และจะตอบกลับก็ต่อเมื่อมีข้อมูลใหม่พร้อมใช้งานหรือมีข้อมูลบางอย่างกำลังถูกอัปเดต
 
-> ***Tip:** Long polling is preferredover short polling because lesser number of requests are sent in a system.*
+> ***เคล็ดลับ:** ควรเลือกใช้ long polling มากกว่า short polling เพราะมีจำนวนคำขอที่ถูกส่งในระบบน้อยกว่า*
 
 <img src="https://media.geeksforgeeks.org/wp-content/uploads/20250620110623323528/Short-poling-vs-long-polling-660.webp" alt="Short Polling Vs Long Polling" />
 
 ### **5. Server-Sent Events(SSE)**
 
-It is purposely built as one-way communication from servers to clients in specific design systems. SSE is a technology that helps to push real-time updates from the server to the clients over HTTP connections. SSE enables the server to send data automatically as it becomes available.
+เทคโนโลยีนี้ถูกสร้างขึ้นโดยมีจุดประสงค์เพื่อการสื่อสารทางเดียวจากเซิร์ฟเวอร์ไปยังไคลเอนต์ในระบบที่ออกแบบมาเฉพาะ SSE เป็นเทคโนโลยีที่ช่วยส่งการอัปเดตแบบเรียลไทม์จากเซิร์ฟเวอร์ไปยังไคลเอนต์ผ่านการเชื่อมต่อ HTTP โดย SSE ทำให้เซิร์ฟเวอร์สามารถส่งข้อมูลได้โดยอัตโนมัติเมื่อข้อมูลพร้อมใช้งาน
 
-Examples of SSE include real-time streaming.
+ตัวอย่างของ SSE ได้แก่ การสตรีมแบบเรียลไทม์
 
 <img src="https://media.geeksforgeeks.org/wp-content/uploads/20260119110855440082/server_-660.webp" />
 
-### **6. Rate limiting**
+### **6. การจำกัดอัตรา**
 
-A rate limiter restricts the number of events that can be done in a timeframe by restricting the number of requests a sender can send in a given period of time. Here, once the threshold limit is reached, it now further blocks the incoming requests, as can be seen below in the media as follows:
+ตัวจำกัดอัตราจะจำกัดจำนวนเหตุการณ์ที่สามารถเกิดขึ้นได้ภายในช่วงเวลาหนึ่ง โดยจำกัดจำนวนคำขอที่ผู้ส่งสามารถส่งได้ในช่วงเวลาที่กำหนด เมื่อถึงค่าขีดจำกัดแล้ว ระบบจะบล็อกคำขอขาเข้าต่อไป ดังที่แสดงในภาพด้านล่าง:
 
 <img src="https://media.geeksforgeeks.org/wp-content/uploads/20260119110854708935/devops_3-660.webp" />
 
-### **7. Resiliency**
+### **7. ความยืดหยุ่นต่อความล้มเหลว**
 
-No matter how great a system we design, there is always a chance of faults and failure, which could be because of hardware issues or software issues (such as running low on memory), or there can be some human error. In such cases we need to provide resiliency through replication, redundancy, and availability.
+ไม่ว่าเราจะออกแบบระบบได้ดีเพียงใด ก็ยังมีโอกาสเกิดข้อผิดพลาดและความล้มเหลวเสมอ ซึ่งอาจเกิดจากปัญหาฮาร์ดแวร์ ปัญหาซอฟต์แวร์ เช่น หน่วยความจำเหลือน้อย หรือข้อผิดพลาดจากมนุษย์ ในกรณีเหล่านี้ เราจำเป็นต้องสร้างความยืดหยุ่นต่อความล้มเหลวผ่าน replication, redundancy และ availability
 
-> **Note:** System design interviews start with open-ended designing of a specific system, which later is bounded with constraints at multiple levels. In order to clear dealing with these bounds, in layman's language, it is known as resiliency via implementing common tradeoffs in the system. Hence, providing resiliency is very crucial in designing complex system designs and also in clearing interviews.
+> **หมายเหตุ:** การสัมภาษณ์ด้าน System Design เริ่มต้นด้วยโจทย์ปลายเปิดให้เราออกแบบระบบใดระบบหนึ่ง จากนั้นจึงเพิ่มข้อจำกัดในหลายระดับ เพื่อให้สามารถรับมือกับข้อจำกัดเหล่านี้ได้ ในภาษาที่เข้าใจง่าย แนวคิดนี้เรียกว่าการสร้างความยืดหยุ่นต่อความล้มเหลวผ่านการพิจารณาข้อแลกเปลี่ยนทั่วไปในระบบ ดังนั้นการสร้างความยืดหยุ่นต่อความล้มเหลวจึงมีความสำคัญอย่างมากทั้งในการออกแบบระบบที่ซับซ้อนและในการผ่านการสัมภาษณ์
 
-### **8. Paging**
+### **8. การแบ่งหน้า**
 
-Paging in high-level design (HLD) refers to the method of dividing large datasets or content into smaller, manageable pages. This approach improves user experience by allowing users to load data incrementally, reducing initial load times and enhancing performance.
+การแบ่งหน้าในการออกแบบระดับสูง (HLD) หมายถึงวิธีการแบ่งชุดข้อมูลหรือเนื้อหาขนาดใหญ่ออกเป็นหน้าขนาดเล็กที่จัดการได้ง่ายขึ้น แนวทางนี้ช่วยปรับปรุงประสบการณ์ผู้ใช้ โดยให้ผู้ใช้โหลดข้อมูลเพิ่มทีละส่วน ลดเวลาโหลดเริ่มต้น และเพิ่มประสิทธิภาพ
 
 <img src="https://media.geeksforgeeks.org/wp-content/uploads/20260119110854910798/devops_4-660.webp" />
 
-### **9. Logging**
+### **9. การบันทึกล็อก**
 
-A log file records events in an application, including details like transactions, service actions, and system flow. Logging is essential for monitoring behavior, tracking system health and performance, and debugging issues in distributed systems.
+ไฟล์ล็อกใช้บันทึกเหตุการณ์ที่เกิดขึ้นในแอปพลิเคชัน รวมถึงรายละเอียดต่างๆ เช่น ธุรกรรม การทำงานของบริการ และลำดับการไหลของระบบ การบันทึกล็อกมีความสำคัญต่อการติดตามพฤติกรรม ตรวจสอบสุขภาพและประสิทธิภาพของระบบ และแก้ไขข้อบกพร่องในระบบแบบกระจาย
 
-- Using a [centralized logging service](https://www.geeksforgeeks.org/system-design/centralized-logging-systems-system-design/)
-- Using a [distributed logging system](https://www.geeksforgeeks.org/system-design/logging-in-distributed-systems/)
-- Using a [cloud-based logging service](https://www.geeksforgeeks.org/cloud-computing/google-cloud-monitoring-google-cloud-logging/)
+- ใช้ [บริการบันทึกล็อกแบบรวมศูนย์](https://www.geeksforgeeks.org/system-design/centralized-logging-systems-system-design/)
+- ใช้ [ระบบบันทึกล็อกแบบกระจาย](https://www.geeksforgeeks.org/system-design/logging-in-distributed-systems/)
+- ใช้ [บริการบันทึกล็อกบนคลาวด์](https://www.geeksforgeeks.org/cloud-computing/google-cloud-monitoring-google-cloud-logging/)
