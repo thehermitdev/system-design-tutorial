@@ -1,81 +1,81 @@
-# **Primary Scalability Bottlenecks in System Design**
+# **คอขวดหลักที่ส่งผลต่อ Scalability ในการออกแบบระบบ**
 
-A bottleneck in a system is a point where data flow or processing gets restricted, reducing overall performance. It occurs when one component becomes slower than others and cannot efficiently handle incoming requests. This leads to reduced throughput, scalability issues, and delays under increased workload.
+คอขวด (Bottleneck) ในระบบคือจุดที่การไหลของข้อมูลหรือการประมวลผลถูกจำกัด ทำให้ประสิทธิภาพโดยรวมลดลง โดยเกิดขึ้นเมื่อคอมโพเนนต์หนึ่งทำงานช้ากว่าส่วนอื่นและไม่สามารถรองรับคำขอที่เข้ามาได้อย่างมีประสิทธิภาพ ส่งผลให้ Throughput ลดลง เกิดปัญหาด้าน Scalability และเกิดความล่าช้าเมื่อ Workload เพิ่มขึ้น
 
-- Bottlenecks limit system performance and prevent efficient handling of high traffic, often becoming visible during peak load conditions.
-- They can occur in databases, networks, servers, or code, and resolving one bottleneck may sometimes expose another in the system.
+- คอขวดจำกัดประสิทธิภาพของระบบและทำให้ไม่สามารถรองรับ Traffic ปริมาณมากได้อย่างมีประสิทธิภาพ โดยมักเห็นได้ชัดในช่วงที่มี Load สูงสุด
+- คอขวดสามารถเกิดขึ้นได้ในฐานข้อมูล เครือข่าย เซิร์ฟเวอร์ หรือโค้ด และบางครั้งเมื่อแก้คอขวดหนึ่งได้แล้ว อาจทำให้เห็นคอขวดอีกจุดหนึ่งในระบบ
 
-> ***Example:** If a web application has a fast server but a slow database, the database becomes the bottleneck because it cannot process queries quickly when many users access the system.*
+> ***ตัวอย่าง:** หาก Web Application มีเซิร์ฟเวอร์ที่ทำงานเร็ว แต่ฐานข้อมูลทำงานช้า ฐานข้อมูลจะกลายเป็นคอขวด เพราะไม่สามารถประมวลผล Query ได้รวดเร็วเมื่อมีผู้ใช้จำนวนมากเข้าถึงระบบพร้อมกัน*
 > 
 
-## **Types of Bottlenecks**
+## **ประเภทของคอขวด**
 
-Types of bottlenecks are different points in a system-such as database, network, server, code, storage, authentication, or third-party services—where limited capacity restricts performance and scalability.
+ประเภทของคอขวดคือจุดต่างๆ ภายในระบบ เช่น ฐานข้อมูล เครือข่าย เซิร์ฟเวอร์ โค้ด Storage ระบบ Authentication หรือบริการจาก Third-party ซึ่งมีความจุจำกัดและส่งผลให้ประสิทธิภาพและ Scalability ของระบบถูกจำกัด
 
 <img src="https://media.geeksforgeeks.org/wp-content/uploads/20260112124000471918/types_of_bottlenecks-660.webp" alt="types_of_bottlenecks" />
 
-### **1. Database Bottlenecks**
+### **1. คอขวดของฐานข้อมูล**
 
-Many programs rely heavily on databases, which are also frequently the main cause of scalability issues. Performance restrictions in a database system that can limit its capacity to process requests and transactions effectively are known as database bottlenecks.
+โปรแกรมจำนวนมากพึ่งพาฐานข้อมูลอย่างมาก และฐานข้อมูลก็มักเป็นสาเหตุหลักของปัญหาด้าน Scalability เช่นกัน ข้อจำกัดด้านประสิทธิภาพในระบบฐานข้อมูลที่อาจจำกัดความสามารถในการประมวลผลคำขอและ Transaction ได้อย่างมีประสิทธิภาพ เรียกว่า Database Bottleneck
 
-- An application's or system's overall performance, [scalability](https://www.geeksforgeeks.org/system-design/what-is-scalability/), and responsiveness can all be seriously affected by these obstacles.
-- Database bottlenecks happen when problems like slow queries, insufficient hardware resources, or inadequate indexing cause the database to become a performance bottleneck.
+- อุปสรรคเหล่านี้สามารถส่งผลกระทบอย่างมากต่อประสิทธิภาพโดยรวม [Scalability](https://www.geeksforgeeks.org/system-design/what-is-scalability/) และความรวดเร็วในการตอบสนองของ Application หรือระบบ
+- Database Bottleneck เกิดขึ้นเมื่อปัญหา เช่น Query ที่ทำงานช้า ทรัพยากร Hardware ไม่เพียงพอ หรือการทำ Index ที่ไม่เหมาะสม ทำให้ฐานข้อมูลกลายเป็นคอขวดด้านประสิทธิภาพ
 
-> ***Example:** If an e-commerce website experiences a surge in traffic during a holiday sale, slow database queries can lead to delayed order processing, frustrating users, and potentially resulting in abandoned carts.*
+> ***ตัวอย่าง:** หากเว็บไซต์ E-commerce มี Traffic เพิ่มขึ้นอย่างมากในช่วงเทศกาลลดราคา Query ของฐานข้อมูลที่ทำงานช้าอาจทำให้การประมวลผลคำสั่งซื้อล่าช้า สร้างความหงุดหงิดให้ผู้ใช้ และอาจทำให้ผู้ใช้ละทิ้งตะกร้าสินค้า*
 
-### **2. Network Bottlenecks**
+### **2. คอขวดของเครือข่าย**
 
-Network bottlenecks can significantly hinder scalability in a distributed system. It happen when a certain resource or component restricts a computer network's capacity or performance, which slows down or degrades the system's overall performance.
+Network Bottleneck สามารถขัดขวาง Scalability ใน Distributed System ได้อย่างมาก โดยเกิดขึ้นเมื่อ Resource หรือคอมโพเนนต์บางส่วนจำกัดความสามารถหรือประสิทธิภาพของเครือข่ายคอมพิวเตอร์ ส่งผลให้ประสิทธิภาพโดยรวมของระบบช้าลงหรือลดลง
 
-- They can occur at various points in a network topology and can severely impact the efficiency and responsiveness of an application or system.
-- These bottlenecks occur due to bandwidth limitations, high [latency](https://www.geeksforgeeks.org/system-design/latency-in-system-design/), packet loss, congestion, or inefficient network topology.
+- คอขวดสามารถเกิดขึ้นได้ตามจุดต่างๆ ใน Network Topology และอาจส่งผลกระทบอย่างรุนแรงต่อประสิทธิภาพและความรวดเร็วในการตอบสนองของ Application หรือระบบ
+- คอขวดเหล่านี้เกิดจากข้อจำกัดของ Bandwidth, [Latency](https://www.geeksforgeeks.org/system-design/latency-in-system-design/) ที่สูง, Packet Loss, Network Congestion หรือ Network Topology ที่ไม่มีประสิทธิภาพ
 
-> ***Example:** A video streaming service may encounter network bottlenecks if it doesn't have adequate content delivery infrastructure. Users may experience buffering or low-quality video streams when too many requests strain the network.*
+> ***ตัวอย่าง:** บริการ Video Streaming อาจพบ Network Bottleneck หากไม่มีโครงสร้างพื้นฐานสำหรับส่ง Content ที่เพียงพอ ผู้ใช้อาจพบอาการ Buffering หรือได้รับวิดีโอคุณภาพต่ำเมื่อมีคำขอจำนวนมากจนสร้างภาระให้กับเครือข่าย*
 > 
 
-### **3. Server Bottlenecks**
+### **3. คอขวดของเซิร์ฟเวอร์**
 
-When the application server is unable to manage more requests or concurrent connections, a server bottleneck occurs. Limitations in server resources, including CPU, RAM, or disk I/O, may be the cause of this.
+Server Bottleneck เกิดขึ้นเมื่อ Application Server ไม่สามารถรองรับคำขอหรือ Connection ที่เกิดขึ้นพร้อมกันได้มากขึ้น ซึ่งอาจเกิดจากข้อจำกัดของทรัพยากรเซิร์ฟเวอร์ เช่น CPU, RAM หรือ Disk I/O
 
-- Consider a social media site where an unexpectedly popular post causes a huge surge in users attempting to access it at once.
-- If the server lacks the necessary resources to handle this surge, it may become unresponsive, degrading the user experience.
+- ลองนึกถึงเว็บไซต์ Social Media ที่มีโพสต์หนึ่งได้รับความนิยมอย่างไม่คาดคิด จนทำให้มีผู้ใช้จำนวนมหาศาลพยายามเข้าถึงโพสต์นั้นพร้อมกัน
+- หากเซิร์ฟเวอร์มีทรัพยากรไม่เพียงพอสำหรับรองรับ Traffic ที่เพิ่มขึ้นอย่างรวดเร็วนี้ เซิร์ฟเวอร์อาจไม่ตอบสนองและทำให้ประสบการณ์ของผู้ใช้แย่ลง
 
-> ***Example:** You have a web application that allows users to upload and process images. As the user base grows, the server begins to experience performance issues. The server's CPU becomes a bottleneck because the image processing algorithm used by the application is computationally intensive, causing delays in image processing and overall sluggishness of the application.*
+> ***ตัวอย่าง:** คุณมี Web Application ที่ให้ผู้ใช้อัปโหลดและประมวลผลรูปภาพ เมื่อจำนวนผู้ใช้เพิ่มขึ้น เซิร์ฟเวอร์เริ่มพบปัญหาด้านประสิทธิภาพ CPU ของเซิร์ฟเวอร์กลายเป็นคอขวด เนื่องจาก Algorithm ประมวลผลรูปภาพของ Application ใช้ทรัพยากรในการคำนวณสูง ส่งผลให้การประมวลผลรูปภาพล่าช้าและ Application โดยรวมทำงานช้าลง*
 > 
 
-### **4. Authentication Bottlenecks**
+### **4. คอขวดของระบบ Authentication**
 
-Authentication is essential for securely verifying user identities and controlling access to system resources. An authentication bottleneck occurs when this process becomes slow or overloaded, affecting overall system performance and user experience.
+Authentication เป็นสิ่งสำคัญสำหรับการยืนยันตัวตนของผู้ใช้อย่างปลอดภัยและควบคุมการเข้าถึง Resource ของระบบ Authentication Bottleneck เกิดขึ้นเมื่อกระบวนการนี้ทำงานช้าหรือรับภาระมากเกินไป ซึ่งส่งผลต่อประสิทธิภาพโดยรวมของระบบและประสบการณ์ของผู้ใช้
 
-- Caused by high volumes of login requests or inefficient authentication mechanisms.
-- Can result from limited infrastructure or poorly optimized authentication workflows.
+- เกิดจากคำขอ Login ปริมาณมากหรือกลไก Authentication ที่ไม่มีประสิทธิภาพ
+- อาจเกิดจาก Infrastructure ที่มีข้อจำกัดหรือ Workflow ของ Authentication ที่ไม่ได้รับการปรับแต่งอย่างเหมาะสม
 
-> ***Example:** An e-banking application may experience authentication bottlenecks during peak usage times, causing login delays if the authentication system cannot keep up with the volume of incoming requests.*
+> ***ตัวอย่าง:** Application ธนาคารออนไลน์อาจพบ Authentication Bottleneck ในช่วงเวลาที่มีการใช้งานสูง ทำให้การ Login ล่าช้า หากระบบ Authentication ไม่สามารถรองรับปริมาณคำขอที่เข้ามาได้ทัน*
 > 
 
-### **5. Third-party Services Bottlenecks**
+### **5. คอขวดของบริการจาก Third-party**
 
-For many features, such as cloud storage, geolocation, and payment processing, modern apps frequently rely on third-party services, which limits a system's overall performance, dependability, and scalability.
+Application สมัยใหม่มักพึ่งพาบริการจาก Third-party สำหรับฟีเจอร์หลายอย่าง เช่น Cloud Storage, Geolocation และการประมวลผลการชำระเงิน ซึ่งอาจจำกัดประสิทธิภาพโดยรวม ความน่าเชื่อถือ และ Scalability ของระบบ
 
-- A number of things, such as the third-party service's availability, response latency, rate limitations, or API modifications, might cause these bottlenecks.
-- Identifying and addressing third-party services bottlenecks is crucial for designing systems that can provide consistent and responsive user experiences.
+- คอขวดเหล่านี้อาจเกิดจากหลายปัจจัย เช่น ความพร้อมใช้งานของบริการ Third-party, Response Latency, Rate Limit หรือการเปลี่ยนแปลงของ API
+- การระบุและแก้ไขคอขวดจากบริการ Third-party เป็นสิ่งสำคัญสำหรับการออกแบบระบบที่สามารถมอบประสบการณ์การใช้งานที่สม่ำเสมอและตอบสนองได้รวดเร็ว
 
-> ***Example:** If a ride-sharing app depends on an external mapping service and that service experiences downtime or slow response times, it can affect the app's performance and scalability.*
+> ***ตัวอย่าง:** หาก Application เรียกรถโดยสารพึ่งพาบริการแผนที่ภายนอก และบริการนั้นเกิด Downtime หรือมี Response Time ช้า ก็อาจส่งผลต่อประสิทธิภาพและ Scalability ของ Application*
 > 
 
-### **6. Code Execution Bottlenecks**
+### **6. คอขวดในการประมวลผลโค้ด**
 
-In system design, code execution bottlenecks are circumstances in which the design, writing, or execution of software code affects a computer system's performance and efficiency. These bottlenecks can be caused by a variety of factors, including poor use of system resources, high CPU utilization, and slow reaction times.
+ในการออกแบบระบบ Code Execution Bottleneck คือสถานการณ์ที่การออกแบบ การเขียน หรือการทำงานของ Software Code ส่งผลต่อประสิทธิภาพและประสิทธิผลของระบบคอมพิวเตอร์ คอขวดเหล่านี้อาจเกิดจากหลายปัจจัย รวมถึงการใช้ทรัพยากรระบบอย่างไม่มีประสิทธิภาพ การใช้ CPU สูง และ Response Time ที่ช้า
 
-> ***Example:** Inefficient algorithms for rendering complex data in a web application's front-end code can lead to slow page loads and lower user satisfaction. Detecting and optimizing these code bottlenecks is crucial for achieving scalability.*
+> ***ตัวอย่าง:** Algorithm ที่ไม่มีประสิทธิภาพสำหรับ Render ข้อมูลที่ซับซ้อนใน Front-end Code ของ Web Application อาจทำให้หน้าเว็บโหลดช้าและลดความพึงพอใจของผู้ใช้ การตรวจหาและปรับปรุงคอขวดของโค้ดเหล่านี้มีความสำคัญต่อการทำให้ระบบสามารถ Scale ได้*
 > 
 
-### **7. Data Storage Bottlenecks**
+### **7. คอขวดของการจัดเก็บข้อมูล**
 
-When a system's storage mechanisms and infrastructure start to limit its performance, capacity, or dependability, it is said to have a data storage bottleneck. These bottlenecks can impact the overall functionality and efficiency of the system.
+เมื่อกลไกและ Infrastructure สำหรับจัดเก็บข้อมูลของระบบเริ่มจำกัดประสิทธิภาพ ความจุ หรือความน่าเชื่อถือของระบบ จะเรียกว่า Data Storage Bottleneck คอขวดเหล่านี้สามารถส่งผลต่อการทำงานโดยรวมและประสิทธิภาพของระบบ
 
-- This might include slow access to file storage systems or inefficient utilization of disk space, leading to issues such as slow data access, data loss, or scalability problems.
-- Identifying and addressing data storage bottlenecks is critical for designing systems that can handle data effectively.
+- ปัญหาอาจรวมถึงการเข้าถึงระบบ File Storage ที่ช้า หรือการใช้พื้นที่ Disk อย่างไม่มีประสิทธิภาพ ซึ่งนำไปสู่ปัญหา เช่น การเข้าถึงข้อมูลช้า ข้อมูลสูญหาย หรือปัญหาด้าน Scalability
+- การระบุและแก้ไข Data Storage Bottleneck เป็นสิ่งสำคัญต่อการออกแบบระบบที่สามารถจัดการข้อมูลได้อย่างมีประสิทธิภาพ
 
-> ***Example:** Consider a cloud-based file-sharing platform; if the underlying file storage system struggles to handle an increasing number of files or doesn't provide efficient data retrieval, it can impede the platform's ability to scale gracefully.*
+> ***ตัวอย่าง:** ลองพิจารณาแพลตฟอร์ม File Sharing บน Cloud หากระบบ File Storage ที่อยู่เบื้องหลังไม่สามารถรองรับจำนวนไฟล์ที่เพิ่มขึ้น หรือไม่สามารถดึงข้อมูลได้อย่างมีประสิทธิภาพ ก็อาจขัดขวางความสามารถของแพลตฟอร์มในการ Scale ได้อย่างเหมาะสม*
 >
