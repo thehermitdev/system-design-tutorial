@@ -7,7 +7,7 @@ Requirements analysis is a crucial phase in software development where the needs
 
 > **Example:** In an online shopping system, functional requirements include features like user login and order placement, while non-functional requirements include system performance, security, and scalability.
 
-!requirements
+<img src="https://media.geeksforgeeks.org/wp-content/uploads/20250822132836297050/requirements-660.webp" alt="requirements" />
 
 ## **Functional Requirements**
 
