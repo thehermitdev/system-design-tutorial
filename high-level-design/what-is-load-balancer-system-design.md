@@ -1,150 +1,150 @@
 # **Load Balancer**
 
-A load balancer is a networking device or software application that distributes and balances the incoming traffic among the servers to provide high availability, efficient utilization of servers and high performance.
+Load Balancer คืออุปกรณ์เครือข่ายหรือซอฟต์แวร์ที่ทำหน้าที่กระจายและปรับสมดุลทราฟฟิกขาเข้าไปยังเซิร์ฟเวอร์ต่างๆ เพื่อให้ระบบมีความพร้อมใช้งานสูง ใช้ทรัพยากรเซิร์ฟเวอร์ได้อย่างมีประสิทธิภาพ และมีประสิทธิภาพการทำงานที่ดี
 
-- Works as a "traffic cop" routing client requests across all servers.
-- Ensures that no single server bears too many requests, which helps improve the performance, [reliability](https://www.geeksforgeeks.org/system-design/reliability-in-system-design/) and [availability](https://www.geeksforgeeks.org/system-design/availability-in-system-design/) of applications.
-- Highly used in cloud computing domains, data centers and large-scale web applications where traffic flow needs to be managed.
+- ทำหน้าที่เสมือน "ตำรวจจราจร" ที่คอยกำหนดเส้นทางคำขอของไคลเอนต์ไปยังเซิร์ฟเวอร์ต่างๆ
+- ช่วยให้มั่นใจว่าไม่มีเซิร์ฟเวอร์เครื่องใดต้องรับคำขอมากเกินไป ซึ่งช่วยปรับปรุงประสิทธิภาพ [ความน่าเชื่อถือ](https://www.geeksforgeeks.org/system-design/reliability-in-system-design/) และ [ความพร้อมใช้งาน](https://www.geeksforgeeks.org/system-design/availability-in-system-design/) ของแอปพลิเคชัน
+- ถูกใช้อย่างแพร่หลายในงานด้าน Cloud Computing, Data Center และเว็บแอปพลิเคชันขนาดใหญ่ที่จำเป็นต้องจัดการการไหลของทราฟฟิก
 
-> **Example** : A company may use NGINX, HAProxy, or AWS Elastic Load Balancing to distribute traffic between multiple backend servers.
+> **ตัวอย่าง** : บริษัทแห่งหนึ่งอาจใช้ NGINX, HAProxy หรือ AWS Elastic Load Balancing เพื่อกระจายทราฟฟิกไปยัง Backend Server หลายเครื่อง
 
-<img src="https://media.geeksforgeeks.org/wp-content/uploads/20260112182015615865/load_balancer-660.webp" alt="Path of the request" />
+<img src="https://media.geeksforgeeks.org/wp-content/uploads/20260112182015615865/load_balancer-660.webp" alt="เส้นทางของคำขอ" />
 
 !load_balancer
 
-*Path of the request*
+*เส้นทางของคำขอ*
 
 ## **Load Balancing**
 
-Load balancing is the process of distributing incoming network traffic across multiple servers to ensure no single server becomes overloaded. It helps improve application performance, reliability, and availability by efficiently utilizing server resources.
+Load Balancing คือกระบวนการกระจายทราฟฟิกเครือข่ายขาเข้าไปยังเซิร์ฟเวอร์หลายเครื่อง เพื่อไม่ให้เซิร์ฟเวอร์เครื่องใดเครื่องหนึ่งรับภาระมากเกินไป ซึ่งช่วยปรับปรุงประสิทธิภาพ ความน่าเชื่อถือ และความพร้อมใช้งานของแอปพลิเคชันด้วยการใช้ทรัพยากรเซิร์ฟเวอร์อย่างมีประสิทธิภาพ
 
-> *Load balancing is like a busy restaurant where instead of one chef handling all orders, multiple chefs share the work so customers get served faster and more efficiently.*
+> *Load Balancing เปรียบเสมือนร้านอาหารที่มีลูกค้าจำนวนมาก ซึ่งแทนที่จะให้เชฟเพียงคนเดียวจัดการทุกออเดอร์ ก็มีเชฟหลายคนช่วยกันแบ่งงาน ทำให้ลูกค้าได้รับบริการรวดเร็วและมีประสิทธิภาพมากขึ้น*
 
-Similarly, in computer systems, a load balancer distributes user requests across multiple servers so that no single server becomes overwhelmed.
+ในทำนองเดียวกัน สำหรับระบบคอมพิวเตอร์ Load Balancer จะกระจายคำขอของผู้ใช้ไปยังเซิร์ฟเวอร์หลายเครื่อง เพื่อไม่ให้เซิร์ฟเวอร์เครื่องใดเครื่องหนึ่งรับภาระมากเกินไป
 
-## **Problems Without a Load Balancer**
+## **ปัญหาเมื่อไม่มี Load Balancer**
 
-Several problems will occur without the load balancer, these are:
+หากไม่มี Load Balancer จะเกิดปัญหาหลายประการ ดังนี้:
 
-<img src="https://media.geeksforgeeks.org/wp-content/uploads/20241103190358904939/without-load-balancing-660.webp" alt="Without Load Balancer" />
+<img src="https://media.geeksforgeeks.org/wp-content/uploads/20241103190358904939/without-load-balancing-660.webp" alt="ไม่มี Load Balancer" />
 
-- **Single Point of Failure: I**f the server goes down or something happens to the server the whole application will be interrupted and it will become unavailable for the users for a certain period. It will create a bad experience for users which is unacceptable for service providers.
-- **Overloaded Servers:** There will be a limitation on the number of requests that a web server can handle. If the business grows and the number of requests increases the server will be overloaded.
-- **Limited Scalability**: Without a load balancer, adding more servers to share the traffic is complicated. All requests are stuck with one server and adding new servers won’t automatically solve the load issue.
+- **Single Point of Failure:** หากเซิร์ฟเวอร์หยุดทำงานหรือเกิดปัญหากับเซิร์ฟเวอร์ แอปพลิเคชันทั้งหมดจะหยุดชะงักและไม่สามารถให้บริการผู้ใช้ได้ในช่วงเวลาหนึ่ง ซึ่งจะสร้างประสบการณ์ที่ไม่ดีให้กับผู้ใช้และเป็นสิ่งที่ผู้ให้บริการไม่สามารถยอมรับได้
+- **เซิร์ฟเวอร์รับภาระมากเกินไป:** เว็บเซิร์ฟเวอร์แต่ละเครื่องมีข้อจำกัดด้านจำนวนคำขอที่สามารถรองรับได้ หากธุรกิจเติบโตและจำนวนคำขอเพิ่มขึ้น เซิร์ฟเวอร์ก็อาจรับภาระมากเกินไป
+- **ข้อจำกัดด้านการขยายระบบ**: หากไม่มี Load Balancer การเพิ่มเซิร์ฟเวอร์เพื่อช่วยแบ่งทราฟฟิกจะมีความซับซ้อน คำขอทั้งหมดจะยังคงผูกอยู่กับเซิร์ฟเวอร์เพียงเครื่องเดียว และการเพิ่มเซิร์ฟเวอร์ใหม่จะไม่ช่วยแก้ปัญหาภาระงานโดยอัตโนมัติ
 
-*With Load balancer*
+*เมื่อมี Load Balancer*
 
 !with-load-balancing
 
-<img src="https://media.geeksforgeeks.org/wp-content/uploads/20241103190433238127/with-load-balancing-660.webp" alt="With Load balancer" />
+<img src="https://media.geeksforgeeks.org/wp-content/uploads/20241103190433238127/with-load-balancing-660.webp" alt="มี Load Balancer" />
 
-## **Working**
+## **การทำงาน**
 
-A load balancer receives incoming requests, checks server health, and routes each request to the most suitable available server to ensure high availability and optimal performance.
+Load Balancer จะรับคำขอขาเข้า ตรวจสอบสถานะของเซิร์ฟเวอร์ และกำหนดเส้นทางคำขอแต่ละรายการไปยังเซิร์ฟเวอร์ที่พร้อมใช้งานและเหมาะสมที่สุด เพื่อให้ระบบมีความพร้อมใช้งานสูงและมีประสิทธิภาพสูงสุด
 
 <img src="https://media.geeksforgeeks.org/wp-content/uploads/20260112155147179226/how_load_balancer_works_-660.webp" />
 
-- **Receives Incoming Requests**: When users try to access a website or application, their requests first go to the load balancer instead of directly to a server.
-- **Checks Server Health**: The load balancer continuously monitors the status of all servers. It checks which servers are healthy and ready to handle requests.
-- **Distributes Traffic**: Based on factors like server load, response time or proximity, the load balancer forwards each request to the most appropriate server. This helps avoid any server getting overloaded.
-- **Handles Server Failures**: If a server goes down or becomes unresponsive, the load balancer automatically stops sending traffic to that server and redirects it to others that are still functioning properly.
-- **Optimizes Performance**: By spreading traffic efficiently and using healthy servers, load balancers improve overall performance and reduce delays.
+- **รับคำขอขาเข้า**: เมื่อผู้ใช้พยายามเข้าถึงเว็บไซต์หรือแอปพลิเคชัน คำขอจะถูกส่งไปยัง Load Balancer ก่อน แทนที่จะส่งตรงไปยังเซิร์ฟเวอร์
+- **ตรวจสอบสถานะของเซิร์ฟเวอร์**: Load Balancer จะตรวจสอบสถานะของเซิร์ฟเวอร์ทั้งหมดอย่างต่อเนื่อง เพื่อตรวจสอบว่าเซิร์ฟเวอร์ใดทำงานได้ตามปกติและพร้อมรับคำขอ
+- **กระจายทราฟฟิก**: Load Balancer จะส่งต่อคำขอแต่ละรายการไปยังเซิร์ฟเวอร์ที่เหมาะสมที่สุด โดยพิจารณาจากปัจจัยต่างๆ เช่น ภาระของเซิร์ฟเวอร์ ระยะเวลาตอบสนอง หรือระยะทาง ซึ่งช่วยป้องกันไม่ให้เซิร์ฟเวอร์เครื่องใดรับภาระมากเกินไป
+- **จัดการเมื่อเซิร์ฟเวอร์ล้มเหลว**: หากเซิร์ฟเวอร์หยุดทำงานหรือไม่ตอบสนอง Load Balancer จะหยุดส่งทราฟฟิกไปยังเซิร์ฟเวอร์นั้นโดยอัตโนมัติ และเปลี่ยนเส้นทางไปยังเซิร์ฟเวอร์เครื่องอื่นที่ยังทำงานได้ตามปกติ
+- **เพิ่มประสิทธิภาพการทำงาน**: ด้วยการกระจายทราฟฟิกอย่างมีประสิทธิภาพและเลือกใช้เซิร์ฟเวอร์ที่ทำงานได้ตามปกติ Load Balancer จึงช่วยเพิ่มประสิทธิภาพโดยรวมและลดความล่าช้า
 
-## **Characteristics**
+## **คุณลักษณะ**
 
-Load balancers have several important characteristics that help improve system performance, reliability, and scalability. These include:
+Load Balancer มีคุณลักษณะสำคัญหลายประการที่ช่วยปรับปรุงประสิทธิภาพ ความน่าเชื่อถือ และความสามารถในการขยายระบบ ได้แก่:
 
-- **Traffic Distribution:** To keep any one server from becoming overburdened, load balancers divide incoming requests evenly among several servers.
-- **High Availability:** Applications' reliability and availability are improved by load balancers, which divide traffic among several servers. The load balancer reroutes traffic to servers that are in good condition in the event that one fails.
-- **Scalability:** By making it simple to add servers or resources to meet growing traffic demands, load balancers enable horizontal scaling.
-- **Optimization:** Load balancers optimize resource utilization, ensuring efficient use of server capacity and preventing bottlenecks.
-- **Health Monitoring:** Load balancers often monitor the health of servers, directing traffic away from servers experiencing issues or downtime.
-- **SSL Termination:** Some load balancers can handle SSL/TLS encryption and decryption, offloading this resource-intensive task from servers.
+- **การกระจายทราฟฟิก:** Load Balancer จะแบ่งคำขอขาเข้าไปยังเซิร์ฟเวอร์หลายเครื่องอย่างสมดุล เพื่อป้องกันไม่ให้เซิร์ฟเวอร์เครื่องใดเครื่องหนึ่งรับภาระมากเกินไป
+- **ความพร้อมใช้งานสูง:** Load Balancer ช่วยเพิ่มความน่าเชื่อถือและความพร้อมใช้งานของแอปพลิเคชันด้วยการกระจายทราฟฟิกไปยังเซิร์ฟเวอร์หลายเครื่อง หากเซิร์ฟเวอร์เครื่องหนึ่งล้มเหลว Load Balancer จะเปลี่ยนเส้นทางทราฟฟิกไปยังเซิร์ฟเวอร์ที่ยังทำงานได้ตามปกติ
+- **ความสามารถในการขยายระบบ:** Load Balancer ช่วยให้สามารถทำ Horizontal Scaling ได้ง่าย ด้วยการเพิ่มเซิร์ฟเวอร์หรือทรัพยากรเพื่อรองรับความต้องการด้านทราฟฟิกที่เพิ่มขึ้น
+- **การเพิ่มประสิทธิภาพ:** Load Balancer ช่วยเพิ่มประสิทธิภาพการใช้ทรัพยากร ทำให้สามารถใช้ความสามารถของเซิร์ฟเวอร์ได้อย่างมีประสิทธิภาพและช่วยป้องกันปัญหาคอขวด
+- **การตรวจสอบสถานะ:** Load Balancer มักตรวจสอบสถานะของเซิร์ฟเวอร์ และเปลี่ยนเส้นทางทราฟฟิกออกจากเซิร์ฟเวอร์ที่กำลังมีปัญหาหรือหยุดทำงาน
+- **SSL Termination:** Load Balancer บางประเภทสามารถจัดการการเข้ารหัสและถอดรหัส SSL/TLS ได้ ช่วยลดภาระงานที่ใช้ทรัพยากรสูงออกจากเซิร์ฟเวอร์
 
-## **Types of Load Balancers**
+## **ประเภทของ Load Balancer**
 
-Load balancers can be classified based on how they are deployed and how they handle network traffic at different layers.
+Load Balancer สามารถแบ่งประเภทตามวิธีการติดตั้งใช้งานและวิธีจัดการทราฟฟิกเครือข่ายในแต่ละ Layer ได้
 
-### **1. Based on deployment**
+### **1. แบ่งตามวิธีการติดตั้งใช้งาน**
 
-Load balancers can be categorized based on how they are deployed and how they manage network traffic. Each type is designed to handle different levels of traffic and infrastructure requirements.
+Load Balancer สามารถแบ่งประเภทตามวิธีการติดตั้งใช้งานและวิธีจัดการทราฟฟิกเครือข่าย โดยแต่ละประเภทถูกออกแบบมาให้รองรับระดับของทราฟฟิกและข้อกำหนดด้านโครงสร้างพื้นฐานที่แตกต่างกัน
 
 **1. Hardware Load Balancer**
 
-A hardware load balancer is a dedicated physical device used in large data centers to distribute traffic across multiple servers. It is designed for high performance and can handle a large volume of network requests efficiently.
+Hardware Load Balancer คืออุปกรณ์ทางกายภาพเฉพาะทางที่ใช้ใน Data Center ขนาดใหญ่ เพื่อกระจายทราฟฟิกไปยังเซิร์ฟเวอร์หลายเครื่อง โดยถูกออกแบบให้มีประสิทธิภาพสูงและสามารถรองรับคำขอเครือข่ายจำนวนมากได้อย่างมีประสิทธิภาพ
 
-> **Example:** Enterprise data centers often use hardware appliances from companies like F5 Networks to manage heavy traffic.
+> **ตัวอย่าง:** Data Center ระดับองค์กรนิยมใช้อุปกรณ์ Hardware จากบริษัทอย่าง F5 Networks เพื่อจัดการทราฟฟิกปริมาณสูง
 
 **2. Software Load Balancer**
 
-A software load balancer runs as an application on a server and distributes traffic among backend servers. It is flexible, cost-effective, and widely used in modern web applications.
+Software Load Balancer ทำงานในรูปแบบแอปพลิเคชันบนเซิร์ฟเวอร์ และทำหน้าที่กระจายทราฟฟิกไปยัง Backend Server หลายเครื่อง มีความยืดหยุ่น ประหยัดค่าใช้จ่าย และถูกใช้อย่างแพร่หลายในเว็บแอปพลิเคชันสมัยใหม่
 
-> **Example:** Popular software load balancers include NGINX and HAProxy, which are commonly used to distribute traffic across web servers.
+> **ตัวอย่าง:** Software Load Balancer ที่ได้รับความนิยม ได้แก่ NGINX และ HAProxy ซึ่งมักใช้เพื่อกระจายทราฟฟิกไปยังเว็บเซิร์ฟเวอร์หลายเครื่อง
 
 **3. Cloud Load Balancer**
 
-A cloud load balancer is a managed service provided by cloud platforms to automatically distribute incoming traffic across multiple cloud servers. It helps scale applications easily without managing the underlying infrastructure.
+Cloud Load Balancer คือ Managed Service ที่ให้บริการโดยแพลตฟอร์ม Cloud เพื่อกระจายทราฟฟิกขาเข้าไปยัง Cloud Server หลายเครื่องโดยอัตโนมัติ ช่วยให้ขยายแอปพลิเคชันได้ง่ายโดยไม่ต้องจัดการโครงสร้างพื้นฐานเบื้องหลังด้วยตนเอง
 
-> **Example:** Services such as AWS Elastic Load Balancing automatically distribute user requests across multiple cloud instances to maintain high availability and performance.
+> **ตัวอย่าง:** บริการอย่าง AWS Elastic Load Balancing จะกระจายคำขอของผู้ใช้ไปยัง Cloud Instance หลายเครื่องโดยอัตโนมัติ เพื่อรักษาความพร้อมใช้งานและประสิทธิภาพในระดับสูง
 
-### **2. Based on OSI Model**
+### **2. แบ่งตาม OSI Model**
 
-Load balancers can be categorized based on the layer of the OSI (Open Systems Interconnection) model at which they operate. The two most common types are Layer 4 and Layer 7 load balancers.
+Load Balancer สามารถแบ่งประเภทตาม Layer ของโมเดล OSI (Open Systems Interconnection) ที่ทำงานอยู่ โดยประเภทที่พบบ่อยที่สุดสองประเภทคือ Layer 4 และ Layer 7 Load Balancer
 
 **1. Layer 4 (Transport Layer) Load Balancer**
 
-A Layer 4 load balancer operates at the transport layer of the OSI model and distributes traffic based on network information such as IP addresses and TCP/UDP port numbers. It does not inspect the actual content of the request, which makes it fast and efficient for handling large volumes of traffic.
+Layer 4 Load Balancer ทำงานที่ Transport Layer ของโมเดล OSI และกระจายทราฟฟิกโดยอ้างอิงข้อมูลเครือข่าย เช่น IP Address และหมายเลขพอร์ต TCP/UDP โดยจะไม่ตรวจสอบเนื้อหาจริงของคำขอ ทำให้สามารถจัดการทราฟฟิกจำนวนมากได้อย่างรวดเร็วและมีประสิทธิภาพ
 
-> **Example:** A Layer 4 load balancer forwards incoming TCP requests to different servers based on the destination port and IP address.
+> **ตัวอย่าง:** Layer 4 Load Balancer จะส่งต่อคำขอ TCP ขาเข้าไปยังเซิร์ฟเวอร์ต่างๆ โดยอ้างอิงจาก Destination Port และ IP Address
 
 **2. Layer 7 (Application Layer) Load Balancer**
 
-A Layer 7 load balancer operates at the application layer and distributes traffic based on application-level information such as HTTP headers, URLs, cookies, or request content. This allows more intelligent routing decisions based on the type of request.
+Layer 7 Load Balancer ทำงานที่ Application Layer และกระจายทราฟฟิกโดยอ้างอิงข้อมูลระดับแอปพลิเคชัน เช่น HTTP Header, URL, Cookie หรือเนื้อหาของคำขอ ทำให้สามารถตัดสินใจกำหนดเส้นทางได้อย่างชาญฉลาดมากขึ้นตามประเภทของคำขอ
 
-> **Example:** A Layer 7 load balancer can route requests for `/images` to one server and `/api` requests to another server using tools like NGINX.
+> **ตัวอย่าง:** Layer 7 Load Balancer สามารถส่งคำขอสำหรับ `/images` ไปยังเซิร์ฟเวอร์หนึ่ง และส่งคำขอ `/api` ไปยังอีกเซิร์ฟเวอร์หนึ่งโดยใช้เครื่องมืออย่าง NGINX
 
-## **Server Health Monitoring by Load Balancers (Up or Down)**
+## **การตรวจสอบสถานะเซิร์ฟเวอร์โดย Load Balancer (ทำงานหรือหยุดทำงาน)**
 
-Load balancers continuously monitor backend servers to ensure that requests are only sent to healthy servers. This helps maintain application availability and performance.
+Load Balancer จะตรวจสอบ Backend Server อย่างต่อเนื่อง เพื่อให้มั่นใจว่าคำขอจะถูกส่งไปยังเซิร์ฟเวอร์ที่ทำงานได้ตามปกติเท่านั้น ซึ่งช่วยรักษาความพร้อมใช้งานและประสิทธิภาพของแอปพลิเคชัน
 
 ### **1. Active Health Checks / Heartbeat Monitoring**
 
-Ensures servers are online and responding before sending traffic to them.
+ช่วยให้มั่นใจว่าเซิร์ฟเวอร์ออนไลน์และตอบสนองได้ก่อนที่จะส่งทราฟฟิกไปยังเซิร์ฟเวอร์นั้น
 
-- The load balancer periodically sends test requests (like HTTP, TCP, or ICMP pings) to servers to verify they are online and responding correctly.
-- Heartbeat signals are lightweight messages sent at regular intervals to confirm server availability. If a heartbeat fails multiple times, the server is considered unhealthy.
+- Load Balancer จะส่งคำขอทดสอบเป็นระยะ เช่น HTTP, TCP หรือ ICMP Ping ไปยังเซิร์ฟเวอร์ เพื่อตรวจสอบว่าเซิร์ฟเวอร์ออนไลน์และตอบสนองได้อย่างถูกต้อง
+- Heartbeat Signal เป็นข้อความขนาดเล็กที่ส่งตามช่วงเวลาที่กำหนดเพื่อยืนยันว่าเซิร์ฟเวอร์ยังพร้อมใช้งาน หาก Heartbeat ล้มเหลวหลายครั้ง เซิร์ฟเวอร์จะถูกพิจารณาว่าไม่พร้อมใช้งาน
 
 ### **2. Passive Health Checks**
 
-Detects failing servers by monitoring real user traffic.
+ตรวจหาเซิร์ฟเวอร์ที่มีปัญหาด้วยการตรวจสอบทราฟฟิกจริงของผู้ใช้
 
-- The load balancer monitors real client traffic for errors or timeouts.
-- If a server consistently fails to respond or returns errors, it is marked as down automatically without waiting for active tests.
+- Load Balancer จะตรวจสอบทราฟฟิกจริงจากไคลเอนต์เพื่อหาข้อผิดพลาดหรือ Timeout
+- หากเซิร์ฟเวอร์ไม่ตอบสนองอย่างต่อเนื่องหรือส่งข้อผิดพลาดกลับมา เซิร์ฟเวอร์นั้นจะถูกทำเครื่องหมายว่าหยุดทำงานโดยอัตโนมัติ โดยไม่ต้องรอการทดสอบแบบ Active
 
 ### **3. Automatic Failover and Recovery**
 
-Prevents downtime by rerouting traffic away from unhealthy servers.
+ช่วยป้องกัน Downtime ด้วยการเปลี่ยนเส้นทางทราฟฟิกออกจากเซิร์ฟเวอร์ที่ไม่พร้อมใช้งาน
 
-- When a server is detected as down, the load balancer immediately stops sending traffic to it, preventing failed requests from reaching clients.
-- Once the server recovers and passes health checks or heartbeat monitoring, it is automatically reinstated into the pool.
-- This ensures seamless failover with minimal disruption to end users.
+- เมื่อระบบตรวจพบว่าเซิร์ฟเวอร์หยุดทำงาน Load Balancer จะหยุดส่งทราฟฟิกไปยังเซิร์ฟเวอร์นั้นทันที เพื่อป้องกันไม่ให้คำขอที่ล้มเหลวไปถึงไคลเอนต์
+- เมื่อเซิร์ฟเวอร์กลับมาทำงานและผ่าน Health Check หรือ Heartbeat Monitoring แล้ว ระบบจะนำเซิร์ฟเวอร์กลับเข้าสู่ Pool โดยอัตโนมัติ
+- วิธีนี้ช่วยให้เกิด Failover ได้อย่างราบรื่นและลดผลกระทบต่อผู้ใช้ปลายทางให้น้อยที่สุด
 
-> ***Example:** Imagine a popular e-commerce site during a flash sale: if one web server crashes under heavy load, the load balancer detects the failure through heartbeat monitoring and health checks. Traffic is rerouted to healthy servers until the failed server comes back online, preventing downtime and lost orders.*
+> ***ตัวอย่าง:** ลองนึกถึงเว็บไซต์ E-commerce ยอดนิยมในช่วง Flash Sale หากเว็บเซิร์ฟเวอร์เครื่องหนึ่งล่มเนื่องจากรับภาระหนัก Load Balancer จะตรวจพบความล้มเหลวผ่าน Heartbeat Monitoring และ Health Check จากนั้นทราฟฟิกจะถูกเปลี่ยนเส้นทางไปยังเซิร์ฟเวอร์ที่ยังทำงานได้ตามปกติจนกว่าเซิร์ฟเวอร์ที่ล้มจะกลับมาออนไลน์อีกครั้ง ซึ่งช่วยป้องกัน Downtime และการสูญเสียคำสั่งซื้อ*
 
 <img src="https://media.geeksforgeeks.org/wp-content/uploads/20260330161824889435/system_design_1.webp" />
 
 <img src="https://media.geeksforgeeks.org/wp-content/uploads/20260330161825005887/system_design_2.webp" />
 
-- The load balancer receives requests from the user and distributes them across multiple servers, ensuring all servers handle traffic efficiently.
-- Heartbeat signals continuously check if each server is healthy; working servers respond normally (shown with green hearts).
-- If a server fails (shown with cross), the load balancer detects it through missed heartbeats and stops sending requests to that server, redirecting traffic to healthy ones.
+- Load Balancer รับคำขอจากผู้ใช้และกระจายคำขอไปยังเซิร์ฟเวอร์หลายเครื่อง เพื่อให้เซิร์ฟเวอร์ทั้งหมดจัดการทราฟฟิกได้อย่างมีประสิทธิภาพ
+- Heartbeat Signal จะตรวจสอบอย่างต่อเนื่องว่าเซิร์ฟเวอร์แต่ละเครื่องทำงานได้ตามปกติหรือไม่ โดยเซิร์ฟเวอร์ที่ทำงานได้จะตอบสนองตามปกติ (แสดงด้วยรูปหัวใจสีเขียว)
+- หากเซิร์ฟเวอร์ล้มเหลว (แสดงด้วยเครื่องหมายกากบาท) Load Balancer จะตรวจพบจาก Heartbeat ที่ขาดหายไป และหยุดส่งคำขอไปยังเซิร์ฟเวอร์นั้น โดยเปลี่ยนเส้นทางทราฟฟิกไปยังเซิร์ฟเวอร์ที่ยังทำงานได้ตามปกติ
 
-## **Challenges and Risks of Load Balancers**
+## **ความท้าทายและความเสี่ยงของ Load Balancer**
 
-Although load balancers improve performance and availability, they also introduce some challenges that must be managed properly.
+แม้ว่า Load Balancer จะช่วยเพิ่มประสิทธิภาพและความพร้อมใช้งาน แต่ก็ทำให้เกิดความท้าทายบางประการที่ต้องได้รับการจัดการอย่างเหมาะสม
 
-- **Single Point of Failure:** If the load balancer itself fails, it can stop traffic from reaching servers unless backup load balancers are configured.
-- **Performance Bottleneck:** If the load balancer cannot handle very high traffic, it may slow down request processing.
-- **Configuration Complexity:** Setting up load balancing correctly for large applications can be complex.
-- **Security Risks:** Since load balancers sit between users and servers, they can become targets for cyber attacks.
-- **Cost:** Hardware load balancers and high-availability configurations can increase infrastructure costs.
+- **Single Point of Failure:** หาก Load Balancer ล้มเหลว ก็อาจทำให้ทราฟฟิกไม่สามารถไปถึงเซิร์ฟเวอร์ได้ เว้นแต่จะมีการกำหนดค่า Load Balancer สำรองไว้
+- **คอขวดด้านประสิทธิภาพ:** หาก Load Balancer ไม่สามารถรองรับทราฟฟิกที่สูงมากได้ ก็อาจทำให้การประมวลผลคำขอช้าลง
+- **ความซับซ้อนในการกำหนดค่า:** การตั้งค่า Load Balancing ให้ถูกต้องสำหรับแอปพลิเคชันขนาดใหญ่อาจมีความซับซ้อน
+- **ความเสี่ยงด้านความปลอดภัย:** เนื่องจาก Load Balancer อยู่ระหว่างผู้ใช้กับเซิร์ฟเวอร์ จึงอาจกลายเป็นเป้าหมายของการโจมตีทางไซเบอร์
+- **ค่าใช้จ่าย:** Hardware Load Balancer และการกำหนดค่าที่รองรับ High Availability สามารถเพิ่มค่าใช้จ่ายด้านโครงสร้างพื้นฐานได้
